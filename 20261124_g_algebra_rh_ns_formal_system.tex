@@ -1,0 +1,113 @@
+% !TeX program = pdflatex
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{CJKutf8}
+\usepackage{amsmath,amssymb,mathtools,amsthm}
+\usepackage[a4paper,top=25mm,bottom=25mm,left=20mm,right=20mm]{geometry}
+\usepackage{array,booktabs,longtable,tocloft,xcolor}
+\usepackage[unicode,colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{xurl}
+\hypersetup{pdftitle={Direct G-Algebra Kernels and Law-Space Readback}}
+\input{glyphtounicode}
+\pdfgentounicode=1
+\makeatletter
+\ifdefined\pdfnobuiltintounicode
+  \let\galgebraCJKaddcmap\CJK@addcmap
+  \def\CJK@addcmap#1{%
+    \ifx\f@encoding\CJK@enc
+      \galgebraCJKaddcmap{#1}%
+      \pdfnobuiltintounicode\font@name
+    \fi}
+\fi
+\makeatother
+\AddToHook{file/c70gkai.fd/after}{%
+  \DeclareFontShape{C70}{gkai}{m}{it}{<->CJK*gkaiu}{\CJKnormal}%
+  \DeclareFontShape{C70}{gkai}{bx}{it}{<->CJKb*gkaiu}{\CJKbold}%
+}
+\Urlmuskip=0mu plus 4mu
+\setlength{\emergencystretch}{5em}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\newtheorem{theorem}{定理}[section]
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{corollary}[theorem]{推论}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{定义}
+\newtheorem{certificate}[theorem]{证书}
+\newtheorem{example}[theorem]{例}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{备注}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\lean}[1]{\nolinkurl{#1}}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Reach}{Reach}
+\DeclareMathOperator{\Cert}{Cert}
+\begin{document}
+\begin{CJK*}{UTF8}{gkai}
+\renewcommand{\contentsname}{目录}
+\renewcommand{\refname}{参考文献}
+\renewcommand{\proofname}{证明}
+\renewcommand{\abstractname}{摘要}
+\renewcommand{\tablename}{表}
+\title{G 代数的直接上卷、分型内核与法空间回读\\
+\large 经典黎曼猜想与带外力 Navier--Stokes 爆破的回读\\
+（G 法空间与 Lean 形式系统）}
+\author{}
+\date{2026-11-25}
+\maketitle
+\begin{abstract}
+本文在 G 母体上保持实际输入、合法域及原量词，以纤维丛协变和多复合反身闭合分型内核。
+验收采用已证的双向等价、充分回读或精确读数。母体命题成立时，按同一法空间回读取得经典推导。
+
+经典黎曼分型证明实际 \(\xi\) 的全称矩条件与全部非平凡零点位于临界线等价。
+带外力流体分型证明整周期尾方程的多复合闭合，并从合法非零精确周期的存在性
+回读零初值、有界动能与光滑紧支外力下的有限时间爆破，保留原黏性量词。
+加性数论和全秩自守谱采用各自的等价读数，动理学和宏观流体按精确通量、
+共同尺度下的误差条件及有限端点条件验收相应回读。
+附录给出有限核验、G 文献定位与 Lean 证明映射。
+\end{abstract}
+
+\section*{前言}
+\addcontentsline{toc}{section}{前言}
+第~\ref{sec:proof-guide} 节登记共同证明链、分型回读及其覆盖范围。
+策略格、命中、LHTS、TPH 与 L-路径用于给定有限数据的任务商核验与成本比较
+\cite{GNotes,GUnified}。
+
+主丛、纤维作用、高阶相容性采用公开的纯数学构造，法空间的作用与证据采用应用三卷的相应接口
+\cite{GPure,GAppI,GAppII,GAppIII}。
+任务保持与率—商回读按公开工作笔记和综合文献的相应构造 \cite{GNotes,GUnified}。
+附录~\ref{sec:g-internal-basis} 给出本文所用的有限路径、测试、支持因子化和解析输入。
+回读的参数、条件及方向在正文定理中登记。
+
+Lean 工程固定为官方 Lean~4.36.0，直接基础模块为 \lean{Init}，版本入口见 \href{https://lean-lang.org/}{Lean 官方站点}。
+默认构建核验正文与有限算术附录所用的声明。
+附录~\ref{sec:lean-map} 给出正文连续分析、参数化接口与机器核验的对应范围。
+
+\setcounter{tocdepth}{2}
+\clearpage
+\tableofcontents
+\clearpage
+\input{g_algebra_rh_ns/parts/proof_guide.texinc}
+\input{g_algebra_rh_ns/parts/law.texinc}
+\input{g_algebra_rh_ns/parts/chains.texinc}
+\input{g_algebra_rh_ns/parts/coverage.texinc}
+\input{g_algebra_rh_ns/parts/repair.texinc}
+\input{g_algebra_rh_ns/parts/targets.texinc}
+\appendix
+\input{g_algebra_rh_ns/parts/internal_basis.texinc}
+\section{有限算术核验}
+\label{sec:finite-zeta-verification}
+有理包围、轮廓计数及变号证书的结论按各自给定的有限域读取。
+\input{g_algebra_rh_ns/parts/arithmetic_enclosures.texinc}
+\input{g_algebra_rh_ns/parts/zeta_window.texinc}
+\input{g_algebra_rh_ns/parts/mapping.texinc}
+\end{CJK*}
+\end{document}

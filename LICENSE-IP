@@ -1,0 +1,51 @@
+GAlgebra 文稿知识产权与许可声明 / GAlgebra Research Materials License
+
+Copyright (C) 2026 GaoZheng（高政）
+SPDX-License-Identifier: CC-BY-NC-ND-4.0
+
+中文说明
+
+除另有独立许可声明外，下列材料中 GaoZheng 持有著作权或有权许可的原创文稿、
+文字、图表和研究说明采用知识共享-署名-非商业性使用-禁止演绎 4.0 国际许可协议
+（CC BY-NC-ND 4.0）。
+
+- 20261124_g_algebra_rh_ns_formal_system.tex
+- 20261124_g_algebra_rh_ns_formal_system.pdf
+- g_algebra_rh_ns/parts/ 及其子目录中的 TeX 分节源文件
+- g_algebra_rh_ns/README.md、g_algebra_rh_ns/proof-index.md、
+  g_algebra_rh_ns/proof-map.json 和 g_algebra_rh_ns/sources.json 中的原创说明
+
+引用内容、第三方材料和已有独立许可声明的材料遵循各自的权利与许可声明。
+程序代码、可执行脚本及仓库维护材料的许可范围见根目录 README.md。
+本声明界定 CC BY-NC-ND 4.0 的适用材料。具体权利、条件、例外、免责和终止
+规则以完整法律条款为准。
+
+English notice
+
+Unless a separate license is stated, the following original manuscripts, text,
+figures, tables, and research notes are licensed under the Creative Commons
+Attribution-NonCommercial-NoDerivatives 4.0 International License
+(CC BY-NC-ND 4.0) to the extent that GaoZheng owns or is authorized to license
+the relevant rights.
+
+- 20261124_g_algebra_rh_ns_formal_system.tex
+- 20261124_g_algebra_rh_ns_formal_system.pdf
+- TeX section sources in g_algebra_rh_ns/parts/ and its subdirectories
+- Original explanatory material in g_algebra_rh_ns/README.md,
+  g_algebra_rh_ns/proof-index.md, g_algebra_rh_ns/proof-map.json, and
+  g_algebra_rh_ns/sources.json
+
+Quotations, third-party materials, and separately licensed materials retain
+their own rights and license terms. See the root README.md for the licenses
+that apply to software code, executable scripts, and repository maintenance
+materials. The full CC BY-NC-ND 4.0 legal code governs the rights, conditions,
+exceptions, disclaimers, and termination provisions.
+
+许可链接 / License URL
+https://creativecommons.org/licenses/by-nc-nd/4.0/
+
+完整法律条款（简体中文） / Full legal code (Simplified Chinese)
+https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode.zh-hans
+
+Full legal code (English)
+https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode.en

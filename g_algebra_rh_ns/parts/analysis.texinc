@@ -1,0 +1,153 @@
+\subsection{秩一平凡纤维的临界带和反射}
+
+以 \(Z_*\) 记定义~\ref{def:goals} 中平凡纤维的非平凡零点集。
+
+\begin{theorem}[临界带与零点反射的独立构造]\label{thm:criticalstrip}
+从 \(\zeta(s)=\sum_{n\ge1}n^{-s}\) 在 \(\Re s>1\) 的定义出发，可构造其亚纯延拓。非平凡零点全在 \(0<\Re s<1\)，且在
+\(\mathfrak m(\rho)=1-\overline{\rho}\) 下保持零点及其重数。
+\end{theorem}
+\begin{proof}
+第一步是 \(\Re s>1\) 的控制。令 \(\sigma=\Re s>1\)。有限 Euler 乘积
+\(\prod_{p\le N}(1-p^{-s})^{-1}\) 展开为质因子皆不超过 \(N\) 的整数项之和。此展开使用绝对收敛的几何级数及唯一分解。与全和的差绝对值不超过 \(\sum_{n>N} n^{-\sigma}\)。同时
+\[
+ \sum_p\sum_{k\ge1}\frac{|p^{-ks}|}{k}
+ \le \frac{1}{1-2^{-\sigma}}\sum_p p^{-\sigma}<\infty .
+\]
+以 \(-\log(1-z)=\sum_{k\ge1}z^k/k\) 在单位圆内的幂级数计算有限乘积，再取极限，得到
+\(\zeta(s)=\exp(\sum_{p,k}p^{-ks}/k)\ne0\)。
+
+第二步是从高斯函数建立反射。记 \(\theta(t)=\sum_{n\in\ZZ}e^{-\pi tn^2}\)，\(t>0\)。周期化
+\(g_t(x)=\sum_{n\in\ZZ}e^{-\pi t(x+n)^2}\) 在 \([0,1]\) 上一致收敛，因为
+\(|x+n|\ge |n|-1\)。第 \(k\) 个 Fourier 系数等于
+\[
+ F_t(k),\qquad F_t(\xi)=\int_{\RR}e^{-\pi t x^2}e^{-2\pi i\xi x}\,dx .
+\]
+逐项积分后平移各积分区间即可得到该式。对实变量 \(\xi\) 求导并以
+\((e^{-\pi t x^2})'=-2\pi t x e^{-\pi t x^2}\) 分部积分，得
+\(F_t'(\xi)=-(2\pi\xi/t)F_t(\xi)\)。初值 \(F_t(0)=t^{-1/2}\) 来自变量替换和
+\((\int_\RR e^{-\pi x^2}dx)^2=2\pi\int_0^\infty e^{-\pi r^2}r\,dr=1\)。故
+\(F_t(k)=t^{-1/2}e^{-\pi k^2/t}\)。
+
+这些系数绝对可和，其 Fourier 级数一致收敛。为核验它等于 \(g_t\)，对两者的差使用
+\[
+K_m(x)=\frac1m\left|\sum_{j=0}^{m-1}e^{2\pi i jx}\right|^2.
+\]
+展开平方说明 \(K_m\) 是有限 Fourier 多项式，非负且在 \([0,1]\) 上积分为 \(1\)。对每个 \(\delta>0\)，在到整数距离至少为 \(\delta\) 的区域，几何和给出 \(K_m=O_\delta(1/m)\)。因此连续周期函数与 \(K_m\) 的卷积一致收敛于原函数。具体地，在距离小于 \(\delta\) 的区域用一致连续性控制差，其余部分用该 \(1/m\) 界。若各 Fourier 系数均为零，所有这些卷积均为零，原函数也为零。在 \(x=0\) 读回即得
+\[
+ \theta(t)=t^{-1/2}\theta(1/t).
+\]
+
+第三步是 Mellin 变换。取 \(\Gamma(z)=\int_0^\infty t^{z-1}e^{-t}\,dt\)（\(\Re z>0\)），对
+\(\Re s>1\) 用绝对收敛交换求和与积分，得到
+\(\Lambda(s)\coloneqq\pi^{-s/2}\Gamma(s/2)\zeta(s)=
+\tfrac12\int_0^\infty(\theta(t)-1)t^{s/2-1}\,dt\)。
+绝对积分的各项为常数乘 \(n^{-\sigma}\)，故此交换有可和控制。在 \((0,1)\) 上代入第二步的等式并以 \(u=1/t\) 换元，得到
+\[
+ \Lambda(s)=\frac{1}{s(s-1)}
+   +\frac12\int_1^\infty(\theta(t)-1)
+      \left(t^{s/2-1}+t^{(1-s)/2-1}\right)\,dt. \tag{1}
+\]
+有理项由 \(\frac12\int_0^1(t^{(s-1)/2-1}-t^{s/2-1})\,dt\) 得到。
+\(\theta(t)-1=O(e^{-\pi t})\) 对 \(t\ge1\) 成立，因为 \(n^2\ge n\)。右侧积分及其对 \(s\) 的任意阶导数在紧参数集上一致受 \(C t^A(1+\log t)^k e^{-\pi t}\) 控制。用主导收敛对差商取极限，积分项在全平面全纯。因此 (1) 亚纯地定义 \(\Lambda\)，并逐项满足
+\(\Lambda(s)=\Lambda(1-s)\) 及 \(\Lambda(\bar s)=\overline{\Lambda(s)}\)。
+
+为核验归一化不会额外制造零点，对 \(\Re z>0\) 作变量代换和主导收敛，再反复分部积分，得到
+\[
+ \Gamma(z)=\lim_{m\to\infty}m^z\int_0^1 t^{z-1}(1-t)^m\,dt
+          =\lim_{m\to\infty}\frac{m^z}{z\prod_{k=1}^m(1+z/k)}.
+\]
+第一极限在 \(u=mt\) 后的被积函数由 \(u^{\Re z-1}e^{-u}\) 控制。第二等式反复使用
+\(\int_0^1t^{z-1}(1-t)^m dt=(m/z)\int_0^1 t^z(1-t)^{m-1}dt\)。
+对足够大的 \(k\)，\(\log(1+z/k)-z/k=O_z(k^{-2})\)。又
+\(\log m-\sum_{k=1}^m k^{-1}\) 收敛，此因
+\(1/k-\log(1+1/k)=O(k^{-2})\) 且对数项望远镜求和。将极限中有限首积提出，余项为收敛的复指数，所以 \(\Gamma(z)\ne0\)。由积分分部得
+\(\Gamma(z+1)=z\Gamma(z)\)。用此式延拓，\(\Gamma\) 的极点恰为非正整数，均为单极点，其余位置无零点。
+于是 \(\zeta(s)=\pi^{s/2}\Lambda(s)/\Gamma(s/2)\) 给出所需延拓。\(s=1\) 是单极点。在 \(s=0\) 有 \(\Lambda(s)\sim-1/s\)、\(\Gamma(s/2)\sim2/s\)，故 \(\zeta(0)=-1/2\)。
+
+最后排除边界。若 \(\tau\ne0\)，对 \(\sigma>1\) 的 Euler 对数应用
+\(3+4\cos x+\cos(2x)=2(1+\cos x)^2\ge0\)，得到
+\[
+ |\zeta(\sigma)|^3|\zeta(\sigma+i\tau)|^4|\zeta(\sigma+2i\tau)|\ge1 .
+\]
+每个 \((p,k)\) 项的系数 \(p^{-k\sigma}/k\) 为正，角为 \(k\tau\log p\)，故不等式在逐项求和后成立。若 \(1+i\tau\) 是零点，则中间因子为 \(O((\sigma-1)^4)\)，第一因子是 \(O((\sigma-1)^{-3})\)，最后一因子有界，乘积趋零，矛盾。对 \(\Re s<0\) 或 \(\Re s=0,\ s\ne0\)，考察 \(\Lambda(1-s)\) 并使用已知的无零点区域。归一化在这些位置的唯一零点来自 \(1/\Gamma(s/2)\)，即负偶整数。故所有非平凡零点位于开带。在开带内归一化因子全纯且处处非零，(1) 的反射与共轭关系把零点送到 \(\mathfrak m(\rho)\)。局部 Taylor 展开的首非零阶在这两个变换下保持，因而重数也保持。
+\end{proof}
+
+\begin{lemma}[完备函数的增长与零点计数]\label{lem:xi-zero-count}
+令 \(\xi(s)=s(s-1)\Lambda(s)\)。它是整函数，零点恰为 \(\zeta\) 的非平凡零点。在以 \(2\) 为圆心、半径为 \(R\) 的圆盘内按重数计数是 \(O(R\log(R+2))\)。
+对整数 \(T\ge0\)，满足 \(|\Im\rho|\le T\) 的零点总重数至多为 \((T+5)^2\)。
+\end{lemma}
+\begin{proof}
+式 (1) 表明 \(\xi\) 全纯，在 \(0,1\) 处取值 \(1\)。定理~\ref{thm:criticalstrip} 的零点与归一化分析给出它的零点正是 \(Z_*\)，且 \(\xi(2)\ne0\)。由式 (1) 的指数控制，对 \(|s|\le R\)、\(R\ge2\) 有
+\[
+|\xi(s)|\le 1+C(R+2)^2\int_1^\infty e^{-\pi t}t^{(R+1)/2}\,dt
+          \le e^{C_1R\log(R+2)} .
+\]
+第二个界可令 \(A=(R+1)/2\)，将 \(e^{-\pi t/2}t^A\) 的上界
+\((2A/(\pi e))^A\) 提出，再积分剩余指数。
+
+设 \(N(R)\) 计数圆盘 \(|s-2|\le R\) 中的零点及重数。零点在紧盘内有限，因为非零全纯函数的零点由局部首非零阶隔离。写 \(z=s-2\)、\(r=2R\)，对每个计入的零点 \(b\) 除去一个因子
+\[
+b_r(z)=\frac{r(z-b)}{r^2-\overline b z}.
+\]
+如有重根则按重数重复。分母在闭盘中非零，圆周 \(|z|=r\) 上分子分母等模，所以各因子绝对值为 \(1\)。相除时零点奇性可消。在圆心，每个因子绝对值 \(|b|/r\le1/2\)。对相除后的函数用最大模界，得到
+\[
+  |\xi(2)|\le 2^{-N(R)}\max_{|s-2|=2R}|\xi(s)|.
+\]
+于是 \(N(R)=O(R\log(R+2))\)。由于零点在开带内，此界也控制按虚部截断的总重数。
+
+为给出显式常数，取 \(R=T+2\)。高度不超过 \(T\) 的零点均在该圆盘中。
+由 \(n^2\ge 1+3(n-1)\) 与 \(\pi>3\)，当 \(t\ge1\) 时有
+\(\tfrac12(\theta(t)-1)\le 2e^{-3t}\)。
+在 \(|s-2|=2R\) 上，两项幂的绝对值均不超过 \(t^{R+1}\)。
+于是式 (1) 给出
+\[
+ \max_{|s-2|=2R}|\xi(s)|
+ \le 1+4(2R+2)(2R+3)\int_1^\infty e^{-t}t^{R+1}\,dt
+ \le 2^{R^2+3R+7}.
+\]
+第二步用分部积分所得的 \((R+1)!\) 上界，并用
+\(R+1\le2^R\) 和 \(2R+3\le2^{R+2}\)。
+因 \(\xi(2)=2\zeta(2)/\pi>1/2\)，前一圆盘估计给出
+\(N(R)\le R^2+3R+8\le (T+5)^2\)。
+\end{proof}
+
+\begin{lemma}[由完备函数的解析积分得到统一高度界]\label{lem:xi-analytic-height}
+全部非平凡零点满足 \(|\Im\rho|>6\)。
+\end{lemma}
+\begin{proof}
+用定理~\ref{thm:criticalstrip} 的完备函数积分式写
+\(\xi(s)=1+s(s-1)J(s)\)，其中 \(J\) 是从 \(1\) 到 \(\infty\) 的 theta 积分项。
+对 \(0\le\Re s\le1\)，积分中的平均幂权绝对值至多为 \(t^{-1/2}\)。
+又 \(k^2\ge1+3(k-1)\) 对 \(k\ge1\) 成立，故
+\[
+ |J(s)|\le\frac{2}{1-e^{-3\pi}}\int_1^\infty e^{-\pi t}t^{-1/2}\,dt .
+\]
+对 \(1\le t\le2\)，等式 \(1-t^{-1/2}=(t-1)/(\sqrt t(1+\sqrt t))\) 给出下界 \((t-1)/4\)。
+若 \(t\ge2\)，则 \(t^{-1/2}\le3/4\)。因此
+\(t^{-1/2}\le1-\min(t-1,1)/4\)。分段积分得
+\[
+ |J(s)|\le
+ \frac{2e^{-\pi}}{\pi(1-e^{-3\pi})}
+ \left(1-\frac{1-e^{-\pi}}{4\pi}\right).
+\]
+由反正切积分有 \(2<\pi<4\)。
+两次倍角公式给出 \(\tan(4\arctan(1/5))=120/119\)，再作角差得到
+\(\pi/4=4\arctan(1/5)-\arctan(1/239)\)，因为该角在 \((0,\pi/2)\)。
+在反正切积分中用 \(1-u^2\le (1+u^2)^{-1}\le1\)，从而
+\[
+ \pi/4>4\bigl(1/5-1/(3\cdot125)\bigr)-1/239>25/32 .
+\]
+指数级数的前九项在 \(25/8\) 处之和大于 \(45/2\)，故 \(e^{-\pi}<2/45\) 及 \(1-e^{-3\pi}>999/1000\)。
+用这些有理界代入，右侧至多为 \(10832/404595<1/37\)。
+其末端有理比较见 \lean{theta_small_height_bound}。若 \(|\Im s|\le6\)，则 \(|s(s-1)|\le1+(\Im s)^2\le37\)，故 \(|s(s-1)J(s)|<1\)。
+所以所有非平凡零点的 \(|\gamma_\rho|>6\)。
+\end{proof}
+
+\input{g_algebra_rh_ns/parts/spectral_moments.texinc}
+\input{g_algebra_rh_ns/parts/grand_riemann.texinc}
+\input{g_algebra_rh_ns/parts/prime_poisson.texinc}
+
+\input{g_algebra_rh_ns/parts/flow_core.texinc}
+\input{g_algebra_rh_ns/parts/g_pde_chain.texinc}
+\input{g_algebra_rh_ns/parts/flow_periodic.texinc}
+\input{g_algebra_rh_ns/parts/kinetic_limit.texinc}

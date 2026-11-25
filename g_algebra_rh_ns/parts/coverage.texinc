@@ -1,0 +1,92 @@
+\section{覆盖、正交障碍与离散 Hodge 算子}
+\label{sec:coverage}
+
+\subsection{加权装配与唯一正交代表}
+\begin{definition}[加权综合与分析]\label{def:gram}
+令 \(U_i,V\) 为有限维实内积空间，\(i\in I\) 为有限指标，\(B_i:U_i\to V\) 线性，\(\gamma_i>0\)。在 \(U=\bigoplus_iU_i\) 上取直和内积。令
+\[
+B(u)=\sum_i\sqrt{\gamma_i}\,B_i u_i,\qquad
+Q=\sum_i\gamma_i B_i B_i^* .
+\]
+\end{definition}
+
+\begin{theorem}[覆盖像及 Gram 障碍]\label{thm:gram}
+有
+\[
+B^* v=(\sqrt{\gamma_i}\,B_i^*v)_i,\qquad
+Q=BB^*,\qquad \im B=\sum_i\im B_i,\qquad
+\boxed{V/\im B\cong \ker Q.}
+\]
+\end{theorem}
+\begin{proof}
+令一组标准正交基为 \(u_j\)，则对线性映射 \(F\) 定义
+\(F^*v=\sum_j\langle Fu_j,v\rangle u_j\)。展开任意输入的基坐标可核验
+\(\langle Fu,v\rangle=\langle u,F^*v\rangle\)。两个候选伴随的差与每个 \(u\) 内积为零，取其差即知二者一致。对 \(B\) 把内积分配到每个块，得到上述分量公式。再代回 \(B\) 即得 \(Q=BB^*\)。
+
+每个 \(B(u)\) 属于所列像之和。反过来，若 \(s=\sum_iB_i t_i\)，令 \(u_i=t_i/\sqrt{\gamma_i}\)，即可得到 \(B(u)=s\)。由伴随配对，
+\[
+\langle Qv,v\rangle=\langle B^* v,B^*v\rangle
+=\sum_i\gamma_i\|B_i^*v\|^2 .
+\]
+若 \(Qv=0\)，平方范数为零，得 \(B^*v=0\)。反向蕴涵来自 \(Q=BB^*\)。若 \(B^*v=0\)，则对任意 \(u\) 有 \(\langle Bu,v\rangle=0\)。反向取 \(u=B^*v\)，可得 \(B^*v=0\)。故 \(\ker Q=(\im B)^\perp\)。
+
+令 \(S=\im B\)。从 \(S\) 的一组基 \(s_1,\dots,s_r\) 开始，取
+\[
+e_j=\frac{p_j}{\|p_j\|},\qquad
+p_j=s_j-\sum_{i<j}\langle s_j,e_i\rangle e_i .
+\]
+先前的 \(e_i\) 张成先前的 \(s_i\)，故若 \(p_j=0\) 将违反独立性。对每个 \(i<j\) 取内积得到 \(\langle p_j,e_i\rangle=0\)，所以 \(e_1,\ldots,e_r\) 是 \(S\) 的标准正交基。零子空间取空基。定义
+\[
+\Pi_Sv=\sum_i\langle v,e_i\rangle e_i,\qquad
+\Pi_\perp v=v-\Pi_Sv .
+\]
+\(\Pi_Sv\) 属于 \(S\)，且 \(\Pi_\perp v\) 与各 \(e_i\) 正交，故与 \(S\) 正交。若两个正交向量代表同一类，其差同时属于 \(S\) 和 \(S^\perp\)，自内积为零，故差为零。由此 \([v]\mapsto\Pi_\perp v\) 给出同构。逆映射取正交代表的商类。
+
+\end{proof}
+
+\begin{proposition}[正交帧的投影与扩展证书]\label{prop:frame}
+设 \(a_i\) 是 \(S\) 的未归一化正交基。投影到 \(S\) 可用
+\[
+\Pi_S v=\sum_i\frac{\langle v,a_i\rangle}{\langle a_i,a_i\rangle}a_i
+\]
+计算。若 \(s\notin S\)，则 \(r=s-\Pi_Ss\) 非零且属于 \(S^\perp\)，并且 \(S+\RR r=S+\RR s\)。
+\end{proposition}
+\begin{proof}
+各分母非零。对 \(a_j\) 取内积，非对角项均消去，剩余对角项约分后给出 \(\langle v,a_j\rangle\)。于是余项 \(v-\Pi_Sv\) 与全部基向量正交。若 \(r=0\)，则 \(s=\Pi_Ss\in S\)，矛盾。由 \(s=\Pi_Ss+r\) 和 \(r=s-\Pi_Ss\) 分别得两个包含关系。线性性由有限和及内积在该槽的线性性逐项得到。这一构造允许用加法、乘法和非零对角值的除法逐步验证正交帧。
+\end{proof}
+
+\begin{certificate}[有限覆盖数据]
+逐项提交 \(B_i\)、伴随配对等式、权重平方根、范围分解，及向量 \(v-\Pi_Sv\) 的正交方程。若需关于参数的一致覆盖，再给出 \(\lambda>0\) 满足
+\(\sum_i\gamma_i\|B_i^*v\|^2\ge\lambda\|v\|^2\) 的适用域。对非零 \(v\)，由
+\(\lambda\|v\|^2\le\langle Qv,v\rangle\le\|Qv\|\|v\|\) 得 \(\lambda\|v\|\le\|Qv\|\)。有限维时 \(Q\) 可逆，并且 \(\|Q^{-1}y\|\le\lambda^{-1}\|y\|\)。此处最后一步是以 \(v=Q^{-1}y\) 代入。
+\end{certificate}
+
+\begin{theorem}[链上 Hodge 公式]\label{thm:hodge}
+对有限维实内积复形 \(U\xrightarrow{B}V\xrightarrow{D}W\) 定义
+\(\Delta_1=D^*D+BB^*\)。则
+\[
+\ker\Delta_1=\ker D\cap(\im B)^\perp,\qquad
+\Delta_1|_{\ker D}=BB^*|_{\ker D},\qquad
+H_1\cong\ker\Delta_1 .
+\]
+\end{theorem}
+\begin{proof}
+对 \(v\) 取内积给出
+\(\langle\Delta_1v,v\rangle=\|Dv\|^2+\|B^*v\|^2\)。
+两平方均非负，和为零恰当二者都为零。若 \(Dv=B^*v=0\)，直接代入得到 \(\Delta_1v=0\)。定理~\ref{thm:gram} 给出余项的正交表达。若 \(v\in\ker D\)，则 \(D^*Dv=0\)，且 \(BB^*v\in\im B\subseteq\ker D\)，所以限制式成立。对 \(v\in\ker D\)，\(\Pi_Sv\in S\subseteq\ker D\)，故其正交代表 \(v-\Pi_Sv\) 仍为闭链。唯一性同定理~\ref{thm:gram}，得到 \(H_1\) 的调和代表同构。
+\end{proof}
+
+\begin{theorem}[兼容扩张的有效方向数]\label{thm:rank}
+若 \(DR=0\)，令 \(B^+=[B\ R]\)、\(S=\im B\)、\(T=S+\im R\) 和 \(Z=\ker D\)。则
+\[
+\begin{aligned}
+\im B^+&=T,\qquad DB^+=0,\\
+\dim(Z/S)-\dim(Z/T)&=\dim(T/S).
+\end{aligned}
+\]
+左侧严格为正恰当新增方向含有某个不在 \(S\) 中的向量。
+\end{theorem}
+\begin{proof}
+\(B^+(u,w)=Bu+Rw\)，故任一像在 \(T\) 中，任一 \(T\) 元素可写成该式。由 \(DB=DR=0\)，有 \(DB^+(u,w)=0\)。从 \(S\) 的基出发，依次在 \(T\) 和 \(Z\) 添加尚未被张成的向量。每次添加保持线性独立，有限维使过程停止。设三段基的个数为 \(s,t,z\)。最后两段在 \(Z/S\) 生成且独立，因为它们的组合若在 \(S\)，扩充基的独立性迫使所有系数为零。同理 \(Z/T\) 的基由最后一段给出，\(T/S\) 的基由中间一段给出。因此三个维数依次为 \(t+z,z,t\)。\(t>0\) 当且仅当 \(S\subsetneq T\)。
+\end{proof}
+另有可直接核验的核说明。\(Z/S\to Z/T\) 送 \([z]_S\mapsto[z]_T\)，其核在代表元上恰由 \(z\in T\) 表示。因此 \(T/S\to\ker(Z/S\to Z/T)\) 送 \([t]_S\mapsto([t]_S,[t]_T=0)\)。相等类的判据给出单射，每个核元素取代表后属于 \(T\)，故满射。这将新增独立方向对应到确实消失的障碍类。附着方向落在闭链之外时，先核验能否满足链相容性 \(DR=0\) \cite{GUnified}。

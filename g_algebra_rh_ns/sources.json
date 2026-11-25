@@ -1,0 +1,96 @@
+{
+  "references": [
+    {
+      "key": "GPure",
+      "author": "Gao, Z.",
+      "year": 2025,
+      "title": "Meta-Mathematical Theory based on Pan-Logic Analysis and Pan-Iterative Analysis (GaoZheng G-Framework) and the Principal-Bundle-Based Generalized Noncommutative Lie Algebra (GaoZheng G-Algebra): An Integrated Construction",
+      "version": "v1.0",
+      "doi": "10.5281/zenodo.17651584",
+      "scope": "法空间、主丛作用和高阶相容性的基础。",
+      "locator": "From Principal Bundles to Law-Space in Physics · “Gap” Statements and Certificate-Type Invariants",
+      "labels": [
+        "def:law",
+        "prop:law-trivial-bundle",
+        "thm:transport",
+        "thm:pde-operator-transport"
+      ]
+    },
+    {
+      "key": "GAppI",
+      "author": "Gao, Z.",
+      "year": 2025,
+      "title": "GaoZheng G-Framework and GaoZheng G-Algebra: Applied Mathematics Volume I — Law-Space Geometry, GRL, Quantum Computing, and Superconductivity",
+      "version": "v1.2",
+      "doi": "10.5281/zenodo.17686133",
+      "scope": "法空间几何与跨层运输的应用接口。",
+      "locator": "Summary of the Underlying GZ-Law-Space Structures",
+      "labels": [
+        "thm:pde-rate-quotient",
+        "prop:pde-operator-charts"
+      ]
+    },
+    {
+      "key": "GAppII",
+      "author": "Gao, Z.",
+      "year": 2025,
+      "title": "GaoZheng G-Framework and GaoZheng G-Algebra: Applied Mathematics Volume II – LBOPB, Life-Science Monoids, and Generative Precision Medicine",
+      "version": "v1.1",
+      "doi": "10.5281/zenodo.17744672",
+      "scope": "带顺序的作用、复合与可观察输出的应用实例。",
+      "locator": "Unified Notation for Life-Science Monoids",
+      "labels": [
+        "thm:flow-ordered-law-chart",
+        "prop:cost"
+      ]
+    },
+    {
+      "key": "GAppIII",
+      "author": "Gao, Z.",
+      "year": 2025,
+      "title": "GaoZheng G-Framework and GaoZheng G-Algebra: Applied Mathematics Volume III – HACA, PACER, and Certificate-Based AI",
+      "version": "v1.0",
+      "doi": "10.5281/zenodo.17762295",
+      "scope": "把可执行算法与抽查、证书和回读一起登记的应用接口。",
+      "locator": "Law-Space Baselines for HACA Agents",
+      "labels": [
+        "thm:g-finite-pde-hit",
+        "prop:g-l-path-pushforward"
+      ]
+    },
+    {
+      "key": "GNotes",
+      "author": "Gao, Z.",
+      "year": 2026,
+      "title": "Meta-Mathematical Theory based on Pan-Logic Analysis and Pan-Iterative Analysis (GaoZheng G-Framework) and the Principal-Bundle-Based Generalized Noncommutative Lie Algebra (GaoZheng G-Algebra) 中文工作笔记",
+      "version": "v5.2",
+      "doi": "10.5281/zenodo.22739417",
+      "scope": "高阶闭合、统计格点、PDE 同伦命中、LHTS、TPH、L-路径及微观—宏观总同调。",
+      "locator": "2026-04-03 开放异构系统的宏观拓扑—微观跃迁双层驱动与总复形同调 · 2026-04-27 中性变态射力迫属性与高阶修复 · 2026-05-03 统计力学参数格点、同伦扭曲命中与 PDE 策略簇 · 2026-05-13 基于高阶正交确定性收敛的统计力学同伦命中 · 2026-05-14 延迟信用分配的格点同伦扭曲评分与命中证书体系 · 2026-05-15 TPH-LHTS 轨迹函数参数同伦选择 · 2026-05-18 从 PDE 残差下降到 L-测度微观隧穿",
+      "labels": [
+        "thm:pde-operator-transport",
+        "thm:g-finite-pde-hit",
+        "thm:lhts-fractal-coverage",
+        "prop:g-l-path-pushforward",
+        "thm:kinetic-total-comparison"
+      ]
+    },
+    {
+      "key": "GUnified",
+      "author": "Gao, Z.",
+      "year": 2026,
+      "title": "Meta-Mathematical Theory based on Pan-Logic Analysis and Pan-Iterative Analysis (GaoZheng G-Framework) and the Principal-Bundle-Based Generalized Noncommutative Lie Algebra (GaoZheng G-Algebra) 统一数学结构、计算范式与异构演化治理:任务保持、同伦修复及率—商统一",
+      "version": "v1.1",
+      "doi": "10.5281/zenodo.24175031",
+      "scope": "任务保持、结构运输、同调修复、率—商与回读的综合接口。",
+      "locator": "率与商的统一：分析微积分、语义余链与同伦见证 · 任务充分商：同一性的构造、执行保持与必要细化 · 三层联络、G 代数与决策—修复结构",
+      "labels": [
+        "thm:task",
+        "thm:pde-rate-quotient",
+        "thm:grh-family-readback",
+        "thm:arithmetic-family-readback",
+        "thm:kinetic-total-comparison"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,255 @@
+\section{G 代数的运算扇区、证明图与代价}
+\label{sec:logic}
+
+\subsection{严格、同伦、变算子与元规则}
+\begin{definition}[四个相容的构造接口]\label{def:operators}
+严格接口给出运算、复合及所需恒等式。同伦接口登记缺陷及其高阶填补。可变泛函--算子接口使合法运算依赖当前对象、参数和阶段。元规则接口将这些构造作为可组合的规则，规定如何生成、检验和回译证书。本节分别实现四个接口的一项局部构造 \cite{GUnified}。
+\end{definition}
+
+\begin{proposition}[严格交换子及局部 Jacobi 填补]\label{prop:jacobi}
+若 \(\mu(x,y)=xy\) 是双线性结合积，则交换子 \([x,y]=xy-yx\) 交替且满足 Jacobi 式。对一般双线性运算 \(\beta\)，令
+\[
+J_\beta(x,y,z)=\beta(\beta(x,y),z)+\beta(\beta(y,z),x)+\beta(\beta(z,x),y).
+\]
+若存在 \(d:H\to V\) 及在相关缺陷上满足 \(d s(v)=v\) 的截面，则 \(h_3=sJ_\beta\) 满足 \(d h_3=J_\beta\)。
+\end{proposition}
+\begin{proof}
+交替性来自 \(xx-xx=0\)。按循环展开左结合的双交换子得到
+\[
+\begin{aligned}
+[[x,y],z]&=xyz-yxz-zxy+zyx,\\
+[[y,z],x]&=yzx-zyx-xyz+xzy,\\
+[[z,x],y]&=zxy-xzy-yzx+yxz .
+\end{aligned}
+\]
+字词及顺序均保持，每个字词在和中以相反符号出现，故和为零。第二项把 \(v=J_\beta(x,y,z)\) 代入截面等式即可。若取 \(H=V\) 且 \(d=s=\id\)，得到一个逐值可构造的填补。按约定取 \(\ell_3=-h_3\) 则有 \(d\ell_3+J_\beta=0\)。原纯数学卷的 GZ-OHU 有其可容许性、操作域和高阶相容条件。高元关系的统一闭合需要对整个合法复合族成立的闭链和填补相容性 \cite{GUnified}。
+\end{proof}
+
+\begin{theorem}[两项同伦代数的全元数相容]\label{thm:two-term}
+设 \(\beta\) 为特征零域上线性空间 \(E\) 中的反对称双线性运算。
+在零次 \(E\) 及负一次副本 \(\widetilde E\) 上，令
+\[
+\begin{gathered}
+\ell_1(\widetilde x)=x,\quad \ell_1(x)=0,\quad
+\ell_2(x,y)=\beta(x,y),\quad
+\ell_2(x,\widetilde y)=\widetilde{\beta(x,y)},\quad
+\ell_2(\widetilde x,\widetilde y)=0,\\
+\ell_3(x,y,z)=-\widetilde{J_\beta(x,y,z)},\qquad \ell_n=0\quad(n\ge4).
+\end{gathered}
+\]
+\(\ell_3\) 在含负次输入时为零，其余取值按分次反对称确定。用左嵌套 Jacobi 缺陷 \(J_\beta\) 的上述约定，这些运算满足每个 \(L_\infty\) 相容式。该构造可携带非零 \(J_\beta\)。
+\end{theorem}
+\begin{proof}
+令 \(\operatorname{Sh}(i,n-i)\) 为两块内部保序的置换，\(\chi\) 为置换符号乘交换奇次输入的符号。需核验的各级相容式是
+\[
+\sum_{i+j=n+1}\ \sum_{\sigma\in\operatorname{Sh}(i,n-i)}
+(-1)^{i(j-1)}\chi(\sigma)\,
+\ell_j\bigl(\ell_i(x_{\sigma(1)},\ldots,x_{\sigma(i)}),
+       x_{\sigma(i+1)},\ldots,x_{\sigma(n)}\bigr)=0 .
+\]
+每项运算的次数为 \(2-n\)。对 \(J_\beta\) 交换前两项时，反对称性将三项之和变为负值，循环置换保持三项之和，故 \(J_\beta\) 是交替三线性的。
+
+元数一时 \(\ell_1^2=0\)。元数二的恒等式是分次导子律。两个零次输入时各微分项均为零。有一个负次输入时两侧都把同一 \(\widetilde{\beta}\) 送回 \(\beta\)。有两个负次输入时右侧为 \(\widetilde{\beta(x,y)}-\widetilde{\beta(x,y)}\)。
+
+元数三的零次输入给出 \(J_\beta+\ell_1\ell_3=0\)。若首输入为负次，则三项二元复合等于 \(\widetilde{J_\beta}\)，唯一可能非零的输入微分项为 \(\ell_3(x,y,z)=-\widetilde{J_\beta}\)。其余单负次位置由分次反对称性得到。有两项或三项负次输入时，各项的总次数至多为 \(-2\)，因而为零。
+
+元数四中含负次输入的项也均由次数消去。对四个零次输入，记 \(b_{ij}=\beta(x_i,x_j)\) 与
+\(T_{ij;k,l}=\beta(\beta(b_{ij},x_k),x_l)\)。
+对每个 \(i<j\) 把剩余两个指标写为 \(k<l\)，则
+\[
+J_\beta(b_{ij},x_k,x_l)=
+T_{ij;k,l}+\beta(b_{kl},b_{ij})-T_{ij;l,k}.
+\]
+两两分组中，指标对 \(12,13,14,23,24,34\) 的符号依次为 \(+,-,+,+,-,+\)。
+中间项在 \(12/34,\allowbreak 13/24,\allowbreak 14/23\) 三对中分别抵消。
+余下的嵌套项逐项等于
+\[
+\begin{aligned}
+ &\beta(J_\beta(x_1,x_2,x_3),x_4)
+  -\beta(J_\beta(x_1,x_2,x_4),x_3)\\
+ &+\beta(J_\beta(x_1,x_3,x_4),x_2)
+  -\beta(J_\beta(x_2,x_3,x_4),x_1).
+\end{aligned}
+\]
+展开这四项后分别按末指标 \(4,3,2,1\) 归并，即与上式的 \(T\) 项同号同序。这是另一组 \((3,1)\) 洗牌项，带全局负号，故元数四闭合。
+
+元数五仅余 \(\ell_3\ell_3\)，内层非零时已处于负一次，外层因含负次输入而为零。若 \(n\ge6\)，则 \(i+j\ge7\)，每项至少调用一个索引不小于四的零运算。
+
+例取 \(E=\QQ^3\)，\(\beta(e_1,e_2)=e_2,\ \beta(e_2,e_3)=e_3,\ \beta(e_1,e_3)=0\)，以反对称性和双线性延拓。直接代入得 \(J_\beta(e_1,e_2,e_3)=e_3\)。三个坐标可写为 \(0,\ x_1y_2-x_2y_1,\ x_2y_3-x_3y_2\)，整数实例同样给出非零见证。这个两项构造重建了样本中的完整相容证书 \cite{GPure,GUnified}。
+\end{proof}
+
+\begin{proposition}[依赖基态的非线性修复恒等式]\label{prop:residual}
+设 \(L,\mathcal G\) 加性，\(\mathcal B\) 双线性，
+\(\mathcal N(u,p)=Lu+\mathcal Gp+\mathcal B(u,u)-f\)。令
+\[
+\mathcal L_u(w,\pi)=Lw+\mathcal G\pi+\mathcal B(u,w)+\mathcal B(w,u).
+\]
+则
+\[
+\boxed{\mathcal N(u+w,p+\pi)-\mathcal N(u,p)
+=\mathcal L_u(w,\pi)+\mathcal B(w,w).}
+\]
+\end{proposition}
+\begin{proof}
+对 \(\mathcal B(u+w,u+w)\) 先在第一槽分配，再分别在第二槽分配，得到
+\(\mathcal B(u,u)+\mathcal B(w,u)+\mathcal B(u,w)+\mathcal B(w,w)\)。再展开 \(L(u+w)\) 和 \(\mathcal G(p+\pi)\)。减去基态残差，\(Lu,\mathcal Gp,\mathcal B(u,u),-f\) 各消去一次，余项即所示。若某个 \(u\) 有 \(\mathcal B(u,u)\ne0\)，任何交替二元括号在该对角元素的值恒为零，因而无法表示这个二元作用。
+\end{proof}
+在流体侧可取 \(L=\partial_t-\nu\Delta\)、\(\mathcal G=\nabla\) 和 \(\mathcal B(u,w)=(u\cdot\nabla)w\)。有限位形上的初始状态、残差条件和新旧基态由命题~\ref{prop:stages} 同步处理。
+
+\subsection{公式、规则和可解除的依赖}
+\begin{theorem}[任务公式的双向保持]\label{thm:formula}
+设 \(e:X\to Y\) 满射，对任意原子及原环境 \(\rho\)，原子在 \(\rho\) 中成立当且仅当对方在 \(e\circ\rho\) 中成立。则由这些原子、假、合取、蕴涵、全称和存在生成的公式具有同样的双向保持。在有等号的语言中，等号原子须单独核验，双射时由单射性保证。
+\end{theorem}
+\begin{proof}
+对语法递归。原子是给定的双向保持。假在两侧均不成立。合取逐项应用归纳假设。对蕴涵，先将前件从目标一侧沿反方向运输，再应用旧蕴涵，最后把后件沿正方向运输，反向对称。存在式把旧见证 \(x\) 送到 \(ex\)；反向从满射取目标见证的原像再用归纳假设。全称式任取目标元素并取原像，或直接在原元素的像上实例化，再用归纳假设。环境前插与逐分量应用 \(e\) 交换，因此归纳适用于带约束变量的子式。若原子由函数项组成，需先按项树归纳使用相应的函数交换。
+\end{proof}
+
+\begin{theorem}[证明图回译与有证据的前提消去]\label{thm:proof}
+给定目标回读 \(P\)。母层证明由有限依赖图构成，叶为已证事实或有待解除的前提。每条边从低秩子节点到高秩父节点。若每个叶的回读可证，且每个节点规则的回读可以从各前件的回读导出本节点的回读，则根结论可回译。若一个开放前提有在同一底理论中的证明，代入该前提叶可将它从依赖账本删除。
+\end{theorem}
+\begin{certificate}[数学归纳法证书]
+保存节点秩、依赖边、原子规则及回读、叶证明、解依赖所用证书和公式核等式 \(P(E(\varphi))=\varphi\)。同一证明图可共享分支，展开成树只改变证书储存成本。
+\end{certificate}
+\begin{proof}
+对节点秩作强归纳。对任意节点 \(v\)，归纳假设保证严格低秩的全部前件已有底理论证明。若 \(v\) 无前件，使用其叶证明。若 \(v\) 是规则结论，把所有前件证明作为输入调用回译规则，得到 \(P(v)\)。依次至根，得到回读后的目标。对开放前提，用所给的新证明替换相应叶，原规则调用保持不变。若上卷也提供叶和规则的运输，且 \(PE=\id\)，则原证明可上卷再下卷。冻结旧量词域时，旧证明保持其原域的全称结论；扩大域时，需要再次提供覆盖新元素的证书 \cite{GPure,GUnified}。
+\end{proof}
+
+\begin{corollary}[有限问题族的合成]\label{cor:finiteproof}
+对每个 \(i\in\{1,\ldots,m\}\)，若目标 \(P_i\) 有母层证明、结论回读、规则展开和全部开放前提的解除证明，则各 \(P_i\) 同时成立。
+\end{corollary}
+\begin{proof}
+逐项应用定理~\ref{thm:proof}，得到各 \(P_i\)。空族的合取成立。若前 \(k\) 项的合取成立，则与已回读的 \(P_{k+1}\) 合取，得到前 \(k+1\) 项。归纳至 \(m\)。
+\end{proof}
+
+\subsection{有序压缩、复用和完整成本}
+\begin{proposition}[富承载的任务读回与有序因子化]\label{prop:cost}
+在 \(G=C\oplus A\) 中取 \(E(c)=(c,0)\)、\(P(c,a)=c\)。若任务的所有观察和动作只经 \(P\) 在 \(C\) 上运行，\(P E=\id\)，且 \(E P(c,a)-(c,a)=(0,-a)\) 属于辅助部分。因而任务商 \(G/(0\oplus A)\cong C\)。
+
+在含单位元的结合代数中，按指标递增书写的 \(2^n\) 个子集乘积之和等于
+\(\prod_{i=1}^n(1+a_i)\)。若固定构造与核验成本为 \(B\)，每次复用的完整边际成本为 \(c\)，对照每次为 \(a\)，做 \(K\) 次的严格收益条件为
+\[
+ B+Kc<Ka\quad\Longleftrightarrow\quad B<K(a-c).
+\]
+\end{proposition}
+\begin{proof}
+投影将辅助部分映到零，且核恰为辅助部分，定理~\ref{thm:kernelchain} 的逐级证明在单个空间上给出商同构。对所有有限执行，精确性可用引理~\ref{lem:word} 核验。
+
+展开乘积时按是否选取首字母分开，余下的词都保持原序。空列的和为单位元。若余列总和为 \(S\)，首字母的两个分支贡献 \(S\) 与 \(a_1S\)，其和等于 \((1+a_1)S\)。每加入一位，两个选择使词数翻倍，从 \(1\) 递推至 \(2^n\)。在自由结合代数且生成字母互异时，各子集给出不同单项词，因式表示只需线性数目的运算节点。完整成本还须计入构造桥梁、上卷、母层执行、下卷和核验。最后一项等价式在两边同时减 \(Kc\) 即得 \cite{GUnified}。
+\end{proof}
+
+\section{原命题的量词与法空间回读}
+\label{sec:claims}
+
+\begin{definition}[原目标与共同结构的核验条件]\label{def:goals}
+数论目标由定义~\ref{def:arithmetic-family} 给出。谱型采用定义~\ref{def:grh-obligation} 的全秩标准自守纤维。
+经典黎曼猜想记为 \(\mathsf B_{\mathbf 1}\)，要求实际 \(\zeta\) 的每个非平凡零点满足 \(\Re\rho=1/2\)。
+对定理~\ref{thm:xi-moment-generator} 的实际算术矩泛函，记
+\[
+ \boxed{\mathsf E_\zeta:\quad
+    \forall p\in\RR[t],\qquad
+       0\le\mathcal L(tp^2)\le\tfrac49\mathcal L(p^2).}
+\]
+定理~\ref{thm:xi-moment-readback} 给出正算子闭合和等价的全阶矩阵，
+定理~\ref{thm:xi-single-positive-kernel} 与定理~\ref{thm:xi-bernstein-ray-readback}
+分别给出同一义务的算术差商和有理方向收敛半径读数。
+本项的法空间验收式为已证的 \(\mathsf E_\zeta\Longleftrightarrow\mathsf B_{\mathbf 1}\)。
+
+流体目标 \(\mathsf P_{\rm NS}\) 要求对任意 \(\nu>0\) 有
+\(f\in C_c^\infty(\RR^3\times(0,\infty);\RR^3)\)，以及 \(0\le t<1\) 的光滑速度 \(u\) 和压力 \(p\) 满足
+\[
+\begin{gathered}
+\partial_tu+(u\cdot\nabla)u-\nu\Delta u+\nabla p=f,\qquad
+\nabla\cdot u=0,\quad u(\cdot,0)=0,\\
+\sup_{0\le t<1}\|u(t)\|_{2}<\infty,\qquad
+\limsup_{t\uparrow1}\|u(t)\|_{\infty}=\infty .
+\end{gathered}
+\]
+外力的定义域包含 \(t=1\)。
+记 \(\mathsf E_{\rm per}\) 为单位黏性下完整周期方程的母体存在性，合法域取自
+命题~\ref{prop:flow-rotated-compactification}：
+\[
+ \boxed{\mathsf E_{\rm per}:\quad
+   \exists (a,R,v)\text{ 合法},\qquad F_{a,R}(v)=0\ \land\ v\not\equiv0 .}
+\]
+定理~\ref{thm:flow-period-pulse-readback} 及黏性伸缩已证
+\(\mathsf E_{\rm per}\Longrightarrow\mathsf P_{\rm NS}\)。
+原命题另含固定空间紧支速度时，由同一母体推导随回读证明
+\(\exists K\Subset\RR^3\ \forall t<1,\ \operatorname{supp}u(t)\subseteq K\)。
+
+共同结构的核验提交运算复合、合法域、原量词与结论的保持。已有反向蕴含的分型按等价读数复用。
+\end{definition}
+
+\begin{definition}[大黎曼猜想的秩域与证明义务]\label{def:grh-obligation}
+固定数域 \(F\)。记 \(\mathcal A_n(F)\) 为 \(GL_n(\mathbb A_F)\) 的单位归一化尖点自守表示，
+\(L(s,\pi)\) 取标准 \(L\) 函数。主目标取 \(F=\QQ\)，数域作为同一接口的参数。
+设 \(\Xi_\pi\) 是吸收导子和无穷位因子的完备函数，乘以恰好消去各已知极点及其阶数的因子。
+以 \(Z_*(\pi)\) 记 \(\Xi_\pi\) 的零点，带有原完备函数的零点重数。
+对 \(r=1,2\) 记
+\[
+ \boxed{\displaystyle
+    \mathsf P_{\rm GRH}^{\ge r}(F)
+      \equiv\forall n\ge r\ \forall\pi\in\mathcal A_n(F)\
+               \forall\rho\in Z_*(\pi),\quad \Re\rho=\tfrac12 .}
+\]
+全秩读数取 \(r=1\)。在 \(\QQ\) 上，引理~\ref{lem:grh-rank-one-base}
+核验平凡特征与原始 Dirichlet 特征对秩一的覆盖。
+平凡特征的回读见定义~\ref{def:goals}，原始特征的解析输入见定理~\ref{thm:dirichlet-analytic-input}。
+每个秩保留 \((n,\pi,\tilde\pi)\)、完备化数据、算术预解式及矩泛函。
+定理~\ref{thm:grh-family-readback} 在给定解析输入的秩域内证明零点条件与逐纤维全称矩正性的等价。
+\end{definition}
+
+\begin{definition}[同一 G 母体上的五项数论证明义务]\label{def:arithmetic-family}
+以任务分型
+\[
+ \Sigma=\{\mathrm{G2},\mathrm{twin},\mathrm{HL},\mathrm{Lg},\mathrm{GRH}\}
+\]
+索引五项。记 \(\mathbb P\) 为素数集合，取整数上的权重
+\(a(n)=\log n\) 当 \(n\in\mathbb P\)，其余为零。登记目标如下。
+\begin{enumerate}
+ \item \(\mathsf P_{\rm G2}\) 要求每个偶数 \(N\ge4\) 都有 \(p,q\in\mathbb P\) 满足 \(p+q=N\)。
+ \item \(\mathsf P_{\rm twin}\) 要求每个 \(X\) 都有 \(p>X\) 且 \(p,p+2\in\mathbb P\)。
+ \item \(\mathsf P_{\rm HL}\) 对每个 \(k\ge1\) 及每组固定互异整数偏移
+ \(\mathbf h=(0,h_2,\ldots,h_k)\) 量化。记
+ \(\nu_{\mathbf h}(q)=|\{-h_j\bmod q:1\le j\le k\}|\)，可容许性指
+ \(\nu_{\mathbf h}(q)<q\) 对每个素数 \(q\) 成立。对每个可容许组要求
+ \[
+ R_{\mathbf h}(X):=\sum_{1\le n\le X}\prod_{j=1}^k a(n+h_j)
+       \sim\mathfrak S(\mathbf h) X,
+ \qquad
+ \mathfrak S(\mathbf h)=\prod_{q\in\mathbb P}
+         \frac{1-\nu_{\mathbf h}(q)/q}{(1-1/q)^k}.
+ \]
+ \item \(\mathsf P_{\rm Lg}\) 要求每个 \(m\ge1\) 都存在 \(m^2<p<(m+1)^2\) 的素数。
+ \item \(\mathsf P_{\rm GRH}^{\ge1}(\QQ)\) 取定义~\ref{def:grh-obligation} 的全秩标准自守纤维。
+\end{enumerate}
+五项的带型证书及回读见定理~\ref{thm:arithmetic-family-readback}。
+\end{definition}
+
+\begin{definition}[硬球、玻尔兹曼与宏观流体的证明义务]\label{def:kinetic-fluid-obligations}
+在体积为一的 \(\mathbb T^3\) 上固定一个光滑不可压缩 Navier--Stokes--Fourier 解
+\((u,\rho,\vartheta)\) 的共同时间窗 \([0,T]\)，其中 \(T>0\)、\(\vartheta=-\rho\)，
+\(u,\rho\) 的空间均值为零。给定相容的非负近 Maxwell 制备初值族。
+记 \(a\) 为硬球直径，\(\delta\) 为涨落尺度，\(s=\tau/\delta\) 为粒子时间，
+\(\lambda=a^{-2}\delta^{-1}\) 为活动度。以 \(\lambda^{-1}\) 乘第一强度测度定义 \(F_1^{a,\delta}\)。
+记幂律联合极限目标为 \(\mathsf P_{\rm joint}\)。它要求上述制备数据与时间窗存在与 \(a\) 无关的
+\(0<\beta<1\) 及 \(\kappa>0\)，使 \(\delta=a^\beta\)、\(R_a=a^{-\kappa}\) 时有
+\[
+ \mathbb E[N]a^2\sim\delta^{-1},\qquad
+ \frac1\delta\left(\int_{|v|\le R_a}\!
+       \begin{pmatrix}1\\v\end{pmatrix}F_1^{a,\delta}(\tau/\delta,x,v)\,dv-
+       \begin{pmatrix}1\\0\end{pmatrix}\right)
+      \ \longrightarrow\ \begin{pmatrix}\rho\\u\end{pmatrix}
+       \quad\text{于 }L^\infty([0,T];L_x^1).
+\]
+先固定初值族和 \(T\)，再在这一共同族中取联合极限。
+
+另登记 \(\mathsf P_{\rm Boltz}\)。对三维环面的空间非齐次硬球玻尔兹曼方程，
+给定光滑、非负、速度方向快速衰减且有有限质量与能量的初值，
+要求由该初值得到唯一非负经典解并延拓到任意有限时刻，允许任意幅度。
+宏观义务 \(\mathsf P_{\rm NS,B}\) 要求对每个 \(\nu>0\) 和每个光滑周期无散度初速度，
+无力不可压缩 Navier--Stokes 方程有全局光滑周期速度与配套压力。
+带外力义务采用定义~\ref{def:goals} 的全空间设定。与经典题面的量词比较见附录~\ref{sec:analytic-input-scope}。
+联合极限的各层证书及误差条件见定理~\ref{thm:kinetic-joint-budget}。
+\end{definition}
+
+\input{g_algebra_rh_ns/parts/analysis.texinc}

@@ -1,0 +1,110 @@
+\section{合法修复扩张与证书回写}
+\label{sec:repair}
+
+\subsection{整格、正锥和新增修复能力}
+\begin{definition}[合法修复像与目标纤维]\label{def:repair}
+对 \(B:U\to V\) 和 \(K\subseteq U\)，令 \(\Reach(B,K)=\{Bu:u\in K\}\)。目标 \(\omega\) 的证书是一个 \(u\) 及两项判断 \(u\in K\)、\(Bu=\omega\)。展开存在量词可得
+\(\omega\in \Reach(B,K)\iff K\cap B^{-1}(\{\omega\})\ne\varnothing\)。
+\end{definition}
+
+\begin{theorem}[受约束修复像的扩张]\label{thm:repair}
+设 \(B,R\) 取值于同一加法空间。对块操作 \(B^+(u,w)=Bu+Rw\) 有
+\[
+\boxed{\Reach(B^+,K\times L)=B(K)+R(L).}
+\]
+若 \(0\in L\) 且 \(R0=0\)，旧像包含于新像。若 \(D\) 加性且 \(DB=DR=0\)，则 \(DB^+=0\)。
+\end{theorem}
+\begin{proof}
+从新像中的 \(\omega\) 取见证 \((u,w)\)，拆成合法的 \(Bu\) 和 \(Rw\)，即得右侧的和。反向从和中的两项各取一个原像，组成 \((u,w)\) 即为左侧见证。旧见证 \(u\) 延拓为 \((u,0)\)。最后 \(D(Bu+Rw)=DBu+DRw=0+0=0\)。三个结论各自使用对应条件。
+\end{proof}
+
+\begin{example}[整数障碍、正锥障碍与秩]\label{ex:coefficients}
+对 \(B=[2]\)、\(K=\ZZ\)，可达像为偶整数。整除算法写 \(x=2q+r\)，其中 \(r\in\{0,1\}\)，故障碍商是 \(\ZZ/2\ZZ\)。目标 \(1\) 无整数证书。增添 \(R=[1]\)、\(L=\ZZ\)，任意 \(x\) 有新见证 \((0,x)\)。在实数扩张中，原映射已满射，因为 \(u=x/2\)，故两次实秩均为一。
+
+对 \(B=[1]\)、\(K=\RR_{\ge0}\)，\(-1\) 不在旧像中。增添 \(R=[-1]\)、\(L=\RR_{\ge0}\)，若 \(x\ge0\) 取 \((x,0)\)，若 \(x<0\) 取 \((0,-x)\)，所以新像为整个实轴，秩仍是一。若 \(K=\{0\},R=[1],L=(0,\infty)\)，旧目标 \(0\) 在新像中没有见证。严格正系数的扩张可以先声明活动集，未启用方向取零，再逐项核验启用方向的正性。
+\end{example}
+
+\begin{proposition}[二维正锥的行列式证书]\label{prop:cone}
+给定 \(v_1,v_2,T\in\RR^2\)，令 \(d=\det(v_1,v_2)>0\)。存在 \(c_1,c_2>0\) 使 \(T=c_1v_1+c_2v_2\)，当且仅当 \(\det(T,v_2)>0\) 且 \(\det(v_1,T)>0\)。
+\end{proposition}
+\begin{proof}
+若所示表示存在，分别对 \(T\) 取右列 \(v_2\) 和左列 \(v_1\) 的行列式。利用双线性与交替性得到两式 \(c_1d\)、\(c_2d\)，均为正。反向取
+\[
+c_1=\det(T,v_2)/d,\qquad c_2=\det(v_1,T)/d .
+\]
+二者为正。写 \(v_1=(a,b), v_2=(c,e), T=(x,y)\)，验证
+\[
+\begin{aligned}
+a(xe-yc)+c(ay-bx)&=x(ae-bc),\\
+b(xe-yc)+e(ay-bx)&=y(ae-bc).
+\end{aligned}
+\]
+除以 \(d\) 即得两个坐标。参数化时，如果 \(d\) 与分子有统一正下界，则这些判定可以随同原参数证书一起运输。若系数还须满足空间支撑或时间正则性，须在允许集合中登记。
+\end{proof}
+
+\begin{theorem}[有限正锥的否决证书]\label{thm:cone-dual}
+给定有限维实内积空间中的 \(v_1,\ldots,v_m\)。令 \(K=\{\sum_i c_iv_i:c_i\ge0\}\)。对任意 \(\omega\)，恰有下列一种证书
+\[
+\begin{aligned}
+ & c_i\ge0,\qquad \sum_i c_i v_i=\omega ,\\
+ & \varphi(v_i)\ge0\quad(1\le i\le m),\qquad \varphi(\omega)<0
+   \quad\text{且 }\varphi\text{ 线性}.
+\end{aligned}
+\]
+\end{theorem}
+\begin{proof}
+两种证书互斥，因为将线性泛函作用在正系数组合上得到非负数。为证否决证书存在，先证明 \(K\) 闭。对任一非负表示只保留其正系数支持。若支持线性相关，取非零关系 \(\sum_i a_i v_i=0\)，换符号使至少一个 \(a_i>0\)。取
+\(t=\min_{a_i>0}(c_i/a_i)>0\)。改用 \(c_i-t a_i\) 保持非负及目标等式，且至少一个系数变为零。有限重复可得独立支持的表示。因而 \(K\) 是有限个独立支持所生闭锥之并。每个锥的闭性可逐坐标核验。独立向量扩充为全空间的一组基，在连续的线性坐标中，该锥的条件是指定坐标非负且其余坐标为零，故为闭集。
+
+若 \(\omega\notin K\)，取 \(y\in K\) 使 \(\|y-\omega\|\) 最小。具体地，最小化序列可以选在某一有界球内，取收敛子序列并用闭性即得到 \(y\)。对每个 \(z\in K\) 及 \(t\in[0,1]\)，有 \(y+t(z-y)\in K\)。展开其与 \(\omega\) 的平方距离，与最小值相减，再除以 \(t>0\) 并取 \(t\downarrow0\)，得
+\(\langle y-\omega,z-y\rangle\ge0\)。取 \(z=0\) 和 \(z=2y\) 给出 \(\langle y-\omega,y\rangle=0\)。于是
+\[
+\varphi(z)=\langle y-\omega,z\rangle\ge0\quad(z\in K),\qquad
+\varphi(\omega)=-\|y-\omega\|^2<0 .
+\]
+由于每个 \(v_i\in K\)，得到所示否决证书。两个分支分别适用于 \(\omega\in K\) 与 \(\omega\notin K\) \cite{GUnified}。
+\end{proof}
+
+\begin{example}[无限参数族的最少新增方向与动作下界]\label{ex:parameter}
+令 \(D(x,y,z)=x+y+z\)，\(p=(1,-1,0)\)，\(r=(1,0,-1)\)，目标 \(\omega_m=mr\)，其中 \(m\in\NN_{>0}\)。旧动作只允许单位步 \(+p\)，新动作再允许 \(+r\)。旧路径的第三坐标恒为 \(0\)，与 \(-m\) 不同。新路径取 \(x_k=kr\)，\(0\le k\le m\)。由 \(Dr=Dp=0\)，每一步保持约束。归纳有剩余 \((m-k)r\)，第 \(m\) 步归零。若路径使用 \(a\) 次 \(+p\)、\(b\) 次 \(+r\)，终点第三坐标为 \(-b\)，所以达到目标必有 \(b=m\) 且步数 \(a+b\ge m\)。零新增方向不够，而方向 \(r\) 已给出整族见证 \cite{GUnified}。
+\end{example}
+
+\subsection{换表、同伦收缩和有限归纳}
+\begin{theorem}[证书双向迁移]\label{thm:transport}
+给定具体系 \((U,V,B,K,\omega)\) 与 G 扇区 \((U',V',B',K',\omega')\)。设两对映射 \(E_U,E_V\) 和 \(P_U,P_V\) 满足
+\[
+\begin{gathered}
+ B'E_U=E_VB,\qquad BP_U=P_VB',\\
+ E_U(K)\subseteq K',\quad P_U(K')\subseteq K,\quad
+ E_V\omega=\omega',\quad P_V\omega'=\omega .
+\end{gathered}
+\]
+则 \(\omega\in\Reach(B,K)\iff\omega'\in\Reach(B',K')\)。在有多个目标参数时，该等价逐参数成立。
+\end{theorem}
+\begin{proof}
+取旧证书 \(u\in K\) 且 \(Bu=\omega\)。\(E_Uu\) 合法，且
+\(B'E_Uu=E_VBu=E_V\omega=\omega'\)。取新证书 \(v\in K'\) 且 \(B'v=\omega'\)，同理 \(P_Uv\in K\) 且 \(BP_Uv=P_VB'v=\omega\)。任一给定参数使用其各自的两组映射。对全称结论，可在任意参数处调用此证明。
+\end{proof}
+
+\begin{theorem}[从商上的解回写合法见证]\label{thm:writeback}
+在 \(U\xrightarrow{B}V\xrightarrow{D}W\) 中，令 \(N\) 是逐级闭合的可忽略子复形。设 \(\omega\in\ker D\) 且已知 \(\bar B\bar u=[\omega]\)。取代表 \(u\)。在 \(N\) 上给定收缩 \(Bh+hD=\id\)，则
+\[
+r=\omega-Bu,\qquad u^*=u+h r,\qquad Bu^*=\omega .
+\]
+若 \(u^*\in K\)，得到合法修复证书。若还给出 \(\|hr\|\le M\|r\|\)，有 \(\|u^*\|\le\|u\|+M\|r\|\)。
+\end{theorem}
+\begin{proof}
+商上等式等价于 \(r\in N\)。由 \(D\omega=0,DB=0\) 得 \(Dr=0\)，所以 \(Bhr=r-hDr=r\)。代回得 \(B(u+hr)=Bu+r=\omega\)。范数结论由三角不等式及给定界。若有整格或正系数限制，在具体 \(u^*\) 上核验其所属集合。收缩仅需在 \(N\) 上有定义，Lean 接口用全域映射及在 \(N\) 内核验的等式表示同一回写步骤。
+\end{proof}
+
+\begin{proposition}[有限阶段交换与定量条件]\label{prop:stages}
+若 \(x_{n+1}=T_nx_n\)、\(z_{n+1}=\widehat T_nz_n\)，且 \(D_0 z_0=x_0\)。若合法 \(z\) 满足
+\(D_{n+1}\widehat T_nz=T_nD_nz\)，并且合法性随 \(\widehat T_n\) 保持，从合法 \(z_0\) 出发，对所有 \(n\) 有 \(D_nz_n=x_n\) 且 \(z_n\) 合法。
+\end{proposition}
+\begin{proof}
+\(n=0\) 为给定条件。归纳步为
+\[
+D_{n+1}z_{n+1}=D_{n+1}\widehat T_nz_n=T_nD_nz_n=T_nx_n=x_{n+1}.
+\]
+同时用一步合法性保持证明 \(z_{n+1}\) 的条件。若定量观察例如 \(m(D_nz_n)\le M\) 对所有阶段已获证明，将等式代入即可运输统一界。举例 \(B_n(u)=u/(n+1)\)，解 \(B_nu=1\) 必有 \(u=n+1\)。取 \(n\) 超过任意给定界即失去一致有界性。此例中每阶段的满秩和可解性均成立。极限交换、可导性、紧性及估计在相应任务中需要各自的证明。
+\end{proof}

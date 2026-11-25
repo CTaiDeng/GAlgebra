@@ -1,0 +1,1447 @@
+[
+  {
+    "label": "thm:strongest-proof",
+    "lean": [
+      "GAlgebra.strongestBudgetHit",
+      "GAlgebra.strongest_budget_hit_spec",
+      "GAlgebra.strongest_budget_hit_no_feasible",
+      "GAlgebra.DirectedGraph.constrained_hit_complete_and_minimal"
+    ],
+    "note": "核验单调等级的有界二分、不可达判断及该级路径的最低代价。结论等级和试探的解析证书由分型给出。"
+  },
+  {
+    "label": "def:law",
+    "lean": [
+      "GAlgebra.Task",
+      "GAlgebra.totalAction",
+      "GAlgebra.failure_absorbs",
+      "GAlgebra.Task.lawUnion",
+      "GAlgebra.Task.fixed_law_exact",
+      "GAlgebra.Task.fixed_law_retract"
+    ],
+    "note": "总化、分型承载与固定规律切片。"
+  },
+  {
+    "label": "prop:law-trivial-bundle",
+    "lean": [
+      "GAlgebra.FiberGroup",
+      "GAlgebra.fiberRight",
+      "GAlgebra.fiberTransport",
+      "GAlgebra.fiber_right_action",
+      "GAlgebra.fiber_right_unique",
+      "GAlgebra.fiber_transport_equivariant",
+      "GAlgebra.fiber_transport_comp",
+      "GAlgebra.fiber_transport_defect_zero"
+    ],
+    "note": "任意底点集与任意群上的离散主丛、自由传递作用、协变、有序组合与同端点运输等价，均按正文量词核验。"
+  },
+  {
+    "label": "def:exact",
+    "lean": [
+      "GAlgebra.Task.Exact",
+      "GAlgebra.Task.EquivBeh",
+      "GAlgebra.Task.behaviour"
+    ],
+    "note": "空词与全部未来测试。"
+  },
+  {
+    "label": "lem:word",
+    "lean": [
+      "GAlgebra.Task.Exact.run",
+      "GAlgebra.Task.Exact.signature",
+      "GAlgebra.Task.law_information_necessary",
+      "GAlgebra.Task.two_step_law_example"
+    ],
+    "note": "有限词归纳及两规律实例。"
+  },
+  {
+    "label": "thm:task",
+    "lean": [
+      "GAlgebra.Task.behaviour_congruence",
+      "GAlgebra.Task.encode_exact",
+      "GAlgebra.Task.coarsest_task_quotient",
+      "GAlgebra.Task.reduced_exact_is_bijective"
+    ],
+    "note": "存在、唯一、满射和精确保持。"
+  },
+  {
+    "label": "prop:refinement",
+    "lean": [
+      "GAlgebra.Task.finite_refinement_step",
+      "GAlgebra.Task.finite_refinement_fixed",
+      "GAlgebra.finite_strict_refinement_bound",
+      "GAlgebra.Task.ordered_record_readback"
+    ],
+    "note": "分区递推、稳定及块数界。严格拆分增块的计数见纸面证明。"
+  },
+  {
+    "label": "def:chain",
+    "lean": [
+      "GAlgebra.DirectedGraph",
+      "GAlgebra.DirectedGraph.Path",
+      "GAlgebra.DirectedGraph.pathSum",
+      "GAlgebra.TwoStep"
+    ],
+    "note": "有类型路径及加性链。自由模用纸面有限支撑构造。"
+  },
+  {
+    "label": "thm:paths",
+    "lean": [
+      "GAlgebra.DirectedGraph.path_boundary",
+      "GAlgebra.DirectedGraph.path_sum_append",
+      "GAlgebra.DirectedGraph.face_boundary_zero"
+    ],
+    "note": "归纳抵消、串接及认证面。"
+  },
+  {
+    "label": "thm:chainquot",
+    "lean": [
+      "GAlgebra.Subgroup.mapClasses",
+      "GAlgebra.Subgroup.quotient_add_classes",
+      "GAlgebra.Subgroup.quotient_scalar_classes",
+      "GAlgebra.Subgroup.quotient_diff_closed",
+      "GAlgebra.Subgroup.quotient_square_mod",
+      "GAlgebra.Subgroup.quotientBridge"
+    ],
+    "note": "逐级验证。标量相容作为显式参数。"
+  },
+  {
+    "label": "cor:descend",
+    "lean": [
+      "GAlgebra.Task.quotient_differential_necessary",
+      "GAlgebra.Task.quotient_differential_sufficient"
+    ],
+    "note": "代表无关的充要性及唯一性。"
+  },
+  {
+    "label": "thm:kernelchain",
+    "lean": [
+      "GAlgebra.Subgroup.kernel_subcomplex",
+      "GAlgebra.Subgroup.kernelQuotient",
+      "GAlgebra.Subgroup.map_from_generators_surj"
+    ],
+    "note": "核商与逐级满射。带标量时逐分量保线性。"
+  },
+  {
+    "label": "def:hom",
+    "lean": [
+      "GAlgebra.TwoStep.Cycles",
+      "GAlgebra.TwoStep.sameClass",
+      "GAlgebra.TwoStep.cycleClass",
+      "GAlgebra.TwoStep.boundary_iff_zero_class"
+    ],
+    "note": "闭链、商及零类的原像见证。"
+  },
+  {
+    "label": "cor:hom",
+    "lean": [
+      "GAlgebra.TwoStep.ChainMap.homology",
+      "GAlgebra.TwoStep.homology_iso"
+    ],
+    "note": "保持闭链、边界和双向复合。"
+  },
+  {
+    "label": "thm:retract",
+    "lean": [
+      "GAlgebra.TwoStep.homotopy_retract_reflects_boundary"
+    ],
+    "note": "同伦回缩的边界公式。"
+  },
+  {
+    "label": "def:gram",
+    "lean": [
+      "GAlgebra.finiteSum",
+      "GAlgebra.Pairing",
+      "GAlgebra.AdjointPair",
+      "GAlgebra.OrthogonalSplitting"
+    ],
+    "note": "最小内积、伴随和投影接口。"
+  },
+  {
+    "label": "thm:gram",
+    "lean": [
+      "GAlgebra.weighted_gram_factorization",
+      "GAlgebra.weighted_coverage_image",
+      "GAlgebra.AdjointPair.gram_energy",
+      "GAlgebra.AdjointPair.gram_kernel_orthogonal",
+      "GAlgebra.OrthogonalSplitting.quotient_orthogonal",
+      "GAlgebra.nonnegative_sum_zero"
+    ],
+    "note": "核验有限覆盖像、伴随与正交余项的证书。实内积空间的正交构造由正文证明。"
+  },
+  {
+    "label": "prop:frame",
+    "lean": [
+      "GAlgebra.ScalarGeometry.Frame",
+      "GAlgebra.ScalarGeometry.ontoFrame_agrees_on_basis",
+      "GAlgebra.ScalarGeometry.frame_splitting",
+      "GAlgebra.ScalarGeometry.orthogonal_extension_step"
+    ],
+    "note": "独立于具体标量的投影系数、正交余项与扩展同跨度。"
+  },
+  {
+    "label": "thm:hodge",
+    "lean": [
+      "GAlgebra.hodge_cycle_restrict",
+      "GAlgebra.hodge_kernel",
+      "GAlgebra.hodge_homology_iso"
+    ],
+    "note": "加性调和代表同构。正定和分解证书在签名中。"
+  },
+  {
+    "label": "thm:rank",
+    "lean": [
+      "GAlgebra.repair_expansion_closed",
+      "GAlgebra.rank_gain_count",
+      "GAlgebra.Subgroup.quotient_extension_kernel"
+    ],
+    "note": "从核识别新增填补类并核验维数算术。实向量空间基扩张在正文。"
+  },
+  {
+    "label": "def:repair",
+    "lean": [
+      "GAlgebra.Repairable",
+      "GAlgebra.repairImage",
+      "GAlgebra.repairable_iff_fiber"
+    ],
+    "note": "原像纤维的显式存在见证。"
+  },
+  {
+    "label": "thm:repair",
+    "lean": [
+      "GAlgebra.repair_expansion",
+      "GAlgebra.repair_expansion_preserves_old",
+      "GAlgebra.repair_expansion_closed"
+    ],
+    "note": "能力扩张、零填充和链条件。"
+  },
+  {
+    "label": "ex:coefficients",
+    "lean": [
+      "GAlgebra.parity_obstruction",
+      "GAlgebra.integer_expansion",
+      "GAlgebra.ordered_expansion",
+      "GAlgebra.strict_coefficients_can_lose_old"
+    ],
+    "note": "整数及有理系数模型。实数版用同一符号判断和见证。"
+  },
+  {
+    "label": "prop:cone",
+    "lean": [
+      "GAlgebra.det2",
+      "GAlgebra.stressCombine",
+      "GAlgebra.positive_two_direction_certificate"
+    ],
+    "note": "机器核验有理数版。实数版逐坐标计算。"
+  },
+  {
+    "label": "thm:cone-dual",
+    "lean": [
+      "GAlgebra.cone_dual_certificate_sound"
+    ],
+    "note": "有限和的线性否决已核验。实正锥闭性和最近点分离见正文。"
+  },
+  {
+    "label": "ex:parameter",
+    "lean": [
+      "GAlgebra.correction",
+      "GAlgebra.joint_reachability_expansion"
+    ],
+    "note": "旧不可达、新约束闭合与动作数下界。"
+  },
+  {
+    "label": "thm:transport",
+    "lean": [
+      "GAlgebra.RepairMorphism.transport",
+      "GAlgebra.repair_transport_iff",
+      "GAlgebra.repair_transport_family"
+    ],
+    "note": "双向交换、合法性和参数族。"
+  },
+  {
+    "label": "thm:writeback",
+    "lean": [
+      "GAlgebra.TwoStep.quotient_solution_writeback",
+      "GAlgebra.TwoStep.legal_quotient_solution_writeback"
+    ],
+    "note": "收缩回写和合法性。范数界依赖实分析的三角不等式。"
+  },
+  {
+    "label": "prop:stages",
+    "lean": [
+      "GAlgebra.synchronized_construction",
+      "GAlgebra.finite_feasibility_not_uniform"
+    ],
+    "note": "核验有限阶段交换及逐点可行性的反例。正文代入交换式以运输统一界。"
+  },
+  {
+    "label": "def:operators",
+    "lean": [
+      "GAlgebra.Bilinear",
+      "GAlgebra.commutator",
+      "GAlgebra.jacobiDefect",
+      "GAlgebra.linearized",
+      "GAlgebra.Derivation"
+    ],
+    "note": "四接口的局部实现。"
+  },
+  {
+    "label": "prop:jacobi",
+    "lean": [
+      "GAlgebra.commutator_alternating",
+      "GAlgebra.commutator_jacobi",
+      "GAlgebra.jacobi_lift_of_section"
+    ],
+    "note": "严格括号与一个局部填补。全阶结构须额外逐级核验。"
+  },
+  {
+    "label": "thm:two-term",
+    "lean": [
+      "GAlgebra.twoTerm_differential_square",
+      "GAlgebra.twoTerm_signed_leibniz",
+      "GAlgebra.twoTerm_arity_three_zero",
+      "GAlgebra.twoTerm_arity_three_one_negative",
+      "GAlgebra.jacobi_alternating_first_two",
+      "GAlgebra.jacobi_four_arity",
+      "GAlgebra.twoTerm_double_ternary_zero",
+      "GAlgebra.higher_arity_truncation",
+      "GAlgebra.threeDim_skew",
+      "GAlgebra.threeDim_jacobi_nonzero"
+    ],
+    "note": "两项微分、分次符号、四元项消去、高元截断及非零整数例。"
+  },
+  {
+    "label": "prop:residual",
+    "lean": [
+      "GAlgebra.residual",
+      "GAlgebra.residual_perturbation",
+      "GAlgebra.convection_cannot_be_alternating"
+    ],
+    "note": "二次对流的代数展开。"
+  },
+  {
+    "label": "thm:formula",
+    "lean": [
+      "GAlgebra.Term.evaluations_commute",
+      "GAlgebra.Formula.extend_map",
+      "GAlgebra.Formula.formula_transport"
+    ],
+    "note": "算子项、环境和量词的结构归纳。"
+  },
+  {
+    "label": "thm:proof",
+    "lean": [
+      "GAlgebra.derivation_sound",
+      "GAlgebra.translate_proof",
+      "GAlgebra.finite_dag_sound",
+      "GAlgebra.discharge_open_hypotheses",
+      "GAlgebra.frozen_domain_cannot_be_widened"
+    ],
+    "note": "基本事实、规则、依赖图与版本域。"
+  },
+  {
+    "label": "cor:finiteproof",
+    "lean": [
+      "GAlgebra.finite_branch_transport"
+    ],
+    "note": "有限指标族逐项回读。"
+  },
+  {
+    "label": "prop:cost",
+    "lean": [
+      "GAlgebra.Task.auxiliary_compression",
+      "GAlgebra.ordered_product_factorization",
+      "GAlgebra.selection_word_count",
+      "GAlgebra.reuse_cost_iff"
+    ],
+    "note": "辅助字段、非交换有序因子化和完整成本式。"
+  },
+  {
+    "label": "def:goals",
+    "lean": [
+      "GAlgebra.ZeroLineSpec.goal",
+      "GAlgebra.FlowSpec.goal",
+      "GAlgebra.FlowSpec.atViscosity",
+      "GAlgebra.spectral_localizing_forms_all",
+      "GAlgebra.flow_mother_readback"
+    ],
+    "note": "核验两项原命题的量词和回读签名。经典黎曼的双向等价及合法非零精确周期的充分回读见正文。"
+  },
+  {
+    "label": "def:grh-obligation",
+    "lean": [
+      "GAlgebra.grandRiemannGoal",
+      "GAlgebra.ZeroLineSpec.goal"
+    ],
+    "note": "核验指定起始秩、各秩的表示及纤维零点的依赖量词。实际自守表示与完备数据由正文规定。"
+  },
+  {
+    "label": "def:arithmetic-family",
+    "lean": [
+      "GAlgebra.ArithmeticObligation",
+      "GAlgebra.ArithmeticObligation.goal",
+      "GAlgebra.PrimeOffsetsAdmissible"
+    ],
+    "note": "核验五项索引、三个初等数论目标和可容许偏移的量词。渐近及全秩谱条件由对应解析命题传入。"
+  },
+  {
+    "label": "def:kinetic-fluid-obligations",
+    "lean": [
+      "GAlgebra.jointKineticLimitGoal",
+      "GAlgebra.uniqueGlobalClassicalEvolutionGoal",
+      "GAlgebra.globalClassicalEvolutionGoal",
+      "GAlgebra.FlowSpec.goal"
+    ],
+    "note": "核验固定制备族后的共同指数、截断与联合收敛量词，以及全局经典存在和唯一性的谓词。有限端点条件延拓的解析回读见动理学正文。"
+  },
+  {
+    "label": "thm:criticalstrip",
+    "lean": [
+      "GAlgebra.reflected_zero_from_completed_equation",
+      "GAlgebra.cosine_quadratic_weight"
+    ],
+    "note": "完成函数中的零点运输和 Euler 权重恒等式。傅里叶、积分及亚纯延拓是纸面证明。"
+  },
+  {
+    "label": "lem:xi-zero-count",
+    "lean": [
+      "GAlgebra.contour_finite_upper_bound"
+    ],
+    "note": "有限零点和的模估计经机器核验。全纯延拓、Blaschke 因子与计数增长由正文证明。"
+  },
+  {
+    "label": "lem:xi-analytic-height",
+    "lean": [
+      "GAlgebra.theta_small_height_bound"
+    ],
+    "note": "核验初等有理余量。解析积分、Machin 反正切与零点排除在正文。"
+  },
+  {
+    "label": "lem:square-spectrum-resolvent",
+    "lean": [
+      "GAlgebra.finite_resolvent_common_denominator",
+      "GAlgebra.finite_resolvent_numerator_ne_zero_at_pole"
+    ],
+    "note": "核验有限极点的通分与不消去。整函数乘积、紧集收敛与留数见正文。"
+  },
+  {
+    "label": "thm:xi-moment-generator",
+    "lean": [
+      "GAlgebra.reflected_zero_from_completed_equation",
+      "GAlgebra.automorphic_square_halfline"
+    ],
+    "note": "核验零点反射和平方坐标。Euler 对数导数、Cauchy 系数及整乘积在正文。"
+  },
+  {
+    "label": "thm:spectral-positive-operator",
+    "lean": [
+      "GAlgebra.spectral_localizing_forms",
+      "GAlgebra.spectral_positive_quotient_bound",
+      "GAlgebra.finite_resolvent_numerator_ne_zero_at_pole"
+    ],
+    "note": "核验双侧有理序关系、范数估计的消去及有限极点不消去。Hilbert 完备和割平面同源预解式在正文。"
+  },
+  {
+    "label": "lem:spectral-polynomial-density",
+    "lean": [
+      "GAlgebra.finite_resolvent_numerator_ne_zero_at_pole",
+      "GAlgebra.finite_diagonal_form_nonnegative_iff"
+    ],
+    "note": "核验有限对角型和残数不消去。多项式测试稠密、共轭成对以及核的混合导数见正文。"
+  },
+  {
+    "label": "thm:xi-moment-readback",
+    "lean": [
+      "GAlgebra.spectral_localizing_forms_all",
+      "GAlgebra.automorphic_square_halfline",
+      "GAlgebra.weighted_gram_factorization",
+      "GAlgebra.bernsteinFalling",
+      "GAlgebra.bernsteinAverage",
+      "GAlgebra.bernstein_falling_average"
+    ],
+    "note": "核验全称局部化双侧序、平方坐标半轴、有限 Gram 分解和二项平均的降阶乘恒等式。二项式判据的系数极限和实际算术的连续回读在正文。"
+  },
+  {
+    "label": "thm:xi-single-positive-kernel",
+    "lean": [
+      "GAlgebra.weighted_gram_factorization",
+      "GAlgebra.finite_resolvent_numerator_ne_zero_at_pole"
+    ],
+    "note": "核验有限 Gram 分解与极点代数。算术差商与同一局部化矩义务的等价在正文。"
+  },
+  {
+    "label": "prop:xi-polynomial-sector",
+    "lean": [
+      "GAlgebra.xi_polynomial_sector_constants",
+      "GAlgebra.spectral_localizing_forms"
+    ],
+    "note": "核验辐角常数及当前测试域的两条序关系。复对数直线积分与整个谱上的求和见正文。"
+  },
+  {
+    "label": "lem:xi-origin-moment-bounds",
+    "lean": [
+      "GAlgebra.xi_origin_summation_bounds",
+      "GAlgebra.xi_origin_moment_bounds"
+    ],
+    "note": "核验 Bernoulli 余项的有理常数和五项输入区间推出两项矩包围的线性比较。实际算术系数的复分析及区间构造见正文。"
+  },
+  {
+    "label": "thm:xi-coefficient-cone",
+    "lean": [
+      "GAlgebra.xi_separated_pole_budgets",
+      "GAlgebra.xi_shifted_coefficient_constants",
+      "GAlgebra.xi_exterior_factor_constants",
+      "GAlgebra.spectral_coefficient_margin"
+    ],
+    "note": "核验实单极点分离至模长 270、平移基的幂扰动和余谱质量比的有理常数。在线序有序交换环上证明混号测试的序比较。实际谱和式及范数余量见正文。"
+  },
+  {
+    "label": "prop:xi-exterior-factor-positivity",
+    "lean": [
+      "GAlgebra.xi_exterior_factor_constants",
+      "GAlgebra.xi_exterior_factor_phase"
+    ],
+    "note": "核验共同辐角余量的有理常数与两组有符号相位的序比较。实际算术谱展开、复对数积分和局部化矩余量见正文。"
+  },
+  {
+    "label": "lem:xi-resolvent-shells",
+    "lean": [
+      "GAlgebra.xi_real_resolvent_constants"
+    ],
+    "note": "核验实际预解式的常数和两端质量预算的有理比较。Euler 与 Gamma 对数导数、半径和谱质量估计在正文。"
+  },
+  {
+    "label": "thm:xi-bernstein-ranges",
+    "lean": [
+      "GAlgebra.xi_bernstein_low_exponent_constants",
+      "GAlgebra.xi_bernstein_high_exponent_constants"
+    ],
+    "note": "核验靠近轴及远尺度的有理常数。由实际谱权推导的相位、主项和谱环带下界以及全体指数的两个已证区域在正文。"
+  },
+  {
+    "label": "lem:xi-vertical-resolvent",
+    "lean": [
+      "GAlgebra.xi_reflected_resolvent_split",
+      "GAlgebra.xi_vertical_resolvent_constants"
+    ],
+    "note": "核验反射极点的分式分解、Euler 绝对上端的有理比较及全部对数读数上的远段预算。实际解析预解式的定长谱质量在正文。"
+  },
+  {
+    "label": "thm:xi-bernstein-quadratic",
+    "lean": [
+      "GAlgebra.xi_paired_phase_numerator",
+      "GAlgebra.xi_bernstein_quadratic_constants"
+    ],
+    "note": "核验两相位的通分消去和二次指数域的正质量、全尾有理预算。实际谱权的相位与峰值比较由正文证明。"
+  },
+  {
+    "label": "thm:xi-bernstein-ray-readback",
+    "lean": [
+      "GAlgebra.xi_ray_resolvent_factor",
+      "GAlgebra.xi_ray_amplitude_gap",
+      "GAlgebra.xi_ray_phase_chord"
+    ],
+    "note": "核验有理方向上底数与极点的幂因子分解、非实谱点的模长严格超额和相位平均的弦线比较。算术 Cauchy 读数、收敛半径及最终非负性的全域回读在正文。"
+  },
+  {
+    "label": "cor:xi-ray-strip-envelope",
+    "lean": [
+      "GAlgebra.xi_ray_square_modulus",
+      "GAlgebra.xi_ray_strip_budget",
+      "GAlgebra.xi_ray_height_budgets",
+      "GAlgebra.xi_ray_height_sides"
+    ],
+    "note": "核验平方谱模长恒等式、全方向半径的有理比较和高度偏差两侧的代数预算。解析极值、包络与实际谱点的严格超额区域在正文。"
+  },
+  {
+    "label": "lem:zeta-rational-polygon",
+    "lean": [
+      "GAlgebra.RationalComplex.rounded_coordinate_error",
+      "GAlgebra.RationalComplex.segment_coordinate_above",
+      "GAlgebra.RationalComplex.ContourError.margin",
+      "GAlgebra.RationalComplex.edge_qualification_sound",
+      "GAlgebra.RationalComplex.contourGap",
+      "GAlgebra.RationalComplex.contour_gap_sum",
+      "GAlgebra.RationalComplex.contour_mesh_component",
+      "GAlgebra.RationalComplex.contour_separated_iff"
+    ],
+    "note": "核验舍入、弦段分离和有理门禁。复指数误差、截断、二阶插值与同伦在正文。"
+  },
+  {
+    "label": "thm:dyadic-contour-optimal",
+    "lean": [
+      "GAlgebra.RationalComplex.dyadicContour",
+      "GAlgebra.RationalComplex.dyadic_contour_sound",
+      "GAlgebra.RationalComplex.DyadicContourPath.optimal",
+      "GAlgebra.RationalComplex.crossing_reverse",
+      "GAlgebra.RationalComplex.crossing_coordinate"
+    ],
+    "note": "核验二分图最少弦数、过轴公式和有向切线换向。复用计数、任意有限高度的可签发条件及解析读回见正文。"
+  },
+  {
+    "label": "lem:critical-line-phase",
+    "lean": [
+      "GAlgebra.RationalComplex.phase_pi_caps",
+      "GAlgebra.atanhLogBounds"
+    ],
+    "note": "核验圆周率的短交错展开与对数区间。Gamma 有限积、梯形余项和相位公式见正文。"
+  },
+  {
+    "label": "thm:critical-line-count-signs",
+    "lean": [
+      "GAlgebra.RationalComplex.zetaCriticalIndex",
+      "GAlgebra.RationalComplex.zetaCriticalSignTests",
+      "GAlgebra.RationalComplex.critical_dot_upper_bound",
+      "GAlgebra.RationalComplex.crossing_coordinate"
+    ],
+    "note": "核验水平切线的有理相位整数、过轴和临界线负点积。全带辐角原理与变号重数饱和见正文。"
+  },
+  {
+    "label": "thm:zeta-certified-windows",
+    "lean": [
+      "GAlgebra.RationalComplex.zetaBands",
+      "GAlgebra.unique_zero_fixed_under_reflection"
+    ],
+    "note": "七十四个绕数及共享求值次数可执行复算。实际零点及其重数的反射回读在正文。"
+  },
+  {
+    "label": "prop:critical-line-coverage",
+    "lean": [
+      "GAlgebra.RationalComplex.criticalLineBatches",
+      "GAlgebra.RationalComplex.critical_line_batch_sizes",
+      "GAlgebra.RationalComplex.zetaCriticalIndex",
+      "GAlgebra.RationalComplex.zetaCriticalSignTests"
+    ],
+    "note": "六带的有理输入及七条水平切线可复算。坐标区间容量、总重数和实际通过数共同签发覆盖。"
+  },
+  {
+    "label": "thm:dyadic-log-enclosure",
+    "lean": [
+      "GAlgebra.atanhLogBounds",
+      "GAlgebra.atanh_log_term_bounds",
+      "GAlgebra.atanhLogSequence",
+      "GAlgebra.dyadic_mantissa_bounds",
+      "GAlgebra.naturalLogSequence"
+    ],
+    "note": "从有理输入计算实际端点，证明嵌套、宽度趋零及整数二进制归约。与实对数的等同由正文积分证明。"
+  },
+  {
+    "label": "prop:mangoldt-enclosure",
+    "lean": [
+      "GAlgebra.trial_prime_correct",
+      "GAlgebra.prime_power_base_sound",
+      "GAlgebra.prime_power_base_unique",
+      "GAlgebra.prime_power_base_exact",
+      "GAlgebra.mangoldtLogSequence"
+    ],
+    "note": "素数幂判定、基底唯一性和端点生成均直接核验。实际 von Mangoldt 权重的实值读回使用对数包围定理。"
+  },
+  {
+    "label": "lem:grh-rank-one-base",
+    "lean": [
+      "GAlgebra.grand_riemann_rank_split",
+      "GAlgebra.grand_riemann_rank_one_readback",
+      "GAlgebra.zero_line_readback_along_shift"
+    ],
+    "note": "核验秩一与高秩的全秩拼接和保实坐标回读。正文给出阿代尔字符分解、Euler 平移及秩一纤维的量词覆盖。"
+  },
+  {
+    "label": "thm:dirichlet-analytic-input",
+    "lean": [
+      "GAlgebra.dirichlet_gauss_rescale_vanish",
+      "GAlgebra.reflected_zero_from_completed_equation"
+    ],
+    "note": "核验 Gauss 和置换后的域上消去及完备函数方程的反射传递。有限 Fourier 展开、Gaussian 输运、Mellin 回读和增长估计在正文。"
+  },
+  {
+    "label": "thm:grh-square-spectrum",
+    "lean": [
+      "GAlgebra.automorphicSquareSpectrum",
+      "GAlgebra.automorphic_square_halfline",
+      "GAlgebra.finite_resolvent_common_denominator",
+      "GAlgebra.finite_resolvent_numerator_ne_zero_at_pole"
+    ],
+    "note": "核验平方谱坐标和实半轴的精确回读，以及有限预解式的极点代数。对偶完备化、重数与整乘积在正文。"
+  },
+  {
+    "label": "thm:grh-localized-moments",
+    "lean": [
+      "GAlgebra.spectral_upper_weight_numerator",
+      "GAlgebra.automorphic_real_weight_sign",
+      "GAlgebra.automorphic_kernel_difference",
+      "GAlgebra.automorphic_square_halfline",
+      "GAlgebra.spectral_localizing_forms"
+    ],
+    "note": "核验上端局部化权、差商通分及半轴坐标。实际输入的正性、稠密与算子完成的覆盖见正文。"
+  },
+  {
+    "label": "thm:grh-family-readback",
+    "lean": [
+      "GAlgebra.grandRiemannGoal",
+      "GAlgebra.grand_riemann_fiber_equivalence",
+      "GAlgebra.grand_riemann_rank_split"
+    ],
+    "note": "核验逐纤维给定等价的秩域全称拼接。实际算术局部化矩义务在各纤维登记。"
+  },
+  {
+    "label": "thm:prime-poisson-fiber",
+    "lean": [
+      "GAlgebra.primeFiberCoefficient",
+      "GAlgebra.prime_fiber_cutoff",
+      "GAlgebra.prime_fiber_coarsening"
+    ],
+    "note": "核验保留总次数的有限截短及关系纤维合并。Fourier 正交、PDE 与绝对收敛见正文。"
+  },
+  {
+    "label": "prop:prime-additive-readback",
+    "lean": [
+      "GAlgebra.prime_finite_mass_positive_iff",
+      "GAlgebra.trial_prime_correct"
+    ],
+    "note": "核验有限非负加权和的正性读回及素数判定。Abel 极限、奇异级数和加权渐近与普通计数的等价见正文。"
+  },
+  {
+    "label": "prop:prime-uniform-certificates",
+    "lean": [
+      "GAlgebra.prime_phase_margin_readback",
+      "GAlgebra.prime_dyadic_growth"
+    ],
+    "note": "核验目标相位余量的有理比较及统一尺度增量的求和下界。解析前提及读数范围随相应蕴含保留。"
+  },
+  {
+    "label": "thm:prime-mellin-reuse",
+    "lean": [
+      "GAlgebra.prime_fiber_cutoff",
+      "GAlgebra.prime_power_base_sound",
+      "GAlgebra.prime_power_base_exact"
+    ],
+    "note": "核验有限总次数的截断与素数幂识别。模类平均、Mellin 积分、Euler 乘积及素数幂总误差界在正文推导。"
+  },
+  {
+    "label": "thm:arithmetic-family-readback",
+    "lean": [
+      "GAlgebra.arithmetic_family_readback",
+      "GAlgebra.twin_offsets_admissible",
+      "GAlgebra.prime_tuple_implies_twins",
+      "GAlgebra.grand_riemann_rank_split"
+    ],
+    "note": "核验五项证书合成、孪生偏移的可容许性、联合计数增长的见证提取及全秩证书拼接。Abel 渐近和秩一谱识别见正文。"
+  },
+  {
+    "label": "lem:radial-curl-writeback",
+    "lean": [
+      "GAlgebra.curl_residual_writeback"
+    ],
+    "note": "梯度和旋度的右逆以显式前提传入。球域径向积分构造及其求导证明在正文。"
+  },
+  {
+    "label": "lem:leray-heat-kernel",
+    "lean": [
+      "GAlgebra.leray_kernel_constant"
+    ],
+    "note": "Leray 投影、Newton 核和热核的积分常数由正文直接构造。"
+  },
+  {
+    "label": "thm:pde-rate-quotient",
+    "lean": [
+      "GAlgebra.Task.encode_exact",
+      "GAlgebra.Task.quotient_differential_sufficient",
+      "GAlgebra.observed_rate_telescope",
+      "GAlgebra.curl_residual_writeback"
+    ],
+    "note": "核验后继交换、联合纤维回读、率累计与旋度回写。四个内核保留原量词。"
+  },
+  {
+    "label": "thm:pde-operator-transport",
+    "lean": [
+      "GAlgebra.operator_transport_defect_comp",
+      "GAlgebra.operator_transport_rate",
+      "GAlgebra.operator_transport_pairing",
+      "GAlgebra.Task.Exact.comp"
+    ],
+    "note": "在有类型的加法群上证明组合缺陷、与标量除法交换的差商、零缺陷的任意线性测试，以及任务保持的复合。范数累积与完备滤过见正文。"
+  },
+  {
+    "label": "prop:pde-operator-charts",
+    "lean": [
+      "GAlgebra.finite_row_dual_transport",
+      "GAlgebra.parabolic_ratio_chart",
+      "GAlgebra.OrderedTailTree.eval_transport"
+    ],
+    "note": "核验粗细格配对、抛物换图及有序复合的协变。连续微分与空间权重见正文。"
+  },
+  {
+    "label": "thm:flow-ordered-law-chart",
+    "lean": [
+      "GAlgebra.affine_chart_compose",
+      "GAlgebra.parabolic_ratio_chart",
+      "GAlgebra.affine_product_delta",
+      "GAlgebra.Task.Exact.signature"
+    ],
+    "note": "核验有序仿射复合、周期运输、二次增量和作用词。流体反例、张量提升及对偶闭包在正文。"
+  },
+  {
+    "label": "thm:typed-cross-lhts",
+    "lean": [
+      "GAlgebra.typed_transport_shared_difference",
+      "GAlgebra.SectorStepCost",
+      "GAlgebra.SectorStepCost.total",
+      "GAlgebra.sector_path_cost_sum"
+    ],
+    "note": "核验共同测试的运输等式和四项成本的有限组合。各分型的合法域与证书回放见正文。"
+  },
+  {
+    "label": "thm:supported-test-update",
+    "lean": [
+      "GAlgebra.reuseSupportedTest",
+      "GAlgebra.reuseSupportedTest_correct",
+      "GAlgebra.operator_transport_defect_comp",
+      "GAlgebra.affine_product_delta"
+    ],
+    "note": "核验布尔相交、支持内读数保持和增量乘积。父子测试归纳与带缺陷的区间运输见正文。"
+  },
+  {
+    "label": "prop:active-coordinate-quotient",
+    "lean": [
+      "GAlgebra.Task.active_coordinate_projection",
+      "GAlgebra.Task.Exact.run",
+      "GAlgebra.Task.Exact.signature"
+    ],
+    "note": "核验活跃坐标相等对直接读数、后继及任意动作词的保持。依赖闭包及组合数界见正文。"
+  },
+  {
+    "label": "prop:certified-block-cost",
+    "lean": [
+      "GAlgebra.shared_verification_saves_weighted",
+      "GAlgebra.sector_path_cost_sum"
+    ],
+    "note": "核验共用调用的费用分割和分项成本。整块通过、排除和回读由正文证明。"
+  },
+  {
+    "label": "prop:finite-gate-priority",
+    "lean": [
+      "GAlgebra.gatedCost",
+      "GAlgebra.gated_cost_minimizer"
+    ],
+    "note": "任意线序有序环上，若存在通过者，则任何分数最小者都通过门禁并在通过者中成本最小。"
+  },
+  {
+    "label": "prop:g-l-path-pushforward",
+    "lean": [
+      "GAlgebra.finiteEndpointMass",
+      "GAlgebra.finite_endpoint_pairing",
+      "GAlgebra.finite_endpoint_gate_mass",
+      "GAlgebra.finite_endpoint_mass_coarsen"
+    ],
+    "note": "在任意加法交换群上构造有限推前，证明测试配对、全质量通过门禁及逐商点的二次推前等式。"
+  },
+  {
+    "label": "thm:g-finite-pde-hit",
+    "lean": [
+      "GAlgebra.finite_lattice_hit_iff",
+      "GAlgebra.finite_lattice_hit_readback",
+      "GAlgebra.gated_cost_minimizer",
+      "GAlgebra.finite_endpoint_gate_mass"
+    ],
+    "note": "核验有限候选的通过性、门禁顺序及单位质量回读。原格点的初始合法性见正文。"
+  },
+  {
+    "label": "thm:lhts-fractal-coverage",
+    "lean": [
+      "GAlgebra.lhtsPartialJacGap",
+      "GAlgebra.lhtsPressure",
+      "GAlgebra.lhts_partial_credit",
+      "GAlgebra.lhts_component_chain",
+      "GAlgebra.frame_projected_jacgap_descent",
+      "GAlgebra.periodic_joint_radial_gate"
+    ],
+    "note": "核验分量差分、投影下降与流体联合余量。方向块的共同投影界在正文。"
+  },
+  {
+    "label": "thm:finite-pde-optimal-path",
+    "lean": [
+      "GAlgebra.DirectedGraph.hitTable",
+      "GAlgebra.DirectedGraph.finite_hit_sound",
+      "GAlgebra.DirectedGraph.finite_hit_complete_and_minimal",
+      "GAlgebra.DirectedGraph.finite_hit_global_minimal"
+    ],
+    "note": "核验预算内最优命中、删环后的全图步数界与最小自然数代价。下界剪枝由正文证明。"
+  },
+  {
+    "label": "thm:constrained-task-hit",
+    "lean": [
+      "GAlgebra.LHTSFinite",
+      "GAlgebra.LHTSFinite.prune",
+      "GAlgebra.tphHit",
+      "GAlgebra.DirectedGraph.resourceConstrainedHit",
+      "GAlgebra.DirectedGraph.resourceTrace",
+      "GAlgebra.DirectedGraph.constrained_hit_sound",
+      "GAlgebra.DirectedGraph.constrained_hit_complete_and_minimal",
+      "GAlgebra.DirectedGraph.full_resource_digits",
+      "GAlgebra.DirectedGraph.spend_resources_sound",
+      "GAlgebra.DirectedGraph.spend_resources_complete",
+      "GAlgebra.Task.Exact.run"
+    ],
+    "note": "核验分型接口、下界剪枝、向量扣减、最优性与边回放。商图生成与复杂度在正文。"
+  },
+  {
+    "label": "prop:task-prefix-dominance",
+    "lean": [
+      "GAlgebra.DirectedGraph.resourceTrace_dominates",
+      "GAlgebra.DirectedGraph.spend_resources_sound"
+    ],
+    "note": "核验一步单调性下的整个后缀回放。向量序、终端门禁和前缀总代价的比较见正文。"
+  },
+  {
+    "label": "thm:optimistic-certified-hit",
+    "lean": [
+      "GAlgebra.optimisticHit",
+      "GAlgebra.verified_relaxed_minimum",
+      "GAlgebra.DirectedGraph.constrained_hit_complete_and_minimal",
+      "GAlgebra.block_gate_optimistic_example"
+    ],
+    "note": "可执行的待核验路径递推、保留图下界的最优性及不同到期门禁的有限算例。门禁表不变量和全流程证明在正文。"
+  },
+  {
+    "label": "lem:ordered-quadratic-composite",
+    "lean": [
+      "GAlgebra.OrderedTailTree",
+      "GAlgebra.OrderedTailTree.eval",
+      "GAlgebra.OrderedTailTree.eval_transport",
+      "GAlgebra.OrderedTailTree.eval_le",
+      "GAlgebra.periodic_tree_radius"
+    ],
+    "note": "核验有序树评价的协变性、每棵树的范数上端及有理半径。树计数、绝对收敛与根分解在正文。"
+  },
+  {
+    "label": "lem:flow-spatial-analyticity",
+    "lean": [
+      "GAlgebra.OrderedTailTree.eval_le",
+      "GAlgebra.periodic_tree_radius"
+    ],
+    "note": "核验全纯短段复合所用的统一树范数与半径。复域热核、移动积分与唯一性在正文。"
+  },
+  {
+    "label": "thm:flow-periodic-tail-correction",
+    "lean": [
+      "GAlgebra.profile_geometric_identity",
+      "GAlgebra.parabolic_ratio_chart",
+      "GAlgebra.periodic_seam_covariance"
+    ],
+    "note": "核验几何和、抛物标量变换及热传播与接缝的共轭。投影热积分、旋转等距性和精确接续在正文。"
+  },
+  {
+    "label": "thm:flow-period-phase-box",
+    "lean": [
+      "GAlgebra.OrderedTailTree.eval_transport"
+    ],
+    "note": "有序作用的协变回放。共同网格、相位、周期与旋转参数的尾算子连续性在正文。"
+  },
+  {
+    "label": "thm:flow-period-composite",
+    "lean": [
+      "GAlgebra.QuadraticTailLaw",
+      "GAlgebra.QuadraticTailLaw.Legal",
+      "GAlgebra.QuadraticTailLaw.eval_legal",
+      "GAlgebra.periodic_tail_residual_identity",
+      "GAlgebra.periodic_tree_radius",
+      "GAlgebra.periodic_joint_radial_gate",
+      "GAlgebra.periodic_chart_caps",
+      "GAlgebra.periodic_sample_locked"
+    ],
+    "note": "核验复合法对象、树复合闭合、尾回读恒等式、半径、联合余量及样点保持。解析赋值与球面论证在正文。"
+  },
+  {
+    "label": "prop:flow-period-phase-border",
+    "lean": [
+      "GAlgebra.periodic_phase_border_coordinates"
+    ],
+    "note": "共同核验周期列、旋转角列及相位向量的消去。参数导数、单位广义谱空间和旋转平均条件在正文。"
+  },
+  {
+    "label": "lem:flow-periodic-spatial-tail",
+    "lean": [
+      "GAlgebra.profile_geometric_identity",
+      "GAlgebra.parabolic_ratio_chart"
+    ],
+    "note": "核验几何和及空间时间换图。加权热积分、核导数与球壳空间提升在正文。"
+  },
+  {
+    "label": "thm:flow-weighted-compactification",
+    "lean": [
+      "GAlgebra.parabolic_ratio_chart",
+      "GAlgebra.periodic_sample_locked"
+    ],
+    "note": "核验抛物坐标运输及投影保留样点的代数条件。协变远场迹、加权卷积和整个双线性算子的紧性在正文。"
+  },
+  {
+    "label": "lem:flow-phase-half-holder",
+    "lean": [
+      "GAlgebra.periodic_phase_half_order_budget",
+      "GAlgebra.periodic_radial_heat_gap"
+    ],
+    "note": "核验相位核差的共同余量及径向换元后的热时间增量。加权核积分、径角空间模和节点数上端在正文。"
+  },
+  {
+    "label": "prop:flow-rotated-compactification",
+    "lean": [
+      "GAlgebra.periodic_frame_readback",
+      "GAlgebra.periodic_seam_covariance",
+      "GAlgebra.periodic_sample_locked"
+    ],
+    "note": "核验旋转后评价点与场值的逆运输、接缝共轭和样点保持。临界权热估计、旋转角代表和全方程回读在正文。"
+  },
+  {
+    "label": "cor:flow-uniform-finite-reduction",
+    "lean": [
+      "GAlgebra.OrderedTailTree.eval_le",
+      "GAlgebra.periodic_tree_radius",
+      "GAlgebra.periodic_finite_reduction_readback",
+      "GAlgebra.periodic_finite_test_preserved",
+      "GAlgebra.periodic_tail_defect_bound",
+      "GAlgebra.periodic_joint_radial_gate"
+    ],
+    "note": "核验共同尾半径、有限秩约化的精确残差、线性读数保持、参考缺陷及球面余量的比较。实范数估计见正文。"
+  },
+  {
+    "label": "prop:flow-periodic-hardy-amplitude",
+    "lean": [
+      "GAlgebra.periodic_enstrophy_ratio_gate",
+      "GAlgebra.periodic_projected_quadratic"
+    ],
+    "note": "核验通用与反射协变振幅阈值的有理平方分解和有限残差投影。涡量恒等式、径向 Hardy 界、角向相消与凹函数积分在正文。"
+  },
+  {
+    "label": "thm:flow-gaussian-period",
+    "lean": [
+      "GAlgebra.gaussian_period_square_balance",
+      "GAlgebra.gaussian_period_energy_gate"
+    ],
+    "note": "核验高斯配对的平方完成与峰值、含接缝的残差功和压力配对的有理比较。变换、分部积分与反号运输由正文证明。"
+  },
+  {
+    "label": "thm:flow-relative-period-energy",
+    "lean": [
+      "GAlgebra.periodic_trace_energy_readback"
+    ],
+    "note": "核验缩放接缝的能量差与正分母比较。旋转保持的相对能量、终端迹锐化和截面耗散下端在正文。"
+  },
+  {
+    "label": "thm:flow-trace-tensor-expansion",
+    "lean": [
+      "GAlgebra.periodic_trace_tensor_radial",
+      "GAlgebra.periodic_trace_tensor_off_diagonal",
+      "GAlgebra.periodic_trace_rotation_norm",
+      "GAlgebra.periodic_trace_rotation_minimax"
+    ],
+    "note": "核验牛顿核径向系数、非对角读数、旋转分量的范数因子和最坏增益的最优角。时空余项与旋转接缝的张量积分在正文。"
+  },
+  {
+    "label": "cor:flow-trace-three-radii",
+    "lean": [
+      "GAlgebra.periodic_trace_three_radii"
+    ],
+    "note": "核验三半径经旋转接缝运输后的低阶消去与剩余算子多项式的因子分解。张量回读和参数块的误差比较在正文。"
+  },
+  {
+    "label": "prop:flow-gaussian-reference",
+    "lean": [
+      "GAlgebra.gaussian_reference_amplitude_read",
+      "GAlgebra.gaussian_period_square_balance"
+    ],
+    "note": "核验幅度读数的根与两面因子，以及第二高斯等式的平方完成。显式场、压头生成修正和热残差的线性读回在正文。"
+  },
+  {
+    "label": "prop:flow-reference-second-harmonic",
+    "lean": [
+      "GAlgebra.periodic_second_harmonic_cosine",
+      "GAlgebra.poloidal_harmonic_product_coefficients"
+    ],
+    "note": "核验二次余弦幅度与倍次球面系数。最高角向非零、压力的分离方程和有界残差读数在正文。"
+  },
+  {
+    "label": "lem:flow-stationary-zero",
+    "lean": [
+      "GAlgebra.periodic_head_pressure_cancel",
+      "GAlgebra.periodic_head_barrier_budget"
+    ],
+    "note": "核验含残差的压头相消及球内外的严格余量。径向屏障、从速度峰值读取旋度和平均残差上端在正文。"
+  },
+  {
+    "label": "lem:flow-periodic-adjoint-inverse",
+    "lean": [
+      "GAlgebra.pressure_outer_weight_ratio",
+      "GAlgebra.pressure_inner_weight_ratio"
+    ],
+    "note": "核验两区加权收缩率的代数比较。高斯桥共同质量、伴随逆和有限窗误差在正文。"
+  },
+  {
+    "label": "thm:flow-periodic-pressure-transport",
+    "lean": [
+      "GAlgebra.periodic_head_pressure_cancel",
+      "GAlgebra.periodic_diffusion_ball_reach",
+      "GAlgebra.periodic_pressure_cell_floor"
+    ],
+    "note": "核验含实际残差的压头相消、共同球界和涡量球柱下端。压力标量的解析配对见正文。"
+  },
+  {
+    "label": "prop:flow-periodic-pressure-scalar",
+    "lean": [
+      "GAlgebra.periodic_pressure_scalar_readback"
+    ],
+    "note": "核验扰动后正因子及零点等价。参考场的旋度方向、相似热提升和商方程读回见正文。"
+  },
+  {
+    "label": "thm:flow-periodic-pressure-phase-readback",
+    "lean": [
+      "GAlgebra.periodic_pressure_phase_balance",
+      "GAlgebra.periodic_pressure_phase_projection",
+      "GAlgebra.periodic_pressure_phase_interval_budget"
+    ],
+    "note": "核验压力时间导数的相消、逐相位投影的左逆与幂等，以及区间误差预算。伴随转移、连续模和整周期的解析回读见正文。"
+  },
+  {
+    "label": "prop:flow-axisymmetric-exclusion",
+    "lean": [
+      "GAlgebra.periodic_swirl_barrier_positive"
+    ],
+    "note": "核验角动量屏障的两区严格正性。柱坐标方程、五维延拓、极值论证与旋转方向的独立性见正文。"
+  },
+  {
+    "label": "prop:flow-short-similarity-period",
+    "lean": [
+      "GAlgebra.periodic_gaussian_moment_caps",
+      "GAlgebra.periodic_rotating_frame_period",
+      "GAlgebra.periodic_rotation_gap_budget",
+      "GAlgebra.periodic_fluctuation_absorbs"
+    ],
+    "note": "核验旋转图接缝消去、高斯矩上端、对数角差预算到平方根预算的代数传递及波动吸收。积分估计与定常回读在正文。"
+  },
+  {
+    "label": "prop:flow-rotating-stabilizer",
+    "lean": [
+      "GAlgebra.periodic_rotation_generator_difference",
+      "GAlgebra.periodic_quarter_turn_difference"
+    ],
+    "note": "核验旋度消去压强后的生成元之差及四分之一转的横向平方模。调和消去、连续旋转排除、有限循环群和最小周期在正文。"
+  },
+  {
+    "label": "cor:flow-short-rotation-bands",
+    "lean": [
+      "GAlgebra.periodic_rotation_gap_budget",
+      "GAlgebra.periodic_fluctuation_absorbs"
+    ],
+    "note": "复用角差预算和严格吸收。有限有理角覆盖、多项式周期窗、按实际对称阶约束角速度与剖面反向运输在正文。"
+  },
+  {
+    "label": "lem:flow-phase-fourier-tail",
+    "lean": [
+      "GAlgebra.periodic_bilinear_mode_transfer",
+      "GAlgebra.periodic_phase_weight_mul",
+      "GAlgebra.periodic_parameter_interpolation"
+    ],
+    "note": "核验单频协变、指数权和两项参数余量的插值。共同 Fourier 尾、预留相位权后的周期可微性与热矩在正文。"
+  },
+  {
+    "label": "prop:flow-low-harmonic-gauge",
+    "lean": [
+      "GAlgebra.periodic_centered_residual",
+      "GAlgebra.periodic_phase_gap_bound",
+      "GAlgebra.periodic_low_harmonic_lower"
+    ],
+    "note": "核验有序混合项消均值后的残差恒等式、波动预算与低频半量比较。远场迹取样、Newton 涡量读数、雷诺应力与有限相位覆盖在正文。"
+  },
+  {
+    "label": "thm:flow-equivariant-phase-reduction",
+    "lean": [
+      "GAlgebra.periodic_projection_tail_split",
+      "GAlgebra.periodic_projection_budget_split",
+      "GAlgebra.periodic_weighted_phase_gate",
+      "GAlgebra.periodic_finite_test_preserved",
+      "GAlgebra.periodic_finite_reduction_readback",
+      "GAlgebra.periodic_joint_radial_gate"
+    ],
+    "note": "核验双投影尾的拆分及误差分配、收缩半径门禁、有限读数的回读与球面余量比较。径角网的秩上端、指数频率尾和球冠覆盖误差在正文。"
+  },
+  {
+    "label": "thm:flow-period-local-certificate",
+    "lean": [
+      "GAlgebra.periodic_center_inverse_budget",
+      "GAlgebra.periodic_tail_defect_bound",
+      "GAlgebra.periodic_center_mixed_budget"
+    ],
+    "note": "核验有限逆与尾耦合的预算、逆缺陷的余量及周期与速度的混合项极值。中心热列、Banach 空间逆和定点回读在正文。"
+  },
+  {
+    "label": "thm:flow-reduced-jacobian",
+    "lean": [
+      "GAlgebra.periodic_finite_test_preserved",
+      "GAlgebra.periodic_finite_reduction_readback",
+      "GAlgebra.periodic_tail_defect_bound",
+      "GAlgebra.periodic_reduced_radius_gate"
+    ],
+    "note": "核验精确尾变分的投影消去、尾缺陷包围及收缩半径的判别式。热参数可微、有限雅可比误差与局部存在唯一性在正文。"
+  },
+  {
+    "label": "thm:flow-normalized-shape",
+    "lean": [
+      "GAlgebra.periodic_shape_diagonal_readback",
+      "GAlgebra.periodic_shape_amplitude",
+      "GAlgebra.periodic_shape_denominator",
+      "GAlgebra.periodic_tree_radius",
+      "GAlgebra.periodic_joint_radial_gate"
+    ],
+    "note": "核验归一化后二次响应的有限与尾分量拼合、振幅正性和相消、原根的分母余量及共同树半径。三角线性逆、全环带覆盖和有限形状球面证书在正文。"
+  },
+  {
+    "label": "prop:flow-even-shape-sphere",
+    "lean": [
+      "GAlgebra.periodic_shape_tree_gate",
+      "GAlgebra.periodic_even_paired_degree",
+      "GAlgebra.periodic_even_shape_coarse_constants",
+      "GAlgebra.periodic_shape_diagonal_readback",
+      "GAlgebra.periodic_shape_amplitude"
+    ],
+    "note": "核验树判别式的有理比较、正则原像成对后的带符号计数、统一范数常数、尾与有限形状拼合及振幅相消。振幅区间的有序树合成和内外球面度在正文。"
+  },
+  {
+    "label": "cor:flow-shape-radius-capacity",
+    "lean": [
+      "GAlgebra.periodic_tail_budget_difference",
+      "GAlgebra.periodic_tail_gate_slack",
+      "GAlgebra.periodic_tail_cubic_scale"
+    ],
+    "note": "核验球面尾预算的平方因子、最优半径的收缩余量与三次必要预算的系数相消。全部半径分支和可取值在正文。"
+  },
+  {
+    "label": "prop:flow-reference-two-mode",
+    "lean": [
+      "GAlgebra.periodic_bilinear_mode_transfer",
+      "GAlgebra.periodic_read_projection",
+      "GAlgebra.periodic_two_mode_resultant",
+      "GAlgebra.periodic_two_mode_common_zero_iff"
+    ],
+    "note": "核验频率相加、保读投影、消元恒等式和两条二次零线上的非退化判据。实际有限像及球面显式下端在正文。"
+  },
+  {
+    "label": "cor:flow-reference-mode-lift",
+    "lean": [
+      "GAlgebra.periodic_lifted_mode_separation",
+      "GAlgebra.periodic_readout_calibration",
+      "GAlgebra.periodic_calibrated_resultant",
+      "GAlgebra.periodic_read_projection",
+      "GAlgebra.periodic_two_mode_common_zero_iff"
+    ],
+    "note": "核验二、五次时间模的配对分离、线性读数校准、结式的正下端及保读回写。实际十次热读数、投影范数和尾部等式在正文。"
+  },
+  {
+    "label": "cor:flow-lift-amplitude-window",
+    "lean": [
+      "GAlgebra.periodic_lifted_cross_modes",
+      "GAlgebra.periodic_lift_calibration_scale",
+      "GAlgebra.periodic_tail_cubic_scale"
+    ],
+    "note": "核验二、五次混合频率、校准产生的平方倒数放大与全尾预算的代数系数。实际投影及写入幅度的双端排除由正文证明。"
+  },
+  {
+    "label": "thm:flow-calibrated-block-norms",
+    "lean": [
+      "GAlgebra.periodic_unit_shape_budget",
+      "GAlgebra.periodic_high_mixed_frequency",
+      "GAlgebra.periodic_mode_cancellation_gap",
+      "GAlgebra.periodic_weighted_block_bound"
+    ],
+    "note": "核验球面二次权之和、十五次混合频率截断、高输入抵消时的指数权差及分块预算的最大值合并。实际热积分、空间节点误差和精确分块上端在正文。"
+  },
+  {
+    "label": "thm:flow-temporal-closure",
+    "lean": [
+      "GAlgebra.periodic_bilinear_mode_transfer",
+      "GAlgebra.periodic_high_harmonic_balance",
+      "GAlgebra.OrderedTailTree.eval_grade",
+      "GAlgebra.periodic_tree_radius",
+      "GAlgebra.profile_geometric_identity"
+    ],
+    "note": "核验频率相加、高阶方程回读、树分级与偶叶余量的几何求和。复频率热积分、有限行列式、均值归一化及参考场修正在正文。"
+  },
+  {
+    "label": "thm:flow-low-spatial-reduction",
+    "lean": [
+      "GAlgebra.periodic_mean_read_preserved",
+      "GAlgebra.periodic_tail_defect_bound",
+      "GAlgebra.periodic_tree_radius",
+      "GAlgebra.periodic_shape_diagonal_readback",
+      "GAlgebra.periodic_joint_radial_gate"
+    ],
+    "note": "核验保持均值读数的投影修正、线性逆余量、复合半径、全残差回读与有限球面比较。双尾线性预处理和一份共同误差预算在正文。"
+  },
+  {
+    "label": "thm:flow-mean-reynolds-rows",
+    "lean": [
+      "GAlgebra.periodic_centered_residual",
+      "GAlgebra.periodic_mean_feedback_readback",
+      "GAlgebra.periodic_joint_radial_gate"
+    ],
+    "note": "核验均值的频率约消、反馈右逆的精确读数和球面余量比较。局部无散度波包、反馈列凸包、非零均值读数的选择及时空尾闭合在正文。"
+  },
+  {
+    "label": "thm:flow-joint-low-feedback",
+    "lean": [
+      "GAlgebra.periodic_separated_feedback_readback",
+      "GAlgebra.OrderedTailTree.eval_grade",
+      "GAlgebra.periodic_first_harmonic_gap",
+      "GAlgebra.periodic_joint_radial_gate"
+    ],
+    "note": "核验两组读数的分离回读、相位分级、一阶残差的反向比较及球面余量。局部动量测试的对角响应、时空闭合、五次余项和非共振条件在正文。"
+  },
+  {
+    "label": "prop:flow-rotation-defect",
+    "lean": [
+      "GAlgebra.periodic_rational_rotation_no_return",
+      "GAlgebra.periodic_finite_test_preserved"
+    ],
+    "note": "核验有理旋转的模五证书与成对读数的有限回读。旋转圆的稠密性、共同余量和网格覆盖见正文。"
+  },
+  {
+    "label": "lem:flow-period-controlled-inverse",
+    "lean": [
+      "GAlgebra.profile_geometric_identity",
+      "GAlgebra.affine_chart_compose"
+    ],
+    "note": "核验几何和及相位块末的仿射运输。旋转后的谱分解、Green 算子与控制最小性见正文。"
+  },
+  {
+    "label": "thm:flow-period-pulse-readback",
+    "lean": [
+      "GAlgebra.flow_mother_readback",
+      "GAlgebra.period_pulse_contraction_gate",
+      "GAlgebra.scaled_peak_lower"
+    ],
+    "note": "核验合法性、完整周期和非零性在同一个母体解上成立时如何回读全部正黏性的经典存在式，并核验脉冲半径及峰值下端。周期到原流体命题的连续推导在正文。"
+  },
+  {
+    "label": "prop:flow-cubic-harmonic-basis",
+    "lean": [
+      "GAlgebra.harmonic_projection_coeff_cancel"
+    ],
+    "note": "核验有限调和投影的系数相消。角向分解、不变多项式和商基在正文。"
+  },
+  {
+    "label": "prop:flow-cubic-poloidal-gate",
+    "lean": [
+      "GAlgebra.harmonic_projection_coeff_cancel",
+      "GAlgebra.cubic_harmonic_indices_complete",
+      "GAlgebra.poloidal_harmonic_product_coefficients",
+      "GAlgebra.cubic_poloidal_residual_polynomial"
+    ],
+    "note": "核验调和系数、极向次数枚举和高斯族的径向多项式。球面旋度投影、空间端点排除及行列式协变下的最低环向次数在正文。"
+  },
+  {
+    "label": "thm:flow-inversion-finite-angular-band",
+    "lean": [
+      "GAlgebra.poloidal_harmonic_product_coefficients",
+      "GAlgebra.toroidal_harmonic_top_coefficient",
+      "GAlgebra.even_harmonic_root_order_preserved"
+    ],
+    "note": "核验极向及环向最高次的系数，以及偶数角次的根重数保持。球面弱投影、复二次锥与径向端点分析在正文。"
+  },
+  {
+    "label": "prop:kinetic-prepared-activity",
+    "lean": [
+      "GAlgebra.kinetic_occupancy_pair_bound",
+      "GAlgebra.kinetic_power_gate"
+    ],
+    "note": "核验从有序二项计数下移到占位指标的比较和放大后的幂指数条件。非负制备、巨正则插入公式及渐近亏损在正文。"
+  },
+  {
+    "label": "lem:kinetic-maxwell-invariance",
+    "lean": [
+      "GAlgebra.kinetic_elastic_pair_balance"
+    ],
+    "note": "核验提供平衡密度不变性的碰撞动量与动能恒等式。保测可逆相流、零测异常轨道以及条件速度乘积在正文。"
+  },
+  {
+    "label": "prop:kinetic-centered-tail",
+    "lean": [
+      "GAlgebra.kinetic_entropy_law_readback",
+      "GAlgebra.kinetic_entropy_hellinger_bound"
+    ],
+    "note": "核验法态保持熵和粒子数时全时预算的传递及一粒子回读，以及熵控制密度平方根差的有理代数。实际熵守恒、凸性投影和连续速度尾在正文。"
+  },
+  {
+    "label": "prop:kinetic-contact-flux",
+    "lean": [
+      "GAlgebra.kinetic_elastic_pair_balance"
+    ],
+    "note": "核验等质量弹性反射的动量与平方速度和。积分复合、接触标签系数以及给定入射接触配对收敛时的玻尔兹曼弱式回读见正文。"
+  },
+  {
+    "label": "prop:kinetic-equilibrium-joint",
+    "lean": [
+      "GAlgebra.kinetic_elastic_pair_balance",
+      "GAlgebra.kinetic_equilibrium_mass_budget",
+      "GAlgebra.kinetic_power_gate"
+    ],
+    "note": "核验平衡碰撞的守恒、插入与截断的乘积预算和幂指数门槛。相流平衡分布、Gaussian 尾及全时极限在正文。"
+  },
+  {
+    "label": "thm:kinetic-total-comparison",
+    "lean": [
+      "GAlgebra.kineticTotalDifferential",
+      "GAlgebra.kinetic_total_square_identity",
+      "GAlgebra.kinetic_total_closure_iff",
+      "GAlgebra.TwoStep.ChainMap.homology"
+    ],
+    "note": "核验总微分平方的比较缺陷、同伦消去等价和链回读。移位分次、完成与观察像的连续性见正文。"
+  },
+  {
+    "label": "prop:kinetic-nsf-moment-closure",
+    "lean": [
+      "GAlgebra.kinetic_elastic_pair_balance",
+      "GAlgebra.kinetic_boussinesq_energy_readback"
+    ],
+    "note": "核验线性化所用的弹性平衡与 Boussinesq 热惯性因子。碰撞平方型、逆证书及输运系数的解析计算见正文。"
+  },
+  {
+    "label": "thm:kinetic-joint-budget",
+    "lean": [
+      "GAlgebra.kinetic_scaled_error_budget",
+      "GAlgebra.kinetic_centered_moment_budget",
+      "GAlgebra.kinetic_power_gate"
+    ],
+    "note": "核验加权预算、两级未加权误差的一粒子矩合成，以及去掉观测截断损失后的指数比较。中心化尾和全时极限的解析证明见正文。"
+  },
+  {
+    "label": "prop:kinetic-force-readback",
+    "lean": [
+      "GAlgebra.kinetic_elastic_pair_balance",
+      "GAlgebra.kinetic_force_scale_readback"
+    ],
+    "note": "核验碰撞动量消去与外场缩放的标量读数。速度分部积分、密度收敛和带力传播混沌见正文。"
+  },
+  {
+    "label": "prop:lattice-ns-flux",
+    "lean": [
+      "GAlgebra.prime_fiber_coarsening",
+      "GAlgebra.lattice_triad_conjugate_cancel"
+    ],
+    "note": "核验整数和关系的有限纤维合并与三元组的共轭符号相消。不可压缩方向、能量式和分块范数上端见正文。"
+  },
+  {
+    "label": "prop:lattice-collision-angles",
+    "lean": [
+      "GAlgebra.lattice_center_relative_energy",
+      "GAlgebra.lattice_parity_reconstruct",
+      "GAlgebra.kinetic_elastic_pair_balance"
+    ],
+    "note": "核验质心、相对速度的能量与同余重构以及碰撞守恒。球面通量变换和方向差异上端见正文。"
+  },
+  {
+    "label": "prop:lattice-collision-divisible",
+    "lean": [
+      "GAlgebra.lattice_divisible_collision_shell",
+      "GAlgebra.kinetic_power_gate"
+    ],
+    "note": "核验模四读数迫使三坐标同时为偶及尺度指数门禁。六轴方向、加权 Gaussian 尾和稳定性输入见正文。"
+  }
+]

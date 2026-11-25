@@ -1,0 +1,216 @@
+\section{分型内核使用的有限构造与解析输入}
+\label{sec:g-internal-basis}
+
+\subsection{有限路径的门禁与 L-测度读数}
+
+固定一个分型和合法的输入域。给定有限候选面板 \(\Omega\)，每个 \(\gamma\in\Omega\)
+携带始点、动作词、执行顺序和可复算的终点 \(\Pi(\gamma)\)。
+只有边的定义域、预算和交接证书均核验通过，\(\gamma\) 才纳入面板。
+沿合法边 \(e\) 读出各门禁的变化
+\(\Delta_j(e)={\bf1}_{\{j\text{ 在起点不通过}\}}-{\bf1}_{\{j\text{ 在终点不通过}\}}\)。
+由相邻端点一致，沿路径相加给出该门禁的总变化。
+终点通过性指标 \(H(\gamma)\in\{0,1\}\) 按全部终端门禁读取。
+
+\begin{proposition}[门禁优先的有限代价比较]\label{prop:finite-gate-priority}
+在合法的有限面板上，取实值正规化代价 \(0\le\kappa(\gamma)<1\)。
+若至少一个候选通过门禁，取
+\(2(1-H(\gamma))+\kappa(\gamma)\) 的任一最小者，则它通过全部门禁，
+且 \(\kappa\) 在全部通过者中取到最小值。
+\end{proposition}
+\begin{proof}
+通过者的分数小于 \(1\)，其余候选的分数至少为 \(2\)，故最小者通过门禁。
+在通过者上分数恒等于 \(\kappa\)，所以保留原正规化代价的最小值。
+这一证明只用有序环的运算与序，见 \lean{gated_cost_minimizer}。
+若面板覆盖原有限候选，且合并时保持代价和回读，则该最小值也是原任务的最小值。
+\end{proof}
+
+\begin{proposition}[有限 L-路径的终点测度与测试回读]\label{prop:g-l-path-pushforward}
+给定合法有限面板 \(\Omega\)、非负权重 \(w_\gamma\) 和终点映射 \(\Pi\)。
+对 \(s\in\Pi(\Omega)\) 定义终点质量
+\(m_s=\sum_{\Pi(\gamma)=s}w_\gamma\)。则每个实值终点测试 \(\ell\) 都满足
+\[
+ \sum_s m_s\ell(s)=\sum_{\gamma\in\Omega}w_\gamma\ell(\Pi(\gamma)).
+\]
+若 \(\sum_\gamma w_\gamma=1\) 且所有正权路径的终点通过门禁，推前测度在通过集合上的质量为 \(1\)。
+在保留终端测试及证据的任务商上，可以按商类合并质量后回读同一测试。
+\end{proposition}
+\begin{proof}
+按终点把路径面板分成不交纤维。每条路径在右侧恰出现一次，
+在左侧的对应纤维展开时也出现一次，且 \(\ell(\Pi(\gamma))\) 等于对应的共同终点测试。
+因此可交换两次有限求和，见 \lean{finite_endpoint_pairing}。
+常数测试 \(1\) 给出总质量。非负权中，非零权等同于正权，
+因此取通过集合的指示函数可保留全部质量，见 \lean{finite_endpoint_gate_mass}。
+对于商映射 \(q\)，以 \(\{s:q(s)=\bar s\}\) 的指示函数作测试，读得每个 \(\bar s\) 上的
+两次推前与直接推前的质量相等，见 \lean{finite_endpoint_mass_coarsen}。
+将这些等式对商上的 \(\bar\ell\) 加权求和，即得测试 \(\ell=\bar\ell\circ q\) 的合并回读。
+证书在联合纤维上保持时，定理~\ref{thm:pde-rate-quotient} 回读合法代表的原结论。
+\end{proof}
+
+\subsection{由正规型、命中与证书分担计算成本}
+
+设有限任务的候选数、每候选的自由度数、每自由度的轨迹步数和每步内层调用数
+分别以 \(N,D,L,I\) 为上界。
+对四层嵌套的直接枚举，在每个内层调用成本有共同上界时，调用成本为 \(O(NDLI)\)。
+先冻结自由度正规型与阈值，再用任务商、硬门、残差归因和支配界缩小命中空间。
+证书同时核验原任务的终态和预先规定的轨迹测试。将这一构造接入纤维总算子丛，得到
+\[
+ \boxed{\displaystyle C_{\rm NF}+C_{\rm hit}+C_{\rm cert}.}
+\]
+三项依次计入正规型与协变坐标准备，候选生成、细化、合并与择路，
+以及区间、门禁和回放证书的生成与核验。比较成本时固定输入范围、精度、目标强度和必需的输出。
+
+\begin{theorem}[按活跃坐标更新分量证书]\label{thm:supported-test-update}
+固定一个分型图册和同一终端判据。把每项测试的全部输入登记为若干坐标
+\(x=(x_i)_{i\in I}\)，含门禁阈值、精度和上游证书的读数。
+若测试 \(g_j\) 有已证因子化 \(g_j(x)=f_j((x_i)_{i\in S_j})\)，
+称有限有序索引表 \(S_j\) 为该测试的支持。
+设一次合法调用后的状态为 \(x'\)，已验证 \(x_i'=x_i\) 对每个 \(i\notin D\) 成立。
+在旧读数有证书的前提下，下式与逐项重算等值：
+\[
+ g_j(x')=
+ \begin{cases}
+  g_j(x), & S_j\cap D=\varnothing,\\
+  f_j((x_i')_{i\in S_j}), & S_j\cap D\ne\varnothing.
+ \end{cases}
+\]
+第一种情形的 LHTS 差分为零。不同图册之间，先将测试、输入和旧证书运输到同一图册；
+有界缺陷用区间包围进入命中门禁。
+\end{theorem}
+\begin{proof}
+当两索引集不交时，支持上的坐标按顺序逐个相等，故输入列表相等。
+对两列表作用同一 \(f_j\)，旧读数及其等式证书可回写到新态。
+相交时计算右式，由因子化等于全量测试。对非零步长代入定理~\ref{thm:lhts-fractal-coverage}
+的分量差商定义便得零分量。有限的布尔相交检查及读数保持见 \lean{reuseSupportedTest_correct}。
+若测试读另一个测试的输出，可把上游输出当作输入坐标。
+按证书依赖的拓扑次序更新，每步得到的真实读数供后继使用，归纳保持整组测试。
+
+跨图册的精确回写由定理~\ref{thm:pde-operator-transport} 给出。若同一标量测试仅已证
+\(|g_j'(U_ex)-g_j(x)|\le d\)，源区间 \([\ell,u]\) 运输为 \([\ell-d,u+d]\)。
+源区间的包含关系和三角不等式给出目标包围。目标支持、预算与合法动作均在本型重新对齐。
+分型门禁只根据目标的包围判断某项复用。若要合并整个路径状态，再核验定理~\ref{thm:task}
+的全部未来测试。
+\end{proof}
+
+\begin{proposition}[后继依赖闭包与活跃自由度投影]\label{prop:active-coordinate-quotient}
+在冻结的分型任务中，设状态由有限坐标 \(I\) 给出，动作标签为有限表。
+把拒绝状态、每个标签的许可、资源更新、边代价和终端观察编入定理~\ref{thm:task}
+的测试协议。令 \(A_0\subseteq I\) 包含直接测试的所有支持。
+对每个总化动作 \(a\) 和输出坐标 \(i\)，给出 \((\Phi_a(x))_i\) 的已证输入支持 \(S_{a,i}\)。
+取递增闭包
+\[
+ A_{j+1}=A_j\cup\bigcup_{a,\,i\in A_j}S_{a,i},\qquad
+ A_*=\bigcup_{j\ge0}A_j.
+\]
+投影 \(\pi_*(x)=(x_i)_{i\in A_*}\) 保持全部未来任务测试，并在其像上诱导精确后继。
+若各坐标在有限格上的取值数为 \(m_i\)，只需准备至多
+\(\prod_{i\in A_*}m_i\) 种活跃坐标组合。原路径证书继续沿边保存。
+\end{proposition}
+\begin{proof}
+只要未稳定，下一步至少加入一个新坐标，故在至多 \(|I|\) 次严格扩展后得到 \(A_*\)。
+两个状态若在 \(A_*\) 上相同，则所有直接测试相同。
+对任一 \(a\) 和 \(i\in A_*\)，其更新支持 \(S_{a,i}\subseteq A_*\)，
+故后继的 \(i\) 坐标相同。直接测试和后继可在投影的像上按代表定义，前述等式确保良定义。
+再对动作词归纳，得到全部未来任务测试保持。
+在全坐标积上可用任意固定的非活跃坐标补齐代表，
+这给出 \lean{Task.active_coordinate_projection} 的具体实现。
+因为投影像是活跃坐标积的子集，得到所述组合数界。
+实际求闭包时，从直接测试坐标沿“输出坐标依赖输入坐标”的有限邻接表扩展，
+每个坐标只入队一次，扫描次数由坐标数和已登记依赖边数控制。
+如果跨阶段改变动作、精度或测试定义，就用新支持重算闭包并核验共用部分的运输。
+\end{proof}
+
+\begin{proposition}[带协变证书的整块筛选与核验成本]\label{prop:certified-block-cost}
+固定有限深度、目标强度和同一组全量终端测试 \(g_j\le0\)。
+富结构为每个候选块 \(B\) 给出共同的下端 \(\underline g_j(B)\) 和上端 \(\overline g_j(B)\)，
+包括细化误差、运输缺陷及物理门禁读数。
+当某 \(\underline g_j(B)>0\)，或可采纳的续接代价下界超过现有同目标合法路径代价，可排除整块。
+当某 \(\overline g_j(B)\le0\)，该块可复用这一个测试证书。
+其余测试进入细化或完整核验。精确合并要求未来动作、测试、资源和代价保持，
+同时能从商及沿边证书下卷实际候选。
+
+设直接计算的核验调用表为 \(\mathcal J\)，单项成本为 \(H_j\ge0\)。按原调用的出现位置计数。
+经覆盖、排除和复用后，仍实际执行的同种调用位置构成子表 \(\mathcal J_{\rm run}\)。
+设其余新办的正规型、命中、证书核验和回放总成本为 \(K\)。在这一约定下
+\[
+ \boxed{\displaystyle
+ C_{\rm new}=\sum_{j\in\mathcal J_{\rm run}}H_j+K,\qquad
+ C_{\rm new}<C_{\rm direct}\quad\Longleftrightarrow\quad
+ K<\sum_{j\in\mathcal J\setminus\mathcal J_{\rm run}}H_j .}
+\]
+改用不同的核验器所增加的调用也计入 \(K\)。同成本 \(H_j=H\) 时，右侧为
+\((|\mathcal J|-|\mathcal J_{\rm run}|)H\)。
+\end{proposition}
+\begin{proof}
+真实性由包围的不等式逐块保证。\(\underline g_j(B)>0\) 排除块内每个候选。
+若 \(\overline g_j(B)\le0\)，则直接证明同一项合法性。可采纳代价下界的剪枝及精确合并
+分别应用定理~\ref{thm:constrained-task-hit} 和定理~\ref{thm:task}。
+末端读回按定理~\ref{thm:pde-rate-quotient} 的联合纤维核验。
+所以在给定完整覆盖时保留可达性和有限最优值。
+将原调用表按是否执行分成两张互斥子表，对有限表归纳，各项成本恰进入其中一项。
+在直接总成本与新成本两侧消去同一份实际执行成本，得到所述比较。相应的有限和与有理比较
+见 \lean{shared_verification_saves_weighted}。
+\end{proof}
+
+\begin{remark}[流体型按变化坐标更新二次算子]
+固定周期 \(a\)、中心 \(\bar v\)、方向 \(\phi_i\) 和一个线性残差测试 \(\ell\)。
+令 \(v=\bar v+\sum_i\lambda_i\phi_i\)。将
+\(\ell(F_a(v))=\ell(F_a(\bar v))+\sum_i a_i\lambda_i+\sum_{i,j}b_{ij}\lambda_i\lambda_j\)
+的系数从 \(DF_a(\bar v)\phi_i\) 与 \(Q_a(\phi_i,\phi_j)\) 一次登记。
+若只改集合 \(D\) 内的 \(s\) 个坐标，一次项至多更新 \(s\) 个，二次项仅更新 \(i\) 或 \(j\) 落在
+\(D\) 的有序对，正好有 \(m^2-(m-s)^2=2ms-s^2\) 对。
+对每对用增量 \(\lambda_i\Delta_j+\lambda_j\Delta_i+\Delta_i\Delta_j\)，其余项的读数保持。
+已证为零的系数可以预先从相应支持及其反向索引删除。
+因此稠密表的单坐标更新只触及 \(1+(2m-1)\) 项；
+稀疏时只枚举关联的已登记项，索引生成和查找也记入成本。
+联合球面证书使用该型的尾误差、残差和峰值下端，见定理~\ref{thm:flow-period-composite}。
+角向与时间读数若有共同的非零下端，命题~\ref{prop:flow-reference-second-harmonic} 给出相应整块排除。
+\end{remark}
+
+\subsection{解析输入与原量词的适用范围}
+\label{sec:analytic-input-scope}
+
+\begin{remark}[自守完备化的输入范围]
+定理~\ref{thm:grh-square-spectrum} 逐纤维使用无零右半平面、Euler 对数导数、
+精确极点表、函数方程、共轭关系及去极点完备函数的增长。
+秩一输入已由定理~\ref{thm:criticalstrip}、引理~\ref{lem:xi-zero-count} 和定理~\ref{thm:dirichlet-analytic-input} 构造。
+高秩的算子与零点回读以同样逐项核验的解析数据为前提。
+这些解析数据的约定可对照
+\href{https://arxiv.org/pdf/1906.07717}{Thorner--Zaman 第 2.1 节}。
+\end{remark}
+
+\begin{remark}[周期无力与带力分支的量词]
+在 \href{https://www.claymath.org/wp-content/uploads/2022/06/navierstokes.pdf}{Fefferman 的题面}中，
+B 对给定正黏性、每个光滑周期无散初值且 \(f=0\) 要求存在全局光滑周期速度和配套压力。
+C 固定正黏性，要求存在光滑无散初值和外力，分别满足
+\[
+ |\partial_x^\alpha u_0(x)|\le C_{\alpha K}(1+|x|)^{-K},
+ \qquad
+ |\partial_x^\alpha\partial_t^m f(x,t)|\le C_{\alpha mK}(1+|x|+t)^{-K}
+\]
+对所列导数及任意 \(K\) 成立，并排除该数据的全局光滑有界能量解。
+D 使用光滑空间周期数据，外力各阶导数具有时间快速衰减，需排除全局光滑周期速度。
+定义~\ref{def:goals} 的零速度初值和光滑时空紧支外力具有 C 所列的数据衰减。
+本文的带力结论取定义~\ref{def:goals} 的量词及定理~\ref{thm:flow-period-pulse-readback} 的回读范围。
+\end{remark}
+
+\begin{remark}[联合极限的尺度对照]
+在 \href{https://arxiv.org/html/2503.01800v1}{Deng、Hani、Ma 的定理 2} 的制备条件下，\(\delta\) 固定时可先取 \(a\downarrow0\)，再令 \(\delta\downarrow0\)。
+联合取极限时，该定理要求
+\[
+ \max(1,\delta^{-1})\max(1,T/\delta)\ll\sqrt{\log|\log a|}.
+\]
+在该域内，式 (1.34) 及同一质量矩估计给出
+\(E_{\rm joint}\lesssim a^\kappa/\delta+\delta^{1/2}\)，
+相应的宏观提升余项来自同文命题 1.6。
+固定 \(T>0\) 而取 \(\delta=a^\beta\) 时，尺度门禁左侧为 \(Ta^{-2\beta}\)，
+它与右侧的比值趋于无穷。
+固定参数的 \href{https://annals.math.princeton.edu/articles/22284}{长时硬球到玻尔兹曼定理}
+以正则介观解的寿命为时间域。
+本文的幂律条件由定理~\ref{thm:kinetic-joint-budget} 的误差证明读取。
+\end{remark}
+
+\begin{remark}[玻尔兹曼的条件控制]
+\href{https://arxiv.org/abs/2610.12093}{He 等的条件结论}针对已存在并满足所定速度尾控制的全局温和解。
+定义~\ref{def:kinetic-fluid-obligations} 所列初值域的条件延拓回读见
+第~\ref{sec:kinetic-limit} 节，保留局部唯一性、重启寿命与有限端点范数界。
+\end{remark}

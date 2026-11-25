@@ -1,0 +1,604 @@
+\section{硬球到流体的跨层方程与幂律联合极限}
+\label{sec:kinetic-limit}
+
+本节以定义~\ref{def:kinetic-fluid-obligations} 的同一族制备初值为输入。微观层保存可容许相流、碰撞边界和粒子数。
+介观层保存各阶边缘、接触面通量和玻尔兹曼分布。宏观层读取密度、动量、温度、应力和热通量。
+法态还保存粒子时间 \(s\)、宏观时间 \(\tau=\delta s\)、两级误差的作用范数及极限量词。
+固定参数时先按全体合法截面建立比较链。在取极限时，对同一族比较链提交定量证书。
+
+\subsection{制备初值、活动度与边缘投影}
+
+\begin{proposition}[非负制备与硬核质量亏损]\label{prop:kinetic-prepared-activity}
+记 \(M(v)=(2\pi)^{-3/2}e^{-|v|^2/2}\)，取光滑均值为零的 \(\rho_0,u_0\)，令
+\[
+ g_0(x,v)=\rho_0(x)+u_0(x)\cdot v+\vartheta_0(x)(|v|^2-3)/2,\qquad
+ \vartheta_0=-\rho_0 .
+\]
+有非负、总质量一的制备族 \(f_{\rm in}^\delta\)，其与 \(M(1+\delta g_0)\) 的差，
+在任意固定有限阶导数和 \(e^{|v|^2/4}\langle v\rangle^m\) 权下，对每个 \(L>0\) 都为 \(O_L(\delta^L)\)。
+设用活动度 \(\lambda=a^{-2}\delta^{-1}\) 制备巨正则硬球系综。制备族的空间密度满足
+\(r_\delta=1+O(\delta)\) 时，下述质量亏损结论成立。
+记 \(b_a=|B_a|=4\pi a^3/3\)，当 \(\delta=a^\beta\)、\(0<\beta<1\) 时，
+\[
+ 1-\mathbb E[N]/\lambda=\lambda b_a\bigl(1+O(\delta+\lambda b_a)\bigr),
+ \qquad
+ \mathbb E[N]a^2\sim\delta^{-1}.
+\]
+于是对以 \(1\) 作密度基线的活动度读数，幂律联合极限要求
+\(\boxed{\beta<1/2}\)。对上述加权制备族，当 \(0<\beta<1/2\) 时，
+密度和速度两项截断读数在初始时刻已收敛。
+\end{proposition}
+\begin{proof}
+取径向光滑截断 \(\chi=1\) 在单位球、在半径二外为零，且 \(0\le\chi\le1\)。
+置 \(f_{\rm in}^\delta=M(1+\delta\chi(\delta^{1/4}v)g_0)\)。
+在截断支撑上 \(|\delta g_0|\le C\delta^{1/2}\)，故小 \(\delta\) 下非负。
+对每个 \(v\)，\(g_0(\cdot,v)\) 的空间均值为零，所以 \(f_{\rm in}^\delta\) 的总质量为一。
+准备误差支撑在 \(|v|\ge\delta^{-1/4}\)。给定阶数和多项式权，
+乘 \(e^{|v|^2/4}\) 后所余高斯可支配全部速度多项式和截断导数，
+给出 \(C e^{-c\delta^{-1/2}}\) 上端，故具有任意幂率精度。
+记 \(r_\delta(x)=\int f_{\rm in}^\delta(x,v)\,dv\)。Gaussian 的二阶矩给出
+\(r_\delta(x)=1+\delta\rho_0(x)+O_L(\delta^L)\)，特别地 \(r_\delta=1+O(\delta)\) 一致成立。
+
+记 \(z_i=(x_i,v_i)\)。在 \(N\) 个粒子上，未归一权取
+\[
+ \frac{\lambda^N}{N!}\,
+       \mathbf1_{\{\operatorname{dist}(x_i,x_j)>a,\ i\ne j\}}\prod_{i=1}^N f_{\rm in}^\delta(z_i).
+\]
+总配分函数在 \(1\) 和 \(e^\lambda\) 之间，可归一为概率律。
+固定位置 \(x\)，令 \(X_x\) 为 \(B_a(x)\) 中已有中心的数目，\(A(x)=\mathbb P(X_x=0)\)。
+在第一强度测度中选中一个标签，积分余下粒子。因 \(N/N!=1/(N-1)!\)，
+精确得到 \(F_1(0,x,v)=f_{\rm in}^\delta(x,v)A(x)\)。
+选中两个不同标签同理。二阶强度密度含 \(\lambda^2 f_{\rm in}^\delta(z)f_{\rm in}^\delta(z')\)，
+另乘这两个中心的容许指示函数和余下中心均可插入的概率，故至多为该乘积。
+因此
+\[
+ \mathbb E X_x=\lambda\int_{B_a(x)}r_\delta(y)A(y)\,dy,\qquad
+ \mathbb E[X_x(X_x-1)]\le \lambda^2\left(\int_{B_a(x)}r_\delta(y)\,dy\right)^2 .
+\]
+对每个非负整数 \(n\) 有 \(n-\tfrac12n(n-1)\le\mathbf1_{\{n\ge1\}}\le n\)，
+下端见 \lean{kinetic_occupancy_pair_bound}。
+先用上端得 \(0\le1-A(x)\le C\lambda b_a\)。把这一界代入 \(\mathbb E X_x\)，再用下端，得到
+\[
+ 1-A(x)=\lambda\int_{B_a(x)}r_\delta(y)\,dy+O((\lambda b_a)^2)
+       =\lambda b_a\bigl(1+O(\delta+\lambda b_a)\bigr).
+\]
+误差对 \(x\) 一致。对 \(r_\delta(x)\,dx\) 积分，便得到活动度归一质量的亏损。
+因 \(\lambda b_a=(4\pi/3)a^{1-\beta}\to0\)，期望粒子数的所需尺度成立。
+
+相流保持粒子数，故每个时刻的 \(F_1\) 总质量均为 \(\mathbb E[N]/\lambda\)。
+速度截断只减小密度读数，而 \(\rho\) 的空间均值为零。因此对每个 \(\tau\in[0,T]\)，
+\[
+ \left\|\delta^{-1}
+     \left(\int_{|v|\le R_a}F_1(\tau/\delta,x,v)\,dv-1\right)-\rho(\tau,x)\right\|_{L_x^1}
+ \ge (1-\mathbb E[N]/\lambda)/\delta
+ =\frac{4\pi}{3}\frac{a}{\delta^2}\bigl(1+O(\delta+\lambda b_a)\bigr).
+\]
+这在 \(\beta=1/2\) 时趋于正数，在 \(\beta>1/2\) 时发散，且覆盖时间范数。
+在初始时刻，\(F_1-f_{\rm in}^\delta\) 的一阶速度加权 \(L^1\) 误差至多为 \(C\lambda b_a\)。
+制备误差和 \(R_a=a^{-\kappa}\) 的高斯截尾经 \(\delta^{-1}\) 放大后仍趋零。
+结合 \(M(1+\delta g_0)\) 的质量与动量分别为 \(1+\delta\rho_0\) 和 \(\delta u_0\)，
+即得 \(\beta<1/2\) 时的初始读回。若改用单位质量观测，其一粒子密度为
+\((\lambda/\mathbb E N)F_1\)，基线与后续碰撞读数须随该归一化共同运输。
+\end{proof}
+
+\begin{lemma}[平衡分布在硬球相流下的不变性]\label{lem:kinetic-maxwell-invariance}
+在命题~\ref{prop:kinetic-prepared-activity} 的巨正则制备中取 \(f(x,v)=M(v)\)，记所得平衡分布为
+\(\mathbb Q\)。无外力的硬球相流 \(\Phi_s\) 几乎处处可逆并保持 \(\mathbb Q\)。
+给定粒子数 \(N\) 及全部位置后，\(\mathbb Q\) 的速度分布为 \(M^{\otimes N}\)。
+\end{lemma}
+\begin{proof}
+固定 \(N\)。自由平移保相体积、速度和无碰撞域内的平衡密度。
+单一接触面上的弹性反射为相对速度的正交反射，绝对 Jacobian 为一，
+总动能保持，法向相对速度反号。能量的代数部分见 \lean{kinetic_elastic_pair_balance}。
+在两个接触之间以自由流写入相体积，在接触处以
+\(|V\cdot n|\,dS\,dV\,ds\) 作为碰撞时刻和截面的坐标，反射保持这一通量元及 Maxwell 权。
+切触和同时接触在这些坐标中为零测。
+有限时段上接触事件的总平衡测度至多为时段长度乘全部接触面的 Maxwell 通量。
+该通量有限，因为在已定义的有限历史中，给定接触时刻、入射相位和接触面，
+至多有一个反解起点。因此有限时内有无穷事件的初始集合也是零测。
+对反向时间同样成立，故相流在全测度域可逆保测。按原 \(N\) 权重混合后得到 \(\mathbb Q\) 的不变性。
+条件速度乘积直接由平衡制备密度及硬核条件仅读取位置得到。
+\end{proof}
+
+\begin{proposition}[同一硬球相流的一粒子中心化速度尾]\label{prop:kinetic-centered-tail}
+仍取命题~\ref{prop:kinetic-prepared-activity} 的活动度 \(\lambda=a^{-2}\delta^{-1}\)
+及一粒子强度归一。设非负单位质量制备 \(f_{\rm in}^\delta\) 的空间密度 \(r\) 满足
+\[
+ \|r-1\|_\infty\le C_0\delta,\qquad
+ \int \left(\frac{f_{\rm in}^\delta}{M}-1\right)^2 M\,dx\,dv\le C_0\delta^2,\qquad
+ \lambda b_a\le C_0\delta .
+\]
+这些条件覆盖该命题所构造的全部光滑 Boussinesq 制备族及固定 \(0<\beta<1/2\)。
+记 \(F_1(s)=F_1^{a,\delta}(s)\)、\(n_s(x)=\int F_1(s,x,v)\,dv\)。
+则存在与 \(a,\delta,s,R\) 无关的 \(C,c>0\)，使任意 \(R\ge1\) 满足
+\[
+ \boxed{\quad
+ \sup_{s\ge0}\int_{|v|>R}(1+|v|)\,
+       |F_1(s,x,v)-n_s(x)M(v)|\,dx\,dv
+       \le C\delta\bigl(\delta+e^{-c R^2}\bigr).
+ \quad}
+\]
+因此对每个固定 \(\kappa>0\) 的半径 \(R_a=a^{-\kappa}\)，丢弃硬球密度和动量尾的
+归一化 \(L^\infty_sL_x^1\) 误差趋于零。
+\end{proposition}
+\begin{proof}
+记 \(\mathbb P_s=(\Phi_s)_\#\mathbb P_0\) 为实际制备的硬球分布。
+令 \(h(y)=y\log y-y+1\)，在零处按连续性定义。它是凸函数，在 \(y=1\) 处取得最小值零。
+记相对熵 \(H(\mu\mid\nu)=\int h(d\mu/d\nu)\,d\nu\)。
+固定同一 \((a,\delta,\lambda)\)，法态保留 \((\mathbb P,\mathbb Q)\) 及其粒子数和熵读数。
+时间作用 \(U_s\) 将 \(\mathbb P\) 沿 \(\Phi_s\) 推送，\(\mathbb Q\) 由
+引理~\ref{lem:kinetic-maxwell-invariance} 保持。于是
+\(d\mathbb P_s/d\mathbb Q=(d\mathbb P_0/d\mathbb Q)\circ\Phi_{-s}\)，
+且粒子数沿相流不变。任意合法时段统一满足
+\[
+ (H,\mathbb E N)\circ U_s=(H,\mathbb E N),\qquad
+ U_{s+t}=U_t\circ U_s .
+\]
+初态进入 \(H\le C\lambda\delta^2\)、\(\mathbb E N\le\lambda\) 的法域后，
+同一恒等式使整条相流留在该域。以下在这个闭合法域上读取一粒子尾，量词运输见
+\mbox{\lean{kinetic_entropy_law_readback}}。
+
+\textbf{初始整系综熵。}
+令 \(X\) 表示 \(N\) 连同全部位置。将密度比拆成 \(X\) 的密度比及给定 \(X\) 的速度密度比，
+对对数积分，得到位置熵与条件速度熵的和。
+位置配分函数满足
+\[
+ \log\frac{Z(r)}{Z(1)}
+ =\log\mathbb E_{\mathbb Q}\exp\Bigl(\sum_i\log r(x_i)\Bigr)
+ \ge \mathbb E_{\mathbb Q}N \int_{\mathbb T^3}\log r(x)\,dx
+ \ge -C\lambda\delta^2 .
+\]
+中间一步用 Jensen 不等式和平衡分布的空间平移不变性。
+最后一步用 \(\int(r-1)=0\)、\(r\) 在 \(1\) 附近的统一界及
+\(\mathbb E_{\mathbb Q}N\le\lambda\)。后者是命题~\ref{prop:kinetic-prepared-activity}
+在平衡输入上的插入界。
+初态的位置一粒子强度为 \(\lambda rA\)，其中 \(0\le A\le1\) 且
+\(\|1-A\|_\infty\le C\lambda b_a\)。故位置熵至多为
+\[
+ \lambda\int r A\log r-\log\frac{Z(r)}{Z(1)}
+ \le C\lambda\bigl(\delta^2+\delta\lambda b_a\bigr).
+\]
+此处 \(\int r\log r=\int h(r)\le\int(r-1)^2\)，且
+\(\int r(1-A)|\log r|\le C\delta\lambda b_a\)。
+
+给定 \(X\)，初态速度独立，单粒子分布为 \(p_x=f_{\rm in}^\delta(x,\cdot)/r(x)\)。
+故初始条件速度熵为 \(\lambda\int rA H(p_x\mid M)\,dx\)，至多为
+\(\lambda\int r H(p_x\mid M)\,dx\)。
+后者由单粒子密度比的同一对数分解，至多为
+\(\lambda H(f_{\rm in}^\delta\mid dx\,M\,dv)\)。
+由 \(\log y\le y-1\) 得 \(h(y)\le(y-1)^2\)，给出 \(C\lambda\delta^2\) 上界。
+于是 \(H(\mathbb P_s\mid\mathbb Q)\le C\lambda\delta^2\)。
+对于命题~\ref{prop:kinetic-prepared-activity} 构造的制备，密度比的二次界直接来自
+\(\delta\chi(\delta^{1/4}v)g_0(x,v)\) 和 Gaussian 的有限四阶矩。
+
+\textbf{单粒子的条件速度熵。}
+记 \(p_{s,i}(\cdot\mid X)\) 为给定 \(X\) 的第 \(i\) 个速度边缘。
+给定 \(X\) 的联合速度熵 \(H(\mathbb P_{s,V\mid X}\mid M^{\otimes N})\)
+至少为 \(\sum_i H(p_{s,i}\mid M)\)。
+将联合密度比的对数加减 \(\sum_i\log(p_{s,i}/M)\)，差恰为联合分布相对其边缘乘积的非负熵。
+将各 \((x_i,i,X)\) 投影到 \(x_i\)，读得
+\[
+ \begin{aligned}
+ (F_1,n_sM)\,dx\,dv&=
+ \lambda^{-1}\int\sum_i\delta_{x_i}(dx)
+       (p_{s,i}(v\mid X),M(v))\,dv\,d\mathbb P_s^X(X),\\
+ H(F_1\mid n_sM)&\le \lambda^{-1}\int\sum_i H(p_{s,i}\mid M)\,d\mathbb P_s^X
+           \le C\delta^2 .
+ \end{aligned}
+\]
+第一道熵界在投影后条件于 \(x\) 对凸函数 \(h\) 使用 Jensen 不等式。
+两边的质量相同，均为 \(\lambda^{-1}\mathbb E_{\mathbb P_0}N\le1\)。
+零空间密度处的联合密度也为零。
+
+\textbf{带权差的统一尾界。}
+置 \(Y=n_s M\) 及 \(w=(1+|v|)^2\mathbf1_{\{|v|>R\}}/16\)。
+由 \(y w\le h(y)+e^w-1\) 得
+\[
+ \int_{|v|>R}(1+|v|)^2F_1
+  \le 16H(F_1\mid Y)+16\int Y(e^w-1)
+  \le C(\delta^2+e^{-R^2/8}).
+\]
+第一式的逐点不等式由极大化 \(yw-h(y)\) 得到。
+当 \(|v|>R\ge1\)，\(w\le |v|^2/4\)，因此第二项由 Gaussian 积分和 \(\int n_s\le1\) 控制。
+同样的二次尾界适用于 \(Y\)。又有
+\(h(y)-(\sqrt y-1)^2=2\sqrt y\,h(\sqrt y)\ge0\)，
+其代数消去见 \lean{kinetic_entropy_hellinger_bound}。
+将 \(|F_1-Y|=|\sqrt{F_1}-\sqrt Y|(\sqrt{F_1}+\sqrt Y)\) 代入 Cauchy--Schwarz，
+第一因子由 \(\sqrt{H(F_1\mid Y)}\) 控制，带速度权的另一因子
+由 \(\sqrt{2\int_{|v|>R}(1+|v|)^2(F_1+Y)}\) 控制。
+合成得到所列估计。加回 \(Y\) 的 Gaussian 尾，
+在 \(R_a=a^{-\kappa}\) 后除以 \(\delta\)，误差至多为 \(C(\delta+\delta^{-1}e^{-cR_a^2})\)，故趋零。
+\end{proof}
+
+\begin{proposition}[固定参数的 BBGKY 接触通量]\label{prop:kinetic-contact-flux}
+固定 \(N\)，将合法多体密度在排斥域外延零。取头 \(k\) 个标签的边缘 \(P_{N,k}\)。
+则 \(P_{k,j}P_{N,k}=P_{N,j}\) 对 \(j\le k\le N\) 精确成立。
+在可积入射接触迹上，观察粒子与其余粒子的碰撞项由第 \(k+1\) 阶迹给出，
+固定 \(N\) 的系数为 \((N-k)a^2\)。巨正则第 \(k\) 阶活动度读数 \(F_k\) 的对应系数为
+\(\lambda a^2=\delta^{-1}\)。
+\end{proposition}
+\begin{proof}
+对可积密度应用 Fubini 给出边缘的复合式。
+对活动度读数定义
+\(\int\varphi F_k=\lambda^{-k}\mathbb E\sum_{i_1,\ldots,i_k}^{\ne}
+  \varphi(Z_{i_1},\ldots,Z_{i_k})\)，和按有序不同标签。
+于是它在固定 \(N\) 上读取 \((N)_k=N!/(N-k)!\) 乘普通边缘，再乘 \(\lambda^{-k}\)。
+两种归一各随标签数保存。
+
+考察入射接触 \(x_{k+1}=x_i+a\omega\)、\(|\omega|=1\)。
+令 \(w=v_{k+1}\)、\(h=(v_i-w)\cdot\omega>0\)。等质量弹性碰撞更新
+\(v_i'=v_i-h\omega,\ w'=w+h\omega\)。
+两速度和保持，平方模总差为
+\(-2h(v_i-w)\cdot\omega+2h^2|\omega|^2=0\)，见 \lean{kinetic_elastic_pair_balance}。
+相对法向速度变号，反射的绝对 Jacobian 为一。
+接触面的单位外法向在这两个位置上为 \((\omega,-\omega)/\sqrt2\)，
+通量为 \(h/\sqrt2\)。用 \(x_i\) 及相对位移的球坐标参数化接触面，
+面积元在这两个位置上为 \(\sqrt2 a^2 dx_i\,d\omega\)。两因子合成 \(a^2h\)。
+
+在合法相域对自由输运作分部积分，将出射积分经弹性反射搬到入射面。
+对在两可见粒子相撞时读数相同的测试 \(\varphi\)，每个可见与隐蔽的接触对贡献
+\[
+ a^2 \int h_+\,
+   F^{\rm in}_{k+1}\bigl(s,Z_k,x_i+a\omega,w\bigr)
+       \bigl[\varphi(Z_k^{i\prime})-\varphi(Z_k)\bigr]\,dZ_k\,dw\,d\omega
+\]
+乘相应的标签系数。这里 \(Z_k^{i\prime}\) 只更新第 \(i\) 个可见速度，
+入射迹与积分域同时保存其余硬核条件。固定 \(N\) 时上式的迹取普通边缘，
+交换隐蔽标签给出 \(N-k\)；对活动度归一，使用
+\(\lambda^{-k}(N)_k(N-k)=\lambda\cdot\lambda^{-(k+1)}(N)_{k+1}\)。
+有限入射通量使该计算也可按时间分布读取。
+
+固定 \(\delta\) 及共同粒子时间窗。若初值和输运测试收敛到 \(f\) 的相应读数，
+且入射接触配对收敛到同地乘积，则在上述时间弱式中取极限。
+在 \(k=1\) 时，同一增量形式给出 \(Q(f,f)\) 的弱读数，粒子时间输运方程保留系数 \(\delta^{-1}\)。
+交换两个粒子及法向，把速度测试的增量对称化为碰撞前后两值总和的差除以二。
+对 \(1,v,|v|^2\) 该差为零，故三个碰撞不变量同时保持。
+定理~\ref{thm:kinetic-joint-budget} 在联动尺度上读取给定的粒子矩误差。
+\end{proof}
+
+\subsection{跨层总复形与可证明回读}
+
+\begin{theorem}[三层比较的总微分与链回读]\label{thm:kinetic-total-comparison}
+取微观、介观和宏观证书链复形 \(A_\bullet,B_\bullet,C_\bullet\)，
+链映射 \(P:A\to B\)、\(Q:B\to C\) 和直接读数 \(S:A\to C\)。
+将两级和直接读数的比较写在 \(E=B\oplus A\) 上，
+\[
+ F(x)=(Px,x),\qquad G(y,x')=Qy-Sx'.
+\]
+在 \(\mathrm{Tot}_n=A_n\oplus E_{n+1}\oplus C_{n+2}\) 上取
+\[
+ D(x,y,z)=(d_Ax,Fx-d_Ey,d_Cz+Gy-Hx),\quad H:A_n\to C_{n+1}.
+\]
+则
+\[
+ \boxed{\quad D^2=0\quad\Longleftrightarrow\quad QP-S=d_CH+Hd_A .\quad}
+\]
+在保留链映射和 \(H\) 的共同完成空间中，总同调可回读到下游测试复形。
+\end{theorem}
+\begin{proof}
+基准微分为 \(D_0=(d_A,-d_E,d_C)\)，故 \(D_0^2=0\)。
+写 \(K=D-D_0\)，有 \(D^2=D_0K+KD_0+K^2\)。
+逐分量展开，第一、第二分量由层内平方零和第一个链方块消去。
+第三分量等于
+\((d_CG-Gd_E)y+(GF-d_CH-Hd_A)x\)。
+第二个链方块使前项为零，且 \(GF=QP-S\)。
+取 \(y=z=0\) 得必要性，代回即得充分性。
+符号与双重复合见 \lean{kinetic_total_closure_iff}。
+中间层的 \(A\) 分量携带直接读数所用的同一个微观输入。这样 \(K^2\) 读取的是两种回读之差。
+
+例如对固定参数的边缘投影和截断速度矩，可在相应的 \(L^1\) 数据空间取连续观察。
+将这些空间的连续单形以自由链线性延伸，交替面微分的平方为零，
+因为每对删面按相反符号出现。观察与限制到面交换，故给出链映射。
+直接观察 \(S=QP\) 时可取 \(H=0\)。各度取链系数的 \(\ell^1\) 完成时，
+面微分的范数至多为面数，单形推送的范数至多为一，等式由连续性延伸。
+若要将动力学缺陷纳入比较，另提交保持可容许域的耦合算子和 \(H\) 及其完成界。
+这是将微观--宏观总同调构造用于三层读数 \cite{GNotes}。
+
+对任意有界观察 \(O_n:\mathrm{Tot}_n\to Y_n\)，可取联合读数
+\(\mathcal R_n z=(O_nz,O_{n-1}Dz)\)。
+在这些读数的像上定义 \(d_{\rm read}(r,s)=(s,0)\)，因 \(D^2=0\) 得
+\(\mathcal R_{n-1}D=d_{\rm read}\mathcal R_n\)，在像的闭包中也成立。
+闭链的像闭合，边界的像仍为边界，因此同调类的回读良定义，有限三项版本见
+\lean{TwoStep.ChainMap.homology}。
+当观察包含尺度误差时，还要逐纤维证明下述解析上端，才能读取实际动力学极限。
+\end{proof}
+
+\subsection{介观到宏观的闭合和定量尺度}
+
+\begin{proposition}[应力与热通量的闭合读数]\label{prop:kinetic-nsf-moment-closure}
+令 \(f\) 满足在宏观时间的方程
+\(\delta\partial_\tau f+v\cdot\nabla_x f=\delta^{-1}Q(f,f)\)。
+设有展开 \(f=M(1+\delta g+\delta^2 h)+o(\delta^2)\)，
+其中 \(g=\rho+u\cdot v+\vartheta(|v|^2-3)/2\)，\(\nabla\cdot u=0\)，\(\rho+\vartheta=0\)。
+展开需在碰撞与速度矩的测试下允许比较所需阶数，包括在分布意义下的时间、空间导数。
+以 \(L=-M^{-1}(Q(M,M\,\cdot)+Q(M\,\cdot,M))\)，
+\(\Pi\) 为 \(L^2(M\,dv)\) 中到 \(\operatorname{span}\{1,v,|v|^2\}\) 的投影。
+若已给出 \(L\) 在所用 \((I-\Pi)\) 域上的单射性，并给出两个输运源在该域的逆证书，则
+\[
+ (I-\Pi)h=(I-\Pi)(g^2/2)-
+        L^{-1}\bigl(A:\nabla u+B\cdot\nabla\vartheta\bigr),\quad
+ A=v\otimes v-\frac{|v|^2}{3}I,\quad B=\frac{|v|^2-5}{2}v .
+\]
+从守恒矩读取不可压缩 Navier--Stokes--Fourier 方程，黏性和热扩散系数分别为
+\(\nu=\langle A,L^{-1}A\rangle_M/10\)、\(\kappa_{\mathrm{th}}=2\langle B,L^{-1}B\rangle_M/15\)。
+这里对向量、张量按所有分量求和，碰撞归一与命题~\ref{prop:kinetic-contact-flux} 一致。
+\end{proposition}
+\begin{proof}
+同一个弹性反射保留 \(M(v)M(w)\)。对线性化的弱碰撞式交换粒子，并作一次入射到出射的变换，
+得到
+\[
+ \langle b,Lb\rangle_M=\frac14\int h_+ M(v)M(w)
+           (b(v')+b(w')-b(v)-b(w))^2\,dv\,dw\,d\omega .
+\]
+这是先使测试增量在两标签上对称化，再用反射把入射和出射平均。
+极化给出对称性，三个不变量属于核。
+因为 \(g\) 是碰撞不变量，\(M e^{\delta g}\) 的两体乘积在碰撞前后相等。
+在 \(\delta^2\) 阶展开其零碰撞项，得 \(M^{-1}Q(Mg,Mg)=L(g^2/2)\)。
+比较原方程的 \(\delta\) 阶则有 \(Lh=L(g^2/2)-v\cdot\nabla_x g\)。
+代入 Boussinesq 与散度式，输运项恰为 \(A:\nabla u+B\cdot\nabla\vartheta\)，
+并由球对称 Gaussian 矩正交于不变量。由所登记的逆证书得到公式。
+
+在线性碰撞域中保留旋转和反射时，逆由唯一性保持这些协变，故 \(A\) 与 \(B\) 的交叉配对为零。
+在三维无迹对称矩阵空间上，\(D\mapsto\langle A,L^{-1}(A:D)\rangle_M\)
+与所有旋转交换且是标量算子。具体地，坐标反射分离非对角方向，
+置换令三条非对角方向同系数，坐标面内的 \(\pi/4\) 旋转把对角差与对应非对角方向互换。
+故系数为其迹除以五，即 \(\langle A,L^{-1}A\rangle_M/5\)。
+\(\operatorname{div}((\nabla u+\nabla u^{\mathsf T})/2)=\Delta u/2\)，给出黏性系数。
+向量热通量同理给出各向相同的 \(\langle B,L^{-1}B\rangle_M/3\)。
+这些配对为正。若其中一个为零，则由上述平方积分，所对应的逆像与所有碰撞增量的极化配对为零，
+于是它落入 \(L\) 的核，与所对应输运源非零矛盾。
+
+以 \(v\) 测试守恒式。平衡应力和一阶 \(g\) 的应力只给出常数与梯度，前者的散度为零，
+后者按 \(\rho+\vartheta=0\) 消去。在二阶，\(g^2/2\) 对 \(A\) 给出
+\(u\otimes u-(|u|^2/3)I\)，其余各向项并入压力。
+以 \(b(v)=(|v|^2-5)/2\) 测试热方程。在 \(g\) 上的质量读数为
+\(-\rho+(3/2)\vartheta=(5/2)\vartheta\)，见 \lean{kinetic_boussinesq_energy_readback}。
+热输运中 \(B=bv\)，且 \(\langle B,g^2/2\rangle_M=(5/2)\vartheta u\)。
+上述二阶动量通量使用 Gaussian 的四阶乘积
+\(\int v_i v_j v_k v_l M=\delta_{ij}\delta_{kl}+\delta_{ik}\delta_{jl}+\delta_{il}\delta_{jk}\)，
+由奇次零矩、独立坐标及单坐标分部积分得到。
+热读数使用 \(S=|v|^2\) 的前三个矩 \(3,15,105\)，以及
+\(\int v_i^2 F(S)M=\int SF(S)M/3\)。这些矩来自分部积分的 \(\int S^{j+1}M=(2j+3)\int S^jM\)。
+代入即给出速度动量式、温度输运扩散式及给定的两个系数，\(\rho=-\vartheta\) 同步回读。
+局部展开和逆的误差控制在此作为相应解析证书。
+\end{proof}
+
+\begin{theorem}[幂律联合极限的放大误差门禁]\label{thm:kinetic-joint-budget}
+取定义~\ref{def:kinetic-fluid-obligations} 的共同窗，记 \(f^\delta\) 为同一制备初值的玻尔兹曼解，
+\(G^\delta=M(1+\delta g)\) 为同一宏观轨迹的提升。
+记 \(\mathcal M_R\) 为质量和速度截断矩，值空间采用 \(L_x^1\) 的两分量和范数。
+令 \(E_{\rm BG}\) 为 \(\mathcal M_{R_a}(F_1^{a,\delta}-f^\delta)\) 在 \(s\le T/\delta\) 上的统一误差，
+\(E_{\rm kin}\) 为 \(f^\delta(s)-G^\delta(\delta s)\) 在同一窗上的 \(L^1_{x,v}(1+|v|)\) 上端。
+则目标误差满足
+\[
+ E_{\rm joint}\le \delta^{-1}E_{\rm BG}+\delta^{-1}E_{\rm kin}
+                  +C\delta^{-1}e^{-cR_a^2}.
+\]
+若制备满足命题~\ref{prop:kinetic-centered-tail}，令 \(D_{\rm BG}\)、\(D_{\rm kin}\) 分别为
+\(F_1-f^\delta\)、\(f^\delta-G^\delta(\delta\,\cdot)\) 在同一粒子窗上的未加权
+\(L^\infty_sL^1_{x,v}\) 误差，并令 \(\epsilon_a=(D_{\rm BG}+D_{\rm kin})/\delta\)。
+对每个 \(R\ge1\)，有
+\[
+ E_{\rm joint}\le(1+R)\epsilon_a+
+             C\bigl(\delta+e^{-cR^2}+\delta^{-1}e^{-cR_a^2}\bigr).
+\]
+因此 \(D_{\rm BG}+D_{\rm kin}=o(\delta)\) 即可回读原联合极限。
+特别地，若 \(D_{\rm BG}\le C a^\gamma\delta^{-q}\)、\(D_{\rm kin}=o(\delta)\)，其中 \(\gamma>0\)、\(q\ge0\)，
+则同一结论覆盖
+\[
+       \boxed{\quad 0<\beta<\min\!\left(\tfrac12,\frac{\gamma}{1+q}\right),
+                    \qquad \kappa>0\quad}.
+\]
+\end{theorem}
+\begin{proof}
+在每个 \(\tau\) 上把 \(F_1^{a,\delta}-G^\delta\) 写为粒子到介观、介观到宏观提升两段。
+由于 \(\int(1,v)G^\delta\,dv=(1+\delta\rho,\delta u)\)，只余一项 \(G^\delta\) 的速度尾。
+宏观解在固定光滑窗上有界，Gaussian 的全部所需加权尾可用 \(C e^{-cR_a^2}\) 包围。
+在 \(\tau=\delta s\) 下取统一范数给出第一式，预算比较见 \lean{kinetic_scaled_error_budget}。
+
+对中心化估计，先读未截断的密度、动量差。
+\(\|F_1(s)-G^\delta(\delta s)\|_{1}\le D_{\rm BG}+D_{\rm kin}\) 直接控制密度。
+把同一动量差按 \(|v|\le R\) 与 \(|v|>R\) 分开。
+内段至多为 \(R(D_{\rm BG}+D_{\rm kin})\)。
+外段中 \(n_s(x)M\) 与 \(M\) 的动量都为零，因为 Gaussian 偶对称且截断域关于 \(v\mapsto-v\) 不变。
+故实际粒子的外段由命题~\ref{prop:kinetic-centered-tail} 的中心化差控制，
+宏观提升的外段仅有 \(\delta M g\)，其动量尾至多为 \(C\delta e^{-cR^2}\)。
+除以 \(\delta\) 后，两项合为 \(C(\delta+e^{-cR^2})\)。
+最后在原观测半径 \(R_a\) 截去实际粒子尾，由同一命题得到至多
+\(C(\delta+\delta^{-1}e^{-cR_a^2})\) 的放大误差。
+上述读数的代数合成见 \lean{kinetic_centered_moment_budget}，给出第二式。
+
+若 \(\epsilon_a\to0\)，对任何固定 \(R\ge1\)，在原幂律族上取上极限，
+仅余 \(C e^{-cR^2}\)，再令 \(R\to\infty\) 即得零。
+当 \(D_{\rm BG}\le C a^\gamma\delta^{-q}\) 时，其对 \(\epsilon_a\) 的贡献由
+\(C a^{\gamma-(1+q)\beta}\) 控制，正指数比较见 \lean{kinetic_power_gate}。
+原半径的 Gaussian 尾对于每个固定 \(\kappa>0\) 均消失。
+用命题~\ref{prop:kinetic-prepared-activity} 的粒子数证书完成读回。
+\end{proof}
+
+\begin{proposition}[微观加速度的宏观动量读回]\label{prop:kinetic-force-readback}
+若粒子时间中的外场为 \(a_\delta^{\rm ext}(s,x)=\delta^2 f_{\rm ext}(\delta s,x)\)，
+且动力学极限含相同的 \(\nabla_v\cdot(a_\delta^{\rm ext} f^\delta)\)，
+则宏观动量源为
+\(\delta^{-2}\int a_\delta^{\rm ext} f^\delta\,dv=f_{\rm ext}\int f^\delta\,dv\)。
+在 \(\int f^\delta\,dv\to1\) 的范数中，若 \(f_{\rm ext}\) 有界，则相应读数趋于指定外力。
+\end{proposition}
+\begin{proof}
+在粒子时间方程用 \(v\) 测试并对 \(v\) 分部积分，外场给出
+\(+\int a_\delta^{\rm ext} f^\delta\,dv\) 于右端，碰撞动量项为零。
+换成宏观时间后，\(\delta\partial_\tau \int v f^\delta\,dv\) 的主项为
+\(\delta^2\partial_\tau u\)。除以 \(\delta^2\) 得到所述动量读数，
+见 \lean{kinetic_force_scale_readback}。
+其误差受 \(\|f_{\rm ext}\|_\infty\|\int f^\delta\,dv-1\|\) 控制。
+在能量读数中，同一 \(1/\delta^2\) 归一化后的功率为
+\(f_{\rm ext}\cdot\int v f^\delta\,dv\)，当动量为 \(O(\delta)\) 时此项趋零。
+有界光滑外场按上述时间及幅度缩放，所需的带外场传播混沌、支撑和终端正则性分别核验。
+\end{proof}
+
+\begin{proposition}[全局 Maxwell 平衡纤维的幂律联合极限]\label{prop:kinetic-equilibrium-joint}
+在定义~\ref{def:kinetic-fluid-obligations} 中取 \(f_{\rm in}^\delta(x,v)=M(v)\)、
+\((\rho,u,\vartheta)=(0,0,0)\)，沿用同一活动度归一。对任意
+\(T>0\)、\(\kappa>0\) 及 \(0<\beta<1\)，令 \(\delta=a^\beta\)、\(R_a=a^{-\kappa}\)。
+则 \(\mathbb E[N]a^2\sim\delta^{-1}\)，截断动量恒为零，且
+\[
+ \frac1\delta\left(\int_{|v|\le R_a}F_1^{a,\delta}(\tau/\delta,x,v)\,dv-1\right)
+  =-\frac{4\pi}{3}a^{1-2\beta}(1+o(1))
+ \quad\text{在 }(\tau,x)\in[0,T]\times\mathbb T^3\text{ 上一致}.
+\]
+从而这条实际纤维的原联合极限恰在 \(0<\beta<1/2\) 时成立。
+\end{proposition}
+\begin{proof}
+由引理~\ref{lem:kinetic-maxwell-invariance}，实际平衡制备在全部粒子时刻保持。
+空间平移协变使 \(F_1^{a,\delta}(s,x,v)=A_a M(v)\)，
+其中 \(A_a=\mathbb E[N]/\lambda\)。这也由命题~\ref{prop:kinetic-prepared-activity}
+的插入恒等式直接读取。介观纤维为同一个 \(M\)，因为弹性反射保持 Maxwell 乘积，
+故 \(Q(M,M)=0\)。宏观零场满足目标方程，三层读数对齐在同一时间换算上。
+令 \(\theta_a=\int_{|v|\le R_a}M(v)\,dv\)。
+由球的反射对称性截断动量恒零。密度缺口 \(1-A_a\theta_a\) 介于
+\(1-A_a\) 和 \((1-A_a)+(1-\theta_a)\) 之间，乘积上界的代数估计见
+\lean{kinetic_equilibrium_mass_budget}。
+由命题~\ref{prop:kinetic-prepared-activity}，\(1-A_a=(4\pi/3)a^{1-\beta}(1+o(1))\)，
+且 \(1-\theta_a=O(e^{-R_a^2/4})=o(a^{1-\beta})\)。
+除以同一个 \(\delta\) 即得结论。这些读数与 \(s\) 无关，故覆盖指定的整个时间窗。
+\end{proof}
+
+\subsection{动力学方程的整数关系与方向读数}
+
+\begin{proposition}[不可压缩频带通量的加法纤维]\label{prop:lattice-ns-flux}
+取 \(\mathbb T^3\) 上的光滑无力周期速度 \(u\)，以 \(e^{2\pi i k\cdot x}\) 为 Fourier 基。
+定义
+\[
+ \tau(p,q,k)=2\pi\Re\!\left[i(\widehat u_p\cdot q)
+                    (\widehat u_q\cdot\overline{\widehat u_k})\right],
+ \qquad p+q=k .
+\]
+对任意有限对称频带 \(A\subset\ZZ^3\)，流出 \(A\) 的二次能量通量为
+\[
+ \Phi_A=\sum_{\substack{k\in A,\ q\notin A\\p+q=k}}\tau(p,q,k).
+\]
+对三个有限频带 \(P,Q,K\)，记
+\[
+ M_{P,Q,K}=\max_{k\in K}\#\{(p,q)\in P\times Q:p+q=k\},\qquad
+ D_{P,Q,K}=\max_{\substack{p\in P\setminus\{0\},\ q\in Q\\p+q\in K}}
+                           |\operatorname{proj}_{p^\perp}q|.
+\]
+跨带块上有共同上端
+\[
+ \left|\sum_{\substack{p\in P,\ q\in Q\setminus A\\p+q=k\in K\cap A}}
+              \tau(p,q,k)\right|
+ \le 2\pi D_{P,Q,K}\sqrt{M_{P,Q,K}}\,
+     \|\widehat u\|_{\ell^2(P)}
+     \|\widehat u\|_{\ell^2(Q)}\|\widehat u\|_{\ell^2(K)} .
+\]
+空的作用域取上端零。
+\end{proposition}
+\begin{proof}
+Fourier 乘积把有序输入 \(p,q\) 送到 \(p+q\)。
+对流项的第 \(k\) 模是 \(2\pi i\sum_{p+q=k}(\widehat u_p\cdot q)\widehat u_q\)。
+这与定理~\ref{thm:prime-poisson-fiber} 的和纤维使用同一个整数加法投影，输入权为实际速度模式。
+Leray 作用在 \(\widehat u_k\) 的配对中保持其值，因为 \(k\cdot\widehat u_k=0\)。
+因此频带能量式左端是 \(\frac12\partial_t\sum_{k\in A}|\widehat u_k|^2+
+4\pi^2\nu\sum_{k\in A}|k|^2|\widehat u_k|^2\)，右端为所有流入 \(k\in A\) 的负通量和。
+
+交换 \((p,q,k)\mapsto(-p,k,q)\)，有 \(-p+k=q\)。
+由 \(\widehat u_{-p}=\overline{\widehat u_p}\) 及 \(\widehat u_p\cdot k=\widehat u_p\cdot q\)，
+交换前后乘 \(i\) 之前的两个复乘积互为共轭，故 \(\tau(-p,k,q)=-\tau(p,q,k)\)。
+共轭的有理坐标相消见 \lean{lattice_triad_conjugate_cancel}。
+当 \(q,k\) 都在 \(A\) 中，此交换在同一纤维族内实现成对相消。
+余下即为所示跨带通量。这里 \(p=0\) 时 \(q=k\)，也不进入跨带部分。
+
+由于 \(\widehat u_p\perp p\)，每一项的模至多为
+\(2\pi|\operatorname{proj}_{p^\perp}q|\,|\widehat u_p||\widehat u_q||\widehat u_k|\)。
+先固定 \(k\)，对有序输入对用 Cauchy--Schwarz，提出 \(\sqrt{M_{P,Q,K}}\)。
+再按 \(k\) 用一次 Cauchy--Schwarz。每个 \((p,q)\) 只进入 \(p+q\) 一个纤维，
+故所得平方和以 \(\sum_{p\in P}|\widehat u_p|^2\sum_{q\in Q}|\widehat u_q|^2\) 为上端。
+这样分块只共用整数计数与方向上端，原能量等式仍读取带符号的通量。
+\end{proof}
+
+\begin{proposition}[整数速度碰撞的球壳与连续角测度]\label{prop:lattice-collision-angles}
+取速度网格 \(\eta\ZZ^3\)、\(v=\eta p,\ w=\eta q\)，\(p,q\in\ZZ^3\)。
+令 \(m=p+q\)、\(r=p-q\)、\(n=|r|^2>0\)、\(R=\eta\sqrt n\)。
+所有保持总动量与能量的有序出射对由
+\[
+ \mathcal S_{m,n}=\{r'\in\ZZ^3:|r'|^2=n,\ r'\equiv m\pmod2\},
+ \qquad p'=(m+r')/2,\quad q'=(m-r')/2
+\]
+一一确定。记 \(\nu_{m,n}\) 为这些 \(r'/\sqrt n\) 的等权角概率，
+\(\nu_{\rm sph}\) 为球面均匀概率，置
+\(\Delta_{m,n}=\sup_{\operatorname{Lip}(\phi)\le1}|\int\phi\,d(\nu_{m,n}-\nu_{\rm sph})|\)，
+其中 Lipschitz 常数按弦长计。
+命题~\ref{prop:kinetic-contact-flux} 的硬球入射通量在出射方向上正好是 \(\pi R\,\nu_{\rm sph}\)。
+对速度 Lipschitz 测试 \(\psi\)，以同一 \(\pi R\) 乘网格角平均，并对两粒子的增量取平均，
+则单对角积分的误差至多为
+\[
+                     \frac{\pi}{2}\operatorname{Lip}(\psi)R^2\,\Delta_{m,n}.
+\]
+各网格碰撞逐对保持质量、总动量和总能量。
+\end{proposition}
+\begin{proof}
+在给定 \(m\) 时，整数可解性恰为 \(r'\equiv m\pmod2\)。
+又 \(2(|p'|^2+|q'|^2)=|m|^2+|r'|^2\)，故能量保持恰为球壳条件。
+对应的坐标恒等式与整数重构见
+\lean{lattice_center_relative_energy}、\lean{lattice_parity_reconstruct}。
+因此同一 \(n\) 和 \(m\) 的模二类可复用方向集，计算实际测试权时仍读取质心 \(\eta m/2\)。
+
+为读连续角测度，令 \(v-w=Re_3\)，将入射法向写成极角 \(\theta\in(0,\pi/2)\) 与方位角 \(\varphi\)。
+反射后的单位方向 \(\sigma=e_3-2\cos\theta\,\omega\) 的第三坐标是 \(1-2\cos^2\theta\)，
+方位角只平移 \(\pi\)。所以 \(d\sigma=4\sin\theta\cos\theta\,d\theta\,d\varphi\)，
+硬球通量 \(R\cos\theta\sin\theta\,d\theta\,d\varphi\) 等于 \((R/4)d\sigma\)，证得其质量为 \(\pi R\)。
+在出射方向 \(\sigma\) 上，两速度为 \(\eta m/2\pm R\sigma/2\)。
+两测试增量的平均对 \(\sigma\) 的 Lipschitz 常数至多为 \(R\operatorname{Lip}(\psi)/2\)，
+直接应用差异度定义即得误差上端。对三个守恒测试，增量的平均逐对为零。
+当 \(r=0\) 时硬球通量为零，可直接将该对读为零。
+\end{proof}
+
+\begin{proposition}[高度可除球壳的加权预算]\label{prop:lattice-collision-divisible}
+对 \(j\ge1\)、\(m\equiv0\pmod2\) 与 \(n=4^j\)，等权球壳角度只有六个坐标轴方向，
+故 \(\Delta_{m,n}\ge1/10\)。
+设 \(0<\eta\le1\)、速度密度 \(f_p\) 满足 \(0\le f_p\le C e^{-c|\eta p|^2}\)。
+则高度可除类在任意固定位置、时刻上的加权角误差满足
+\[
+ \sum_{\substack{p,q\in\ZZ^3,\ p\ne q\\4^j\,\mid\, |p-q|^2}}
+  \eta^6 f_p f_q\,|\eta(p-q)|^2\,\Delta_{p+q,|p-q|^2}
+     \le C'(2^{-3j}+\eta^3) .
+\]
+在宏观时间内，若从对应的碰撞残差范数到未放大的终端矩误差有稳定上端 \(C_\delta\)，
+则这一类经两级尺度换算的贡献由 \(C_\delta\delta^{-3}\) 乘该加权预算控制。
+全角向证书采用同一被加项对全部 \(p\ne q\) 求和，记为 \(\mathcal A_\eta\)。
+在指定的时间空间残差范数下，充分余量为 \(C_\delta\delta^{-3}\|\mathcal A_\eta\|\to0\)。
+\end{proposition}
+\begin{proof}
+平方模四只取零或一。三项平方和为零模四时，三坐标都偶，见
+\lean{lattice_divisible_collision_shell}。
+对 \(4^j\) 作整除降阶，得 \(4^j\mid |p-q|^2\) 蕴含 \(p\equiv q\pmod{2^j}\)。
+当 \(n=4^j\)，约去 \(2^j\) 后半径为一，正好有六个轴向格点。
+测试 \(\sum_i\sigma_i^4\) 在单位球内的 Lipschitz 上端为四，
+在轴向角平均为一，均匀球面平均为 \(3/5\)，因为每个坐标服从 \([-1,1]\) 的均匀分布。
+除以四即得差异度下端。
+
+对任意两球面概率，\(\Delta\le2\)，且 \(R^2\) 可吸收到稍弱的 Gaussian 权。
+给定 \(p\)，把满足同余的 \(q\) 写成 \(p+2^j k\)。
+对一维任意平移格点，先取离原点最近者，再用单调 Gaussian 尾同区间积分比较，
+以 \(C(1+1/(\eta2^j))\) 控制相应 Gaussian 和。
+三个坐标相乘，得到对 \(q\) 的 \(\bigl(1+1/(\eta2^j)\bigr)^3\) 上端。
+类似地，\(p\) 的全格点和为 \(O(\eta^{-3})\)。乘前面的 \(\eta^6\)，
+得到 \(O((\eta+2^{-j})^3)\)，即所述预算。
+
+在宏观时间的输运式中，碰撞系数为 \(\delta^{-2}\)。
+将单对角差并入该残差范数后，由稳定上端得到终端未放大矩误差，再读出 \(\delta^{-1}\) 涨落，
+故共同乘子为 \(C_\delta\delta^{-3}\)。
+若 \(C_\delta=O(\delta^{-q_*})\) 且该范数对已给出的一致上端有固定控制，
+则取 \(\eta+2^{-j}=o(\delta^{1+q_*/3})\) 足以使高度可除类的这一贡献消失。
+速度格点外层求积、其余球壳的方向差异和粒子相关性分别提交相应上端。
+法空间可以共用这一整除类的计数，无须逐个球壳建立独立尾预算。
+\end{proof}
+
+\begin{remark}[有限端点的条件延拓回读]
+给定定义~\ref{def:kinetic-fluid-obligations} 的合法初值及其局部经典解，
+设同一解类在合法重启状态享有局部唯一性，且延拓范数有界时重启寿命有统一正下界。
+局部唯一性使各合法延拓在重合区间一致，因而确定最大经典解。
+若该解在每个有限最大端点前保持延拓范数有界，可在距端点小于统一寿命之处重启。
+同一状态的局部唯一性使两段解相接并延伸越过端点。这排除有限最大端点。
+在玻尔兹曼解类中，合法重启保存非负性及规定解类，局部唯一性回读全局唯一性。
+在周期无外力流体解类中，合法重启保存给定正黏性及无散度约束，压力取空间均值零的代表相接。
+\end{remark}

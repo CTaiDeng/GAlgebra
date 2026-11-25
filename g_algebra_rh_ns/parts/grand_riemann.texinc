@@ -1,0 +1,256 @@
+\subsection{秩一与高秩自守纤维的直接算术输入}
+\label{sec:grand-riemann}
+
+\begin{lemma}[有理数域的秩一基例与全秩回读]\label{lem:grh-rank-one-base}
+有理数域上，每个单位归一化的 \(GL_1\) 标准 \(L\) 函数都是原始 Dirichlet \(L\) 函数的虚平移
+\(L(s+i\tau,\chi)\)，其中 \(\tau\in\RR\)，平凡特征给出 \(\zeta(s+i\tau)\)。
+以 \(\mathsf B_G\) 记经典及所有原始 Dirichlet 纤维的零点条件。
+秩一的覆盖与全秩拼接为
+\[
+ \boxed{\quad
+ \mathsf P_{\rm GRH}^{\ge1}(\QQ)
+ \quad\Longleftrightarrow\quad
+ \left(\mathsf B_G\ \land\ \mathsf P_{\rm GRH}^{\ge2}(\QQ)\right).\quad}
+\]
+\end{lemma}
+\begin{proof}
+对阿代尔乘法群的元素 \(x=(x_\infty,(x_p)_p)\)，取
+\(r=\prod_p p^{v_p(x_p)}\in\QQ_{>0}\)，有限非平凡因子由受限积条件保证。
+以 \(\operatorname{sgn}(x_\infty)/r\) 同乘各分量，得到唯一的代表
+\((u,(a_p)_p)\in\RR_{>0}\times\prod_p\ZZ_p^\times\)。
+唯一性是因为保持所有有限赋值及实符号的有理数只能为 \(1\)。
+这给出乘法群的分解，实分量 \(u\) 是阿代尔范数。
+
+连续酉字符在 \(\RR_{>0}\) 上是 \(u^{i\tau}\)。把乘法改写成加法后，
+在原点附近取连续幅角，由加法性和连续性得到线性幅角，再用整数倍扩展到全直线。
+在 \(\prod_p\ZZ_p^\times\) 上，恒等元附近开半圆的逆像包含一个有限同余核。
+该半圆内能包含的子群只有平凡群，因为任意其他元素的某个幂离开半圆。
+故此同余核被送到 \(1\)，有限单位字符经有限模数分解。取最小导子得到原始特征。
+具体地，取在 \(p\) 处分量为 \(p\)、其他处分量为 \(1\) 的阿代尔群元素，
+在导子互素时它的实分量为 \(1/p\)，导子处单位分量为 \(p^{-1}\)。
+把有限单位字符在逆元上的读数记为 \(\chi\)，则未分歧因子是
+\((1-\chi(p)p^{-s-i\tau})^{-1}\)。分歧处的秩一标准局部因子为 \(1\)，
+与原始 Dirichlet 函数的约定一致。实位的符号由 \(\chi(-1)\) 决定，
+相应 Gamma 因子也按 \(s+i\tau\) 平移。
+由 Euler 读数及解析延拓得到所述等式。虚平移保持完备化中非平凡零点的实部，
+其抽象回读见 \lean{zero_line_readback_along_shift}。
+
+全秩结论限制到秩 \(1\) 即涵盖平凡及原始 Dirichlet 纤维的零点命题，限制到 \(n\ge2\) 得高秩结论。
+合成时，秩 \(1\) 使用上述基例，秩 \(n\ge2\) 使用高秩证书。
+这里的等价比较零点谓词，\(\mathsf B_G\) 的证书来源由母体的合法域单独登记。
+秩的逻辑分解见 \lean{grand_riemann_rank_split}。
+对一般数域 \(F\)，同一拼接规则以 \(F\) 上的秩一证书作为参数。
+\end{proof}
+
+\begin{theorem}[从有限特征与高斯输运构造秩一解析输入]\label{thm:dirichlet-analytic-input}
+对 \(q>1\) 及模 \(q\) 的原始 Dirichlet 特征 \(\chi\)，令
+\(\chi(-1)=(-1)^\epsilon\)，\(\epsilon\in\{0,1\}\)。
+在 \(\Re s>1\) 由 Euler 数据定义 \(L(s,\chi)\)，取
+\[
+ \Lambda_\chi(s)=(q/\pi)^{(s+\epsilon)/2}
+     \Gamma((s+\epsilon)/2)L(s,\chi).
+\]
+则 \(\Lambda_\chi\) 有从算术数据构造的整延拓，且 \(\Lambda_\chi(2)\ne0\)。
+其零点位于 \(0\le\Re s\le1\)，对偶及共轭关系为
+\[
+ \Lambda_\chi(s)=W_\chi\Lambda_{\bar\chi}(1-s),\qquad
+ \Lambda_{\bar\chi}(s)=\overline{\Lambda_\chi(\bar s)},\qquad
+ W_\chi W_{\bar\chi}=1 .
+\]
+在 \(|s|\le R\) 有 \(\log^+|\Lambda_\chi(s)|=O_q((1+R)\log(R+2))\)。
+导子 \(1\) 的情形用 \(\xi(s)=s(s-1)\Lambda(s)\) 消去两个极点。
+秩一基例所需的完备化、增长和无零半平面读数因此可在同一算术谱纤维中核验。
+\end{theorem}
+\begin{proof}
+\textbf{有限特征的傅里叶读数。}
+置 \(S_\chi(m)=\sum_{a\bmod q}\chi(a)e^{2\pi i am/q}\)，
+\(\tau_\chi=S_\chi(1)\)，在非单位类上以零延拓 \(\chi\)。
+若 \(m\) 和 \(q\) 互素，代换 \(a\mapsto am^{-1}\) 给出
+\(S_\chi(m)=\bar\chi(m)\tau_\chi\)。
+若 \(d=(m,q)>1\)，加法相位只读模 \(q/d\)。
+模 \(q\) 的单位群到模 \(q/d\) 的单位群满射。
+对每个目标单位，先按 \(q/d\) 取其代表，再在 \(q\) 的其余素数上用互素同余选取非零类。
+原始性故给出 \(u\equiv1\bmod q/d\) 且 \(\chi(u)\ne1\) 的单位。
+乘 \(u\) 置换后，\(S_\chi(m)=\chi(u)S_\chi(m)\)，故读数为零。
+消去因子 \(1-\chi(u)\) 的域论核验见 \lean{dirichlet_gauss_rescale_vanish}。
+因此同一公式对全部 \(m\) 成立。有限相位的正交和给出
+\[
+ \sum_{m\bmod q}|S_\chi(m)|^2
+   =q\sum_{a\bmod q}|\chi(a)|^2=q\varphi(q),
+ \qquad |\tau_\chi|^2=q .
+\]
+共轭并取 \(a\mapsto-a\) 还给出
+\(\tau_{\bar\chi}=\chi(-1)\overline{\tau_\chi}\)。
+故 \(W_\chi=\tau_\chi/(i^\epsilon\sqrt q)\) 具有所述对偶关系。
+
+\medskip
+\noindent\textbf{相位变换与 Mellin 回读。}
+取
+\[
+ \vartheta_\chi(t)=\sum_{n\in\ZZ}\chi(n)n^\epsilon e^{-\pi n^2 t/q}
+                =2\sum_{n\ge1}\chi(n)n^\epsilon e^{-\pi n^2 t/q}\qquad(t>0).
+\]
+沿定理~\ref{thm:criticalstrip} 的高斯傅里叶积分，将
+\(f_t(x)=x^\epsilon e^{-\pi t x^2/q}\) 作 \(q\)-周期化。
+在频率 \(m/q\) 的变换为
+\(\sqrt{q/t}(-im/t)^\epsilon e^{-\pi m^2/(q t)}\)，
+其中 \(\epsilon=1\) 用高斯变换的一次频率导数得到。
+逐项积分从整轴取得这些系数，两侧的周期级数均一致收敛。
+在每个余类 \(a\bmod q\) 读取 Fourier 展开并乘 \(\chi(a)\)，
+由前面的精确有限和得到
+\(\vartheta_\chi(t)=W_\chi t^{-1/2-\epsilon}\vartheta_{\bar\chi}(1/t)\)。
+这是同一高斯输运在对偶特征纤维中的交换式。
+
+当 \(\Re s>1\)，绝对积分的各项按 \(n^{-\Re s}\) 求和，故
+\(\Lambda_\chi(s)=\tfrac12\int_0^\infty\vartheta_\chi(t)t^{(s+\epsilon)/2-1}dt\)。
+在 \(0<t<1\) 使用交换式，再令 \(t\mapsto1/t\)，给出
+\[
+\begin{split}
+ \Lambda_\chi(s)=\tfrac12\int_1^\infty\big[
+     &\vartheta_\chi(t)t^{(s+\epsilon)/2-1}\\
+     &+W_\chi\vartheta_{\bar\chi}(t)t^{(1-s+\epsilon)/2-1}
+     \big]\,dt .
+\end{split}
+\]
+对 \(t\ge1\)，两组 \(\vartheta\) 都由 \(C_qe^{-\pi t/q}\) 包围。
+在任一紧参数域内，积分及任意阶差商可由同一指数乘 \(t^A(1+\log t)^j\) 控制，
+故右侧整并逐项给出对偶及共轭等式。
+在 \(|s|\le R\) 时，可把 \(e^{-\pi t/q}\) 分成等同的两因子，
+用一半对 \(t^{(R+2)/2}\) 取最大值，再积分另一半，得到陈述的增长界。
+
+最后在 \(\Re s>1\)，用绝对收敛的 Euler 对数
+\(\sum_{p,k\ge1}\chi(p)^k p^{-ks}/k\) 取得 \(L'/L\) 及非零性。
+Gamma 非零性由定理~\ref{thm:criticalstrip} 的积分乘积证明。
+函数方程把该无零半平面运到 \(\Re s<0\)，故零点留在所述闭带。
+导子 \(1\) 的两极点与整延拓由同一定理和引理~\ref{lem:xi-zero-count} 核验。
+虚平移对每个固定 \(\tau\) 保持适用的增长阶、闭带、对偶和算术读数，
+因此引理~\ref{lem:grh-rank-one-base} 所有秩一纤维均有这一解析入口。
+\end{proof}
+
+固定定义~\ref{def:grh-obligation} 的数域与纤维。对当前 \(\pi\) 和 \(\tilde\pi\)，
+解析输入提交标准完备化的 Euler 及 Gamma 数据、精确极点表和函数方程。
+将导子移入完备函数 \(\Lambda_\pi\)，所用关系为
+\[
+ \Lambda_\pi(s)=\varepsilon_\pi\Lambda_{\tilde\pi}(1-s),
+ \qquad
+ \Lambda_{\tilde\pi}(s)=\overline{\Lambda_\pi(\bar s)},
+ \qquad \varepsilon_\pi\varepsilon_{\tilde\pi}=1 .
+\]
+要求去极点的 \(\Xi_\pi,\Xi_{\tilde\pi}\) 是整函数，零点在 \(0\le\Re s\le1\)，
+且在 \(|s|\le r\) 有 \(\log^+|\Xi_\pi(s)|,\log^+|\Xi_{\tilde\pi}(s)|=O_\pi((1+r)^{3/2})\)。
+还要求 \(\Re s>1\) 的对数导数可从完备化和绝对收敛的 Euler 读数取得。
+这些条件是解析输入的核验项。它们只约束完备化、增长和读数域，
+统一的局部化矩正性作为各纤维的母体义务登记。
+
+\begin{theorem}[对偶纤维的平方谱与预解式]\label{thm:grh-square-spectrum}
+取 \(a=9/4\)，记
+\[
+ B_\pi(s)=\Xi_\pi(s)\Xi_{\tilde\pi}(s),\qquad
+ Y_\pi(w)=B_\pi(\tfrac12+\sqrt w),\qquad A_\pi(z)=Y_\pi(a-z).
+\]
+则 \(Y_\pi\) 单值整，\(A_\pi(0)>0\)，谱 \(\mu=a-(\rho-\tfrac12)^2\)
+随共轭保持。记 \(d_\mu\) 为 \(A_\pi\) 在 \(\mu\) 的零点重数。
+谱值满足 \(\Re\mu\ge2+(\Im\rho)^2\)，且
+\[
+ \frac{A_\pi(z)}{A_\pi(0)}
+   =\prod_\mu (1-z/\mu)^{d_\mu},\qquad
+ R_\pi(z)=\frac{Y_\pi'(a-z)}{Y_\pi(a-z)}
+   =\sum_\mu\frac{d_\mu}{\mu-z},\qquad
+ \sum_\mu\frac{d_\mu}{|\mu|}<\infty .
+\]
+在 \(z=0\) 的共同邻域，令 \(s=\tfrac12+\sqrt{a-z}\)，则
+\[
+ R_\pi(z)=
+  \frac{(\Xi_\pi'/\Xi_\pi)(s)+(\Xi_{\tilde\pi}'/\Xi_{\tilde\pi})(s)}{2(s-1/2)} .
+\]
+纤维的零点结论等价于每个 \(\mu\) 都在实半轴 \([a,\infty)\)。
+\end{theorem}
+\begin{proof}
+以 \(P_\pi\) 记极点处按精确阶数取的首一多项式，\(\Xi_\pi=P_\pi\Lambda_\pi\)。
+在极点处的乘积极限是相应 Laurent 首项乘非零因子，故去极点保留原有全部零点。
+函数方程将极点表在 \(s\mapsto1-s\) 下运到对偶纤维。
+因此将 \(P_\pi P_{\tilde\pi}\) 反射时，两个同次数的符号相消。
+乘上两条函数方程给出 \(B_\pi(1-s)=B_\pi(s)\)。
+共轭同样保持 \(B_\pi\)，且 \(B_\pi(2)=|\Xi_\pi(2)|^2>0\)。
+
+\(B_\pi(\tfrac12+z)\) 的 Taylor 展开只有偶次项，以 \(z^{2j}\mapsto w^j\) 定义整函数 \(Y_\pi\)。
+非中心反射对上的两点在 \(B_\pi\) 中重数相同，平方映射在两点上导数非零。
+对应的 \(d_\mu\) 取这个共同重数。中心 \(\rho=1/2\) 若是零点，
+其重数因偶性为 \(2d_a\)，平方后取半数。
+写 \(\rho=\tfrac12+\beta+i\gamma\)，则
+\(\mu=a-\beta^2+\gamma^2-2i\beta\gamma\)。
+由 \(|\beta|\le1/2\) 得 \(\Re\mu\ge2+\gamma^2\)。
+若 \(\mu\) 为实且 \(\mu\ge a\)，则 \(\beta\gamma=0\)。
+当 \(\gamma=0\) 时另有 \(-\beta^2\ge0\)，也得到 \(\beta=0\)。
+反向由 \(\beta=0\) 直接得到 \(\mu=a+\gamma^2\)。
+这些坐标恒等式与半轴回读的有理版本见 \lean{automorphic_square_halfline}。
+
+由输入增长，\(A_\pi\) 的对数上端为 \(O_\pi((1+|z|)^{3/4})\)。
+引理~\ref{lem:square-spectrum-resolvent} 给出归一化乘积、预解式和逆一次矩的可和性。
+对 \(B_\pi\) 作对数导数并按平方变量应用链式法则，得到直接算术读数。
+在 \(s=2\) 的邻域，\(\Re s>1\)，该读数由 Euler、Gamma 及精确极点因子组成。
+\end{proof}
+
+\begin{theorem}[自守纤维的算术矩正性与半轴回读]\label{thm:grh-localized-moments}
+对固定的实际 \(\pi\)，由定理~\ref{thm:grh-square-spectrum} 的 \(R_\pi(z)=\sum_j m_{\pi,j}z^j\)
+定义 \(\mathcal L_\pi(t^j)=m_{\pi,j}\)，令 \(c=4/9\)。
+以下条件等价：
+\[
+\begin{gathered}
+ \forall\rho\in Z_*(\pi),\quad\Re\rho=1/2,\\
+ \mathsf E_\pi:\quad
+ \forall p\in\RR[t],\quad 0\le\mathcal L_\pi(tp^2)\le c\,\mathcal L_\pi(p^2),\\
+ \forall p\in\RR[t],\quad \mathcal L_\pi((c-t)p^2)\ge0 .
+\end{gathered}
+\]
+同一义务的差商读数为 \(F_\pi(z)=(z-a)R_\pi(z)\) 在负侧区间 \((-1,0)\) 上
+的核 \(K_\pi(x,y)=(F_\pi(x)-F_\pi(y))/(x-y)\) 的联合半正性，对角取导数。
+闭合时，\(0\le T_\pi\le c I\) 的同源预解式保留 \(R_\pi\) 的全部极点和重数。
+\end{theorem}
+\begin{proof}
+第一、二条件的等价立即由定理~\ref{thm:grh-square-spectrum} 的坐标回读
+和定理~\ref{thm:spectral-positive-operator} 的正算子闭合给出。
+第二项直接推出第三项。对第三项，取引理~\ref{lem:spectral-polynomial-density} 的权
+\(b_\mu=d_\mu t_\mu(c-t_\mu)\)。
+它绝对可和，且只在中心值 \(\mu=a\) 取零。因为 \(\Re\mu\ge2\)，
+其余权重在实点为正恰当于 \(\mu>a\)。
+稠密性定理排除另外的非实点和负实权点，而被略去的中心值 \(\mu=a\) 已在目标半轴上。
+所以这一个读数也推出 \(\mathsf E_\pi\)。
+
+直接通分得到
+\[
+ K_\pi(x,y)=\sum_\mu\frac{d_\mu(\mu-a)}{(\mu-x)(\mu-y)}
+        =a\sum_\mu\frac{b_\mu}{(1-xt_\mu)(1-yt_\mu)} .
+\]
+有限项恒等式见 \lean{automorphic_kernel_difference}。
+由同一稠密性定理，联合半正性给出第三项。
+若第三项成立，\(\mu>a\) 的实权直接产生整个负侧区间的 Gram 核。
+中心重数仍由原 \(R_\pi\) 的留数回读。
+\end{proof}
+
+\begin{theorem}[从算术矩正性回读给定秩域]\label{thm:grh-family-readback}
+对已核验解析输入的纤维，\(r=1,2\)，有
+\[
+ \boxed{\quad
+ \mathsf P_{\rm GRH}^{\ge r}(F)
+ \quad\Longleftrightarrow\quad
+ \forall n\ge r\ \forall\pi\in\mathcal A_n(F),\quad \mathsf E_\pi .
+ \quad}
+\]
+对偶纤维共用 \(R_\pi,\mathcal L_\pi\) 及局部化矩证书。平凡基例的 \(\mathsf E_\pi\) 即
+定义~\ref{def:goals} 的 \(\mathsf E_\zeta\)。
+\end{theorem}
+\begin{proof}
+定理~\ref{thm:grh-localized-moments} 给出逐纤维等价，对完整秩域取全称。
+秩下限的依赖类型核验见 \lean{grandRiemannGoal} 与 \lean{grand_riemann_fiber_equivalence}。
+交换 \(\pi,\tilde\pi\) 保持 \(B_\pi,Y_\pi,A_\pi\) 及重数，故保持全部算术矩读数。
+在平凡纤维 \(\Xi_{\pi_0}=\xi\)，有 \(R_{\pi_0}=2R\)，正因子 \(2\) 保持两条序关系。
+在原始 Dirichlet 纤维，定理~\ref{thm:dirichlet-analytic-input} 给出实际算术输入。
+秩一的原标签和虚平移由引理~\ref{lem:grh-rank-one-base} 覆盖。
+
+若实际有归一化整函数分解
+\(A_\pi(z)/A_\pi(0)=\prod_{\ell=1}^k A_\ell(z)/A_\ell(0)\)
+且每个因子携带相容的读数，则对数导数、矩及两组二次型相加。
+各因子若已有保正证书，用算子与循环向量的 Hilbert 直和实现这一合成。
+这给出法空间运输对合法复合的保持 \cite{GUnified}。
+\end{proof}

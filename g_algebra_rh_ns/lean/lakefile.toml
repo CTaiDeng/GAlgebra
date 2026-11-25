@@ -1,0 +1,7 @@
+name = "g_algebra_rh_ns"
+version = "1.0.0"
+defaultTargets = ["GAlgebra"]
+
+[[lean_lib]]
+name = "GAlgebra"
+globs = ["GAlgebra", "Audit"]

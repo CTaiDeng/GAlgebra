@@ -1,0 +1,99 @@
+\section{原生法对象与共同最粗任务商}
+\label{sec:law}
+
+\subsection{对象、操作和可检查的数据}
+\begin{definition}[带任务的法对象及其有限测试]\label{def:law}
+给定规律指标集 \(L\)，对每个 \(\ell\in L\) 给定状态型 \(X_\ell\)。总承载为
+\(X=\coprod_{\ell\in L}X_\ell\)。动作及其需要保留的响应组成标签集 \(A\)。每个标签给定部分后继 \(\Phi_a:X\rightharpoonup X\)。添入拒绝状态 \(\bot\)，使
+\[
+\widehat\Phi_a(x)=
+\begin{cases}
+\Phi_a(x)&\Phi_a(x)\text{ 有定义},\\
+\bot&\text{其余情形},
+\end{cases}
+\qquad \widehat\Phi_a(\bot)=\bot .
+\]
+把合法性标记、任务身份、目标、规定的响应和应当逐步读取的费用列入观察向量 \(o:\widehat X\to O\)。沿词累积的费用可先随状态更新，再由 \(o\) 读取。空执行取恒等。若 \(w=av\)，定义
+\(\Phi_w(x)=\Phi_v(\widehat\Phi_a(x))\)。这里用同一符号 \(\Phi_w\) 表示补齐后的有限执行。
+\end{definition}
+
+对象可同时登记系数、约束、关系、相容数据与证书，从而形成
+\[
+\mathfrak X_G=(X,L,\Phi,\mathsf{Coh},\mathsf{Adm},o,\Cert).
+\]
+在选定扇区，纤维作用和运输的等式可作为 \(\mathsf{Coh}\) 的具体数据。
+
+\begin{proposition}[离散主丛的纤维作用与协变运输]\label{prop:law-trivial-bundle}
+给定底点集 \(L\) 与任意群 \(K\)。在 \(P=L\times K\) 上取右作用
+\((\ell,g)h=(\ell,gh)\)。它在各纤维上自由且传递。
+给边 \(a:\ell\to\ell'\) 指定 \(k_a\in K\) 并置 \(T_a(\ell,g)=(\ell',k_a g)\)。
+每条边的运输对右作用协变，可接续边 \(a,b\) 的运输由左乘 \(k_b k_a\) 给出。
+同端点的两路径分别由左乘 \(k_+,k_-\) 给出时，
+纤维上两运输处处一致，当且仅当 \(k_-^{-1}k_+=1\)。
+\end{proposition}
+\begin{proof}
+右作用的单位和结合条件由群公理给出。方程 \(gh=g'\) 左乘 \(g^{-1}\)，得到唯一解
+\(h=g^{-1}g'\)。代回即得等式。由 \(k_a(gh)=(k_ag)h\) 得协变性，
+由 \(k_b(k_ag)=(k_bk_a)g\) 得有序的复合式。
+若 \(k_-^{-1}k_+=1\)，左乘 \(k_-\) 得 \(k_+=k_-\)，故两运输一致。
+反向在源纤维的单位群元读取两运输，得到相等的左乘元。
+这一离散实现直接使用主丛的纤维与自由作用构造 \cite{GPure,GUnified}。
+\end{proof}
+
+同一四元集合可承载循环群 \(C_4\) 或 Klein 群 \(C_2\times C_2\)。循环群生成元加倍后仍非单位元。Klein 群的每个元素加倍都为单位元。若两群同构，生成元的加倍通过同构映到单位元，与单射性矛盾。因此底集与指定结构须在对象定义中分别登记。固定 \(\ell\) 时，映射 \(i_\ell(x)=(\ell,x)\) 嵌入不跨规律的切片，纤维投影满足 \(p_\ell i_\ell=\id\)。动作维持该指标时，嵌入保持每一步和初始观察，进而保持全部有限词。需要迁移的动作由总承载上的有类型后继定义。
+
+\subsection{有限执行、必要信息与普遍性质}
+\begin{definition}[精确任务保持与行为等价]\label{def:exact}
+两表示共用标签与观察类型。映射 \(p:X\to Y\) 精确保持任务，指对所有 \(a,x\) 有
+\[
+p\Phi_a(x)=\Psi_a(p(x)),\qquad o_X(x)=o_Y(p(x)).
+\]
+规定行为等价 \(x\sim y\) 当且仅当所有有限词 \(w\) 都满足 \(o_X(\Phi_w x)=o_X(\Phi_w y)\)。
+\end{definition}
+
+\begin{lemma}[有限执行保持与任务法信息的必要性]\label{lem:word}
+一步的交换与观察等式推出对每个有限词 \(w\) 的后继交换和观察保持。若 \(x,y\) 被某个词区分，则任一精确表示 \(p\) 满足 \(p(x)\ne p(y)\)。
+\end{lemma}
+\begin{proof}
+空词时后继交换为 \(p(x)=p(x)\)。若结论对 \(v\) 成立，则
+\[
+p\Phi_{av}(x)
+=p\Phi_v(\Phi_a x)
+=\Psi_v(p\Phi_a x)
+=\Psi_v(\Psi_a(p x))
+=\Psi_{av}(p x).
+\]
+在 \(y=\Phi_w(x)\) 处应用观察等式，得到 \(o_X\Phi_w x=o_Y\Psi_w p x\)。若 \(p x=p y\)，右式在两个输入处相同，所以每项未来观察相同。与见证词的差异矛盾。
+\end{proof}
+
+\begin{example}[同一状态标签的两个规律]
+取状态 \(0,1,2\)，单动作 \(a\)，只观察状态是否等于 \(2\)。两规律都使 \(0\to1\)、\(2\to2\)。第一规律保持 \(1\)，第二规律使 \(1\to2\)。从各自的 \(0\) 开始，两步后分别为 \(1\) 和 \(2\)。见证词 \(aa\) 因而强制区分这两个法对象。若两个规律对所有词产生相同读数，则在本任务中可落在同一商类。
+\end{example}
+
+\begin{theorem}[共同最粗任务商]\label{thm:task}
+令 \(Q=X/{\sim}\) 且 \(q(x)=[x]\)。观察和后继下降到 \(Q\)，且对任意满射精确表示 \(p:X\to Y\)，存在唯一映射 \(r:Y\twoheadrightarrow Q\) 满足 \(rp=q\)。映射 \(r\) 精确保持任务。若 \(p\) 的各纤维恰为行为类，则 \(r\) 双射。
+\end{theorem}
+\begin{certificate}[商与因子化]
+保存同一标签集、观察类型、一步交换和观察等式，以及满射代表证书。区分两个候选类时保存区分词。
+\end{certificate}
+\begin{proof}
+各词的读数相等是等价关系，逐词取合取得到 \(\sim\)。空词给出 \(o_X\) 对等价类不变。若 \(x\sim y\)，对每个 \(v\) 取词 \(av\)，得到 \(\Phi_a x\sim\Phi_a y\)。于是 \(\bar o([x])=o_X(x)\) 与 \(\bar\Phi_a([x])=[\Phi_a(x)]\) 都与代表无关。
+
+任取 \(y\in Y\)，由满射取 \(p x=y\)。定义 \(r(y)=q(x)\)。若 \(p x=p x'\)，引理~\ref{lem:word} 的观察等式给出 \(x\sim x'\)，故定义良好。任意 \(q(x)\) 都是 \(r(p x)\)，所以 \(r\) 满射。任何满足 \(sp=q\) 的映射在 \(p x\) 处取 \(q(x)\)，因而等于 \(r\)。考察任意 \(y=p x\)，有
+\[
+r\Psi_a(y)=r p\Phi_a(x)=q\Phi_a(x)=\bar\Phi_a r(y),
+\qquad o_Y(y)=o_X(x)=\bar o(r(y)).
+\]
+若 \(r(p x)=r(p x')\)，则 \(x\sim x'\)。在纤维恰为行为类的假设下，这推出 \(p x=p x'\)，从而 \(r\) 单射。两套满足此条件的表示经共同商互为任务同构。
+\end{proof}
+
+\begin{proposition}[有限分区的演化饱和]\label{prop:refinement}
+若 \(\widehat X,A\) 有限，可从观察分区 \(P_0\) 出发，按同一标签后继所在块继续细化。若 \(b_0=|P_0|\)，至多发生 \(|\widehat X|-b_0\) 次严格细化。稳定分区等于完整未来测试分区。
+\end{proposition}
+\begin{proof}
+令 \(x\sim_n y\) 表示长度至多 \(n\) 的读数均相同。所有长不超过 \(n+1\) 的词由空词及 \(av\) 组成，其中 \(|v|\le n\)。因此 \(x\sim_{n+1}y\) 等价于初始观察相同且对每个 \(a\) 有 \(\Phi_a x\sim_n\Phi_a y\)。这给出算法，也说明 \(P_{n+1}\) 细化 \(P_n\)。任何一次严格细化都会拆分至少一个非空块，块数增加至少一，且最多为 \(|\widehat X|\)。若相邻分区相等，递推规则给出所有后续分区相等，故稳定关系等价于所有有限词测试。
+\end{proof}
+
+\begin{remark}[顺序及读回]
+有序记录 \((x,w,\kappa(x,w))\) 的前两个坐标直接读出始点和动作词，确定性后继再逐步读回状态。图上的交换化链读出可能把不同顺序映到同一条链。有序字段承担执行重放，链字段承担同调计算。二者都进入任务时须分别核验 \cite{GUnified}。
+\end{remark}

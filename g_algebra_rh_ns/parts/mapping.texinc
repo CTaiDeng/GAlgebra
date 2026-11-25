@@ -1,0 +1,219 @@
+\section{公开文献与本文的对应构造}
+\label{sec:sources}
+表中列出指定版本的公开文献及其结构用途。定理的完整推导、实际适用域和终端前提见所列正文及附录。
+\small
+\begin{longtable}{@{}P{.13\textwidth}P{.48\textwidth}P{.30\textwidth}@{}}
+\toprule 文献 & 公开构造的用途 & 本文位置\\\midrule
+\endfirsthead
+\toprule 文献 & 公开构造的用途 & 本文位置\\\midrule
+\endhead
+\bottomrule
+\endlastfoot
+\cite{GPure} & 法空间、主丛作用和高阶相容性的基础。 & \ref{def:law}、\allowbreak \ref{prop:law-trivial-bundle}、\allowbreak \ref{thm:transport}、\allowbreak \ref{thm:pde-operator-transport}\\
+\cite{GAppI} & 法空间几何与跨层运输的应用接口。 & \ref{thm:pde-rate-quotient}、\allowbreak \ref{prop:pde-operator-charts}\\
+\cite{GAppII} & 带顺序的作用、复合与可观察输出的应用实例。 & \ref{thm:flow-ordered-law-chart}、\allowbreak \ref{prop:cost}\\
+\cite{GAppIII} & 把可执行算法与抽查、证书和回读一起登记的应用接口。 & \ref{thm:g-finite-pde-hit}、\allowbreak \ref{prop:g-l-path-pushforward}\\
+\cite{GNotes} & 高阶闭合、统计格点、PDE 同伦命中、LHTS、TPH、L-路径及微观—宏观总同调。 & \ref{thm:pde-operator-transport}、\allowbreak \ref{thm:g-finite-pde-hit}、\allowbreak \ref{thm:lhts-fractal-coverage}、\allowbreak \ref{prop:g-l-path-pushforward}、\allowbreak \ref{thm:kinetic-total-comparison}\\
+\cite{GUnified} & 任务保持、结构运输、同调修复、率—商与回读的综合接口。 & \ref{thm:task}、\allowbreak \ref{thm:pde-rate-quotient}、\allowbreak \ref{thm:grh-family-readback}、\allowbreak \ref{thm:arithmetic-family-readback}、\allowbreak \ref{thm:kinetic-total-comparison}\\
+\end{longtable}
+\normalsize
+
+\section{正文结论与 Lean 声明逐项映射}
+\label{sec:lean-map}
+Lean 名称均在 \lean{GAlgebra} 命名空间。文件与行号见配套索引。
+所用声明的类型及公理依赖在 \lean{Audit.lean} 中检查。
+最后一列标明 Lean 覆盖与正文承担的连续分析。
+\small
+\begin{longtable}{@{}P{.09\textwidth}P{.55\textwidth}P{.29\textwidth}@{}}
+\toprule 正文 & Lean 声明 & 证明覆盖\\\midrule
+\endfirsthead
+\toprule 正文 & Lean 声明 & 证明覆盖\\\midrule
+\endhead
+\bottomrule
+\endlastfoot
+\ref{thm:strongest-proof} & \lean{strongestBudgetHit}\par \lean{strongest_budget_hit_spec}\par \lean{strongest_budget_hit_no_feasible}\par \lean{DirectedGraph.constrained_hit_complete_and_minimal} & 核验单调等级的有界二分、不可达判断及该级路径的最低代价。结论等级和试探的解析证书由分型给出。\\[.25em]
+\ref{def:law} & \lean{Task}\par \lean{totalAction}\par \lean{failure_absorbs}\par \lean{Task.lawUnion}\par \lean{Task.fixed_law_exact}\par \lean{Task.fixed_law_retract} & 总化、分型承载与固定规律切片。\\[.25em]
+\ref{prop:law-trivial-bundle} & \lean{FiberGroup}\par \lean{fiberRight}\par \lean{fiberTransport}\par \lean{fiber_right_action}\par \lean{fiber_right_unique}\par \lean{fiber_transport_equivariant}\par \lean{fiber_transport_comp}\par \lean{fiber_transport_defect_zero} & 任意底点集与任意群上的离散主丛、自由传递作用、协变、有序组合与同端点运输等价，均按正文量词核验。\\[.25em]
+\ref{def:exact} & \lean{Task.Exact}\par \lean{Task.EquivBeh}\par \lean{Task.behaviour} & 空词与全部未来测试。\\[.25em]
+\ref{lem:word} & \lean{Task.Exact.run}\par \lean{Task.Exact.signature}\par \lean{Task.law_information_necessary}\par \lean{Task.two_step_law_example} & 有限词归纳及两规律实例。\\[.25em]
+\ref{thm:task} & \lean{Task.behaviour_congruence}\par \lean{Task.encode_exact}\par \lean{Task.coarsest_task_quotient}\par \lean{Task.reduced_exact_is_bijective} & 存在、唯一、满射和精确保持。\\[.25em]
+\ref{prop:refinement} & \lean{Task.finite_refinement_step}\par \lean{Task.finite_refinement_fixed}\par \lean{finite_strict_refinement_bound}\par \lean{Task.ordered_record_readback} & 分区递推、稳定及块数界。严格拆分增块的计数见纸面证明。\\[.25em]
+\ref{def:chain} & \lean{DirectedGraph}\par \lean{DirectedGraph.Path}\par \lean{DirectedGraph.pathSum}\par \lean{TwoStep} & 有类型路径及加性链。自由模用纸面有限支撑构造。\\[.25em]
+\ref{thm:paths} & \lean{DirectedGraph.path_boundary}\par \lean{DirectedGraph.path_sum_append}\par \lean{DirectedGraph.face_boundary_zero} & 归纳抵消、串接及认证面。\\[.25em]
+\ref{thm:chainquot} & \lean{Subgroup.mapClasses}\par \lean{Subgroup.quotient_add_classes}\par \lean{Subgroup.quotient_scalar_classes}\par \lean{Subgroup.quotient_diff_closed}\par \lean{Subgroup.quotient_square_mod}\par \lean{Subgroup.quotientBridge} & 逐级验证。标量相容作为显式参数。\\[.25em]
+\ref{cor:descend} & \lean{Task.quotient_differential_necessary}\par \lean{Task.quotient_differential_sufficient} & 代表无关的充要性及唯一性。\\[.25em]
+\ref{thm:kernelchain} & \lean{Subgroup.kernel_subcomplex}\par \lean{Subgroup.kernelQuotient}\par \lean{Subgroup.map_from_generators_surj} & 核商与逐级满射。带标量时逐分量保线性。\\[.25em]
+\ref{def:hom} & \lean{TwoStep.Cycles}\par \lean{TwoStep.sameClass}\par \lean{TwoStep.cycleClass}\par \lean{TwoStep.boundary_iff_zero_class} & 闭链、商及零类的原像见证。\\[.25em]
+\ref{cor:hom} & \lean{TwoStep.ChainMap.homology}\par \lean{TwoStep.homology_iso} & 保持闭链、边界和双向复合。\\[.25em]
+\ref{thm:retract} & \lean{TwoStep.homotopy_retract_reflects_boundary} & 同伦回缩的边界公式。\\[.25em]
+\ref{def:gram} & \lean{finiteSum}\par \lean{Pairing}\par \lean{AdjointPair}\par \lean{OrthogonalSplitting} & 最小内积、伴随和投影接口。\\[.25em]
+\ref{thm:gram} & \lean{weighted_gram_factorization}\par \lean{weighted_coverage_image}\par \lean{AdjointPair.gram_energy}\par \lean{AdjointPair.gram_kernel_orthogonal}\par \lean{OrthogonalSplitting.quotient_orthogonal}\par \lean{nonnegative_sum_zero} & 核验有限覆盖像、伴随与正交余项的证书。实内积空间的正交构造由正文证明。\\[.25em]
+\ref{prop:frame} & \lean{ScalarGeometry.Frame}\par \lean{ScalarGeometry.ontoFrame_agrees_on_basis}\par \lean{ScalarGeometry.frame_splitting}\par \lean{ScalarGeometry.orthogonal_extension_step} & 独立于具体标量的投影系数、正交余项与扩展同跨度。\\[.25em]
+\ref{thm:hodge} & \lean{hodge_cycle_restrict}\par \lean{hodge_kernel}\par \lean{hodge_homology_iso} & 加性调和代表同构。正定和分解证书在签名中。\\[.25em]
+\ref{thm:rank} & \lean{repair_expansion_closed}\par \lean{rank_gain_count}\par \lean{Subgroup.quotient_extension_kernel} & 从核识别新增填补类并核验维数算术。实向量空间基扩张在正文。\\[.25em]
+\ref{def:repair} & \lean{Repairable}\par \lean{repairImage}\par \lean{repairable_iff_fiber} & 原像纤维的显式存在见证。\\[.25em]
+\ref{thm:repair} & \lean{repair_expansion}\par \lean{repair_expansion_preserves_old}\par \lean{repair_expansion_closed} & 能力扩张、零填充和链条件。\\[.25em]
+\ref{ex:coefficients} & \lean{parity_obstruction}\par \lean{integer_expansion}\par \lean{ordered_expansion}\par \lean{strict_coefficients_can_lose_old} & 整数及有理系数模型。实数版用同一符号判断和见证。\\[.25em]
+\ref{prop:cone} & \lean{det2}\par \lean{stressCombine}\par \lean{positive_two_direction_certificate} & 机器核验有理数版。实数版逐坐标计算。\\[.25em]
+\ref{thm:cone-dual} & \lean{cone_dual_certificate_sound} & 有限和的线性否决已核验。实正锥闭性和最近点分离见正文。\\[.25em]
+\ref{ex:parameter} & \lean{correction}\par \lean{joint_reachability_expansion} & 旧不可达、新约束闭合与动作数下界。\\[.25em]
+\ref{thm:transport} & \lean{RepairMorphism.transport}\par \lean{repair_transport_iff}\par \lean{repair_transport_family} & 双向交换、合法性和参数族。\\[.25em]
+\ref{thm:writeback} & \lean{TwoStep.quotient_solution_writeback}\par \lean{TwoStep.legal_quotient_solution_writeback} & 收缩回写和合法性。范数界依赖实分析的三角不等式。\\[.25em]
+\ref{prop:stages} & \lean{synchronized_construction}\par \lean{finite_feasibility_not_uniform} & 核验有限阶段交换及逐点可行性的反例。正文代入交换式以运输统一界。\\[.25em]
+\ref{def:operators} & \lean{Bilinear}\par \lean{commutator}\par \lean{jacobiDefect}\par \lean{linearized}\par \lean{Derivation} & 四接口的局部实现。\\[.25em]
+\ref{prop:jacobi} & \lean{commutator_alternating}\par \lean{commutator_jacobi}\par \lean{jacobi_lift_of_section} & 严格括号与一个局部填补。全阶结构须额外逐级核验。\\[.25em]
+\ref{thm:two-term} & \lean{twoTerm_differential_square}\par \lean{twoTerm_signed_leibniz}\par \lean{twoTerm_arity_three_zero}\par \lean{twoTerm_arity_three_one_negative}\par \lean{jacobi_alternating_first_two}\par \lean{jacobi_four_arity}\par \lean{twoTerm_double_ternary_zero}\par \lean{higher_arity_truncation}\par \lean{threeDim_skew}\par \lean{threeDim_jacobi_nonzero} & 两项微分、分次符号、四元项消去、高元截断及非零整数例。\\[.25em]
+\ref{prop:residual} & \lean{residual}\par \lean{residual_perturbation}\par \lean{convection_cannot_be_alternating} & 二次对流的代数展开。\\[.25em]
+\ref{thm:formula} & \lean{Term.evaluations_commute}\par \lean{Formula.extend_map}\par \lean{Formula.formula_transport} & 算子项、环境和量词的结构归纳。\\[.25em]
+\ref{thm:proof} & \lean{derivation_sound}\par \lean{translate_proof}\par \lean{finite_dag_sound}\par \lean{discharge_open_hypotheses}\par \lean{frozen_domain_cannot_be_widened} & 基本事实、规则、依赖图与版本域。\\[.25em]
+\ref{cor:finiteproof} & \lean{finite_branch_transport} & 有限指标族逐项回读。\\[.25em]
+\ref{prop:cost} & \lean{Task.auxiliary_compression}\par \lean{ordered_product_factorization}\par \lean{selection_word_count}\par \lean{reuse_cost_iff} & 辅助字段、非交换有序因子化和完整成本式。\\[.25em]
+\ref{def:goals} & \lean{ZeroLineSpec.goal}\par \lean{FlowSpec.goal}\par \lean{FlowSpec.atViscosity}\par \lean{spectral_localizing_forms_all}\par \lean{flow_mother_readback} & 核验两项原命题的量词和回读签名。经典黎曼的双向等价及合法非零精确周期的充分回读见正文。\\[.25em]
+\ref{def:grh-obligation} & \lean{grandRiemannGoal}\par \lean{ZeroLineSpec.goal} & 核验指定起始秩、各秩的表示及纤维零点的依赖量词。实际自守表示与完备数据由正文规定。\\[.25em]
+\ref{def:arithmetic-family} & \lean{ArithmeticObligation}\par \lean{ArithmeticObligation.goal}\par \lean{PrimeOffsetsAdmissible} & 核验五项索引、三个初等数论目标和可容许偏移的量词。渐近及全秩谱条件由对应解析命题传入。\\[.25em]
+\ref{def:kinetic-fluid-obligations} & \lean{jointKineticLimitGoal}\par \lean{uniqueGlobalClassicalEvolutionGoal}\par \lean{globalClassicalEvolutionGoal}\par \lean{FlowSpec.goal} & 核验固定制备族后的共同指数、截断与联合收敛量词，以及全局经典存在和唯一性的谓词。有限端点条件延拓的解析回读见动理学正文。\\[.25em]
+\ref{thm:criticalstrip} & \lean{reflected_zero_from_completed_equation}\par \lean{cosine_quadratic_weight} & 完成函数中的零点运输和 Euler 权重恒等式。傅里叶、积分及亚纯延拓是纸面证明。\\[.25em]
+\ref{lem:xi-zero-count} & \lean{contour_finite_upper_bound} & 有限零点和的模估计经机器核验。全纯延拓、Blaschke 因子与计数增长由正文证明。\\[.25em]
+\ref{lem:xi-analytic-height} & \lean{theta_small_height_bound} & 核验初等有理余量。解析积分、Machin 反正切与零点排除在正文。\\[.25em]
+\ref{lem:square-spectrum-resolvent} & \lean{finite_resolvent_common_denominator}\par \lean{finite_resolvent_numerator_ne_zero_at_pole} & 核验有限极点的通分与不消去。整函数乘积、紧集收敛与留数见正文。\\[.25em]
+\ref{thm:xi-moment-generator} & \lean{reflected_zero_from_completed_equation}\par \lean{automorphic_square_halfline} & 核验零点反射和平方坐标。Euler 对数导数、Cauchy 系数及整乘积在正文。\\[.25em]
+\ref{thm:spectral-positive-operator} & \lean{spectral_localizing_forms}\par \lean{spectral_positive_quotient_bound}\par \lean{finite_resolvent_numerator_ne_zero_at_pole} & 核验双侧有理序关系、范数估计的消去及有限极点不消去。Hilbert 完备和割平面同源预解式在正文。\\[.25em]
+\ref{lem:spectral-polynomial-density} & \lean{finite_resolvent_numerator_ne_zero_at_pole}\par \lean{finite_diagonal_form_nonnegative_iff} & 核验有限对角型和残数不消去。多项式测试稠密、共轭成对以及核的混合导数见正文。\\[.25em]
+\ref{thm:xi-moment-readback} & \lean{spectral_localizing_forms_all}\par \lean{automorphic_square_halfline}\par \lean{weighted_gram_factorization}\par \lean{bernsteinFalling}\par \lean{bernsteinAverage}\par \lean{bernstein_falling_average} & 核验全称局部化双侧序、平方坐标半轴、有限 Gram 分解和二项平均的降阶乘恒等式。二项式判据的系数极限和实际算术的连续回读在正文。\\[.25em]
+\ref{thm:xi-single-positive-kernel} & \lean{weighted_gram_factorization}\par \lean{finite_resolvent_numerator_ne_zero_at_pole} & 核验有限 Gram 分解与极点代数。算术差商与同一局部化矩义务的等价在正文。\\[.25em]
+\ref{prop:xi-polynomial-sector} & \lean{xi_polynomial_sector_constants}\par \lean{spectral_localizing_forms} & 核验辐角常数及当前测试域的两条序关系。复对数直线积分与整个谱上的求和见正文。\\[.25em]
+\ref{lem:xi-origin-moment-bounds} & \lean{xi_origin_summation_bounds}\par \lean{xi_origin_moment_bounds} & 核验 Bernoulli 余项的有理常数和五项输入区间推出两项矩包围的线性比较。实际算术系数的复分析及区间构造见正文。\\[.25em]
+\ref{thm:xi-coefficient-cone} & \lean{xi_separated_pole_budgets}\par \lean{xi_shifted_coefficient_constants}\par \lean{xi_exterior_factor_constants}\par \lean{spectral_coefficient_margin} & 核验实单极点分离至模长 270、平移基的幂扰动和余谱质量比的有理常数。在线序有序交换环上证明混号测试的序比较。实际谱和式及范数余量见正文。\\[.25em]
+\ref{prop:xi-exterior-factor-positivity} & \lean{xi_exterior_factor_constants}\par \lean{xi_exterior_factor_phase} & 核验共同辐角余量的有理常数与两组有符号相位的序比较。实际算术谱展开、复对数积分和局部化矩余量见正文。\\[.25em]
+\ref{lem:xi-resolvent-shells} & \lean{xi_real_resolvent_constants} & 核验实际预解式的常数和两端质量预算的有理比较。Euler 与 Gamma 对数导数、半径和谱质量估计在正文。\\[.25em]
+\ref{thm:xi-bernstein-ranges} & \lean{xi_bernstein_low_exponent_constants}\par \lean{xi_bernstein_high_exponent_constants} & 核验靠近轴及远尺度的有理常数。由实际谱权推导的相位、主项和谱环带下界以及全体指数的两个已证区域在正文。\\[.25em]
+\ref{lem:xi-vertical-resolvent} & \lean{xi_reflected_resolvent_split}\par \lean{xi_vertical_resolvent_constants} & 核验反射极点的分式分解、Euler 绝对上端的有理比较及全部对数读数上的远段预算。实际解析预解式的定长谱质量在正文。\\[.25em]
+\ref{thm:xi-bernstein-quadratic} & \lean{xi_paired_phase_numerator}\par \lean{xi_bernstein_quadratic_constants} & 核验两相位的通分消去和二次指数域的正质量、全尾有理预算。实际谱权的相位与峰值比较由正文证明。\\[.25em]
+\ref{thm:xi-bernstein-ray-readback} & \lean{xi_ray_resolvent_factor}\par \lean{xi_ray_amplitude_gap}\par \lean{xi_ray_phase_chord} & 核验有理方向上底数与极点的幂因子分解、非实谱点的模长严格超额和相位平均的弦线比较。算术 Cauchy 读数、收敛半径及最终非负性的全域回读在正文。\\[.25em]
+\ref{cor:xi-ray-strip-envelope} & \lean{xi_ray_square_modulus}\par \lean{xi_ray_strip_budget}\par \lean{xi_ray_height_budgets}\par \lean{xi_ray_height_sides} & 核验平方谱模长恒等式、全方向半径的有理比较和高度偏差两侧的代数预算。解析极值、包络与实际谱点的严格超额区域在正文。\\[.25em]
+\ref{lem:grh-rank-one-base} & \lean{grand_riemann_rank_split}\par \lean{grand_riemann_rank_one_readback}\par \lean{zero_line_readback_along_shift} & 核验秩一与高秩的全秩拼接和保实坐标回读。正文给出阿代尔字符分解、Euler 平移及秩一纤维的量词覆盖。\\[.25em]
+\ref{thm:dirichlet-analytic-input} & \lean{dirichlet_gauss_rescale_vanish}\par \lean{reflected_zero_from_completed_equation} & 核验 Gauss 和置换后的域上消去及完备函数方程的反射传递。有限 Fourier 展开、Gaussian 输运、Mellin 回读和增长估计在正文。\\[.25em]
+\ref{thm:grh-square-spectrum} & \lean{automorphicSquareSpectrum}\par \lean{automorphic_square_halfline}\par \lean{finite_resolvent_common_denominator}\par \lean{finite_resolvent_numerator_ne_zero_at_pole} & 核验平方谱坐标和实半轴的精确回读，以及有限预解式的极点代数。对偶完备化、重数与整乘积在正文。\\[.25em]
+\ref{thm:grh-localized-moments} & \lean{spectral_upper_weight_numerator}\par \lean{automorphic_real_weight_sign}\par \lean{automorphic_kernel_difference}\par \lean{automorphic_square_halfline}\par \lean{spectral_localizing_forms} & 核验上端局部化权、差商通分及半轴坐标。实际输入的正性、稠密与算子完成的覆盖见正文。\\[.25em]
+\ref{thm:grh-family-readback} & \lean{grandRiemannGoal}\par \lean{grand_riemann_fiber_equivalence}\par \lean{grand_riemann_rank_split} & 核验逐纤维给定等价的秩域全称拼接。实际算术局部化矩义务在各纤维登记。\\[.25em]
+\ref{thm:prime-poisson-fiber} & \lean{primeFiberCoefficient}\par \lean{prime_fiber_cutoff}\par \lean{prime_fiber_coarsening} & 核验保留总次数的有限截短及关系纤维合并。Fourier 正交、PDE 与绝对收敛见正文。\\[.25em]
+\ref{prop:prime-additive-readback} & \lean{prime_finite_mass_positive_iff}\par \lean{trial_prime_correct} & 核验有限非负加权和的正性读回及素数判定。Abel 极限、奇异级数和加权渐近与普通计数的等价见正文。\\[.25em]
+\ref{prop:prime-uniform-certificates} & \lean{prime_phase_margin_readback}\par \lean{prime_dyadic_growth} & 核验目标相位余量的有理比较及统一尺度增量的求和下界。解析前提及读数范围随相应蕴含保留。\\[.25em]
+\ref{thm:prime-mellin-reuse} & \lean{prime_fiber_cutoff}\par \lean{prime_power_base_sound}\par \lean{prime_power_base_exact} & 核验有限总次数的截断与素数幂识别。模类平均、Mellin 积分、Euler 乘积及素数幂总误差界在正文推导。\\[.25em]
+\ref{thm:arithmetic-family-readback} & \lean{arithmetic_family_readback}\par \lean{twin_offsets_admissible}\par \lean{prime_tuple_implies_twins}\par \lean{grand_riemann_rank_split} & 核验五项证书合成、孪生偏移的可容许性、联合计数增长的见证提取及全秩证书拼接。Abel 渐近和秩一谱识别见正文。\\[.25em]
+\ref{lem:radial-curl-writeback} & \lean{curl_residual_writeback} & 梯度和旋度的右逆以显式前提传入。球域径向积分构造及其求导证明在正文。\\[.25em]
+\ref{lem:leray-heat-kernel} & \lean{leray_kernel_constant} & Leray 投影、Newton 核和热核的积分常数由正文直接构造。\\[.25em]
+\ref{thm:pde-rate-quotient} & \lean{Task.encode_exact}\par \lean{Task.quotient_differential_sufficient}\par \lean{observed_rate_telescope}\par \lean{curl_residual_writeback} & 核验后继交换、联合纤维回读、率累计与旋度回写。四个内核保留原量词。\\[.25em]
+\ref{thm:pde-operator-transport} & \lean{operator_transport_defect_comp}\par \lean{operator_transport_rate}\par \lean{operator_transport_pairing}\par \lean{Task.Exact.comp} & 在有类型的加法群上证明组合缺陷、与标量除法交换的差商、零缺陷的任意线性测试，以及任务保持的复合。范数累积与完备滤过见正文。\\[.25em]
+\ref{prop:pde-operator-charts} & \lean{finite_row_dual_transport}\par \lean{parabolic_ratio_chart}\par \lean{OrderedTailTree.eval_transport} & 核验粗细格配对、抛物换图及有序复合的协变。连续微分与空间权重见正文。\\[.25em]
+\ref{thm:flow-ordered-law-chart} & \lean{affine_chart_compose}\par \lean{parabolic_ratio_chart}\par \lean{affine_product_delta}\par \lean{Task.Exact.signature} & 核验有序仿射复合、周期运输、二次增量和作用词。流体反例、张量提升及对偶闭包在正文。\\[.25em]
+\ref{thm:typed-cross-lhts} & \lean{typed_transport_shared_difference}\par \lean{SectorStepCost}\par \lean{SectorStepCost.total}\par \lean{sector_path_cost_sum} & 核验共同测试的运输等式和四项成本的有限组合。各分型的合法域与证书回放见正文。\\[.25em]
+\ref{thm:supported-test-update} & \lean{reuseSupportedTest}\par \lean{reuseSupportedTest_correct}\par \lean{operator_transport_defect_comp}\par \lean{affine_product_delta} & 核验布尔相交、支持内读数保持和增量乘积。父子测试归纳与带缺陷的区间运输见正文。\\[.25em]
+\ref{prop:active-coordinate-quotient} & \lean{Task.active_coordinate_projection}\par \lean{Task.Exact.run}\par \lean{Task.Exact.signature} & 核验活跃坐标相等对直接读数、后继及任意动作词的保持。依赖闭包及组合数界见正文。\\[.25em]
+\ref{prop:certified-block-cost} & \lean{shared_verification_saves_weighted}\par \lean{sector_path_cost_sum} & 核验共用调用的费用分割和分项成本。整块通过、排除和回读由正文证明。\\[.25em]
+\ref{prop:finite-gate-priority} & \lean{gatedCost}\par \lean{gated_cost_minimizer} & 任意线序有序环上，若存在通过者，则任何分数最小者都通过门禁并在通过者中成本最小。\\[.25em]
+\ref{prop:g-l-path-pushforward} & \lean{finiteEndpointMass}\par \lean{finite_endpoint_pairing}\par \lean{finite_endpoint_gate_mass}\par \lean{finite_endpoint_mass_coarsen} & 在任意加法交换群上构造有限推前，证明测试配对、全质量通过门禁及逐商点的二次推前等式。\\[.25em]
+\ref{thm:g-finite-pde-hit} & \lean{finite_lattice_hit_iff}\par \lean{finite_lattice_hit_readback}\par \lean{gated_cost_minimizer}\par \lean{finite_endpoint_gate_mass} & 核验有限候选的通过性、门禁顺序及单位质量回读。原格点的初始合法性见正文。\\[.25em]
+\ref{thm:lhts-fractal-coverage} & \lean{lhtsPartialJacGap}\par \lean{lhtsPressure}\par \lean{lhts_partial_credit}\par \lean{lhts_component_chain}\par \lean{frame_projected_jacgap_descent}\par \lean{periodic_joint_radial_gate} & 核验分量差分、投影下降与流体联合余量。方向块的共同投影界在正文。\\[.25em]
+\ref{thm:finite-pde-optimal-path} & \lean{DirectedGraph.hitTable}\par \lean{DirectedGraph.finite_hit_sound}\par \lean{DirectedGraph.finite_hit_complete_and_minimal}\par \lean{DirectedGraph.finite_hit_global_minimal} & 核验预算内最优命中、删环后的全图步数界与最小自然数代价。下界剪枝由正文证明。\\[.25em]
+\ref{thm:constrained-task-hit} & \lean{LHTSFinite}\par \lean{LHTSFinite.prune}\par \lean{tphHit}\par \lean{DirectedGraph.resourceConstrainedHit}\par \lean{DirectedGraph.resourceTrace}\par \lean{DirectedGraph.constrained_hit_sound}\par \lean{DirectedGraph.constrained_hit_complete_and_minimal}\par \lean{DirectedGraph.full_resource_digits}\par \lean{DirectedGraph.spend_resources_sound}\par \lean{DirectedGraph.spend_resources_complete}\par \lean{Task.Exact.run} & 核验分型接口、下界剪枝、向量扣减、最优性与边回放。商图生成与复杂度在正文。\\[.25em]
+\ref{prop:task-prefix-dominance} & \lean{DirectedGraph.resourceTrace_dominates}\par \lean{DirectedGraph.spend_resources_sound} & 核验一步单调性下的整个后缀回放。向量序、终端门禁和前缀总代价的比较见正文。\\[.25em]
+\ref{thm:optimistic-certified-hit} & \lean{optimisticHit}\par \lean{verified_relaxed_minimum}\par \lean{DirectedGraph.constrained_hit_complete_and_minimal}\par \lean{block_gate_optimistic_example} & 可执行的待核验路径递推、保留图下界的最优性及不同到期门禁的有限算例。门禁表不变量和全流程证明在正文。\\[.25em]
+\ref{lem:ordered-quadratic-composite} & \lean{OrderedTailTree}\par \lean{OrderedTailTree.eval}\par \lean{OrderedTailTree.eval_transport}\par \lean{OrderedTailTree.eval_le}\par \lean{periodic_tree_radius} & 核验有序树评价的协变性、每棵树的范数上端及有理半径。树计数、绝对收敛与根分解在正文。\\[.25em]
+\ref{lem:flow-spatial-analyticity} & \lean{OrderedTailTree.eval_le}\par \lean{periodic_tree_radius} & 核验全纯短段复合所用的统一树范数与半径。复域热核、移动积分与唯一性在正文。\\[.25em]
+\ref{thm:flow-periodic-tail-correction} & \lean{profile_geometric_identity}\par \lean{parabolic_ratio_chart}\par \lean{periodic_seam_covariance} & 核验几何和、抛物标量变换及热传播与接缝的共轭。投影热积分、旋转等距性和精确接续在正文。\\[.25em]
+\ref{thm:flow-period-phase-box} & \lean{OrderedTailTree.eval_transport} & 有序作用的协变回放。共同网格、相位、周期与旋转参数的尾算子连续性在正文。\\[.25em]
+\ref{thm:flow-period-composite} & \lean{QuadraticTailLaw}\par \lean{QuadraticTailLaw.Legal}\par \lean{QuadraticTailLaw.eval_legal}\par \lean{periodic_tail_residual_identity}\par \lean{periodic_tree_radius}\par \lean{periodic_joint_radial_gate}\par \lean{periodic_chart_caps}\par \lean{periodic_sample_locked} & 核验复合法对象、树复合闭合、尾回读恒等式、半径、联合余量及样点保持。解析赋值与球面论证在正文。\\[.25em]
+\ref{prop:flow-period-phase-border} & \lean{periodic_phase_border_coordinates} & 共同核验周期列、旋转角列及相位向量的消去。参数导数、单位广义谱空间和旋转平均条件在正文。\\[.25em]
+\ref{lem:flow-periodic-spatial-tail} & \lean{profile_geometric_identity}\par \lean{parabolic_ratio_chart} & 核验几何和及空间时间换图。加权热积分、核导数与球壳空间提升在正文。\\[.25em]
+\ref{thm:flow-weighted-compactification} & \lean{parabolic_ratio_chart}\par \lean{periodic_sample_locked} & 核验抛物坐标运输及投影保留样点的代数条件。协变远场迹、加权卷积和整个双线性算子的紧性在正文。\\[.25em]
+\ref{lem:flow-phase-half-holder} & \lean{periodic_phase_half_order_budget}\par \lean{periodic_radial_heat_gap} & 核验相位核差的共同余量及径向换元后的热时间增量。加权核积分、径角空间模和节点数上端在正文。\\[.25em]
+\ref{prop:flow-rotated-compactification} & \lean{periodic_frame_readback}\par \lean{periodic_seam_covariance}\par \lean{periodic_sample_locked} & 核验旋转后评价点与场值的逆运输、接缝共轭和样点保持。临界权热估计、旋转角代表和全方程回读在正文。\\[.25em]
+\ref{cor:flow-uniform-finite-reduction} & \lean{OrderedTailTree.eval_le}\par \lean{periodic_tree_radius}\par \lean{periodic_finite_reduction_readback}\par \lean{periodic_finite_test_preserved}\par \lean{periodic_tail_defect_bound}\par \lean{periodic_joint_radial_gate} & 核验共同尾半径、有限秩约化的精确残差、线性读数保持、参考缺陷及球面余量的比较。实范数估计见正文。\\[.25em]
+\ref{prop:flow-periodic-hardy-amplitude} & \lean{periodic_enstrophy_ratio_gate}\par \lean{periodic_projected_quadratic} & 核验通用与反射协变振幅阈值的有理平方分解和有限残差投影。涡量恒等式、径向 Hardy 界、角向相消与凹函数积分在正文。\\[.25em]
+\ref{thm:flow-gaussian-period} & \lean{gaussian_period_square_balance}\par \lean{gaussian_period_energy_gate} & 核验高斯配对的平方完成与峰值、含接缝的残差功和压力配对的有理比较。变换、分部积分与反号运输由正文证明。\\[.25em]
+\ref{thm:flow-relative-period-energy} & \lean{periodic_trace_energy_readback} & 核验缩放接缝的能量差与正分母比较。旋转保持的相对能量、终端迹锐化和截面耗散下端在正文。\\[.25em]
+\ref{thm:flow-trace-tensor-expansion} & \lean{periodic_trace_tensor_radial}\par \lean{periodic_trace_tensor_off_diagonal}\par \lean{periodic_trace_rotation_norm}\par \lean{periodic_trace_rotation_minimax} & 核验牛顿核径向系数、非对角读数、旋转分量的范数因子和最坏增益的最优角。时空余项与旋转接缝的张量积分在正文。\\[.25em]
+\ref{cor:flow-trace-three-radii} & \lean{periodic_trace_three_radii} & 核验三半径经旋转接缝运输后的低阶消去与剩余算子多项式的因子分解。张量回读和参数块的误差比较在正文。\\[.25em]
+\ref{prop:flow-gaussian-reference} & \lean{gaussian_reference_amplitude_read}\par \lean{gaussian_period_square_balance} & 核验幅度读数的根与两面因子，以及第二高斯等式的平方完成。显式场、压头生成修正和热残差的线性读回在正文。\\[.25em]
+\ref{prop:flow-reference-second-harmonic} & \lean{periodic_second_harmonic_cosine}\par \lean{poloidal_harmonic_product_coefficients} & 核验二次余弦幅度与倍次球面系数。最高角向非零、压力的分离方程和有界残差读数在正文。\\[.25em]
+\ref{lem:flow-stationary-zero} & \lean{periodic_head_pressure_cancel}\par \lean{periodic_head_barrier_budget} & 核验含残差的压头相消及球内外的严格余量。径向屏障、从速度峰值读取旋度和平均残差上端在正文。\\[.25em]
+\ref{lem:flow-periodic-adjoint-inverse} & \lean{pressure_outer_weight_ratio}\par \lean{pressure_inner_weight_ratio} & 核验两区加权收缩率的代数比较。高斯桥共同质量、伴随逆和有限窗误差在正文。\\[.25em]
+\ref{thm:flow-periodic-pressure-transport} & \lean{periodic_head_pressure_cancel}\par \lean{periodic_diffusion_ball_reach}\par \lean{periodic_pressure_cell_floor} & 核验含实际残差的压头相消、共同球界和涡量球柱下端。压力标量的解析配对见正文。\\[.25em]
+\ref{prop:flow-periodic-pressure-scalar} & \lean{periodic_pressure_scalar_readback} & 核验扰动后正因子及零点等价。参考场的旋度方向、相似热提升和商方程读回见正文。\\[.25em]
+\ref{thm:flow-periodic-pressure-phase-readback} & \lean{periodic_pressure_phase_balance}\par \lean{periodic_pressure_phase_projection}\par \lean{periodic_pressure_phase_interval_budget} & 核验压力时间导数的相消、逐相位投影的左逆与幂等，以及区间误差预算。伴随转移、连续模和整周期的解析回读见正文。\\[.25em]
+\ref{prop:flow-axisymmetric-exclusion} & \lean{periodic_swirl_barrier_positive} & 核验角动量屏障的两区严格正性。柱坐标方程、五维延拓、极值论证与旋转方向的独立性见正文。\\[.25em]
+\ref{prop:flow-short-similarity-period} & \lean{periodic_gaussian_moment_caps}\par \lean{periodic_rotating_frame_period}\par \lean{periodic_rotation_gap_budget}\par \lean{periodic_fluctuation_absorbs} & 核验旋转图接缝消去、高斯矩上端、对数角差预算到平方根预算的代数传递及波动吸收。积分估计与定常回读在正文。\\[.25em]
+\ref{prop:flow-rotating-stabilizer} & \lean{periodic_rotation_generator_difference}\par \lean{periodic_quarter_turn_difference} & 核验旋度消去压强后的生成元之差及四分之一转的横向平方模。调和消去、连续旋转排除、有限循环群和最小周期在正文。\\[.25em]
+\ref{cor:flow-short-rotation-bands} & \lean{periodic_rotation_gap_budget}\par \lean{periodic_fluctuation_absorbs} & 复用角差预算和严格吸收。有限有理角覆盖、多项式周期窗、按实际对称阶约束角速度与剖面反向运输在正文。\\[.25em]
+\ref{lem:flow-phase-fourier-tail} & \lean{periodic_bilinear_mode_transfer}\par \lean{periodic_phase_weight_mul}\par \lean{periodic_parameter_interpolation} & 核验单频协变、指数权和两项参数余量的插值。共同 Fourier 尾、预留相位权后的周期可微性与热矩在正文。\\[.25em]
+\ref{prop:flow-low-harmonic-gauge} & \lean{periodic_centered_residual}\par \lean{periodic_phase_gap_bound}\par \lean{periodic_low_harmonic_lower} & 核验有序混合项消均值后的残差恒等式、波动预算与低频半量比较。远场迹取样、Newton 涡量读数、雷诺应力与有限相位覆盖在正文。\\[.25em]
+\ref{thm:flow-equivariant-phase-reduction} & \lean{periodic_projection_tail_split}\par \lean{periodic_projection_budget_split}\par \lean{periodic_weighted_phase_gate}\par \lean{periodic_finite_test_preserved}\par \lean{periodic_finite_reduction_readback}\par \lean{periodic_joint_radial_gate} & 核验双投影尾的拆分及误差分配、收缩半径门禁、有限读数的回读与球面余量比较。径角网的秩上端、指数频率尾和球冠覆盖误差在正文。\\[.25em]
+\ref{thm:flow-period-local-certificate} & \lean{periodic_center_inverse_budget}\par \lean{periodic_tail_defect_bound}\par \lean{periodic_center_mixed_budget} & 核验有限逆与尾耦合的预算、逆缺陷的余量及周期与速度的混合项极值。中心热列、Banach 空间逆和定点回读在正文。\\[.25em]
+\ref{thm:flow-reduced-jacobian} & \lean{periodic_finite_test_preserved}\par \lean{periodic_finite_reduction_readback}\par \lean{periodic_tail_defect_bound}\par \lean{periodic_reduced_radius_gate} & 核验精确尾变分的投影消去、尾缺陷包围及收缩半径的判别式。热参数可微、有限雅可比误差与局部存在唯一性在正文。\\[.25em]
+\ref{thm:flow-normalized-shape} & \lean{periodic_shape_diagonal_readback}\par \lean{periodic_shape_amplitude}\par \lean{periodic_shape_denominator}\par \lean{periodic_tree_radius}\par \lean{periodic_joint_radial_gate} & 核验归一化后二次响应的有限与尾分量拼合、振幅正性和相消、原根的分母余量及共同树半径。三角线性逆、全环带覆盖和有限形状球面证书在正文。\\[.25em]
+\ref{prop:flow-even-shape-sphere} & \lean{periodic_shape_tree_gate}\par \lean{periodic_even_paired_degree}\par \lean{periodic_even_shape_coarse_constants}\par \lean{periodic_shape_diagonal_readback}\par \lean{periodic_shape_amplitude} & 核验树判别式的有理比较、正则原像成对后的带符号计数、统一范数常数、尾与有限形状拼合及振幅相消。振幅区间的有序树合成和内外球面度在正文。\\[.25em]
+\ref{cor:flow-shape-radius-capacity} & \lean{periodic_tail_budget_difference}\par \lean{periodic_tail_gate_slack}\par \lean{periodic_tail_cubic_scale} & 核验球面尾预算的平方因子、最优半径的收缩余量与三次必要预算的系数相消。全部半径分支和可取值在正文。\\[.25em]
+\ref{prop:flow-reference-two-mode} & \lean{periodic_bilinear_mode_transfer}\par \lean{periodic_read_projection}\par \lean{periodic_two_mode_resultant}\par \lean{periodic_two_mode_common_zero_iff} & 核验频率相加、保读投影、消元恒等式和两条二次零线上的非退化判据。实际有限像及球面显式下端在正文。\\[.25em]
+\ref{cor:flow-reference-mode-lift} & \lean{periodic_lifted_mode_separation}\par \lean{periodic_readout_calibration}\par \lean{periodic_calibrated_resultant}\par \lean{periodic_read_projection}\par \lean{periodic_two_mode_common_zero_iff} & 核验二、五次时间模的配对分离、线性读数校准、结式的正下端及保读回写。实际十次热读数、投影范数和尾部等式在正文。\\[.25em]
+\ref{cor:flow-lift-amplitude-window} & \lean{periodic_lifted_cross_modes}\par \lean{periodic_lift_calibration_scale}\par \lean{periodic_tail_cubic_scale} & 核验二、五次混合频率、校准产生的平方倒数放大与全尾预算的代数系数。实际投影及写入幅度的双端排除由正文证明。\\[.25em]
+\ref{thm:flow-calibrated-block-norms} & \lean{periodic_unit_shape_budget}\par \lean{periodic_high_mixed_frequency}\par \lean{periodic_mode_cancellation_gap}\par \lean{periodic_weighted_block_bound} & 核验球面二次权之和、十五次混合频率截断、高输入抵消时的指数权差及分块预算的最大值合并。实际热积分、空间节点误差和精确分块上端在正文。\\[.25em]
+\ref{thm:flow-temporal-closure} & \lean{periodic_bilinear_mode_transfer}\par \lean{periodic_high_harmonic_balance}\par \lean{OrderedTailTree.eval_grade}\par \lean{periodic_tree_radius}\par \lean{profile_geometric_identity} & 核验频率相加、高阶方程回读、树分级与偶叶余量的几何求和。复频率热积分、有限行列式、均值归一化及参考场修正在正文。\\[.25em]
+\ref{thm:flow-low-spatial-reduction} & \lean{periodic_mean_read_preserved}\par \lean{periodic_tail_defect_bound}\par \lean{periodic_tree_radius}\par \lean{periodic_shape_diagonal_readback}\par \lean{periodic_joint_radial_gate} & 核验保持均值读数的投影修正、线性逆余量、复合半径、全残差回读与有限球面比较。双尾线性预处理和一份共同误差预算在正文。\\[.25em]
+\ref{thm:flow-mean-reynolds-rows} & \lean{periodic_centered_residual}\par \lean{periodic_mean_feedback_readback}\par \lean{periodic_joint_radial_gate} & 核验均值的频率约消、反馈右逆的精确读数和球面余量比较。局部无散度波包、反馈列凸包、非零均值读数的选择及时空尾闭合在正文。\\[.25em]
+\ref{thm:flow-joint-low-feedback} & \lean{periodic_separated_feedback_readback}\par \lean{OrderedTailTree.eval_grade}\par \lean{periodic_first_harmonic_gap}\par \lean{periodic_joint_radial_gate} & 核验两组读数的分离回读、相位分级、一阶残差的反向比较及球面余量。局部动量测试的对角响应、时空闭合、五次余项和非共振条件在正文。\\[.25em]
+\ref{prop:flow-rotation-defect} & \lean{periodic_rational_rotation_no_return}\par \lean{periodic_finite_test_preserved} & 核验有理旋转的模五证书与成对读数的有限回读。旋转圆的稠密性、共同余量和网格覆盖见正文。\\[.25em]
+\ref{lem:flow-period-controlled-inverse} & \lean{profile_geometric_identity}\par \lean{affine_chart_compose} & 核验几何和及相位块末的仿射运输。旋转后的谱分解、Green 算子与控制最小性见正文。\\[.25em]
+\ref{thm:flow-period-pulse-readback} & \lean{flow_mother_readback}\par \lean{period_pulse_contraction_gate}\par \lean{scaled_peak_lower} & 核验合法性、完整周期和非零性在同一个母体解上成立时如何回读全部正黏性的经典存在式，并核验脉冲半径及峰值下端。周期到原流体命题的连续推导在正文。\\[.25em]
+\ref{prop:flow-cubic-harmonic-basis} & \lean{harmonic_projection_coeff_cancel} & 核验有限调和投影的系数相消。角向分解、不变多项式和商基在正文。\\[.25em]
+\ref{prop:flow-cubic-poloidal-gate} & \lean{harmonic_projection_coeff_cancel}\par \lean{cubic_harmonic_indices_complete}\par \lean{poloidal_harmonic_product_coefficients}\par \lean{cubic_poloidal_residual_polynomial} & 核验调和系数、极向次数枚举和高斯族的径向多项式。球面旋度投影、空间端点排除及行列式协变下的最低环向次数在正文。\\[.25em]
+\ref{thm:flow-inversion-finite-angular-band} & \lean{poloidal_harmonic_product_coefficients}\par \lean{toroidal_harmonic_top_coefficient}\par \lean{even_harmonic_root_order_preserved} & 核验极向及环向最高次的系数，以及偶数角次的根重数保持。球面弱投影、复二次锥与径向端点分析在正文。\\[.25em]
+\ref{prop:kinetic-prepared-activity} & \lean{kinetic_occupancy_pair_bound}\par \lean{kinetic_power_gate} & 核验从有序二项计数下移到占位指标的比较和放大后的幂指数条件。非负制备、巨正则插入公式及渐近亏损在正文。\\[.25em]
+\ref{lem:kinetic-maxwell-invariance} & \lean{kinetic_elastic_pair_balance} & 核验提供平衡密度不变性的碰撞动量与动能恒等式。保测可逆相流、零测异常轨道以及条件速度乘积在正文。\\[.25em]
+\ref{prop:kinetic-centered-tail} & \lean{kinetic_entropy_law_readback}\par \lean{kinetic_entropy_hellinger_bound} & 核验法态保持熵和粒子数时全时预算的传递及一粒子回读，以及熵控制密度平方根差的有理代数。实际熵守恒、凸性投影和连续速度尾在正文。\\[.25em]
+\ref{prop:kinetic-contact-flux} & \lean{kinetic_elastic_pair_balance} & 核验等质量弹性反射的动量与平方速度和。积分复合、接触标签系数以及给定入射接触配对收敛时的玻尔兹曼弱式回读见正文。\\[.25em]
+\ref{prop:kinetic-equilibrium-joint} & \lean{kinetic_elastic_pair_balance}\par \lean{kinetic_equilibrium_mass_budget}\par \lean{kinetic_power_gate} & 核验平衡碰撞的守恒、插入与截断的乘积预算和幂指数门槛。相流平衡分布、Gaussian 尾及全时极限在正文。\\[.25em]
+\ref{thm:kinetic-total-comparison} & \lean{kineticTotalDifferential}\par \lean{kinetic_total_square_identity}\par \lean{kinetic_total_closure_iff}\par \lean{TwoStep.ChainMap.homology} & 核验总微分平方的比较缺陷、同伦消去等价和链回读。移位分次、完成与观察像的连续性见正文。\\[.25em]
+\ref{prop:kinetic-nsf-moment-closure} & \lean{kinetic_elastic_pair_balance}\par \lean{kinetic_boussinesq_energy_readback} & 核验线性化所用的弹性平衡与 Boussinesq 热惯性因子。碰撞平方型、逆证书及输运系数的解析计算见正文。\\[.25em]
+\ref{thm:kinetic-joint-budget} & \lean{kinetic_scaled_error_budget}\par \lean{kinetic_centered_moment_budget}\par \lean{kinetic_power_gate} & 核验加权预算、两级未加权误差的一粒子矩合成，以及去掉观测截断损失后的指数比较。中心化尾和全时极限的解析证明见正文。\\[.25em]
+\ref{prop:kinetic-force-readback} & \lean{kinetic_elastic_pair_balance}\par \lean{kinetic_force_scale_readback} & 核验碰撞动量消去与外场缩放的标量读数。速度分部积分、密度收敛和带力传播混沌见正文。\\[.25em]
+\ref{prop:lattice-ns-flux} & \lean{prime_fiber_coarsening}\par \lean{lattice_triad_conjugate_cancel} & 核验整数和关系的有限纤维合并与三元组的共轭符号相消。不可压缩方向、能量式和分块范数上端见正文。\\[.25em]
+\ref{prop:lattice-collision-angles} & \lean{lattice_center_relative_energy}\par \lean{lattice_parity_reconstruct}\par \lean{kinetic_elastic_pair_balance} & 核验质心、相对速度的能量与同余重构以及碰撞守恒。球面通量变换和方向差异上端见正文。\\[.25em]
+\ref{prop:lattice-collision-divisible} & \lean{lattice_divisible_collision_shell}\par \lean{kinetic_power_gate} & 核验模四读数迫使三坐标同时为偶及尺度指数门禁。六轴方向、加权 Gaussian 尾和稳定性输入见正文。\\[.25em]
+\ref{lem:zeta-rational-polygon} & \lean{RationalComplex.rounded_coordinate_error}\par \lean{RationalComplex.segment_coordinate_above}\par \lean{RationalComplex.ContourError.margin}\par \lean{RationalComplex.edge_qualification_sound}\par \lean{RationalComplex.contourGap}\par \lean{RationalComplex.contour_gap_sum}\par \lean{RationalComplex.contour_mesh_component}\par \lean{RationalComplex.contour_separated_iff} & 有限核验。核验舍入、弦段分离和有理门禁。复指数误差、截断、二阶插值与同伦在正文。\\[.25em]
+\ref{thm:dyadic-contour-optimal} & \lean{RationalComplex.dyadicContour}\par \lean{RationalComplex.dyadic_contour_sound}\par \lean{RationalComplex.DyadicContourPath.optimal}\par \lean{RationalComplex.crossing_reverse}\par \lean{RationalComplex.crossing_coordinate} & 有限核验。核验二分图最少弦数、过轴公式和有向切线换向。复用计数、任意有限高度的可签发条件及解析读回见正文。\\[.25em]
+\ref{lem:critical-line-phase} & \lean{RationalComplex.phase_pi_caps}\par \lean{atanhLogBounds} & 有限核验。核验圆周率的短交错展开与对数区间。Gamma 有限积、梯形余项和相位公式见正文。\\[.25em]
+\ref{thm:critical-line-count-signs} & \lean{RationalComplex.zetaCriticalIndex}\par \lean{RationalComplex.zetaCriticalSignTests}\par \lean{RationalComplex.critical_dot_upper_bound}\par \lean{RationalComplex.crossing_coordinate} & 有限核验。核验水平切线的有理相位整数、过轴和临界线负点积。全带辐角原理与变号重数饱和见正文。\\[.25em]
+\ref{thm:zeta-certified-windows} & \lean{RationalComplex.zetaBands}\par \lean{unique_zero_fixed_under_reflection} & 有限核验。七十四个绕数及共享求值次数可执行复算。实际零点及其重数的反射回读在正文。\\[.25em]
+\ref{prop:critical-line-coverage} & \lean{RationalComplex.criticalLineBatches}\par \lean{RationalComplex.critical_line_batch_sizes}\par \lean{RationalComplex.zetaCriticalIndex}\par \lean{RationalComplex.zetaCriticalSignTests} & 有限核验。六带的有理输入及七条水平切线可复算。坐标区间容量、总重数和实际通过数共同签发覆盖。\\[.25em]
+\ref{thm:dyadic-log-enclosure} & \lean{atanhLogBounds}\par \lean{atanh_log_term_bounds}\par \lean{atanhLogSequence}\par \lean{dyadic_mantissa_bounds}\par \lean{naturalLogSequence} & 有限核验。从有理输入计算实际端点，证明嵌套、宽度趋零及整数二进制归约。与实对数的等同由正文积分证明。\\[.25em]
+\ref{prop:mangoldt-enclosure} & \lean{trial_prime_correct}\par \lean{prime_power_base_sound}\par \lean{prime_power_base_unique}\par \lean{prime_power_base_exact}\par \lean{mangoldtLogSequence} & 有限核验。素数幂判定、基底唯一性和端点生成均直接核验。实际 von Mangoldt 权重的实值读回使用对数包围定理。\\[.25em]
+\end{longtable}
+\normalsize
+
+\clearpage
+\phantomsection
+\addcontentsline{toc}{section}{参考文献}
+\begingroup\small
+\begin{thebibliography}{9}
+\raggedright
+\setlength{\itemsep}{0pt}
+\bibitem{GPure} Gao, Z. (2025). \emph{Meta-Mathematical Theory based on Pan-Logic Analysis and Pan-Iterative Analysis (GaoZheng G-Framework) and the Principal-Bundle-Based Generalized Noncommutative Lie Algebra (GaoZheng G-Algebra): An Integrated Construction}.
+\newblock Zenodo，v1.0。DOI：\url{https://doi.org/10.5281/zenodo.17651584}。
+
+\bibitem{GAppI} Gao, Z. (2025). \emph{GaoZheng G-Framework and GaoZheng G-Algebra: Applied Mathematics Volume I --- Law-Space Geometry, GRL, Quantum Computing, and Superconductivity}.
+\newblock Zenodo，v1.2。DOI：\url{https://doi.org/10.5281/zenodo.17686133}。
+
+\bibitem{GAppII} Gao, Z. (2025). \emph{GaoZheng G-Framework and GaoZheng G-Algebra: Applied Mathematics Volume II -- LBOPB, Life-Science Monoids, and Generative Precision Medicine}.
+\newblock Zenodo，v1.1。DOI：\url{https://doi.org/10.5281/zenodo.17744672}。
+
+\bibitem{GAppIII} Gao, Z. (2025). \emph{GaoZheng G-Framework and GaoZheng G-Algebra: Applied Mathematics Volume III -- HACA, PACER, and Certificate-Based AI}.
+\newblock Zenodo，v1.0。DOI：\url{https://doi.org/10.5281/zenodo.17762295}。
+
+\bibitem{GNotes} Gao, Z. (2026). \emph{Meta-Mathematical Theory based on Pan-Logic Analysis and Pan-Iterative Analysis (GaoZheng G-Framework) and the Principal-Bundle-Based Generalized Noncommutative Lie Algebra (GaoZheng G-Algebra) 中文工作笔记}.
+\newblock Zenodo，v5.2。DOI：\url{https://doi.org/10.5281/zenodo.22739417}。
+
+\bibitem{GUnified} Gao, Z. (2026). \emph{Meta-Mathematical Theory based on Pan-Logic Analysis and Pan-Iterative Analysis (GaoZheng G-Framework) and the Principal-Bundle-Based Generalized Noncommutative Lie Algebra (GaoZheng G-Algebra) 统一数学结构、计算范式与异构演化治理:任务保持、同伦修复及率---商统一}.
+\newblock Zenodo，v1.1。DOI：\url{https://doi.org/10.5281/zenodo.24175031}。
+\end{thebibliography}
+\endgroup

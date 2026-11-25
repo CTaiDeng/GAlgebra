@@ -1,0 +1,114 @@
+\section{法空间证明链与回读验收}
+\label{sec:proof-guide}
+
+\subsection{共同证明链}
+
+\[
+ \boxed{\begin{gathered}
+ \text{固定原命题、实际输入和完整量词}
+       \ \longrightarrow\ \text{保结构上卷到 G 母体}\\
+ \longrightarrow\ \text{分型内核直接求解}
+       \ \longrightarrow\ \text{纤维丛协变与多复合反身统一闭合}\\
+ \longrightarrow\ \text{法空间回读经典推导}.
+ \end{gathered}}
+\]
+固定分型 \(\sigma\) 和法对象
+\(\mathfrak X_G=(X,L,\Phi,\mathsf{Coh},\mathsf{Adm},o,\mathsf{Cert})\)。
+对原命题量化的输入 \(i\in\mathcal I_\sigma\)，
+母体保留初值、定义域、参数、许可作用域以及结论 \(P_\sigma(i)\)。
+记 \(M_\sigma(i)\) 为该内核的母体命题。其证据包含方程及正则性、
+实际输入和保留条件、原量词所需的全域覆盖或极限条件。
+
+\begin{remark}[协变运输与多复合反身]
+同一法对象保存输入、合法域、有序作用与回读证据 \cite{GUnified}。
+定理~\ref{thm:pde-operator-transport} 在纤维总算子丛上运输残差及证书，
+并用复合式包围有缺陷的运输。多复合反身使合法复合的输出仍在同一作用纤维中。
+对同一结果的精确限制，\(\pi_{m,n}c_m=c_n\)（\(m\ge n\)）保持已有读数。
+对近似限制，完成空间上的统一主控与闭性保证方程及读数传到极限。
+算术正算子的复合由定理~\ref{thm:spectral-positive-operator} 读取，
+整周期有序树全和的反身闭合由定理~\ref{thm:flow-period-composite} 给出。
+\end{remark}
+
+验收登记实际已证的双向等价 \(M_\sigma(i)\Longleftrightarrow P_\sigma(i)\)、
+充分回读 \(D_\sigma(i):M_\sigma(i)\Longrightarrow P_\sigma(i)\) 或精确读数。
+母体命题已证时，在原输入域按定理~\ref{thm:pde-rate-quotient} 回读
+\[
+ \boxed{\frac{\pi_\sigma(i):M_\sigma(i)
+       \qquad D_\sigma(i):M_\sigma(i)\Longrightarrow P_\sigma(i)}
+      {D_\sigma(i)(\pi_\sigma(i)):P_\sigma(i)}}
+ \qquad (i\in\mathcal I_\sigma).
+\]
+该推导保留原假设、定义域和完整量词，原命题在同一回读处证毕。
+给定回读前提的定理按其蕴含方向验收。原命题要求存在性时，
+交付这条推导所得的存在性结论。原命题要求显式构造时，构造随同一回读交付。
+
+\subsection{分型回读的定理与覆盖域}
+
+\begin{description}
+\item[谱型。]
+定义~\ref{def:goals} 登记实际 \(\xi\) 所生成的全称矩条件 \(\mathsf E_\zeta\)。
+定理~\ref{thm:xi-moment-readback} 经正自伴算子和同源预解式给出
+该条件与全部非平凡零点位于临界线的双向等价。
+定理~\ref{thm:grh-localized-moments} 与定理~\ref{thm:grh-family-readback}
+给出相应的 Dirichlet 纤维及全秩回读，保留各秩的解析输入和零点量词。
+
+\item[加性数论。]
+定理~\ref{thm:prime-poisson-fiber} 给出素数权重的精确投影。
+命题~\ref{prop:prime-additive-readback} 在定义~\ref{def:arithmetic-family}
+各自量词下给出和频正性、Abel 发散、固定偏移组渐近及平方区间正性的双向回读。
+定理~\ref{thm:arithmetic-family-readback} 合成原分型及继承关系。
+
+\item[带外力流体。]
+定理~\ref{thm:flow-period-composite} 在所列假设下统一闭合整周期尾方程。
+定理~\ref{thm:flow-period-pulse-readback} 以定义~\ref{def:goals} 的
+\(\mathsf E_{\rm per}\) 为前提，回读零初值、光滑紧支外力、有界动能与有限时爆破。
+原黏性量词由同一回读的缩放给出。
+
+\item[动理学与流体极限。]
+命题~\ref{prop:kinetic-contact-flux} 给出固定硬球参数的精确接触通量，
+并在接触配对及弱式收敛的假设下回读玻尔兹曼碰撞项。
+命题~\ref{prop:kinetic-nsf-moment-closure} 与定理~\ref{thm:kinetic-joint-budget}
+保留共同时间窗上的展开、碰撞逆和放大误差前提，给出应力、热通量及归一化矩的回读。
+命题~\ref{prop:kinetic-equilibrium-joint} 给出全局 Maxwell 平衡纤维的实际极限。
+大数据玻尔兹曼和周期无外力 Navier--Stokes 的回读采用
+第~\ref{sec:kinetic-limit} 节的有限端点条件延拓，输入见定义~\ref{def:kinetic-fluid-obligations}。
+\end{description}
+
+\subsection{已给定有限证书的核验}
+
+法空间按全部未来动作的许可、观测、资源和费用读数形成任务商
+\(q_\sigma:X_\sigma\to Q_\sigma\)，见定理~\ref{thm:task}。
+设 \(e_\sigma(x)\) 保存下卷所需证据，\(r_\sigma(x)\) 为合法代表的读数。
+回读在联合像上良定义等价于
+\[
+ q_\sigma(x)=q_\sigma(y),\quad e_\sigma(x)=e_\sigma(y)
+         \quad\Longrightarrow\quad r_\sigma(x)=r_\sigma(y).
+\]
+纤维内相等使回读值可从任一合法代表唯一读取，反向由同一回读函数给出。
+定理~\ref{thm:constrained-task-hit} 在给定有限任务和资源约束下
+保留动作、预算及回放代价。附录~\ref{sec:g-internal-basis}
+给出该类证书的支持因子化、有限路径读数及成本核验。
+这些结论按有限任务本身的覆盖域登记。
+
+\begin{theorem}[预算内的最强等级及其最低代价]\label{thm:strongest-proof}
+固定同一分型和假设、候选覆盖、步数上限 \(J\) 及资源向量 \(\mathbf r\)。
+给出有限结论等级 \(0,\ldots,m\)，每个等级的目标谓词 \(\tau_k\) 由证书核验，
+并在同一假设下满足 \(\tau_{k+1}\Rightarrow\tau_k\)，其蕴含通过同一证书或合法的证书截短回读。
+设每次试探准确判定该等级的可达性，
+可达时返回按定理~\ref{thm:constrained-task-hit} 获得的最小代价路径。
+若等级 \(0\) 可达，则可用至多 \(1+\lceil\log_2(m+1)\rceil\) 次试探取得
+\[
+\boxed{\begin{gathered}
+ k_*=\max\{k\le m:\tau_k\text{ 在预算内可达}\},\\
+ c_*=\min_{\gamma\text{ 在预算内证明 }\tau_{k_*}} c(\gamma).
+\end{gathered}}
+\]
+\end{theorem}
+\begin{proof}
+用同一合法路径，或保持合法与预算的截短路径，读回每个较弱等级。所以较弱等级一旦判无命中，较强等级全部无命中。
+先试探 \(0\)，得到低端的真实路径。在 \(m+1\) 放置不可登记的高端哨兵。
+对距离大于一的两个端点试探整数中点。命中时以中点和返回路径替换低端，失败时以中点替换高端。
+归纳保持低端可达且其路径最便宜，以及高端起各有效等级均不可达。每步把端点距离缩到至多原距离的一半向上取整。
+两端相邻时低端即最大可达等级，该次试探所保留的最优路径给出 \(c_*\)。
+若 \(0\) 无命中，等级单调性给出全部无命中。
+\end{proof}

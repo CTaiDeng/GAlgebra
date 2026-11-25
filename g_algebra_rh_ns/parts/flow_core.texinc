@@ -1,0 +1,69 @@
+\subsection{旋度残差的回写}
+
+\begin{lemma}[球域上旋度与梯度的显式回写]\label{lem:radial-curl-writeback}
+在以原点为心的开球内，定义
+\[
+ (K g)(x)=-\int_0^1 s\, x\times g(sx)\,ds,\qquad
+ (J h)(x)=\int_0^1 x\cdot h(sx)\,ds .
+\]
+对光滑 \(g,h\)，两者均光滑，且在光滑依赖额外参数时保持这种依赖。
+若 \(\nabla\cdot g=0\)，则 \(\nabla\times K g=g\)。
+若 \(\nabla\times h=0\)，则 \(\nabla J h=h\)。
+\end{lemma}
+\begin{proof}
+径向线段在开球中。各积分对紧参数集和紧空间子集中的自变量可任意次求导。
+把旋度的三个分量按乘积法则展开，对 \(G(x)=g(sx)\) 有
+\[
+ \nabla_x\times(x\times G)=x\operatorname{div}_x G-2G-(x\cdot\nabla_x)G .
+\]
+若 \(\nabla\cdot g=0\)，第一项为零，其余乘以 \(-s\) 后恰为 \(\frac{d}{ds}(s^2g(sx))\)。
+积分给出上端值 \(g(x)\)，下端值为零。
+对梯度一式，\(\partial_i h_j=\partial_j h_i\) 给出
+\[
+ \partial_i(x\cdot h(sx))
+   =h_i(sx)+s\sum_j x_j(\partial_j h_i)(sx)
+   =\frac{d}{ds}\bigl(s h_i(sx)\bigr).
+\]
+再积分即得 \(\partial_i J h=h_i\)。
+\end{proof}
+
+\begin{lemma}[Leray 投影散度的热核上端]\label{lem:leray-heat-kernel}
+记 \((\operatorname{div}T)_i=\sum_j\partial_jT_{ij}\)，
+\(\mathcal P A=A+\nabla\mathcal N*(\nabla\cdot A)\)。
+则 \(H_s\mathcal P\operatorname{div}\) 在张量上有卷积核，
+\(H_s=e^{\nu s\Delta}\)，其 \(L^1\) 上端可取 \(12/\sqrt{\nu s}\)。
+\end{lemma}
+\begin{proof}
+取三维热核 \(\Gamma_\tau(x)=(4\pi\tau)^{-3/2}e^{-|x|^2/(4\tau)}\)。
+对 \(x\ne0\) 作代换 \(s=|x|/(2\sqrt\tau)\)，得到
+\(\mathcal N(x)=\int_0^\infty\Gamma_\tau(x)\,d\tau=(4\pi|x|)^{-1}\)。
+对光滑紧支测试 \(\psi\)，先在有限时间区间积分
+\(\int\Gamma_\tau\Delta\psi=\partial_\tau(\Gamma_\tau*\psi)(0)\)。
+接近零时，左侧绝对值由 \(\|\Delta\psi\|_\infty\) 控制。大时间时由
+\((4\pi\tau)^{-3/2}\|\Delta\psi\|_1\) 控制。取两端极限，得到
+\(-\Delta\mathcal N=\delta_0\)。
+在张量作用上令 \(\mathcal P A=A+\nabla\mathcal N*(\nabla\cdot A)\)。
+由 \(-\Delta\mathcal N=\delta_0\)，该投影的输出无散度。
+光滑紧支张量上的积分公式按分布解释，移导后的可积核可直接作用于有界连续张量。
+
+热核的卷积恒等式由高斯完成平方得到，故
+\(\Gamma_\tau*\mathcal N=\int_\tau^\infty\Gamma_s\,ds\)。
+在 \(\tau=1\) 时直接求导得
+\(\|\nabla\Gamma_1(x)\|=(|x|/2)\Gamma_1(x)\) 及
+\[
+ \|\nabla^3\Gamma_1(x)\|
+ \le\left(\frac{3\sqrt3}{4}|x|+\frac{|x|^3}{8}\right)\Gamma_1(x).
+\]
+后式来自三项 \(\delta_{ij}x_\ell/4\) 及一项 \(-x_i x_j x_\ell/8\)，在张量范数下各 \(\delta_{ij}x_\ell\) 的模为 \(\sqrt3|x|\)。
+极坐标积分给出 \(\int |x|\Gamma_1=4/\sqrt\pi\)、\(\int |x|^3\Gamma_1=32/\sqrt\pi\)。
+再换元 \(x=\sqrt\tau\,y\)，得一阶和三阶导数的 \(L^1\) 上界分别为
+\(2\tau^{-1/2}/\sqrt\pi\) 与 \((3\sqrt3+4)\tau^{-3/2}/\sqrt\pi\)。
+后者在 \([\tau,\infty)\) 可积，故 \(\nabla^3(\Gamma_\tau*\mathcal N)\) 是三阶导数的 \(L^1\) 积分。
+把张量散度的空间导数移入核，得到
+\[
+      \|\Gamma_\tau*(\mathcal P\operatorname{div}T)\|_\infty
+           \le C\tau^{-1/2}\|T\|_\infty ,
+\]
+其中常数可取 \(C=12\)，因为 \(\pi>3\)、\(\sqrt3<7/4\) 且
+\((10+6\cdot7/4)^2<144\cdot3\)。有理比较见 \lean{leray_kernel_constant}。
+\end{proof}

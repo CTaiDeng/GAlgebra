@@ -1,0 +1,92 @@
+\section{认证关系、任务商链复形与同调}
+\label{sec:chains}
+
+\begin{definition}[自由链与认证面]\label{def:chain}
+令 \(K\) 为标量域，\(V,E\) 分别为作用图的顶点和有向边。\(K[V]\) 是顶点上的有限支撑函数，基向量写为 \([v]\)。同样定义 \(K[E]\) 与 \(K[F]\)。每个 \(\rho\in F\) 包含两条合法路径 \(\gamma_\rho^+,\gamma_\rho^-\)，其起点相同且终点相同。定义
+\[
+ D[e]=[t(e)]-[s(e)],\qquad
+ [e_1\cdots e_m]=\sum_{j=1}^m[e_j],\qquad
+ B[\rho]=[\gamma_\rho^+]-[\gamma_\rho^-].
+\]
+在任意有限线性组合上逐项延拓得到 \(K[F]\xrightarrow{B}K[E]\xrightarrow{D}K[V]\) \cite{GUnified}。
+\end{definition}
+
+\begin{theorem}[关系的链闭合]\label{thm:paths}
+若合法路径 \(\gamma\) 由 \(x\) 到 \(y\)，则 \(D[\gamma]=[y]-[x]\)。路径串接的链读出等于两条路径的链之和。特别地 \(DB=0\)。
+\end{theorem}
+\begin{proof}
+空路径的链为 \(0\)，且 \([x]-[x]=0\)。设 \(\gamma\) 以 \(e:x\to z\) 开始，余段 \(\eta:z\to y\)。归纳假设给出 \(D[\eta]=[y]-[z]\)，所以
+\[
+D[\gamma]=([z]-[x])+([y]-[z])=[y]-[x].
+\]
+对前段长度归纳，串接在空路径处为恒等，加入首边时在两侧同时加 \([e]\)，故得到串接等式。每个面的两条路径端点相同，两个边界相减为零。对任意有限线性组合应用线性性得到 \(DB=0\)。
+\end{proof}
+
+\subsection{商微分的存在、同构及下卷}
+\begin{theorem}[商微分与上下卷]\label{thm:chainquot}
+给定链 \(C_\bullet,G_\bullet\)，分别取满足 \(dN_n\subseteq N_{n-1}\) 的子复形 \(N_C,N_G\)。逐级线性映射 \(E:C\to G\)、\(P:G\to C\) 满足
+\[
+\begin{gathered}
+ E(N_C)\subseteq N_G,\quad P(N_G)\subseteq N_C,\\
+ (d_GE-Ed_C)(C)\subseteq N_G,\qquad
+ (d_CP-Pd_G)(G)\subseteq N_C,\\
+ (PE-\id)(C)\subseteq N_C,\qquad (EP-\id)(G)\subseteq N_G .
+\end{gathered}
+\]
+则 \(C/N_C\) 与 \(G/N_G\) 具有良定义的微分，且 \(\bar E,\bar P\) 是互逆链映射。
+\end{theorem}
+\begin{proof}
+若 \(x-x'\in N_n\)，则 \(d x-d x'=d(x-x')\in N_{n-1}\)，所以 \(\bar d[x]=[d x]\) 与代表无关。且 \(\bar d^2[x]=[d^2x]=[0]\)。同样，由第一组包含式得到 \(\bar E[x]=[E x]\) 与 \(\bar P[y]=[P y]\)。第二组差值在商中为零，故
+\(\bar d_G\bar E[x]=\bar E\bar d_C[x]\) 及 \(\bar d_C\bar P[y]=\bar P\bar d_G[y]\)。
+第三组给出 \([PE x]=[x]\) 和 \([EP y]=[y]\)。这些关系在每一级都成立，线性性可直接在各类的代表上核验。
+\end{proof}
+
+\begin{corollary}[任务区分对微分的必要条件]\label{cor:descend}
+若 \(\bar d\,q_n=q_{n-1}d\)，则 \(q_n x=q_n y\) 蕴涵 \(q_{n-1}d x=q_{n-1}d y\)。对于满射 \(q_n\)，该蕴涵也足以构造唯一的集合层下降映射。
+\end{corollary}
+\begin{proof}
+对 \(q_n x=q_n y\) 两侧应用 \(\bar d\) 得必要性。反之，对 \(u=q_n x\) 定义 \(\bar d u=q_{n-1}d x\)。给定蕴涵保证任两个原像导出相同值，满射保证定义覆盖全部 \(u\) 以及唯一性。
+\end{proof}
+
+\begin{theorem}[逐级满射实现、核与共同链模型]\label{thm:kernelchain}
+设 \(R_{i,n}:C_n(M_i)\twoheadrightarrow C_n(Q)\) 逐级满射并与微分交换。令 \(N_{i,n}=\ker R_{i,n}\)。则各 \(N_i\) 构成子复形，且
+\(C(M_1)/N_1\cong C(Q)\cong C(M_2)/N_2\) 为链同构。
+\end{theorem}
+\begin{proof}
+若 \(R_{i,n}x=0\)，则 \(R_{i,n-1}d x=d_QR_{i,n}x=0\)，所以核对微分闭合。定义
+\(\widetilde R_{i,n}[x]=R_{i,n}(x)\)。若两类相等，则差在核中，两像相等。若两像相等，则 \(R_{i,n}(x-y)=0\)，反得两类相等。满射性来自 \(R_{i,n}\)。任取类 \([x]\)，交换等式给出
+\(\widetilde R_{i,n-1}\bar d[x]=d_Q\widetilde R_{i,n}[x]\)。
+于是这些双射及其逐级逆均为链映射。将第一套双射与第二套的逆复合得到上卷，再反向复合得到下卷。
+\end{proof}
+
+\begin{certificate}[逐级见证的取得]
+零级的顶点基由状态满射得到原像。若每个商侧合法标签在相应纤维存在合法提升，一级的边基有原像。二级必须提交认证面的提升链及边界交换，高阶同理。有限自由链的逐级满射可通过每个目标基的原像构造。线性满射一般由基或消元证书核验。记录同一个状态商仍须提交这些链级见证 \cite{GUnified}。
+\end{certificate}
+
+\begin{definition}[第一同调与障碍类]\label{def:hom}
+对 \(U\xrightarrow B V\xrightarrow D W\) 且 \(DB=0\)，令
+\[
+Z_1=\ker D,\qquad N_1=\im B,\qquad H_1=Z_1/N_1.
+\]
+\(z\in Z_1\) 可由一个线性边界修复，当且仅当 \([z]=0\)。若要限制系数，还须检查该类的填补有合法代表。
+\end{definition}
+其等价关系为 \(z\sim z'\iff z-z'\in N_1\)。反身性来自 \(0\in N_1\)，对称性来自取负，传递性来自
+\((z-z')+(z'-z'')=z-z''\)。由定义 \([z]=[0]\iff z\in N_1\)，展开像即可得到见证 \(u\) 及 \(Bu=z\)。
+
+\begin{corollary}[链同构在同调上的保持]\label{cor:hom}
+链同构诱导同调同构。对任一链映射 \(f\)，其同调映射为 \([z]\mapsto[fz]\)。
+\end{corollary}
+\begin{proof}
+若 \(d z=0\)，则 \(d'f z=f d z=0\)。若 \(z-z'=d w\)，则 \(f z-f z'=d'f w\)，所以在同调类上良定义。反向链映射同样诱导映射。逐级互逆时，两次复合都送 \([z]\) 到 \([z]\)。这给出链同构的同调对应；仅从同调类的数值或维数无法回读指定的链级运算。
+\end{proof}
+
+\begin{theorem}[同伦回缩反射边界]\label{thm:retract}
+设 \(j:C\to C'\)、\(r:C'\to C\) 是链映射，且 \(rj-\id=dH+Hd\)。若 \(d z=0\) 且 \(jz=d'h\)，则
+\[
+\boxed{z=d(rh-Hz).}
+\]
+因此 \(j_*\) 在同调上单射。
+\end{theorem}
+\begin{proof}
+闭合性给出 \(rjz-z=dHz\)。由链交换和 \(jz=d'h\)，得 \(rjz=rd'h=d(rh)\)。相减得到所示公式。若两个闭链的像之差为边界，对其差应用公式即知原差为边界。这说明在保同调回缩下，新附着不能消去原有非零类。若任务只要求保持观察或目标，则可据另一份证书允许修复同调发生变化 \cite{GUnified}。
+\end{proof}

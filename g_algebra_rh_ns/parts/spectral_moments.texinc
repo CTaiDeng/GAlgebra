@@ -1,0 +1,992 @@
+\subsection{从实际算术输入直达 G 母体的平方谱矩}
+
+\begin{lemma}[次线性对数增长的整函数与预解式]\label{lem:square-spectrum-resolvent}
+设 \(D\) 为整函数，\(D(0)\ne0\)，且
+\(\log^+|D(z)|=O((1+|z|)^\alpha)\)，其中 \(0<\alpha<1\)。
+记互异零点为 \(\mu\)，重数为 \(d_\mu\)。则
+\[
+ \sum_\mu d_\mu/|\mu|<\infty,\qquad
+ \frac{D(z)}{D(0)}=\prod_\mu(1-z/\mu)^{d_\mu},\qquad
+ -\frac{D'(z)}{D(z)}=\sum_\mu\frac{d_\mu}{\mu-z}.
+\]
+在无零圆盘内的 Taylor 系数为
+\(m_j=\sum_\mu d_\mu\mu^{-j-1}\)，每个极点的留数为 \(-d_\mu\)。
+\end{lemma}
+\begin{proof}
+对 \(|\mu|\le r\) 的每个零点按重数除以
+\(2r(z-\mu)/(4r^2-\bar\mu z)\)。
+这些因子在 \(|z|=2r\) 等模于 \(1\)，在 \(0\) 处绝对值不超过 \(1/2\)。
+相除去掉可消奇点后，最大模界给出
+\(|D(0)|\le 2^{-N(r)}\max_{|z|=2r}|D(z)|\)，故 \(N(r)=O((1+r)^\alpha)\)。
+按 \(|\mu|\) 的二倍圆环累加，得逆一次矩绝对可和，并有
+\(\sum_{|\mu|>2r}d_\mu/|\mu|=O(r^{\alpha-1})\)。
+因而乘积 \(P(z)=\prod_\mu(1-z/\mu)^{d_\mu}\) 在紧集上一致收敛。
+有限首积外的对数一致可和，所以它的零点及重数正是所列的谱。
+
+归一化商 \(D/(D(0)P)\) 是无零整函数，积分其对数导数得 \(e^g\)，其中 \(g(0)=0\)。
+在 \([u,2u]\) 避开距各 \(|\mu|\le4u\) 不到 \(1\) 的区间，所删总长度为 \(O(u^\alpha)\)。
+取余下半径 \(r\)，在 \(|z|=r\) 上，\(|\mu|\le2r\) 的因子绝对值至少为 \(1/(2r)\)。
+其余因子用 \(\log|1-z/\mu|\ge-2r/|\mu|\)，故 \(\log|P(z)|\ge-O(r^\alpha\log(2+r))\)。
+于是沿这些圆有 \(\Re g\le M_r=o(r)\)。函数 \(M_r-\Re g\) 非负，圆均值为 \(M_r\)。
+取第 \(j\ge1\) 个 Fourier 系数，得到 \(g\) 的第 \(j\) 个 Taylor 系数模至多 \(2M_r/r^j\)。
+令 \(r\to\infty\) 即得 \(g=0\)。
+局部一致收敛允许在无零域逐项取对数导数，并在无零圆盘内展开几何级数。
+在任一 \(\mu\) 的邻域提出相应因子，其余项全纯，留数恰为 \(-d_\mu\)。
+\end{proof}
+
+\begin{theorem}[同一个算术输入的平方谱率与矩生成]\label{thm:xi-moment-generator}
+取 \(a=w_0=9/4\)，从定理~\ref{thm:criticalstrip} 的 \(\xi\) 定义
+\[
+ Y(w)=\xi(1/2+\sqrt w),\qquad D(z)=Y(a-z),\qquad
+ R(z)=-D'(z)/D(z)=\sum_{j\ge0}m_jz^j.
+\]
+\(Y\) 单值且整。以 \(Z_+\) 记正高度非平凡零点集，重数记为 \(d_\rho\)。
+令 \(w_\rho=(\rho-1/2)^2\)、\(\mu_\rho=a-w_\rho\)、\(t_\rho=1/\mu_\rho\)。有
+\[
+ Y(w)=Y(0)\prod_{\rho\in Z_+}(1-w/w_\rho)^{d_\rho},\qquad
+ R(z)=\sum_{\rho\in Z_+}\frac{d_\rho}{\mu_\rho-z},\qquad
+ m_j=\sum_{\rho\in Z_+}d_\rho t_\rho^{\,j+1}\in\RR .
+\]
+在 \(z=0\) 的共同邻域，令 \(s=\tfrac12+\sqrt{a-z}\) 取在 \(s=2\) 的分支，
+则有直接算术读数
+\[
+ R(z)=\frac{1}{2(s-1/2)}
+ \left[\frac1s+\frac1{s-1}-\frac{\log\pi}{2}+\frac12\frac{\Gamma'(s/2)}{\Gamma(s/2)}
+       -\sum_p\sum_{k\ge1}\frac{\log p}{p^{ks}}\right].
+\]
+\end{theorem}
+\begin{proof}
+函数方程使 \(\xi(1/2+z)\) 的 Taylor 展开只有偶次项，以 \(z^{2j}\mapsto w^j\) 定义整函数 \(Y\)。
+引理~\ref{lem:xi-analytic-height} 给出 \(Y(0)\ne0\)。平方映射在各对应零点的导数非零，
+每个反射对 \(\rho,1-\rho\) 恰有一个正高度代表，且重数保持。
+引理~\ref{lem:xi-zero-count} 的增长上端使 \(Y\) 和 \(D\) 的对数增长为
+\(O(\sqrt{|w|+1}\log(|w|+2))=O((1+|w|)^{3/4})\)。
+对两者分别应用引理~\ref{lem:square-spectrum-resolvent}，得到乘积和矩式。
+对称 \(\rho\mapsto1-\bar\rho\) 保持正高度且使 \(\mu\) 共轭，所以各矩实。
+由临界带和引理~\ref{lem:xi-analytic-height}，\(\Re\mu_\rho>38\)，故可在 \(|z|<38\) 展开该式。
+
+在 \(s=2\) 的邻域可由 Euler 乘积取全纯对数。
+在任一 \(\Re s\ge1+\eta\)，\(\eta>0\)，导数级数由
+\((1-2^{-1-\eta})^{-1}\sum_{n\ge2}(\log n)n^{-1-\eta}\) 控制。
+对 \(\xi=s(s-1)\pi^{-s/2}\Gamma(s/2)\zeta(s)\) 取对数导数，再用平方变量的链式法则，即得算术公式。
+也可对固定的小圆一次使用 Cauchy 系数公式 \(m_j=(2\pi i)^{-1}\int R(z)z^{-j-1}\,dz\)。
+圆周上的解析输入对所有 \(j\) 共用。
+\end{proof}
+
+\begin{theorem}[局部化矩泛函的正算子闭合与极点回读]\label{thm:spectral-positive-operator}
+设 \(a>0\)，\(c=a^{-1}\)，且
+\(R(z)=\sum_\mu d_\mu/(\mu-z)=\sum_{j\ge0}m_jz^j\) 为引理~\ref{lem:square-spectrum-resolvent} 的实矩预解式。
+在 \(\RR[t]\) 上取 \(\mathcal L(t^j)=m_j\)。以下全称式
+\[
+ \boxed{\quad 0\le\mathcal L(tp^2)\le c\,\mathcal L(p^2)
+       \qquad(p\in\RR[t])\quad}
+\]
+成立，当且仅当全部 \(\mu\in[a,\infty)\)。
+成立时，用 \(\mathcal L(p\bar q)\) 完备多项式商，乘法 \(p\mapsto tp\) 延伸为
+\(0\le T\le c I\) 的有界自伴算子。令 \(v=[1]\)，则
+\(R(z)=\langle(I-zT)^{-1}v,v\rangle\) 在 \(\CC\setminus[a,\infty)\) 恒成立。
+\end{theorem}
+\begin{proof}
+由两条序关系及 \(c>0\)，\(B(p,q)=\mathcal L(p\bar q)\) 与
+\(B_1(p,q)=\mathcal L(tp\bar q)\) 均半正。
+对复多项式的对角读数是实部和虚部的两个实二次型之和。
+由二次多项式 \(B_i(p+\lambda q,p+\lambda q)\ge0\) 得两型的 Cauchy--Schwarz 不等式。
+\(B\) 的零范数向量与全部向量正交。另有
+\[
+ \|tp\|_B^2=B_1(p,tp)
+       \le \sqrt{B_1(p,p)B_1(tp,tp)}
+       \le c\|p\|_B\|tp\|_B .
+\]
+这证明乘法保持零范数空间，且在商上范数至多为 \(c\)。
+乘法关于 \(B\) 对称，故在 Hilbert 完成上延伸为有界自伴 \(T\)。
+原有的两个不等式按稠密性给出 \(0\le T\le cI\)。
+由 \(T^jv=[t^j]\)，Neumann 级数在原点邻域给出相同的标量预解式。
+
+对 \(\lambda\notin[0,c]\)，有
+\(\|(T-\lambda I)x\|\ge\operatorname{dist}(\lambda,[0,c])\|x\|\)，
+因为对于 \(x\ne0\)，\(\langle Tx,x\rangle/\|x\|^2\in[0,c]\)，可用内积模的下端。
+因此值域闭，其正交补是 \(T-\bar\lambda I\) 的核，仍为零。
+对 \(z\ne0\) 换 \(\lambda=1/z\)，得 \(I-zT\) 在所列割平面可逆，\(z=0\) 直接可逆。
+在每个可逆点再用 Neumann 级数，得到同一算子逆的全纯性。
+割平面去掉离散的算术极点仍连通，解析恒等定理延伸原点附近的等式。
+若其中出现极点，由算术留数 \(-d_\mu\ne0\) 与算子读数全纯矛盾。
+故全谱在 \([a,\infty)\)。
+反向在此半轴上，\(0<t_\mu=1/\mu\le c\)，矩权 \(d_\mu t_\mu\) 为正且可和。
+将两条序关系逐项对该权积分，即得全称式。
+\end{proof}
+
+\begin{lemma}[同一谱纤维的多项式测试与解析核]\label{lem:spectral-polynomial-density}
+沿用定理~\ref{thm:spectral-positive-operator} 的离散极点集。
+对共轭相容的权重 \(b_\mu\) 假定 \(\sum_\mu|b_\mu|<\infty\)，略去零权点。
+令 \(\mathcal H_b\) 为以 \(|b_\mu|\) 为质量的 \(\ell^2\) 中满足
+\(f(\bar\mu)=\overline{f(\mu)}\) 的实 Hilbert 空间。
+那么 \(p(t_\mu)\) 的实多项式测试在 \(\mathcal H_b\) 稠密。
+\[
+ Q_b(p)=\sum_\mu b_\mu p(t_\mu)^2
+\]
+对所有实多项式非负，恰当于每个正权模坐标的 \(\mu\) 为实且 \(b_\mu>0\)。
+在某个固定负侧原点邻域，解析核
+\(\sum_\mu b_\mu/((1-xt_\mu)(1-yt_\mu))\)
+对任意有限取样半正，也与同一个多项式条件等价。
+\end{lemma}
+\begin{proof}
+若 \(g\in\mathcal H_b\) 正交于全部多项式，则
+\(\sum_\mu |b_\mu|\overline{g(\mu)}t_\mu^j=0\) 对每个 \(j\) 成立。
+由 Cauchy--Schwarz 有 \(\sum_\mu|b_\mu g(\mu)|<\infty\)。
+权与测试满足共轭关系，所列读数实，故正交性给出整个系数为零。
+\(\sum_\mu |b_\mu|\overline{g(\mu)}/(1-zt_\mu)\) 在极点补集局部一致收敛，原因是 \(t_\mu\to0\) 沿无限谱尾成立。
+原点展开全零，连通性与每个极点的留数遂给出 \(g=0\)。
+
+二次型由 \(\mathcal H_b\) 的范数平方控制，因而在其上连续。
+实点的值只取实数，若实权为负，取该点的单位测试即得负方向。
+在非实共轭对上，取 \(f(\mu)=i e^{-i\arg b_\mu/2}\) 及其共轭，其他坐标为零，
+所得二次型为 \(-2|b_\mu|\)。
+由稠密性，这些负方向可在多项式测试上读出。
+余下的正实坐标逐项给出半正性。
+
+若核联合半正，将
+\(\sum_i p_i\Delta_h^i/(i!h^i)\) 分别应用于核的两个变量并在 \((0,0)\) 读取。
+负步长 \(h\) 足够小时格点都在取样区间或端点 \(0\)，端点按连续性计入。
+当 \(h\uparrow0\)，读数趋于 \(Q_b(p)\)，由闭性仍非负。
+反向，若 \(Q_b\) 半正，已证各剩余坐标为正实，核即为该坐标上
+\(\sqrt{b_\mu}/(1-xt_\mu)\) 的 Gram 核。
+\end{proof}
+
+\begin{theorem}[经典黎曼母体义务的精确回读]\label{thm:xi-moment-readback}
+取定理~\ref{thm:xi-moment-generator} 的实际 \(\mathcal L\)，记 \(c=4/9\)。
+按定义~\ref{def:goals} 登记唯一母体命题
+\(\mathsf E_\zeta=\bigl[\forall p\in\RR[t],\ 0\le\mathcal L(tp^2)\le c\,\mathcal L(p^2)\bigr]\)。
+则
+\[
+ \mathsf B_{\mathbf 1}\ \Longleftrightarrow\ \mathsf E_\zeta
+ \ \Longleftrightarrow\
+ \forall n\ge0,\quad (m_{i+j+1})_{i,j=0}^n\succeq0,\
+                      (c m_{i+j}-m_{i+j+1})_{i,j=0}^n\succeq0 .
+\]
+同一义务还等价于
+\[
+ B_{j,n}=\mathcal L\bigl(t^{j-1}(1-t/c)^n\bigr)\ge0
+       \qquad(j\ge1,\ n\ge0).
+\]
+\end{theorem}
+\begin{proof}
+按系数展开两个多项式二次型，立即取得矩阵读数。
+用定理~\ref{thm:spectral-positive-operator} 得 \(\mu\in[9/4,\infty)\)。
+若 \(\rho=\tfrac12+\beta+i\gamma\)，
+则 \(\mu=a-\beta^2+\gamma^2-2i\beta\gamma\)。
+实半轴约束先给出 \(\beta\gamma=0\)，在 \(\gamma=0\) 时又有 \(-\beta^2\ge0\)，故 \(\beta=0\)。
+反向直接代入 \(\beta=0\)。因此同源正算子闭合回读到所有非平凡零点。
+
+当 \(\mathsf E_\zeta\) 成立时，各坐标 \(t_\rho\) 落在 \([0,c]\)，
+所以 \(B_{j,n}\) 逐项以非负实权读出。
+反过来，固定在 \([0,c]\) 上非负的实多项式 \(q(t)\)，令 \(x=t/c\)，取
+\[
+ \mathcal B_N q(t)=\sum_{k=0}^N q(ck/N)\binom Nk x^k(1-x)^{N-k}
+       \qquad(N\ge1).
+\]
+每项在 \(\mathcal L\) 下的读数为非负系数乘 \(c^{-k} B_{k+1,N-k}\)。
+故 \(\mathcal L(\mathcal B_N q)\ge0\)。下面在固定次数空间内取极限。
+
+写 \((u)_r=\prod_{\ell=0}^{r-1}(u-\ell)\)，其中 \((u)_0=1\)。
+二项权的 \((k)_r\) 平均为 \((N)_r x^r\)。
+这一等式可将 \(r\) 个有序标记先分配到 \(N\) 个槽位，要求标记槽的选择均为 \(x\)，
+其余槽的选择之和均为 \(x+(1-x)=1\)。
+同一恒等式也由 Pascal 分解和
+\((k+1)_{r+1}=(k)_{r+1}+(r+1)(k)_r\) 闭合，见 \mbox{\lean{bernstein_falling_average}}。
+幂 \(k^r\) 在下降幂基上次数至多为 \(r\)，最高系数为 \(1\)。
+故 \(\mathcal B_N(t^r)\) 次数至多为 \(r\)，最高系数 \((N)_r/N^r\) 趋于 \(1\)，
+其余系数均有因子 \((N)_\ell/N^r\to0\)（\(\ell<r\)）。
+于是 \(\mathcal B_N q\) 在次数至多 \(\deg q\) 的空间中逐系数趋于 \(q\)。
+\(\mathcal L\) 在该空间只读取有限个固定矩，所以 \(\mathcal L(q)\ge0\)。
+分别取 \(q=tp^2\) 和 \(q=(c-t)p^2\)，即得 \(\mathsf E_\zeta\)。
+\end{proof}
+
+\begin{theorem}[同一算术正性的差商读数]\label{thm:xi-single-positive-kernel}
+对实际 \(R\) 令 \(K_0(x,y)=(xR(x)-yR(y))/(x-y)\)，对角取导数。
+在某个固定负侧原点邻域 \(K_0\) 的任意有限取样半正，等价于 \(\mathsf E_\zeta\)。
+成立时可取复 Hilbert 空间上的 \(0\le T\le I/38\) 与单位向量 \(e_0\)，使
+\(R(z)=m_0\langle(I-zT)^{-1}e_0,e_0\rangle\) 在原点邻域成立，其中 \(m_0>0\)。
+\end{theorem}
+\begin{proof}
+展开差商可取引理~\ref{lem:spectral-polynomial-density} 的 \(b_\mu=d_\mu/\mu\)。
+此权在每个极点非零，故核半正给出全部 \(\mu\) 为实。
+独立复分析界 \(\Re\mu>38>a\) 于是给出半轴条件，定理~\ref{thm:spectral-positive-operator}
+关闭同一个母体义务，并可将算子上界取到 \(1/38\)。
+反向由 \(\mu\ge a\) 给出的非负实权直接取 Gram 核。
+实际的 \(Y\) 非常数：沿实 \(s\to+\infty\)，
+在 \(\xi=s(s-1)\pi^{-s/2}\Gamma(s/2)\zeta(s)\) 的 Gamma 积分中只保留 \(t\in[4,5]\)，
+由 \(4>\pi\)、\(\zeta(s)>1\) 得 \(\xi(s)\to+\infty\)。
+引理~\ref{lem:square-spectrum-resolvent} 因而保证谱非空。
+由 \(\Re(1/\mu)>0\) 和共轭相容性得 \(m_0>0\)，故可用 \(e_0=[1]/\sqrt{m_0}\)。
+\end{proof}
+
+\begin{proposition}[实际矩泛函的统一辐角余量]\label{prop:xi-polynomial-sector}
+取 \(b=1/38\)、\(c=4/9\)。对每个在 \(|t|\le b\) 无零点的实多项式 \(p\)
+且 \(\sup_{|t|\le b}|p'(t)/p(t)|\le76\)，定义
+\[
+ W_1(\rho)=d_\rho t_\rho^2,\qquad W_2(\rho)=d_\rho t_\rho(c-t_\rho).
+\]
+同一算术输入在这些所有次数的测试上同时满足
+\[
+ \mathcal L(tp^2)\ge\tfrac12\sum_{\rho\in Z_+}|W_1(\rho)|\,|p(t_\rho)|^2,\qquad
+ \mathcal L((c-t)p^2)\ge\tfrac12\sum_{\rho\in Z_+}|W_2(\rho)|\,|p(t_\rho)|^2 .
+\]
+\end{proposition}
+\begin{proof}
+由临界带，\(|\Im\mu_\rho|\le|\gamma|\)、\(\Re\mu_\rho\ge2+\gamma^2\)。
+引理~\ref{lem:xi-analytic-height} 给出 \(|\gamma|>6\)。函数 \(u/(2+u^2)\) 在 \(u\ge6\) 递减，
+故 \(|t_\rho|\le b\)、\(|\arg t_\rho|\le3/19\)、\(|\Im t_\rho|\le3/722\)。
+由于 \(c-b>b\)，
+\[
+ |\arg(c-t_\rho)|\le |\Im t_\rho|/(c-b)\le|\arg t_\rho|.
+\]
+两个权重的辐角绝对值均不超过 \(6/19\)。
+从 \(x=\Re t_\rho\) 到 \(t_\rho\) 的直线段留在圆盘中。
+沿该段积分 \(p'/p\)，得 \(p(t_\rho)/p(x)=\exp(\int_x^{t_\rho}(p'/p)(u)\,du)\)。
+\(p(x)^2>0\)，故平方相位的绝对值可取至多 \(2\cdot76|\Im t_\rho|\)。
+每个加权复平方总辐角绝对值至多
+\(6/19+2\cdot76(3/722)=18/19<1\)。
+由 \(\cos y\ge 1-y^2/2\)，其实部至少为该项绝对值的一半。
+两组权重绝对可和，且 \(p\) 在同一圆盘有界，故可对所有谱项求和。
+该测试族允许无界次数，例如 \(p_N(t)=(1+38t/N)^N\)，\(N\ge2\)。
+\end{proof}
+
+\begin{lemma}[原点两项算术矩的有理包围]\label{lem:xi-origin-moment-bounds}
+定理~\ref{thm:xi-moment-generator} 的实际算术矩满足
+\[
+ 0<m_3<\frac{635}{10^{12}},\qquad
+ \frac{304}{10^{14}}<m_4<\frac{305}{10^{14}} .
+\]
+\end{lemma}
+\begin{proof}
+先构造同一个截断算术函数。取 \(N=64\)，令 \(B_j\) 为由 \(B_0=1\) 与
+\(\sum_{i=0}^{j}\binom{j+1}{i}B_i=0\)（\(j\ge1\)）所定的 Bernoulli 数。写
+\[
+ E(s)=\sum_{n=1}^{N-1}n^{-s}
+     +\frac{N^{1-s}}{s-1}+\frac{N^{-s}}2
+     +\sum_{k=1}^{8}\frac{B_{2k}}{(2k)!}
+                       (s)_{2k-1}N^{1-s-2k},
+ \qquad (s)_j=\prod_{i=0}^{j-1}(s+i).
+\]
+记 \(\widetilde B_1(x)=x-\lfloor x\rfloor-\tfrac12\)。
+在每个单位区间分部积分，再对 \(n\ge N\) 求和，给出首项的积分、半权端点与
+\(\int_N^\infty\widetilde B_1(x)(x^{-s})'\,dx\)。
+以
+\(B_j(x)=\sum_{i=0}^j\binom ji B_i x^{j-i}\) 的周期延拓继续分部积分。
+由其生成式 \(u e^{xu}/(e^u-1)\) 可读得
+\(B_j'=jB_{j-1}\)、\(B_j(0)=B_j(1)\) 对 \(j\ge2\) 成立，
+以及 \(B_j=0\) 对奇数 \(j>1\) 成立。
+因此各中间端点相消，留下 \(\zeta(s)=E(s)+r(s)\)，其中
+\[
+ r(s)=-\frac{(s)_{16}}{16!}\int_N^\infty\widetilde B_{16}(x)x^{-s-16}\,dx .
+\]
+积分在 \(\Re s> -15\) 局部一致绝对收敛，等式以解析延拓成立。
+由 Bernoulli 递推直接累加
+\(\sum_{j=0}^{16}\binom{16}{j}|B_j|<10^4\)。
+在 \(|s-2|\le1/2\) 及 \(s=1,2,3,4,5\) 上，\(\Re s\ge1\) 且 \(|s|\le5\)，故
+\[
+ |r(s)|\le \frac{10^4\cdot20!}{4!\,16!\,16\,64^{16}}<10^{-22}.
+\]
+这一组有理常数见 \lean{xi_origin_summation_bounds}。
+所以在 \(s=2+h\) 的前六个 Taylor 系数中，余项逐项至多为 \(2^j10^{-22}\)。
+在整数 \(s\ge2\) 的列值上直接加减 \(10^{-22}\)。
+
+令 \(\gamma_E=\lim_{M\to\infty}(\sum_{n=1}^M 1/n-\log M)\)。
+把 \(\zeta(s)-1/(s-1)\) 逐项写成
+\(n^{-s}-\int_n^{n+1}x^{-s}\,dx\)，在 \(s\downarrow1\) 时由
+\(O(n^{-2})\) 的共同上端读得常数项 \(\gamma_E\)。
+故 \(E(s)\) 在 \(s=1\) 去极点后的常数为
+\[
+ \sum_{n=1}^{N-1}\frac1n-\log N+\frac1{2N}
+              +\sum_{k=1}^{8}\frac{B_{2k}}{2k N^{2k}},
+\]
+离 \(\gamma_E\) 至多 \(10^{-22}\)。
+由定理~\ref{thm:criticalstrip} 的 Gamma 乘积在 \(1\) 附近取对数导数，
+将 \((n+h/2)^{-1}\) 展开并逐项作绝对收敛求和，得
+\[
+ \frac{\Gamma'(1+h/2)}{\Gamma(1+h/2)}
+   =-\gamma_E+\sum_{j\ge1}(-1)^{j+1}\zeta(j+1)(h/2)^j .
+\]
+记 \(b_j=[h^j]\zeta(2+h)\)，\(u_j=[h^j](\zeta'/\zeta)(2+h)\)。
+由同一除法 \(u_j=((j+1)b_{j+1}-\sum_{i=1}^{j} b_i u_{j-i})/b_0\)，
+算术对数导数 \(C(h)=\xi'(2+h)/\xi(2+h)\) 的系数为
+\[
+ c_0=\tfrac32-\tfrac12(\log\pi+\gamma_E)+u_0,\qquad
+ c_j=(-1)^j(1+2^{-j-1})+(-1)^{j+1}2^{-j-1}\zeta(j+1)+u_j
+ \quad (1\le j\le4).
+\]
+
+有限有理包围可如下复算。对 \(1\le x\le2\) 取 \(v=(x-1)/(x+1)\)。
+\(\log x\) 的下端为 \(2\sum_{j=0}^{31}v^{2j+1}/(2j+1)\)，上端另加 \(3v^{65}\)。
+余项界来自对几何和积分。对每个 \(1\le n\le64\) 先提出 \(2^{\lfloor\log_2 n\rfloor}\)。
+两次正切倍角给出 \(\tan(4\arctan(1/5))=120/119\)。
+减去 \(\arctan(1/239)\) 后正切为 \(1\)，而该角在 \((0,\pi/2)\)，
+故 \(\pi=16\arctan(1/5)-4\arctan(1/239)\)。
+各反正切取前 \(32\) 项，余项包在 \([0,x^{65}/65]\)。
+用单调性在 \(\pi/2\) 的两个端点计算 \(\log(\pi/2)\)，再加 \(\log 2\)。
+截断 \(E(2+h)\) 时，\(n^{-h}\) 的第 \(j\) 个系数取 \((-\log n)^j/j!\)，
+\((1+h)^{-1}\) 的系数取 \((-1)^j\)，每项升幂积由有限卷积相乘，再加上述解析余项。
+区间的加减用相应端点，乘法取四个端点积的最小和最大，除法在分母区间为正时取倒数后相乘。
+将各区间运算的端点在 \(10^{-45}\) 网格上向外取整，代入 \(u_j,c_j\) 得
+\[
+\begin{array}{r|rr}
+  j & \text{\(10^{17}c_j\) 的下端} & \text{\(10^{17}c_j\) 的上端}\\ \hline
+ 0 & 6906623153000067 & 6906623153000068\\
+ 1 & 4571535067558049 & 4571535067558050\\
+ 2 & -32502923154427 & -32502923154426\\
+ 3 & -6808631547988 & -6808631547987\\
+ 4 & 201194269826 & 201194269827
+\end{array}
+\]
+只使用 \(c_0,\ldots,c_4\)。由平方变量的链式法则，
+\(R(z)=C(h(z))/(3+2h(z))\)，其中 \(h(z)=\sqrt{9/4-z}-3/2\)。
+展开 \(h(z)=-z/3-z^2/27-2z^3/243-5z^4/2187+O(z^5)\)，得到
+\[
+\begin{aligned}
+ m_3&=\tfrac{20}{2187}c_0-\tfrac{10}{729}c_1+\tfrac4{243}c_2-\tfrac1{81}c_3,\\
+ m_4&=\tfrac{70}{19683}c_0-\tfrac{35}{6561}c_1+\tfrac5{729}c_2
+                           -\tfrac5{729}c_3+\tfrac1{243}c_4 .
+\end{aligned}
+\]
+按各有理乘数的符号选择端点，得到所列两个严格包围，见 \lean{xi_origin_moment_bounds}。
+\end{proof}
+
+\begin{theorem}[同一实单极点与各次数的系数正性]\label{thm:xi-coefficient-cone}
+对实际的 \(R\)，圆盘 \(|\mu|\le270\) 恰含一个极点 \(\mu_*\)，
+它为实单极点且 \(200<\mu_*<210\)。
+相应的 \(\rho_*\) 是正高度最小的非平凡零点，为临界线单零点。
+记 \(c=4/9\) 并沿用命题~\ref{prop:xi-polynomial-sector} 的 \(W_1,W_2\)。
+任取 \(0\le x\le1/200000\)。对任意次数且在基 \(((t-x)^k)_{k\ge0}\) 中系数同号的实多项式 \(p\)，有
+\[
+ \mathcal L(tp^2)\ge\tfrac12 \|p\|_1^2,\qquad
+ \mathcal L((c-t)p^2)\ge\tfrac12 \|p\|_2^2,\qquad
+ \|p\|_j^2=\sum_{\rho\in Z_+}|W_j(\rho)|\,|p(t_\rho)|^2 .
+\]
+对于任意实多项式 \(p=p_+-p_-\)，其中 \(p_+\)、\(p_-\) 分别取同一平移基中各系数的正部和负部，
+若 \(4\|p_-\|_j\le\|p_+\|_j\) 对 \(j=1,2\) 都成立，
+则上述两式仍成立，常数 \(1/2\) 换成 \(1/50\)。
+\end{theorem}
+\begin{proof}
+写 \(\theta_\rho=\arg\mu_\rho\)。
+由命题~\ref{prop:xi-polynomial-sector} 的辐角界，\(|\theta_\rho|\le3/19\)，
+故 \(\cos(5\theta_\rho)\ge 1-\tfrac12(15/19)^2=497/722\)。
+以定理~\ref{thm:xi-moment-generator} 的谱式求和，
+\(m_4=\sum_\rho d_\rho|\mu_\rho|^{-5}\cos(5\theta_\rho)\)。
+出现 \(|\mu_\rho|\le180\) 会迫使 \(m_4\ge(497/722)180^{-5}\)，超过引理~\ref{lem:xi-origin-moment-bounds} 的上端。
+又 \(|\mu_\rho|\le a+1/4+\gamma^2\)，故每个正高度 \(\gamma\) 大于 \(13\)。
+于是 \(|\theta_\rho|\le1/\gamma<1/13\)，并有
+\(\cos(5\theta_\rho)\ge313/338\)。
+
+若全谱的 \(|\mu|\ge210\)，用
+\(\cos(5\theta)\le\cos(4\theta)\) 逐项比较得 \(210m_4\le m_3\)，
+与引理~\ref{lem:xi-origin-moment-bounds} 矛盾。
+另一方面，若 \(|\mu|\le225\) 的谱点按重数至少出现两次，
+就有 \(m_4\ge 2(313/338)225^{-5}\)，也超过同一上端。
+由共轭保持，唯一的谱点必为实单极点。它为正实数，且因 \(m_4\ge\mu_*^{-5}\) 而大于 \(200\)。
+由 \(\Im\mu_*=-2\beta_*\gamma_*=0\) 及 \(\gamma_*>13\)，得 \(\beta_*=0\)。
+任何高度不超过 \(\gamma_*\) 的零点都给出 \(|\mu|\le a+1/4+\gamma_*^2=\mu_*+1/4<225\)。
+谱点的唯一性及重数保持即给出上述最小高度和单零点结论。
+
+若还有一个 \(|\mu|\le270\) 的谱点，所有谱项的五次相位余弦都至少为 \(313/338\)，
+且 \(\mu_*\) 的实贡献单独大于 \(210^{-5}\)。因而
+\[
+ m_4>210^{-5}+\tfrac{313}{338}\,270^{-5}>\frac{305}{10^{14}}.
+\]
+这一有理比较见 \lean{xi_exterior_factor_constants}，与引理~\ref{lem:xi-origin-moment-bounds} 矛盾。
+
+取 \(\lambda=1/\mu_*\)，\(\omega=313/338\)。
+从同一份 \(m_4\) 的包围抽去 \(\lambda^5\) 后，任意整数 \(k\ge5\) 满足
+\[
+ \frac{\sum_{\rho:\mu_\rho\ne\mu_*} d_\rho |t_\rho|^k}{\lambda^k}
+ \le \frac{m_4\,210^5-1}{\omega}(210/225)^{k-5}
+ < \frac{27}{100}(210/225)^{k-5}.
+\]
+另对权 \(d_\rho\lvert t_\rho^k(c-t_\rho)\rvert\)，
+尾部与锚点的比值再乘至多 \((c+1/225)/(c-1/200)\)。
+因此在 \(A_j=|W_j(\rho_*)|\) 下，\(\sum_{\rho\ne\rho_*}|W_j(\rho)||t_\rho|^4
+ <(7/25)A_j\lambda^4\) 对 \(j=1,2\) 同时成立。
+两种权分别使用上式的 \(k=6,5\)，有理比较见 \lean{xi_separated_pole_budgets}。
+
+由引理~\ref{lem:xi-origin-moment-bounds} 中 \(c_0\) 的包围，
+\(m_0=c_0/3<3/125\)。因 \(\cos\theta_\rho\ge99/100\)，有
+\(\sum_\rho d_\rho|t_\rho|\le(100/99)m_0<1/40\)。
+于是 \(\sum_\rho |W_1(\rho)|\le 1/8000\)，
+\(\sum_\rho |W_2(\rho)|\le (c+1/200)/40\)。
+利用 \(A_1=\lambda^2\)、\(A_2=\lambda(c-\lambda)\) 及 \(1/210<\lambda<1/200\)，
+得到 \(\sum_\rho |W_j(\rho)|\le6A_j\)。
+记 \(\eta=21/20000\)、\(\epsilon=13/500\)。对 \(1\le k\le4\)，由 \(x/\lambda\le\eta\)，
+两个幂相减的有限因子分解给出
+\[
+ \sum_\rho |W_j(\rho)|\,|(t_\rho-x)^k-t_\rho^k|
+ \le 6 A_j kx(\lambda+x)^{k-1}
+ \le 24\eta(1+\eta)^3 A_j\lambda^k < \epsilon A_j\lambda^k.
+\]
+\(k=0\) 的误差为零。上述有理常数见 \lean{xi_shifted_coefficient_constants}。
+
+对 \(0\le k\le3\)，两种 \(W_j t_\rho^k\) 的辐角模至多为 \(5/13\)，
+因为 \(|\arg(c-t_\rho)|\le|\arg t_\rho|<1/13\)。
+写 \(S_{j,k}(x)=\sum_\rho |W_j(\rho)|\,|t_\rho-x|^k\)。
+在 \(x=0\) 各实部相加至少为 \(\omega S_{j,k}(0)\)，而 \(S_{j,k}(0)\ge A_j\lambda^k\)。
+由上述误差，平移后的实部和至少为 \((\omega-\epsilon)S_{j,k}(0)\)，
+且 \(S_{j,k}(x)\le(1+\epsilon)S_{j,k}(0)\)，故实部和至少为 \(S_{j,k}(x)/2\)。
+
+对 \(k=4\) 平移后，锚点质量为 \(A_j(\lambda-x)^4\)，
+尾质量与它之比至多为 \((7/25+\epsilon)/(1-\eta)^4<1/3\)。
+所有其余谱点的 \(|t_\rho-x|\le1/225+x<\lambda-x\)。
+所以同一比值控制每个 \(k\ge4\)。
+锚点相位为零，若锚点质量为 \(A\)、尾质量为 \(T\)，
+则 \(A-T\ge(A+T)/2\) 给出同一个 \(S_{j,k}(x)/2\) 下端。
+
+在系数同号时，整体变号可使所有系数 \(p_i\) 非负。
+在 \((t-x)^k\) 基上展开 \(p^2\)，逐项用 \(k=i+j\) 的结论，
+即可给两组矩形式同乘一个下端 \(1/2\)。
+对应的绝对质量使用 \(\bigl(\sum_i p_i |t_\rho-x|^i\bigr)^2\)，它支配 \(|p(t_\rho)|^2\)。
+收敛性由已有绝对谱权和及 \(p\) 在共同圆盘上的有界性保证。
+
+对允许异号的测试，取 \(U=\|p_+\|_j\)、\(V=\|p_-\|_j\)。
+同号的两项各有 \(1/2\) 下端，交叉配对的绝对值至多为 \(UV\)。
+所以总二次型至少为 \((U^2+V^2)/2-2UV\)。
+当 \(V\le U/4\) 时，令 \(h=U/4-V\)，下端等于
+\(U^2/32+7Uh/4+h^2/2\)，至少为 \(U^2/32\)。
+又 \(\|p\|_j\le U+V\le5U/4\)，因此得到 \(\|p\|_j^2/50\)。
+上述最后一道比较清除正分母后，对任意线序有序交换环成立，见 \lean{spectral_coefficient_margin}。
+在 \(x>0\) 时，\((t-x)^n\) 在原点基上的系数任意多次交替，且对每个 \(n\) 已由同一估计覆盖。
+\end{proof}
+
+\begin{proposition}[消去首个实极点的统一矩正性]\label{prop:xi-exterior-factor-positivity}
+沿用定理~\ref{thm:xi-coefficient-cone} 的同一实际矩泛函、两组权重及范数。
+令 \(b=1/270\)。取实多项式
+\[
+ p(t)=q(t)\prod_{i=1}^m(t-x_i),\qquad
+ x_i>b,\qquad
+ \sum_{i=1}^m\frac1{x_i-b}\le2835 .
+\]
+其中 \(q\) 在 \(|t|\le b\) 无根，且 \(\sup_{|t|\le b}|q'(t)/q(t)|\le76\)。
+则在这整个测试域同时有
+\[
+ \boxed{\quad
+ \mathcal L(tp^2)\ge\tfrac1{16}\|p\|_1^2,\qquad
+ \mathcal L((c-t)p^2)\ge\tfrac1{16}\|p\|_2^2 .
+ \quad}
+\]
+特别地，可以取至多三个 \(x_i\ge1/210\)，并允许它们都等于
+\(t_*=1/\mu_*\)。此时首个实极点在两型中均被消去。
+\end{proposition}
+\begin{proof}
+对分离实极点以外的每个谱点，定理~\ref{thm:xi-coefficient-cone} 给出
+\(|\mu_\rho|>270\)。由
+\[
+ |\mu_\rho|^2=(\gamma^2+a+\beta^2)^2-4a\beta^2,\qquad
+   \rho=\tfrac12+\beta+i\gamma ,
+\]
+及 \(|\beta|\le1/2\) 得 \(|\mu_\rho|\le\gamma^2+5/2\)，故 \(\gamma>16\)。
+因此 \(t=t_\rho\) 满足 \(|t|<b\)、\(\Re t>0\)、
+\(|\tan(\arg t)|\le\gamma/(\gamma^2+2)\le1/16\)，并有
+\(|\Im t|\le 1/(270\cdot16)\)。实谱点的两组权重均非负。
+
+对非实谱点，由共轭对称只需估计 \(\Im t>0\) 的相位。
+取 \(\theta=\arg t\)、\(\varphi=-\arg(c-t)\) 和
+\(\psi_i=-\arg(x_i-t)\)。由 \(c\ge2b\) 得 \(0\le\varphi\le\theta\le1/16\)。
+相乘后读出总角度 \(\Psi=\sum_i\psi_i\)。因为
+\[
+ 0\le\psi_i\le\frac{\Im t}{x_i-\Re t}\le\frac{\Im t}{x_i-b},
+ \qquad
+ 0\le\Psi\le\frac{2835}{270\cdot16}=\frac{21}{32},
+\]
+两组权乘 \(\prod_i(t-x_i)^2\) 的相位可分别取为
+\(2\theta-2\Psi\) 和 \(\theta-\varphi-2\Psi\)。
+这两个量都在 \([-21/16,21/16]\) 内，见 \lean{xi_exterior_factor_phase}。
+
+再将 \(q'(u)/q(u)\) 在从 \(\Re t\) 到 \(t\) 的同一竖段上积分。
+由 \(q(\Re t)^2>0\)，\(q(t)^2\) 添入的相位绝对值至多
+\(2\cdot76|\Im t|\)。所以两组加权 \(p(t)^2\) 的总相位绝对值均小于
+\(21/16+2\cdot76/(270\cdot16)<27/20\)。
+用 \(\cos y\ge 1-y^2/2\)，各项实部至少为其模的 \(1/16\)。
+实谱贡献直接满足同一界，绝对谱权可和，故可按定理~\ref{thm:xi-moment-generator}
+的同一个算术谱式合成这两个估计。
+若 \(m\le3\) 且 \(x_i\ge1/210\)，每一分母的倒数至多 \(945\)，
+由 \mbox{\lean{xi_exterior_factor_constants}} 核验同一总角度预算。
+\end{proof}
+
+\begin{lemma}[实轴预解式给出的谱环带下界]\label{lem:xi-resolvent-shells}
+沿用定理~\ref{thm:xi-moment-generator} 的实际 \(R\)，记 \(H(X)=R(-X^2)\)。
+对 \(X\ge1024\) 有
+\[
+ \frac{\log X}{16X}\le H(X)\le\frac{\log X}{2X}.
+\]
+当 \(X\ge128\cdot1024\) 时，正高度落在 \([X/128,128X]\) 中的零点总重数至少为
+\(X\log X/32\)。
+\end{lemma}
+\begin{proof}
+对实数 \(x>0\)，定理~\ref{thm:criticalstrip} 中 Gamma 乘积的对数导数给出
+\[
+ \psi(x)=\frac{\Gamma'(x)}{\Gamma(x)}
+ =\lim_{m\to\infty}\left(\log m-\sum_{\ell=0}^m\frac{1}{x+\ell}\right).
+\]
+将 \(\log m\) 与调和和式配对后，
+\(\sum_{\ell\ge1}(1/\ell-1/(x+\ell))\) 在每个正半轴紧区间上一致收敛，
+故 Gamma 乘积的对数可在该区间求导。
+将递减函数 \(1/(x+y)\) 在 \([0,m]\) 和 \([0,m+1]\) 上积分，
+得到 \(\log x-1/x\le\psi(x)\le\log x\)。
+
+令 \(Z=(a+X^2)^{1/2}\)、\(s=1/2+Z\)。当 \(X\ge2\) 时，
+\(X\le Z\le5X/4\)、\(X/2\le s/2\le X\)。
+Euler 对数导数的级数在这个实半轴绝对收敛，可以直接用定理~\ref{thm:xi-moment-generator}
+求 \(H(X)\)。其中素数幂和至多为
+\(2^{-(s-2)}\sum_{\ell\ge2}(\log\ell)/\ell^2\)，
+末和小于 \(2\)，由首项和从 \(2\) 起的积分上端可见。
+对 \(X\ge1024\)，素数幂和及 \(1/s\) 各不超过 \(1/16\)。
+用 \(\log2<1\)、\(\pi<4\)，分子落在
+\[
+ [\,\tfrac12\log X-13/8,\ \tfrac12\log X+2\,].
+\]
+因 \(\log X\ge5\)，与分母 \(2Z\) 的两端合并，得到所述比较，见 \lean{xi_real_resolvent_constants}。
+
+设 \(\gamma=\Im\rho>13\)、\(u=\Re\mu_\rho\)、\(v=\Im\mu_\rho\)。
+对每个 \(X>0\)，有
+\[
+ \frac{1}{2(\gamma^2+X^2)}
+ \le \Re\frac1{\mu_\rho+X^2}
+ =\frac1{u+X^2+v^2/(u+X^2)}
+ \le\frac1{\gamma^2+X^2}.
+\]
+这里 \(u\in[\gamma^2+2,\gamma^2+a]\) 且 \(|v|\le\gamma\)。
+记 \(L=128\)。当 \(\gamma<X/L\)，同一谱项在 \(X\) 的值至多为它在 \(X/L\) 的 \(4/L^2\) 倍。
+当 \(\gamma>LX\)，其在 \(X\) 的值至多为在 \(LX\) 的 \(4\) 倍。
+各项实部为正，环带外在 \(H(X)\) 中的总贡献因此至多为
+\[
+ \frac4{L^2}H(X/L)+4H(LX)\le\frac{4}{L}\frac{\log X}{X}
+       =\frac{\log X}{32X}.
+\]
+环带内至少贡献 \((\log X)/(32X)\)。每份重数的贡献至多为 \(1/X^2\)，
+给出所述计数下端。
+\end{proof}
+
+\begin{theorem}[同一二项矩在两个指数域的正性]\label{thm:xi-bernstein-ranges}
+取 \(c=4/9\)，以定理~\ref{thm:xi-moment-readback} 的 \(B_{j,n}\) 为读数。
+对整数 \(j\ge1\)、\(n\ge0\)，在下列任一范围中 \(B_{j,n}>0\)
+\[
+ \boxed{\begin{gathered}
+ n=0,\qquad j\ge5,\ \ n\le91(j-5),\\
+ j\ge7001,\ \ n\le91j,\qquad 10n\ge(4096j)^3 .
+ \end{gathered}}
+\]
+\end{theorem}
+\begin{proof}
+沿用定理~\ref{thm:xi-coefficient-cone} 的实单极点坐标 \(\lambda\)。
+写 \(\rho=\tfrac12+\beta+i\gamma\)，取每一平方谱点的 \(\gamma>0\) 代表。
+各 \(t_\rho\) 满足
+\[
+ |\arg t_\rho|<1/\gamma,\qquad |t_\rho|\le\lambda<1/200,\qquad
+ \frac1{2\gamma^2}\le |t_\rho|\le\frac1{\gamma^2}.
+\]
+其中绝对值下端来自 \(|\mu_\rho|^2=(\gamma^2+a+\beta^2)^2-4a\beta^2\)
+及 \(|\beta|<1/2\)，故 \(|\mu_\rho|\le\gamma^2+5/2\)。
+同时 \(\cos(\arg t_\rho)\ge99/100\) 及
+\(S_1:=\sum_\rho d_\rho|t_\rho|<1/40\) 已由同一定理证明。
+整个读数可绝对求和为
+\[
+ B_{j,n}=\sum_\rho d_\rho\,t_\rho^j(1-t_\rho/c)^n .
+\]
+当 \(n=0,\ j\le4\)，各项实部以 \(|\arg t_\rho|<1/13\) 给出正性。
+
+先对实单极点以外的谱项估计。由 \(|\mu_\rho|>225\) 及
+\(|\mu_\rho|\le\gamma^2+5/2\)，这些项有 \(\gamma^2>445/2\)。
+所以 \(\cos(\arg t_\rho)\ge1-1/(2\gamma^2)>444/445\)。
+取 \(\kappa=9977/10000\)，由 \(|t_\rho|/c\le9/800\)，比较两个平方得到
+\[
+ |1-t_\rho/c|\le 1-\kappa |t_\rho|/c .
+\]
+所需条件是 \((1-\kappa^2)(|t_\rho|/c)\le 2(444/445-\kappa)\)。
+对其余谱点写 \(x=|t_\rho|/\lambda\le\mu_*/225\)、\(h=a/\mu_*\le9/800\)。
+记 \(R_h(x)=(1-\kappa hx)/(1-h)\ge1\)。
+函数 \(xR_h(x)^{91}\) 关于 \(x\) 的导数符号由
+\(1-92\kappa hx\ge1-92\kappa a/225>0\) 给出。
+取 \(x=\mu_*/225\) 后，其上端为
+\[
+ \frac{\mu_*}{225}\left(\frac{1-\kappa a/225}{1-a/\mu_*}\right)^{91}.
+\]
+此式沿 \(\mu_*\) 的对数导数为 \((\mu_*-92a)/[\mu_*(\mu_*-a)]\)，
+所以在 \([200,210]\) 上的最大值必在两端之一。两个端点值都小于 \(\sigma=4997/5000\)。
+同时 \(R_h(x)^{91}\le(800/791)^{91}<3\)。
+这些有理比较见 \lean{xi_bernstein_low_exponent_constants}。
+
+对于 \(j\ge5,\ n\le91(j-5)\)，有
+\[
+ x^{j-5}\frac{|1-t_\rho/c|^n}{(1-h)^n}
+ \le [x R_h(x)^{91}]^{j-5}\le1 .
+\]
+所以尾的绝对质量除以锚点的正贡献 \(\lambda^j(1-h)^n\)，
+至多为 \(\sum_{\rho\ne\rho_*}d_\rho(|t_\rho|/\lambda)^5<27/100\)。
+这也包含 \(n=0,\ j\ge5\)。
+若 \(n\le91j\)，尾的同一个比值至多为
+\[
+  \sum_{\rho\ne\rho_*}d_\rho (xR_h(x)^{91})^j
+   <3(210/40)\sigma^{j-1}.
+\]
+这里从每个幂中保留一个因子 \(x\)，再用 \(S_1/\lambda<210/40\)。
+当 \(j\ge7001\)，\(\sigma^{j-1}\le e^{-21/5}<1/16\)，故比值小于 \(1\)。
+
+对于 \(10n\ge(4096j)^3\)，写 \(g=(10n)^{1/3}\)，则 \(g\ge4096j\)。
+因 \(c-1/200>2/5\)，
+\[
+ |\arg(1-t_\rho/c)|\le\frac{|\Im t_\rho|}{c-|t_\rho|}
+ \le\frac{5}{2\gamma^3}.
+\]
+当 \(\gamma\ge g\)，两相位相加的绝对值至多为
+\(j/g+5n/(2g^3)\le1/2\)，故实部至少为绝对值的一半。
+另有
+\[
+ e^{-2|t_\rho|/c}\le|1-t_\rho/c|\le e^{-|t_\rho|/(2c)}.
+\]
+下端由 \(|1-t_\rho/c|\ge1-|t_\rho|/c\) 及在 \([0,1/2]\) 上积分
+\((1-x)^{-1}\le2\) 得出。上端由
+\(|1-t_\rho/c|^2\le1-|t_\rho|/c\) 得出，因为
+\(2(99/100)-|t_\rho|/c\ge1\)。
+
+对 \(\gamma<g\) 使用 \(|t_\rho|\ge1/(2g^2)\)。
+函数 \(u^{j-1}e^{-nu/(2c)}\) 在 \(u\ge1/(2g^2)\) 上递减，
+因为 \(j-1\le n/(4cg^2)=g/(40c)\)。
+故低侧可能抵消的质量不超过
+\[
+         S_1 (2g^2)^{-(j-1)} e^{-g/(40c)} .
+\]
+在引理~\ref{lem:xi-resolvent-shells} 取 \(X=4\cdot128g\)，
+得到至少一个 \(\gamma\in[4g,Mg]\) 的谱点，其中 \(M=4\cdot128^2=2^{16}\)。
+该点贡献的实部至少为
+\(\tfrac12(2M^2g^2)^{-j}e^{-g/(80c)}\)。
+由 \(2j\log M\le32j<g/(160c)\)，低侧上端与这一正贡献下端之比至多为
+\[
+ 4 S_1 g^2 M^{2j}e^{-g/(80c)}
+ <\frac{g^2}{10}e^{-g/(160c)}
+ \le\frac{12(160c)^5}{g^3}<1 .
+\]
+中间一步使用 \(e^u\ge u^5/120\)，所需常数见 \lean{xi_bernstein_high_exponent_constants}。
+其余 \(\gamma\ge g\) 的实部均非负，故 \(B_{j,n}>0\)。
+\end{proof}
+
+\begin{lemma}[算术预解式在定长区间的谱质量]\label{lem:xi-vertical-resolvent}
+对实 \(T\) 记 \(L(T)=\log(2+|T|)\)，以 \(\mathcal N(I)\) 记虚部落在实区间 \(I\)
+内的非平凡零点总重数，正负高度都计入。令 \(H=512\)。
+同一个 \(R\) 满足
+\[
+\begin{aligned}
+ \mathcal N([T-1,T+1])&\le \tfrac52 L(T)+20 &&(T\in\RR),\\
+ \mathcal N([T-H,T+H])&\ge L(T)/8 &&(T\ge2^{18}).
+\end{aligned}
+\]
+\end{lemma}
+\begin{proof}
+在 \(s=2+iT\) 取 \(z=a-(s-\tfrac12)^2\)。
+定理~\ref{thm:xi-moment-generator} 的对数导数链式法则及平方谱式给出
+\[
+ W(T):=\Re[2(s-\tfrac12)R(z)]
+ =\sum_\rho d_\rho\,\frac{2-\Re\rho}{(2-\Re\rho)^2+(T-\Im\rho)^2}.
+\]
+这里每个平方谱项用
+\(2(s-\tfrac12)/[(s-\rho)(s-1+\rho)]=1/(s-\rho)+1/(s-1+\rho)\)
+分成一正一负高度，见 \lean{xi_reflected_resolvent_split}。
+平方谱式绝对收敛，两个分式的实部都非负，因此可以按高度比较这些实部之和。
+当 \(|T-\Im\rho|\le1\) 时每份重数至少贡献 \(1/5\)。
+对任意距离 \(d=T-\Im\rho\)，每份的上端同时为 \(1\) 和 \(2/(1+d^2)\)。
+
+取 \(y=|T|/2\)。Gamma 乘积的对数导数在 \(1+iy\) 的实部为
+\[
+ \Re\psi(1+iy)=-\gamma_{\mathrm E}+\sum_{k\ge1}\frac{y^2}{k(k^2+y^2)}.
+\]
+调和和式的积分比较给出 \(0\le\gamma_{\mathrm E}\le1\)。
+被加函数关于 \(k\) 递减，在 \([1,\infty)\) 上的积分为 \(\tfrac12\log(1+y^2)\)，
+首项至多为 \(1\)。故 \(\Re\psi(1+iy)\) 与该积分相差至多 \(1\)。
+又 \(L(T)-\log4\le\tfrac12\log(1+y^2)\le L(T)\)。
+Euler 对数导数的绝对值至多为
+\(\sum_{k\ge2}(\log k)/k^2\le \log2/4+(\log2+1)/2<11/10\)。
+这里和式由首项加积分控制，\(\log2<7/10\) 由 \(e^{7/10}\) 的三次 Taylor 多项式下端给出。
+用 \(0<\Re(1/s+1/(s-1))\le3/2\) 及 \(\log\pi<\log4\)，得到
+\[
+                  \tfrac12 L(T)-3\le W(T)\le\tfrac12 L(T)+4 .
+\]
+结合单项下端，即得单位区间的计数上界。
+
+现在 \(T\ge2^{18}\)。由 \(\log2>2/3\) 有 \(L(T)\ge12\)。
+后一对数下界可在 \([1,2]\) 上积分 \(1/x\) 在 \(3/2\) 的切线。
+因而 \(W(T)\ge L(T)/4\)。
+在 \(|T-\Im\rho|\ge H\) 的两侧，对每个整数 \(k\ge H\) 取距 \(T\) 为 \([k,k+1]\) 的两段。
+相应中心的 \(L\) 不超过 \(L(T)+\log(k+2)\)。
+这些段贡献到 \(W(T)\) 的总质量至多为
+\[
+ 4\sum_{k\ge H}
+   \frac{\tfrac52(L(T)+\log(k+2))+20}{k^2}
+ \le \frac{40L(T)+220}{H}<\frac{L(T)}8 .
+\]
+为核对中间不等式，\(\sum_{k\ge H} k^{-2}\le2/H\)。
+又 \(\log(k+2)\le\log(H+2)+\log(k/H)\le L(T)+2\sqrt{k/H}\)，
+故 \(\sum_{k\ge H}k^{-2}\log(k+2)\le(2L(T)+6)/H\)。
+最后的有理预算见 \lean{xi_vertical_resolvent_constants}。
+区间内保留至少 \(L(T)/8\) 的读数，而每份重数至多贡献 \(1\)，给出所述下界。
+\end{proof}
+
+\begin{theorem}[二项矩峰值附近的相位相消和二次指数界]\label{thm:xi-bernstein-quadratic}
+固定同一个实际算术矩泛函。对满足
+\[
+                 \boxed{ j\ge4096,\qquad 9n\ge(16384j)^2 }
+\]
+的整数 \(j,n\)，有 \(B_{j,n}>0\)。
+\end{theorem}
+\begin{proof}
+\textbf{模长与相位的统一比较。}
+取 \(a=9/4\)，令 \(T=\sqrt{an/j}\)、\(D=T/\sqrt j\)。
+所设范围给出 \(D\ge8192\)、\(T\ge2^{19}\)。
+对正高度 \(\gamma=\Im\rho\)，记 \(G=\gamma^2\)、\(\rho=\tfrac12+\beta+i\gamma\)，写
+\[
+ \mu_\rho=u+ib,\qquad u=G+a-\beta^2,\qquad b=-2\beta\gamma,\qquad
+ W_\rho=\mu_\rho^{-j}(1-a/\mu_\rho)^n .
+\]
+此处 \(|b|\le\gamma\)、\(G>169\)、\(G\le|\mu_\rho|\le G+5/2\)。
+由 \(\Re(1/\mu_\rho)=1/(u+b^2/u)\) 得
+\(0\le 1/G-\Re(1/\mu_\rho)\le(a+1)/G^2\)。
+在 \(|a/\mu_\rho|<1/2\) 上，将 \(\log(1-a/\mu_\rho)\) 的一次项以后的模和用 \(a^2/G^2\) 控制。
+于是
+\[
+ \left|\log|1-a/\mu_\rho|+a/G\right|\le 6a/G^2 .
+\]
+记 \(x=\gamma/T\)、\(P=T^{-2j}e^{-j}\) 及 \(h(x)=2\log x+x^{-2}-1\)。
+若 \(\gamma\ge T/2\)，则
+\[
+ \left|\log(|W_\rho|/P)+j h(x)\right|
+ \le 3j/\gamma^2+6jT^2/\gamma^4\le108/D^2<1 .
+\]
+对任意正高度，利用 \(6/G<1/20\) 和 \(|\mu_\rho|\ge G\) 还得到
+\[
+              |W_\rho|\le P\exp\bigl(-j[2\log x+(19/20)x^{-2}-1]\bigr).
+\]
+
+取相位实代表
+\(\vartheta=n\arctan(b/(u-a))-(j+n)\arctan(b/u)\)。
+令 \(q=u-a\)、\(f(v,r)=v/(v^2+r^2)\)。
+由反正切的导数，该相位为
+\(\int_0^b\{n[f(q,r)-f(u,r)]-jf(u,r)\}\,dr\)。
+当 \(|r|\le\gamma\)，有 \(|f(u,r)-1/G|\le4/G^2\)，
+因为 \(u\ge G\)、\(u-G\le a\) 而 \(r^2\le G\)。
+另有
+\[
+ \frac{f(q,r)-f(u,r)}{a}
+     =\frac{u q-r^2}{(u^2+r^2)(q^2+r^2)}.
+\]
+这一消去见 \lean{xi_paired_phase_numerator}。
+由于 \(G-\tfrac14\le q\le G\le u\le G+a\)，
+\(|u q-G^2|\le(a+\tfrac14)G\) 且 \(u q\ge G^2/2\)。
+所以 \(|1/(u q)-1/G^2|\le5/G^3\)。
+右式与 \(1/(u q)\) 的差的绝对值至多为
+\[
+ \frac1{u q}\left(\frac{r^2}{u^2}+\frac{r^2}{q^2}
+          +\frac{r^4}{u^2q^2}+\frac{r^2}{u q}\right)\le22/G^3 .
+\]
+因而两相位在 \(T\) 附近共享同一个一阶消去
+\[
+ |\vartheta|\le \frac{j}{\gamma}\left|1-\frac{T^2}{\gamma^2}\right|
+                   +\frac{4j}{\gamma^3}+\frac{32jT^2}{\gamma^5}.
+\]
+在 \(T/2\le\gamma\le2T\)，令 \(v=(\gamma-T)/D\)。
+首项至多 \(24|v|/D\)，其余至多 \(1056/(D^2T)\)。
+故所有 \(|v|\le16\) 的谱点都满足 \(|\vartheta|<1/2\)，
+实贡献至少为 \(|W_\rho|/2\)。
+这个相位带因 \(j\ge4096\) 而包含于 \([T/2,2T]\)。
+
+\textbf{正贡献下端。}
+在 \(|v|\le1\)，\(h(x)\le3(x-1)^2\)，
+因为 \(h'(x)=2(x-1)(x+1)/x^3\) 且 \(x\ge63/64\) 时 \((x+1)/x^3\le3\)。
+故每份重数的实贡献至少为 \(P e^{-4}/2\)。
+取中心 \(T+4H\ell\)，其中 \(\ell\) 为满足 \(|\ell|\le D/(8H)\) 的整数。
+围绕每个中心取半径 \(H=512\) 的区间，它们互不相交且全部落在 \(|v|\le1\)。
+共有至少 \(D/(8H)\) 个中心，每个中心不低于 \(T/2\ge 2^{18}\)，
+其 \(L\) 不低于 \(L(T)/2\)。
+由引理~\ref{lem:xi-vertical-resolvent}，这一整段的重数至少为 \(D L(T)/(128H)\)。
+于是正贡献下端大于 \(P D L(T)/2^{24}\)，因为 \(256H e^4<2^{24}\)。
+
+\textbf{整个余域的绝对预算。}
+在 \(T/2\le\gamma\le2T\) 有 \(h(x)\ge(x-1)^2/4\)，
+由 \(h'\) 的同一公式及 \((x+1)/x^3\ge3/8\) 可见。
+在每侧的 \(k\le|v|<k+1\) 上，\(\gamma\) 区间长度至多 \(D\)，
+可用至多 \(D+2\) 个单位长区间覆盖，每个中心的 \(L\) 至多 \(2L(T)\)。
+由单位计数上界及 \(20\le2L(T)\)，每侧重数至多 \(21 D L(T)\)。
+对 \(k\ge16\) 有 \(k^2/4\ge4k\)，中间范围可能为负的绝对质量至多为
+\[
+ 42 e P D L(T)\sum_{k\ge16} e^{-k^2/4}
+ \le 84 e P D L(T)e^{-64}<P D L(T)/2^{30}.
+\]
+
+若 \(\gamma<T/2\)，函数 \(2\log x+(19/20)x^{-2}-1\) 在 \(0<x\le1/2\) 递减，
+其端点值 \(14/5-2\log2>1/2\)。
+故每份权的绝对值至多 \(P e^{-j/2}\)。
+在 \(0<\gamma<T/2\) 的单位覆盖和 \(L(T)\ge12\) 给出重数上端 \(20T L(T)\)。
+若 \(\gamma\ge2T\)，则 \(h(x)\ge\tfrac12+\log(x/2)\)，
+因为 \(h(2)=2\log2-3/4>1/2\) 且 \(x h'(x)\ge1\)。
+在 \(2^kT\le\gamma<2^{k+1}T\)，\(k\ge1\)，同一单位覆盖给出
+重数至多 \(12(k+3)2^k T L(T)\)，用到中心的 \(L\) 至多 \((k+3)L(T)\)。
+这些段的模长上端为 \(eP e^{-j/2}2^{-(k-1)j}\)。
+由 \(\sum_{k\ge1}(k+3)2^k2^{-(k-1)j}\le16\)，
+低、高两边合计至多为 \(600P T L(T)e^{-j/2}\)。
+级数界将 \(k-1\) 作指标，用公比 \(1/4\) 对几何和及其一阶矩求和。
+因 \(T=D\sqrt j\)、\(\sqrt j\le e^{j/4}\) 且 \(j\ge4096\)，
+该合计小于 \(P D L(T)/2^{30}\)。
+
+用 \(\log2>2/3\) 及 \(2<e<3\)，上述有理比较由
+\lean{xi_bernstein_quadratic_constants} 核验。
+除这些绝对预算外，全部实贡献非负。两个预算之和严格小于已证正下端。
+因此 \(B_{j,n}=\sum_\rho d_\rho\Re W_\rho>0\)，覆盖所设整个二次指数域。
+\end{proof}
+
+\begin{theorem}[有理方向的生成函数与同一矩义务的回读]\label{thm:xi-bernstein-ray-readback}
+取实际 \(R\) 及 \(c=4/9\)。对正整数 \(p,q\)，定义
+\[
+ P_{p,q}(t)=t^q(1-t/c)^p,\qquad
+ S_{p,q}(w)=\sum_{k\ge1}B_{kq,kp}w^k,\qquad
+ M_{p,q}=c^q\left(\frac{q}{p+q}\right)^q
+             \left(\frac{p}{p+q}\right)^p .
+\]
+生成函数在原点由同一算术预解式直接给出。对任意 \(0<r<a=1/c\) 和充分小的 \(|w|\)，
+\[
+ S_{p,q}(w)
+   =\frac{1}{2\pi i}\int_{|z|=r}
+       R(z)\frac{w(z-a)^p}{z^{p+q}-w(z-a)^p}\,dz .
+\]
+其 Taylor 收敛半径恰为
+\(\bigl(\max_\rho|P_{p,q}(t_\rho)|\bigr)^{-1}\)。
+以下两种读数分别等价于同一个 \(\mathsf E_\zeta\)：
+\begin{enumerate}
+\item 对每对 \(p>99q\)，\(S_{p,q}\) 的收敛半径不小于 \(M_{p,q}^{-1}\)。
+\item 对每对 \(p>99q\)，存在 \(k_0\)，使所有 \(k\ge k_0\) 均有 \(B_{kq,kp}\ge0\)。
+\end{enumerate}
+对 \(p\le91q\)，半径已可直接读为
+\([\lambda^q(1-\lambda/c)^p]^{-1}\)，其中 \(\lambda=1/\mu_*\)。
+\end{theorem}
+\begin{proof}
+\textbf{算术生成函数与极点。}
+由二项展开，\(B_{kq,kp}\) 是 \(R(z)(z-a)^{kp}\) 的第 \(k(p+q)-1\) 个系数。
+对同一圆使用 Cauchy 公式，在几何级数一致收敛的 \(|w|\) 邻域取和，得所列积分。
+另一方面，谱式直接给出
+\[
+ S_{p,q}(w)=\sum_\rho d_\rho
+     \frac{wP_{p,q}(t_\rho)}{1-wP_{p,q}(t_\rho)} .
+\]
+底数和算术极点的关系为 \(\mu_\rho^{p+q}P_{p,q}(t_\rho)=(\mu_\rho-a)^p\)，
+代数消去见 \lean{xi_ray_resolvent_factor}。
+因为 \(\sum_\rho d_\rho|t_\rho|<\infty\)、\(q\ge1\) 且所有 \(|t_\rho|<c\)，
+绝对底数可和。这使谱级数在避开所列倒数的紧集上一致收敛。
+每个非零底数 \(P\) 只对应有限重数，该位置 \(w=1/P\) 的留数是这些重数之和乘 \(-1/P\)，
+故同值极点的贡献不会相消。绝对底数取得最大值，因此得到精确半径。
+如果 \(p\le91q\)，定理~\ref{thm:xi-bernstein-ranges} 的单项估计
+\(|P_{p,q}(t_\rho)|/P_{p,q}(\lambda)\le\sigma^q\) 对所有 \(\rho\ne\rho_*\) 成立，
+所以这一段的最大底数已经读出。
+
+\textbf{半径的全域回读。}
+任意实 \(0<t<c\) 上，\(P_{p,q}(t)>0\) 且最大值为 \(M_{p,q}\)。
+这是在 \(t=cq/(p+q)\) 的一元对数导数比较。
+因而在 \(\mathsf E_\zeta\) 成立时，定理~\ref{thm:spectral-positive-operator}
+保证两种读数都成立。
+反之，设有一个非实谱点 \(t\)，取 \(r_0=|t|>0\)。
+在相同模长上，
+\[
+         |1-t/c|^2-(1-r_0/c)^2
+             =2(r_0-\Re t)/c>0 ,
+\]
+见 \lean{xi_ray_amplitude_gap}。
+令 \(\ell_0=c/r_0-1\)，该点不是唯一实单极点，故 \(r_0<1/225\)，有 \(\ell_0>99\)。
+实变量函数 \(s(1-s/c)^\ell\) 在 \(s=c/(1+\ell)\) 取得最大值。
+在 \(\ell=\ell_0\)，非实点的 \(|t||1-t/c|^\ell\) 严格超过这项最大值。
+两端对 \(\ell>0\) 连续，故同一严格比较在某个闭子区间 \(I\subset(99,\infty)\) 内保持。
+取其内部任一有理数 \(p/q\)，将比较取 \(q\) 次幂，得到 \(|P_{p,q}(t)|>M_{p,q}\)。
+这与第一种读数矛盾，所以它已能回读 \(\mathsf E_\zeta\)。
+
+\textbf{固定方向上的尾部符号。}
+在同一个 \(I\) 上，比较所有谱点的
+\(\log|t|+\ell\log|1-t/c|\)。
+随着 \(|t|\to0\)，这些值在 \(I\) 上一致趋于负无穷，因此最大者只来自有限个谱点。
+两条不同的仿射函数至多在一个 \(\ell\) 相交。
+如果两条函数完全相同，其 \(|t|\)、\(|1-t/c|\) 分别相等，从而实部相等且虚部的绝对值相等。
+于是去掉有限个交点后，可取一个开子区间，其中最大者恰是一对非实共轭点。
+实点已由上述严格比较排除。
+
+在该开区间固定充分大的正整数 \(q\)，使其中包含两个相邻的 \(p/q\)。
+对任一个最大点 \(t_*\)，相邻分子使
+\(\arg P_{p,q}(t_*)\) 相差 \(\arg(1-t_*/c)\)，模 \(2\pi\) 非零。
+所以其中至少一个方向有 \(P_{p,q}(t_*)=M U\)，其中 \(M>0\)、\(|U|=1\)、\(U\ne1\)。
+其余底数有共同模长上端 \(M'<M\)，故对某个有限 \(C\) 有
+\[
+ B_{kq,kp}=2d_*M^k\Re U^k+\mathcal E_k,\qquad
+ |\mathcal E_k|\le C(M')^{k-1}.
+\]
+这里可令 \(C\) 为其余底数的绝对值加权和。
+有限几何和表明 \(\Re U^k\) 的算术平均趋于零。
+若 \(U^2=1\)，则 \(U=-1\)，平方平均等于 \(1\)。
+否则用同一几何和于 \(U^2\)，平方平均趋于 \(1/2\)。
+区间 \([-1/4,1]\) 上有 \(x^2\le3x/4+1/4\)，见 \lean{xi_ray_phase_chord}。
+如果 \(\Re U^k<-1/4\) 只出现有限次，该比较会迫使平方平均的上端至多为 \(1/4\)，矛盾。
+因此沿选定方向有无穷多个指数读数为负，因为 \((M'/M)^{k-1}\to0\)。
+第二种读数也排除所有非实谱点，继而由 \(\Re\mu_\rho>38>a\) 和定理~\ref{thm:spectral-positive-operator}
+回读原矩义务。
+\end{proof}
+
+\begin{corollary}[有理方向半径的统一临界带包络]\label{cor:xi-ray-strip-envelope}
+对定理~\ref{thm:xi-bernstein-ray-readback} 的每对 \(p>99q\)，记
+\(\ell=p/q\)、\(T=\sqrt{a\ell}\)。对每个实际谱点
+\(\rho=\tfrac12+\beta+i\gamma\)、\(\gamma>0\)，有
+\[
+ \frac{|P_{p,q}(t_\rho)|}{M_{p,q}}\le e^{q\beta^2/\ell},\qquad
+ |P_{p,q}(t_\rho)|>M_{p,q}
+       \ \Longrightarrow\ |\gamma-T|<2|\beta| .
+\]
+因此，同一个算术生成函数在全部这些方向上满足
+\[
+             \boxed{\quad\operatorname{rad}S_{p,q}
+                 \ge M_{p,q}^{-1}\exp\!\left(-\frac{q^2}{4p}\right).\quad}
+\]
+实谱上端的严格超额已被限制在所列的共同高度偏差内。
+\end{corollary}
+\begin{proof}
+令 \(B=|\beta|\)、\(u=\gamma^2+B^2\)、\(d=4aB^2\)。
+平方谱坐标给出 \(|\mu_\rho-a|=u\) 及 \(|\mu_\rho|^2=(u+a)^2-d\)。
+后一个恒等式的代数部分见 \lean{xi_ray_square_modulus}。
+因 \(0\le d<a\) 且 \(a=9/4>1\)，有
+\[
+ |P_{p,q}(t_\rho)|^{1/q}
+     = f_B(u):=\frac{u^\ell}{[(u+a)^2-d]^{(\ell+1)/2}},\qquad
+ M_{p,q}^{1/q}=f_0(T^2).
+\]
+函数 \(\log f_B\) 的导数与 \((u+a)(T^2-u)-\ell d\) 同号。
+这个二次式的常数项为 \(\ell(a^2-d)>0\)，首项系数为负，
+所以恰有一个正根 \(u_B\)，在此处取最大值。
+由根式或二次式在 \(T^2-a\) 的正号，\(u_B+a>T^2\)，并有
+\(0\le T^2-u_B=\ell d/(u_B+a)\le4B^2\)。
+由于 \(f_0(u_B)\le f_0(T^2)\)，用 \(-\log(1-z)\le z/(1-z)\) 得
+\[
+ \log\frac{f_B(u_B)}{f_0(T^2)}
+ \le\frac{(\ell+1)d}{2[(u_B+a)^2-d]}
+ \le\frac{2(\ell+1)B^2}{a\ell^2-1}
+ \le\frac{B^2}{\ell}.
+\]
+最后一步在 \(\ell\ge9\) 已成立，见 \lean{xi_ray_strip_budget}。
+这给出每个谱点的第一项比较，再取最大底数并用 \(B<1/2\)，得到统一半径下端。
+
+为限制严格超额，只需讨论 \(B>0\)。
+记 \(u_\pm=T^2\pm3BT\)。由于 \(T>14\)，有
+\(7T^2/8\le u_-<u_B<u_+\le9T^2/8\) 及 \(a\le T^2/8\)。
+函数 \(\log f_0\) 的导数为 \((T^2-u)/(u(u+a))\)。
+在 \(u\) 与 \(T^2\) 之间积分，得到
+\[
+ \log f_0(T^2)-\log f_0(u)
+ \ge\frac{(u-T^2)^2}{2\,\max(u,T^2)[\max(u,T^2)+a]} .
+\]
+该损失在 \(u_-,u_+\) 分别至少为 \(4B^2/T^2\)、\((16/5)B^2/T^2\)。
+另一方面，由 \((u+a)^2-d\ge u^2\)，
+\[
+ \log f_B(u)-\log f_0(u)\le 2B^2(T^2+a)/u^2 ,
+\]
+故在 \(u_-,u_+\) 的增益分别至多为 \((144/49)B^2/T^2\)、\((9/4)B^2/T^2\)。
+两侧的损失均严格更大，有理比较见 \lean{xi_ray_height_budgets}。
+由 \(f_B\) 在其唯一最大点两侧的单调性，严格超额必须有 \(|u-T^2|<3BT\)。
+若 \(\gamma\le T-2B\)，则 \(u\le(T-2B)^2+B^2\le T^2-3BT\)。
+若 \(\gamma\ge T+2B\)，则 \(u\ge(T+2B)^2\ge T^2+3BT\)。
+两者均被排除，得到所列高度偏差。
+端点的平方展开见 \lean{xi_ray_height_sides}。
+\end{proof}

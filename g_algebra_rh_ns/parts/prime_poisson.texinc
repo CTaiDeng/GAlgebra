@@ -1,0 +1,229 @@
+\subsection{素数 Poisson 母体与加法数论义务}
+\label{sec:prime-poisson}
+
+\begin{theorem}[整数关系与总次数的协变回读]\label{thm:prime-poisson-fiber}
+取 \(a(n)=\mathbf 1_{\mathbb P}(n)\log n\)，令
+\[
+ U(t,\theta)=\sum_{n\ge2} a(n)e^{-tn+in\theta},\qquad t>0.
+\]
+则 \((\partial_t+|D_\theta|)U=0\)，其分布初值由 Fourier 系数 \(a(n)\) 唯一指定。
+固定 \(k\ge1\) 与整数矩阵 \(B\in\ZZ^{r\times k}\)，
+在 \(k\) 份 \(U\) 上取环面拉回
+\[
+ V_B(t,\boldsymbol\theta,\varphi)
+    =\prod_{j=1}^k U\!\left(t,(B^{\mathsf T}\boldsymbol\theta)_j+\varphi\right).
+\]
+令 \(\widehat V_B(\mathbf b,\ell)\) 表示时刻 \(t\) 在 \((\boldsymbol\theta,\varphi)\)
+上的归一化 Fourier 系数。则
+\[
+\boxed{\displaystyle
+ (\partial_t+|D_\varphi|)V_B=0,\qquad
+ C_B(\mathbf b,\ell):=e^{t\ell}\widehat V_B(\mathbf b,\ell)
+   =\sum_{\substack{n_j\ge2,\ B\mathbf n=\mathbf b\\
+                     \sum_j n_j=\ell}}\prod_j a(n_j).}
+\]
+因此 \(V_B\) 也满足 \((\partial_t^2+\partial_\varphi^2)V_B=0\)。
+给定上界 \(L\)，保留 \(n\le L\) 的输入已经精确给出所有 \(\ell\le L\) 的读数。
+若再以整数矩阵 \(C\) 合并关系，仍保留总次数，且有
+\[
+ V_{CB}(t,\boldsymbol\eta,\varphi)=V_B(t,C^{\mathsf T}\boldsymbol\eta,\varphi),
+ \qquad
+ C_{CB}(\mathbf d,\ell)=\sum_{C\mathbf b=\mathbf d} C_B(\mathbf b,\ell).
+\]
+\end{theorem}
+\begin{proof}
+在 \(t\ge\epsilon>0\)，各有限阶时空导数由指数衰减乘 \(n\) 的多项式和 \(\log n\) 控制。
+故卷积、有限乘积与逐项求导均合法。
+在单个素数模上 \(\partial_t\) 与 \(|D_\theta|\) 分别给出 \(-n\) 和 \(n\)。
+光滑测试函数的 Fourier 系数快速衰减，乘以 \(a(n)\) 后仍绝对可和。
+令 \(t\downarrow0\) 即在每个此类测试上恢复给定的算术初值。
+展开拉回后的乘积，每项的指数是
+\(-t\ell+i(B\mathbf n)\cdot\boldsymbol\theta+i\ell\varphi\)，\(\ell=\sum_j n_j>0\)。
+所以在每个联合模上，\(\partial_t+|D_\varphi|\) 都消去该项。
+再比较两个二阶乘子得到拉普拉斯方程。通过各圆变量的指数组合正交，
+只有指定关系和总次数的项留下，给出回读公式。
+当 \(\ell\le L\)，每个 \(n_j\le\ell\)，故同一截断对这些读数精确成立。
+
+矩阵复合满足 \((CB)^{\mathsf T}\boldsymbol\eta=B^{\mathsf T}C^{\mathsf T}\boldsymbol\eta\)。
+固定 \(\ell\) 的支撑有限，并可按 \(B\mathbf n=\mathbf b\) 分成不相交的纤维。
+对应的权重有限和按 \(C\mathbf b=\mathbf d\) 合并，给出第二个复合式。
+有限截短与合并在 \lean{prime_fiber_cutoff} 和 \lean{prime_fiber_coarsening} 中核验。
+对已合并的关系，原任务的附加测试若在每个将要合并的纤维上恒定，
+便可从新的关系与同一总次数读取。这是联合纤维的证据保持条件 \cite{GPure,GUnified}。
+\end{proof}
+
+\begin{proposition}[从素数母体读取四类量词]\label{prop:prime-additive-readback}
+定义 \(G_j(N)=C_{(1,\ldots,1)}(N,N)\)，其中矩阵有 \(j\) 列。
+对偏移组 \(\mathbf h=(0,h_2,\ldots,h_k)\)，令 \(B_{\mathbf h}\) 的第 \(j-1\) 行读取 \(n_j-n_1\)，
+记 \(\mathbf b_{\mathbf h}=(h_2,\ldots,h_k)\)、\(\beta_{\mathbf h}=\sum_j h_j\)。
+约定总次数为负时相应系数为零。令
+\[
+ T_{\mathbf h}(t)=\widehat V_{B_{\mathbf h}}(t,\cdot,0)(\mathbf b_{\mathbf h}),\qquad
+ I(m)=\sum_{m^2<n<(m+1)^2}e^{tn}\widehat U(t,n).
+\]
+则定义~\ref{def:arithmetic-family} 的前四项依次与下列母体读数等价。
+\begin{enumerate}
+ \item \(G_2(N)=e^{tN}\widehat{U(t,\cdot)^2}(N)>0\) 对每个偶数 \(N\ge4\) 成立。
+ \item \(\lim_{t\downarrow0}T_{(0,2)}(t)=\infty\)，其中
+ \[
+ T_{(0,2)}(t)=\widehat{|U(t,\cdot)|^2}(2)=
+       \sum_{\substack{p\in\mathbb P\\p+2\in\mathbb P}}
+          \log p\,\log(p+2)\,e^{-t(2p+2)}.
+ \]
+ \item 对每个可容许偏移组，在联合读数上证明
+ \[
+ R_{\mathbf h}(X)=\sum_{1\le n\le X}
+    C_{B_{\mathbf h}}(\mathbf b_{\mathbf h},kn+\beta_{\mathbf h})
+    =\mathfrak S(\mathbf h)X+o_{\mathbf h}(X).
+ \]
+ 该证书等价于未加权素数组数渐近于 \(\mathfrak S(\mathbf h)X/(\log X)^k\)。
+ \item \(I(m)>0\) 对每个 \(m\ge1\) 成立。
+\end{enumerate}
+同一和纤维可接收三元哥德巴赫的回读见证。例如 \(G_3(7)=3(\log2)^2\log3>0\)。
+\end{proposition}
+\begin{proof}
+定理~\ref{thm:prime-poisson-fiber} 给出和纤维的有限权重。
+所有项非负，素数项权重严格正，故有非零系数恰等价于存在原见证。
+这一有限支持判据见 \lean{prime_finite_mass_positive_iff}。
+对差分取 \(\varphi=0\)，由绝对收敛可在指定关系下合并总次数。
+当 \(k=2,\mathbf h=(0,2)\)，相位为 \(-\theta,\theta\)，两因子共轭。
+第 \(2\) 模的关系是 \(n_2-n_1=2\)，故所得为上式。
+
+固定偏移后，每个基点 \(n_1=n\) 至多给出一个满足全部关系的有序元组。
+其总次数为 \(kn+\beta_{\mathbf h}\)，反之同一关系和总次数确定 \(n\)。
+因此按不同总次数的有限求和恰得到 \(R_{\mathbf h}(X)\)。
+当 \(t\downarrow0\)，每项单调趋于常数权重。若只有有限元组，所有读数在其有限权重和之下；
+若有无穷元组，则每项的极限至少为 \((\log 2)^k>0\)，
+由任意有限子集的权重和可得读数无界。
+若偏移组在模某素数 \(q\) 意义下不可容许，那么每个基点都使至少一项被 \(q\) 整除。
+在素数解中该项只能等于 \(q\)，所以基点至多为有限个 \(q-h_j\)。
+
+当 \(\mathbf h\) 可容许，奇异级数每个局部因子为正。除去整除某个非零差 \(h_i-h_j\) 的有限个素数，
+有 \(\nu_{\mathbf h}(q)=k\)。对充分大的 \(q\)，局部因子的对数为
+\(\log(1-k/q)-k\log(1-1/q)=O_k(q^{-2})\)。其绝对和收敛，故 \(0<\mathfrak S(\mathbf h)<\infty\)。
+记未加权组数为 \(\pi_{\mathbf h}(X)\)，取 \(Y=X/(\log X)^{k+1}\)。
+基点 \(n\le Y\) 的组数为 \(O(Y)\)，且加权贡献至多
+\(O_{\mathbf h}(Y(\log X)^k)=o(X)\)。在 \(Y<n\le X\)，
+\(\log(n+h_j)/\log X\to1\) 一致成立。于是
+\(R_{\mathbf h}(X)=(1+o(1))(\log X)^k\pi_{\mathbf h}(X)+o(X)\)，给出两种渐近式的等价。
+
+区间上求和直接读取 \(\sum_{m^2<p<(m+1)^2}\log p\)，正性与区间存在素数等价。
+在 \(N=7\) 时三个下标都至少为二，唯一的无序整数分拆为 \(2,2,3\)，有三个有序见证。
+\end{proof}
+
+\begin{proposition}[和纤维的统一余量与差分的尺度增长]\label{prop:prime-uniform-certificates}
+取 \(t=1/N\)，把二元哥德巴赫的去阻尼积分
+\[
+ \frac{e^{tN}}{2\pi}\int_{-\pi}^{\pi}
+                U(t,\theta)^2e^{-iN\theta}\,d\theta
+\]
+沿圆周的可测分解写成主弧 \(M_N\) 和小弧 \(E_N\)。
+若对所有偶数 \(N\ge N_0\) 有共同常数 \(c_0\ge\delta>0\)，且
+\(\Re M_N\ge c_0N,\ |E_N|\le(c_0-\delta)N\)，则 \(G_2(N)\ge\delta N\)。
+阈值以下的偶数由完整的有限覆盖交接。若有限证书已覆盖到偶数 \(L\)，取 \(N_0\le L+2\) 即无缺口。
+
+若对任一个固定偏移组有 \(t_0,\delta>0\)，使所有 \(0<t\le t_0\) 满足
+\(T_{\mathbf h}(t/2)-T_{\mathbf h}(t)\ge\delta\)，
+则 \(T_{\mathbf h}(2^{-J}t_0)\ge T_{\mathbf h}(t_0)+J\delta\) 对每个 \(J\ge0\) 成立。
+\end{proposition}
+\begin{proof}
+前一结论取积分实部，使用 \(\Re E_N\ge-|E_N|\)。
+决定余量的是带目标相位的复积分读数，比较见 \lean{prime_phase_margin_readback}。
+在后一结论上，对 \(t=t_0,2^{-1}t_0,\ldots,2^{-(J-1)}t_0\) 的增量一次求和，
+中间项逐对相消，得到 \(J\delta\) 的下端，见 \lean{prime_dyadic_growth}。
+由命题~\ref{prop:prime-additive-readback} 回读无穷多素数元组，特别是偏移 \((0,2)\) 的孪生素数结论。
+完整渐近式的主项与余项按命题~\ref{prop:prime-additive-readback} 的等价关系读取。
+\end{proof}
+
+\begin{theorem}[模类投影、扭曲迹与素数幂误差]\label{thm:prime-mellin-reuse}
+对 \(q\ge1\) 的一个模类 \(r\)，平均
+\[
+ \frac1q\sum_{j=0}^{q-1}e^{-2\pi i jr/q}\,
+                         U(t,\theta+2\pi j/q)
+\]
+恰保留 \(n\equiv r\bmod q\) 的系数。
+若用 von Mangoldt 权重 \(\Lambda_{\rm vM}\) 并以 Dirichlet 特征 \(\chi\) 扭曲，
+则对 \(\Re s>1\) 有
+\[
+ \int_0^\infty t^{s-1}
+  \sum_{n\ge1}\Lambda_{\rm vM}(n)\chi(n)e^{-tn}\,dt
+   =-\Gamma(s)\frac{L'(s,\chi)}{L(s,\chi)} .
+\]
+记 \(C_B^\Lambda\) 为定理~\ref{thm:prime-poisson-fiber} 中改用该权的读数。
+当 \(k\ge2,\ell\ge2\)，有共同的去幂误差界
+\[
+ 0\le C_B^\Lambda(\mathbf b,\ell)-C_B(\mathbf b,\ell)
+   \le k\lfloor\sqrt{\ell}\rfloor\lfloor\log_2\ell\rfloor\,
+                    \ell^{k-2}(\log\ell)^k .
+\]
+在固定偏移纤维，以 \(n_1\le X\) 截读并取 \(L=X+\max_j h_j\ge2\)，
+权重差至多为 \(k\lfloor\sqrt L\rfloor\lfloor\log_2 L\rfloor(\log L)^k\)。
+\end{theorem}
+\begin{proof}
+模类平均在第 \(n\) 模上的乘子为 \(q^{-1}\sum_{j=0}^{q-1}e^{2\pi i j(n-r)/q}\)。
+由有限几何和，该系数在指定模类为一，其余为零。
+对互素类也可逐一使用有限单位群的特征展开，其正交关系来自循环因子上的同一几何和。
+扭曲迹的 Mellin 积分中，每项绝对积分由
+\(\Gamma(\Re s)\log n/n^{\Re s}\) 控制，因而逐项积分给出 Dirichlet 级数，
+再对 Euler 乘积取对数导数即为所示公式。
+这将已有一阶自守纤维的单变量算术输入接到素数模类上。
+联合相关的余量在命题~\ref{prop:prime-uniform-certificates} 中按各自终端条件核验。
+
+两种权重只在 \(p^j,\ j\ge2\) 的位置产生差异，且 \(\Lambda_{\rm vM}\ge a\ge0\)。
+不超过 \(L\) 的这些位置至多有
+\(\lfloor\sqrt L\rfloor\lfloor\log_2 L\rfloor\) 个，因为 \(j\) 至多为 \(\lfloor\log_2 L\rfloor\)，
+而每个 \(j\ge2\) 的底数至多取 \(\lfloor\sqrt L\rfloor\) 种。
+在总次数 \(\ell\) 处选择一个产生差异的坐标并取其值，再取 \(k-2\) 个其余坐标，
+最后一项由总次数唯一确定。忽略额外关系只增大上端，每项的权重至多为 \((\log\ell)^k\)。
+对 \(k\) 个可能坐标用并集上界即得第一式。
+固定偏移时，知道任一坐标即可确定基点与全部坐标，因此无须计入其他坐标的取值数。
+特别地，二元和纤维的差是 \(O(\sqrt N(\log N)^3)=o(N)\)，
+可从线性主弧余量中扣除后再回读素数见证。
+固定偏移的误差同样为 \(o_{\mathbf h}(X)\)，故用 \(\Lambda_{\rm vM}\) 或 \(a\) 书写的
+Hardy--Littlewood 渐近式等价。
+\end{proof}
+
+\begin{theorem}[五项分型的统一回读与素数元组继承]\label{thm:arithmetic-family-readback}
+在法空间以同一母体状态 \(X\) 保存素数场、完备 \(L\) 函数数据、Mellin 配对以及分型内核的合法运算。
+以 \(\Pi_\sigma X\) 读取分型 \(\sigma\) 所需的关系频率或平方谱及其算术输入。
+令 \(e_\sigma\) 保存对应的解析前提、任务域和终端证书，前四型采用命题~\ref{prop:prime-additive-readback} 的读数，
+谱型采用定理~\ref{thm:grh-family-readback} 的全秩局部化矩前提。
+在各输入及投影恒等式核验后，法空间有逐型的回读
+\[
+ \boxed{\quad\forall\sigma\in\Sigma,\qquad
+       \operatorname{Valid}_\sigma(\Pi_\sigma X,e_\sigma)\ \Longrightarrow\ \mathsf P_\sigma.\quad}
+\]
+素数 \(k\) 元组的偏移 \((0,2)\) 给出结论继承
+\(\mathsf P_{\rm HL}\Longrightarrow\mathsf P_{\rm twin}\)。
+\end{theorem}
+\begin{proof}
+前四个投影由定理~\ref{thm:prime-poisson-fiber} 与命题~\ref{prop:prime-additive-readback}
+给出。自守谱按定理~\ref{thm:grh-localized-moments} 与定理~\ref{thm:grh-family-readback}
+从每个实际算术矩泛函的全称正性回读 \(\mu\in[9/4,\infty)\)。
+秩一基例与高秩证书按引理~\ref{lem:grh-rank-one-base} 拼接成全秩覆盖。
+定理~\ref{thm:prime-mellin-reuse} 保持两类输入共同的一阶扭曲迹。
+按定理~\ref{thm:proof} 合成时，分型、覆盖量词及回读恒等式随证书保存。
+因此只要运输或任务商保持这些读数，已核验的证据可以作为下一次合法复合的输入
+\cite{GPure,GUnified}。
+
+偏移 \((0,2)\) 在模 \(2\) 占一个类，在其余素数模下至多占两个类，故可容许。
+设 \(R(X)=R_{(0,2)}(X)\)、\(\lambda=2t\)，由非负权重交换和与积分可得
+\[
+ T_2(t)=e^{-2t}\lambda\int_0^\infty e^{-\lambda X}R(X)\,dX .
+\]
+例如每个权重的积分从其基点 \(n\) 起算，直接给出因子 \(e^{-\lambda n}\)。
+若 \(R(X)/X\to\mathfrak S(0,2)>0\)，则
+\(\lambda^2\int_0^\infty e^{-\lambda X}R(X)\,dX\to\mathfrak S(0,2)\)。
+确切地，先在有限区间控制有界部分，其贡献随 \(\lambda^2\) 消失，再在尾部用
+\(|R(X)-\mathfrak S(0,2)X|\le\epsilon X\) 与
+\(\lambda^2\int_0^\infty e^{-\lambda X}X\,dX=1\) 控制误差。
+故 \(2t T_2(t)\to\mathfrak S(0,2)\)，足以签发孪生素数终端证书。
+
+\end{proof}
+
+\begin{remark}[整族证书的覆盖单位]
+二元和频与相邻平方区间以全部整数指标为覆盖域，孪生差频以 \(t\downarrow0\) 的整个尾区间为覆盖域。
+Hardy--Littlewood 的覆盖单位是每个固定可容许偏移组的全尾渐近。
+平方谱分型覆盖每个自守纤维上的全部实多项式。
+共用法态保存合法运算、覆盖域和回读规则。
+\end{remark}
