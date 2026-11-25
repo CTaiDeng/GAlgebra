@@ -1,7 +1,7 @@
 #!/usr/bin/env pwsh
 # SPDX-FileCopyrightText: 2026 GaoZheng
-# SPDX-License-Identifier: MIT
-# Full license: LICENSES/MIT.txt (repository root)
+# SPDX-License-Identifier: Apache-2.0
+# Full license: LICENSE (repository root)
 
 <#
   Install a one-line .pth startup hook into the governed virtual environment.

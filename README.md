@@ -30,8 +30,7 @@ Lean 工程使用 `lean-toolchain` 指定的 Lean 4.36.0。构建、声明核验
 
 | 材料 | 许可 |
 | --- | --- |
-| 未单独声明许可的原创代码、构建和维护配置、仓库级维护文档 | [Apache License 2.0](LICENSE) |
+| 原创代码（包括 Lean 形式化代码和仓库脚本）、构建和维护配置、仓库级维护文档 | [Apache License 2.0](LICENSE) |
 | 正式稿的 TeX 与 PDF、TeX 分节及声明所列配套研究材料中的原创内容 | [CC BY-NC-ND 4.0 文稿许可](LICENSE-IP) |
-| 标有 `SPDX-License-Identifier: MIT` 的现有脚本 | [MIT License](LICENSES/MIT.txt) |
 
 引用内容、第三方材料及已有独立许可声明的材料遵循各自的权利和许可声明。

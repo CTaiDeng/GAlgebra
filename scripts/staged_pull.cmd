@@ -1,7 +1,7 @@
 @echo off
 REM SPDX-FileCopyrightText: 2026 GaoZheng
-REM SPDX-License-Identifier: MIT
-REM Full license: LICENSES/MIT.txt (repository root)
+REM SPDX-License-Identifier: Apache-2.0
+REM Full license: LICENSE (repository root)
 
 setlocal
 

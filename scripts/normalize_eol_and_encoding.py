@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # SPDX-FileCopyrightText: 2026 GaoZheng
-# SPDX-License-Identifier: MIT
-# Full license: LICENSES/MIT.txt (repository root)
+# SPDX-License-Identifier: Apache-2.0
+# Full license: LICENSE (repository root)
 
 """
 Normalize staged text files according to .gitattributes:

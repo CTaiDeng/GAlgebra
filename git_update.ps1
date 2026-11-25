@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 GaoZheng
-# SPDX-License-Identifier: MIT
-# Full license: LICENSES/MIT.txt (repository root)
+# SPDX-License-Identifier: Apache-2.0
+# Full license: LICENSE (repository root)
 
 # 用法：.\git_update.ps1 [-Message update] [-TrackedOnly] [-IncludeExcluded] [-NoPush] [-Remote origin] [-Branch master]
 # 默认行为：自动刷新 .gitattributes 审查白名单，然后提交并推送全部变更。

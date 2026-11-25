@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 GaoZheng
-# SPDX-License-Identifier: MIT
-# Full license: LICENSES/MIT.txt (repository root)
+# SPDX-License-Identifier: Apache-2.0
+# Full license: LICENSE (repository root)
 
 <#
   按文件批量提交，并默认把远端缺失提交从旧到新逐个 fast-forward 推送。
