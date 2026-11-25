@@ -1,5 +1,9 @@
 # GAlgebra
 
+### 作者：GaoZheng（高政）
+
+[作者博客](https://mymetamathematics.blogspot.com) · [![ORCID](https://orcid.org/sites/default/files/images/orcid_16x16.png) 0009-0008-3013-6626](https://orcid.org/0009-0008-3013-6626)
+
 ## 项目目的
 
 GAlgebra 的目标是在同一 G 母体上构造数论与动力学/PDE 两族原命题的经典证明。证明链从实际输入、合法域与完整量词出发，保结构上卷到 G 母体，直接求解各分型内核，经纤维丛协变与多复合反身统一闭合，再从法空间回读原命题。统一估计覆盖整个合法复合族。Lean 工程核验已形式化并登记于证明索引的声明。[共同证明链与验收](g_algebra_rh_ns/parts/proof_guide.texinc)
