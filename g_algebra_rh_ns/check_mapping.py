@@ -212,7 +212,7 @@ def make_tex(source_map: dict, proof_map: list[dict], finite_labels: set[str]) -
 \label{sec:lean-map}
 Lean 名称均在 \lean{GAlgebra} 命名空间。文件与行号见配套索引。
 所用声明的类型及公理依赖在 \lean{Audit.lean} 中检查。
-最后一列标明 Lean 覆盖与正文承担的连续分析。
+最后一列按实际声明类型标明 Lean 核验的结论及正文的证明环节。
 \small
 \begin{longtable}{@{}P{.09\textwidth}P{.55\textwidth}P{.29\textwidth}@{}}
 \toprule 正文 & Lean 声明 & 证明覆盖\\\midrule
@@ -335,7 +335,8 @@ def make_index(
     lines = [
         "# 正文与 Lean 声明索引", "",
         "正文与附录的 TeX 标签直接定位原式。正文的文献引用及内化附录调用均定位到使用行。"
-        "按第二表的覆盖范围核对所列 Lean 声明。类型及公理核验见 Audit.lean。", "",
+        "第二表按声明类型标明 Lean 核验的结论及正文的证明环节。"
+        "声明类型和公理依赖在 Audit.lean 核验。母体见证、回读及其覆盖域见[专项进度表](README.md#整体证明义务完成进度表)。", "",
         "## 正文引用位置", "",
         "| 正文调用处 | 公开文献或内化附录 | Lean 声明 |", "| --- | --- | --- |",
     ]

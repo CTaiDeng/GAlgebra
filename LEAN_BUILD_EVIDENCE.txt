@@ -1,0 +1,1849 @@
+GAlgebra 1.0.0 Lean 构建与核验记录
+核验日期 2026-11-25（北京时间）
+
+Lean 命令在独立副本中运行，映射命令在仓库根目录运行。
+构建段记录 Lake 任务状态。完整声明类型与公理依赖见 Audit.lean 输出段。
+
+$ lean --version
+Exit code 0, 0.151 s
+Lean (version 4.36.0, x86_64-w64-windows-gnu, commit 611c117bfaf7b7ae1cfcf246ce6fba31e8f509e9, Release)
+
+$ lake --version
+Exit code 0, 0.146 s
+Lake version 5.0.0-src+611c117 (Lean version 4.36.0)
+
+$ lake build
+Exit code 0, 23.178 s
+✔ [2/46] Built GAlgebra.Core (3.4s)
+✔ [4/46] Built GAlgebra.SpectralMoments (3.5s)
+✔ [6/46] Built GAlgebra.Proof (2.8s)
+✔ [8/46] Built GAlgebra.Chain (2.8s)
+✔ [10/46] Built GAlgebra.Law (4.4s)
+✔ [12/46] Built GAlgebra.Repair (4.4s)
+✔ [14/46] Built GAlgebra.IntervalSequence (4.4s)
+✔ [16/46] Built GAlgebra.Paths (4.4s)
+✔ [18/46] Built GAlgebra.Operators (2.0s)
+✔ [20/46] Built GAlgebra.Coverage (2.1s)
+✔ [22/46] Built GAlgebra.ArithmeticEnclosures (2.8s)
+✔ [24/46] Built GAlgebra.FiniteGeometry (2.1s)
+✔ [26/46] Built GAlgebra.HomotopyAlgebra (2.3s)
+✔ [28/46] Built GAlgebra.Targets (2.3s)
+✔ [30/46] Built GAlgebra.KineticLimit (2.4s)
+✔ [32/46] Built GAlgebra.PrimePoisson (1.0s)
+✔ [34/46] Built GAlgebra.ZetaWindow (8.1s)
+✔ [36/46] Built GAlgebra.GrandRiemann (7.7s)
+✔ [38/46] Built GAlgebra.AnalyticCertificates (7.7s)
+✔ [40/46] Built GAlgebra.FlowGluing (7.7s)
+✔ [42/46] Built GAlgebra (880ms)
+ℹ [44/46] Built Audit (1.9s)
+Build completed successfully (46 jobs).
+
+$ lake env leanchecker GAlgebra
+Exit code 0, 12.654 s
+
+
+$ lake env leanchecker Audit
+Exit code 0, 4.599 s
+
+
+$ lake env lean Audit.lean
+Exit code 0, 1.826 s
+GAlgebra.AdjointPair.{u_1, u_2, u_3} {K : Type u_1} {U : Type u_2} {V : Type u_3} [GAlgebra.Abelian K]
+  [GAlgebra.Abelian U] [GAlgebra.Abelian V] (P : GAlgebra.Pairing K U) (Q : GAlgebra.Pairing K V) : Type (max u_2 u_3)
+GAlgebra.AdjointPair.gram_energy.{u_1, u_2, u_3} {K : Type u_1} {U : Type u_2} {V : Type u_3} [GAlgebra.Abelian K]
+  [GAlgebra.Abelian U] [GAlgebra.Abelian V] {P : GAlgebra.Pairing K U} {Q : GAlgebra.Pairing K V}
+  (B : GAlgebra.AdjointPair P Q) (v : V) : Q.dot (B.gram v) v = P.dot (B.adjoint.toFun v) (B.adjoint.toFun v)
+GAlgebra.AdjointPair.gram_kernel_orthogonal.{u_1, u_2, u_3} {K : Type u_1} {U : Type u_2} {V : Type u_3}
+  [GAlgebra.Abelian K] [GAlgebra.Abelian U] [GAlgebra.Abelian V] {P : GAlgebra.Pairing K U} {Q : GAlgebra.Pairing K V}
+  (B : GAlgebra.AdjointPair P Q) (v : V) : B.gram v = 0 ↔ Q.Perp (GAlgebra.Subgroup.range B.forward) v
+GAlgebra.ArithmeticObligation : Type
+GAlgebra.ArithmeticObligation.goal (tupleAsymptotic : List Int → Prop) (grandRiemann : Prop) :
+  GAlgebra.ArithmeticObligation → Prop
+GAlgebra.Bilinear.{u_1, u_2, u_3} (V : Type u_1) (W : Type u_2) (Z : Type u_3) [GAlgebra.Abelian V] [GAlgebra.Abelian W]
+  [GAlgebra.Abelian Z] : Type (max (max u_1 u_2) u_3)
+GAlgebra.Derivation.{u_1} {P : Type u_1} (hyp : P → Prop) (rule : List P → P → Prop) : P → Prop
+GAlgebra.DirectedGraph.{u_1, u_2} (V : Type u_1) (E : Type u_2) : Type (max u_1 u_2)
+GAlgebra.DirectedGraph.Path.{u_1, u_2} {V : Type u_1} {E : Type u_2} (G : GAlgebra.DirectedGraph V E) :
+  V → V → Type (max u_1 u_2)
+GAlgebra.DirectedGraph.constrained_hit_complete_and_minimal.{u_1} {E : Type u_1} {n cap : Nat}
+  (G : GAlgebra.DirectedGraph (Fin n) E) (outgoing : (v : Fin n) → List { e // G.source e = v })
+  (complete : ∀ (e : E), ⟨e, ⋯⟩ ∈ outgoing (G.source e)) (advance : Fin (cap + 1) → E → Option (Fin (cap + 1)))
+  (weight : E → Nat) (goal : Fin n → Fin (cap + 1) → Bool) (initial final : Fin (cap + 1)) (limit : Nat)
+  {start finish : Fin n} (path : G.Path start finish) (terminal : goal finish final = true)
+  (within : (GAlgebra.DirectedGraph.pathEdges path).length ≤ limit)
+  (replay : GAlgebra.DirectedGraph.resourceTrace advance initial (GAlgebra.DirectedGraph.pathEdges path) = some final) :
+  ∃ result,
+    G.constrainedHit outgoing advance weight goal initial limit start = some result ∧
+      result.fst ≤ (List.map weight (GAlgebra.DirectedGraph.pathEdges path)).sum
+GAlgebra.DirectedGraph.constrained_hit_sound.{u_1} {E : Type u_1} {n cap : Nat} (G : GAlgebra.DirectedGraph (Fin n) E)
+  (outgoing : (v : Fin n) → List { e // G.source e = v }) (advance : Fin (cap + 1) → E → Option (Fin (cap + 1)))
+  (weight : E → Nat) (goal : Fin n → Fin (cap + 1) → Bool) (initial : Fin (cap + 1)) (limit : Nat) (start : Fin n)
+  (cost : Nat) (edges : List E)
+  (found : G.constrainedHit outgoing advance weight goal initial limit start = some (cost, edges)) :
+  ∃ finish path final,
+    goal finish final = true ∧
+      (GAlgebra.DirectedGraph.pathEdges path).length ≤ limit ∧
+        GAlgebra.DirectedGraph.resourceTrace advance initial (GAlgebra.DirectedGraph.pathEdges path) = some final ∧
+          GAlgebra.DirectedGraph.pathEdges path = edges ∧
+            (List.map weight (GAlgebra.DirectedGraph.pathEdges path)).sum = cost
+GAlgebra.DirectedGraph.face_boundary_zero.{u_1, u_2, u_3, u_4} {V : Type u_1} {E : Type u_2}
+  {G : GAlgebra.DirectedGraph V E} {F : Type u_3} {A : Type u_4} [GAlgebra.Abelian F] [GAlgebra.Abelian A]
+  (edge : E → F) (vertex : V → A) (D : GAlgebra.AddMap F A)
+  (edges : ∀ (e : E), D.toFun (edge e) = vertex (G.target e) + -vertex (G.source e)) {x y : V} (p q : G.Path x y) :
+  D.toFun (GAlgebra.DirectedGraph.pathSum edge p + -GAlgebra.DirectedGraph.pathSum edge q) = 0
+GAlgebra.DirectedGraph.finite_hit_complete_and_minimal.{u_1} {E : Type u_1} {n : Nat}
+  (G : GAlgebra.DirectedGraph (Fin n) E) (outgoing : (v : Fin n) → List { e // G.source e = v })
+  (complete : ∀ (e : E), ⟨e, ⋯⟩ ∈ outgoing (G.source e)) (weight : E → Nat) (goal : Fin n → Bool) (limit : Nat)
+  {start finish : Fin n} (path : G.Path start finish) (terminal : goal finish = true)
+  (within : (GAlgebra.DirectedGraph.pathEdges path).length ≤ limit) :
+  ∃ result,
+    (G.hitTable outgoing weight goal limit).get start = some result ∧
+      result.fst ≤ (List.map weight (GAlgebra.DirectedGraph.pathEdges path)).sum
+GAlgebra.DirectedGraph.finite_hit_global_minimal.{u_1} {E : Type u_1} {n : Nat} (G : GAlgebra.DirectedGraph (Fin n) E)
+  (outgoing : (v : Fin n) → List { e // G.source e = v }) (complete : ∀ (e : E), ⟨e, ⋯⟩ ∈ outgoing (G.source e))
+  (weight : E → Nat) (goal : Fin n → Bool) {start finish : Fin n} (path : G.Path start finish)
+  (terminal : goal finish = true) :
+  ∃ result,
+    (G.hitTable outgoing weight goal (n - 1)).get start = some result ∧
+      result.fst ≤ (List.map weight (GAlgebra.DirectedGraph.pathEdges path)).sum
+GAlgebra.DirectedGraph.finite_hit_sound.{u_1} {E : Type u_1} {n : Nat} (G : GAlgebra.DirectedGraph (Fin n) E)
+  (outgoing : (v : Fin n) → List { e // G.source e = v }) (weight : E → Nat) (goal : Fin n → Bool) (limit : Nat)
+  (start : Fin n) (cost : Nat) (edges : List E)
+  (found : (G.hitTable outgoing weight goal limit).get start = some (cost, edges)) :
+  ∃ finish path,
+    goal finish = true ∧
+      (GAlgebra.DirectedGraph.pathEdges path).length ≤ limit ∧
+        GAlgebra.DirectedGraph.pathEdges path = edges ∧
+          (List.map weight (GAlgebra.DirectedGraph.pathEdges path)).sum = cost
+GAlgebra.DirectedGraph.full_resource_digits (caps : List Nat) :
+  GAlgebra.DirectedGraph.resourceDigits caps (GAlgebra.DirectedGraph.resourceCapacity caps - 1) = caps
+GAlgebra.DirectedGraph.hitTable.{u_1} {E : Type u_1} {n : Nat} (G : GAlgebra.DirectedGraph (Fin n) E)
+  (outgoing : (v : Fin n) → List { e // G.source e = v }) (weight : E → Nat) (goal : Fin n → Bool) :
+  Nat → Vector (Option (Nat × List E)) n
+GAlgebra.DirectedGraph.pathSum.{u_1, u_2, u_3} {V : Type u_1} {E : Type u_2} {G : GAlgebra.DirectedGraph V E}
+  {F : Type u_3} [GAlgebra.Abelian F] (basis : E → F) {x y : V} : G.Path x y → F
+GAlgebra.DirectedGraph.path_boundary.{u_1, u_2, u_3, u_4} {V : Type u_1} {E : Type u_2} {G : GAlgebra.DirectedGraph V E}
+  {F : Type u_3} {A : Type u_4} [GAlgebra.Abelian F] [GAlgebra.Abelian A] (edge : E → F) (vertex : V → A)
+  (D : GAlgebra.AddMap F A) (edges : ∀ (e : E), D.toFun (edge e) = vertex (G.target e) + -vertex (G.source e)) {x y : V}
+  (p : G.Path x y) : D.toFun (GAlgebra.DirectedGraph.pathSum edge p) = vertex y + -vertex x
+GAlgebra.DirectedGraph.path_sum_append.{u_1, u_2, u_3} {V : Type u_1} {E : Type u_2} {G : GAlgebra.DirectedGraph V E}
+  {F : Type u_3} [GAlgebra.Abelian F] (edge : E → F) {x y z : V} (p : G.Path x y) (q : G.Path y z) :
+  GAlgebra.DirectedGraph.pathSum edge (GAlgebra.DirectedGraph.append p q) =
+    GAlgebra.DirectedGraph.pathSum edge p + GAlgebra.DirectedGraph.pathSum edge q
+GAlgebra.DirectedGraph.resourceConstrainedHit.{u_1} {E : Type u_1} {n : Nat} (G : GAlgebra.DirectedGraph (Fin n) E)
+  (outgoing : (v : Fin n) → List { e // G.source e = v }) (allowed : E → Bool) (weight : E → Nat) (use : E → List Nat)
+  (goal : Fin n → List Nat → Bool) (caps : List Nat) (limit : Nat) (start : Fin n) : Option (Nat × List E)
+GAlgebra.DirectedGraph.resourceTrace.{u_1, u_2} {E : Type u_1} {R : Type u_2} (advance : R → E → Option R) :
+  R → List E → Option R
+GAlgebra.DirectedGraph.resourceTrace_dominates.{u_1, u_2} {E : Type u_2} {R : Type u_1} (advance : R → E → Option R)
+  (dominatedBy : R → R → Prop)
+  (step :
+    ∀ {small large after : R} {edge : E},
+      dominatedBy small large →
+        advance small edge = some after →
+          ∃ afterLarge, advance large edge = some afterLarge ∧ dominatedBy after afterLarge)
+  {small large finish : R} {edges : List E} (initial : dominatedBy small large)
+  (replay : GAlgebra.DirectedGraph.resourceTrace advance small edges = some finish) :
+  ∃ finishLarge,
+    GAlgebra.DirectedGraph.resourceTrace advance large edges = some finishLarge ∧ dominatedBy finish finishLarge
+GAlgebra.DirectedGraph.spend_resources_complete {caps use : List Nat} {before : Nat}
+  (in_space : before < GAlgebra.DirectedGraph.resourceCapacity caps) (aligned : use.length = caps.length)
+  (fits :
+    (List.zipWith (fun u r => decide (u ≤ r)) use (GAlgebra.DirectedGraph.resourceDigits caps before)).all id = true) :
+  ∃ next, GAlgebra.DirectedGraph.spendResourceCode caps before use = some next
+GAlgebra.DirectedGraph.spend_resources_sound {caps use : List Nat} {before remaining : Nat}
+  (accepted : GAlgebra.DirectedGraph.spendResourceCode caps before use = some remaining) :
+  remaining < GAlgebra.DirectedGraph.resourceCapacity caps ∧
+    use.length = caps.length ∧
+      List.zipWith (fun x1 x2 => x1 + x2) (GAlgebra.DirectedGraph.resourceDigits caps remaining) use =
+        GAlgebra.DirectedGraph.resourceDigits caps before
+GAlgebra.FiberGroup.{u_1} (K : Type u_1) : Type u_1
+GAlgebra.FlowSpec.atViscosity.{u_1, u_2, u_3, u_4} {N : Type u_1} {F : Type u_2} {U : Type u_3} {P : Type u_4}
+  (S : GAlgebra.FlowSpec N F U P) (ν : N) : Prop
+GAlgebra.FlowSpec.goal.{u_1, u_2, u_3, u_4} {N : Type u_1} {F : Type u_2} {U : Type u_3} {P : Type u_4}
+  (S : GAlgebra.FlowSpec N F U P) : Prop
+GAlgebra.Formula.extend_map.{u_1, u_2} {X : Type u_1} {Y : Type u_2} (e : X → Y) (x : X) (env : Nat → X) :
+  e ∘ GAlgebra.Formula.extend x env = GAlgebra.Formula.extend (e x) (e ∘ env)
+GAlgebra.Formula.formula_transport.{u_1, u_2, u_3} {X : Type u_1} {Y : Type u_2} {A : Type u_3} (e : X → Y)
+  (onto : ∀ (y : Y), ∃ x, e x = y) (I : A → (Nat → X) → Prop) (J : A → (Nat → Y) → Prop)
+  (atoms : ∀ (a : A) (env : Nat → X), I a env ↔ J a (e ∘ env)) (p : GAlgebra.Formula A) (env : Nat → X) :
+  GAlgebra.Formula.holds I env p ↔ GAlgebra.Formula.holds J (e ∘ env) p
+GAlgebra.LHTSFinite.{u_1} (n : Nat) (Edge : Type u_1) : Type u_1
+GAlgebra.LHTSFinite.prune.{u_1} {n : Nat} {Edge : Type u_1} (model : GAlgebra.LHTSFinite n Edge) (caps : List Nat)
+  {start finish : Fin n} (path : model.graph.Path start finish)
+  (before after : Fin (GAlgebra.DirectedGraph.resourceCapacity caps - 1 + 1))
+  (replay :
+    GAlgebra.DirectedGraph.resourceTrace (GAlgebra.DirectedGraph.resourceAdvance caps model.legal model.consumption)
+        before (GAlgebra.DirectedGraph.pathEdges path) =
+      some after)
+  (terminal : model.terminal finish (GAlgebra.DirectedGraph.resourceDigits caps ↑after) = true) (spent incumbent : Nat)
+  (excluded : incumbent < spent + model.remainingLower start (GAlgebra.DirectedGraph.resourceDigits caps ↑before)) :
+  incumbent < spent + (List.map model.cost (GAlgebra.DirectedGraph.pathEdges path)).sum
+GAlgebra.OrderedTailTree : Type
+GAlgebra.OrderedTailTree.eval.{u_1} {X : Type u_1} (seed : X) (combine : X → X → X) : GAlgebra.OrderedTailTree → X
+GAlgebra.OrderedTailTree.eval_grade.{u_1} {X : Type u_1} (grade : Nat → X → Prop) (seed : X) (combine : X → X → X)
+  (seedGrade : grade 1 seed) (law : ∀ (n m : Nat) (a b : X), grade n a → grade m b → grade (n + m) (combine a b))
+  (tree : GAlgebra.OrderedTailTree) : grade (tree.forks + 1) (GAlgebra.OrderedTailTree.eval seed combine tree)
+GAlgebra.OrderedTailTree.eval_le.{u_1} {X : Type u_1} (size : X → Rat) (seed : X) (combine : X → X → X) (s M : Rat)
+  (nonnegSize : ∀ (a : X), 0 ≤ size a) (nonnegM : 0 ≤ M) (base : size seed ≤ s)
+  (bilinear : ∀ (a b : X), size (combine a b) ≤ M * size a * size b) (tree : GAlgebra.OrderedTailTree) :
+  size (GAlgebra.OrderedTailTree.eval seed combine tree) ≤ s * (M * s) ^ tree.forks
+GAlgebra.OrderedTailTree.eval_transport.{u_1, u_2} {X : Type u_1} {Y : Type u_2} (transport : X → Y) (seed : X)
+  (source : X → X → X) (target : Y → Y → Y)
+  (law : ∀ (a b : X), transport (source a b) = target (transport a) (transport b)) (tree : GAlgebra.OrderedTailTree) :
+  transport (GAlgebra.OrderedTailTree.eval seed source tree) =
+    GAlgebra.OrderedTailTree.eval (transport seed) target tree
+GAlgebra.OrthogonalSplitting.{u_1, u_2} {K : Type u_1} {V : Type u_2} [GAlgebra.Abelian K] [GAlgebra.Abelian V]
+  (P : GAlgebra.Pairing K V) (S : GAlgebra.Subgroup V) : Type u_2
+GAlgebra.OrthogonalSplitting.quotient_orthogonal.{u_1, u_2} {K : Type u_1} {V : Type u_2} [GAlgebra.Abelian K]
+  [GAlgebra.Abelian V] {P : GAlgebra.Pairing K V} {S : GAlgebra.Subgroup V} (C : GAlgebra.OrthogonalSplitting P S) :
+  GAlgebra.Iso (Quotient S.congruence) { v // P.Perp S v }
+GAlgebra.Pairing.{u_1, u_2} (K : Type u_1) (V : Type u_2) [GAlgebra.Abelian K] [GAlgebra.Abelian V] : Type (max u_1 u_2)
+GAlgebra.PrimeOffsetsAdmissible (offsets : List Int) : Prop
+GAlgebra.QuadraticTailLaw.{u_1} (Z : Type u_1) [Add Z] : Type u_1
+GAlgebra.QuadraticTailLaw.Legal.{u_1} {Z : Type u_1} [Add Z] (law : GAlgebra.QuadraticTailLaw Z) (z : Z) : Prop
+GAlgebra.QuadraticTailLaw.eval_legal.{u_1} {Z : Type u_1} [Add Z] (law : GAlgebra.QuadraticTailLaw Z)
+  (tree : GAlgebra.OrderedTailTree) : law.Legal (GAlgebra.OrderedTailTree.eval law.seed law.combine tree)
+GAlgebra.RationalComplex.ContourError.margin (error : GAlgebra.RationalComplex.ContourError) (width : Rat) : Rat
+GAlgebra.RationalComplex.DyadicContourPath.optimal {evaluate : GAlgebra.RationalComplex → GAlgebra.RationalComplex}
+  {error : GAlgebra.RationalComplex.ContourError} {depth : Nat} {width : Rat}
+  {p q : GAlgebra.RationalComplex.ContourVertex} {result : Int × Nat}
+  (path : GAlgebra.RationalComplex.DyadicContourPath evaluate error depth width p q result) :
+  ∃ best, GAlgebra.RationalComplex.dyadicContour evaluate error depth width p q = some best ∧ best.snd ≤ result.snd
+GAlgebra.RationalComplex.contourGap (error : GAlgebra.RationalComplex.ContourError) (width : Rat)
+  (p q : GAlgebra.RationalComplex) : Fin 4 → Rat
+GAlgebra.RationalComplex.contour_gap_sum (error : GAlgebra.RationalComplex.ContourError) (width : Rat)
+  (p q : GAlgebra.RationalComplex) :
+  have g := GAlgebra.RationalComplex.contourGap error width p q;
+  g 0 + g 1 + g 2 + g 3 = error.margin width - p.contourSeparation q
+GAlgebra.RationalComplex.contour_mesh_component (error : GAlgebra.RationalComplex.ContourError) (width : Rat) :
+  error.margin width - error.margin (width / 2) = 3 * error.curvature * width ^ 2 / 32
+GAlgebra.RationalComplex.contour_separated_iff (threshold : Rat) (p q : GAlgebra.RationalComplex) :
+  GAlgebra.RationalComplex.Separated threshold p q ↔ threshold < p.contourSeparation q
+GAlgebra.RationalComplex.criticalLineBatches : List GAlgebra.RationalComplex.CriticalSignBatch
+GAlgebra.RationalComplex.critical_dot_upper_bound (p q exactP exactQ : GAlgebra.RationalComplex)
+  (firstError secondError : Rat) (nonnegative : 0 ≤ firstError)
+  (firstRe : -firstError ≤ exactP.re - p.re ∧ exactP.re - p.re ≤ firstError)
+  (firstIm : -firstError ≤ exactP.im - p.im ∧ exactP.im - p.im ≤ firstError)
+  (secondRe : -secondError ≤ exactQ.re - q.re ∧ exactQ.re - q.re ≤ secondError)
+  (secondIm : -secondError ≤ exactQ.im - q.im ∧ exactQ.im - q.im ≤ secondError) :
+  exactP.re * exactQ.re + exactP.im * exactQ.im ≤ GAlgebra.RationalComplex.criticalDotUpper✝ p q firstError secondError
+GAlgebra.RationalComplex.critical_line_batch_sizes :
+  List.map (fun batch => batch.brackets.length) GAlgebra.RationalComplex.criticalLineBatches =
+    [117, 164, 177, 136, 172, 31]
+GAlgebra.RationalComplex.crossing_coordinate (p q : GAlgebra.RationalComplex) (nonhorizontal : q.im ≠ p.im) :
+  have parameter := -p.im / (q.im - p.im);
+  ((1 - parameter) * p.re + parameter * q.re) * (q.im - p.im) = p.determinant q
+GAlgebra.RationalComplex.crossing_reverse (p q : GAlgebra.RationalComplex) :
+  GAlgebra.RationalComplex.crossing✝ q p = -GAlgebra.RationalComplex.crossing✝ p q
+GAlgebra.RationalComplex.dyadicContour (evaluate : GAlgebra.RationalComplex → GAlgebra.RationalComplex)
+  (error : GAlgebra.RationalComplex.ContourError) :
+  Nat → Rat → GAlgebra.RationalComplex.ContourVertex → GAlgebra.RationalComplex.ContourVertex → Option (Int × Nat)
+GAlgebra.RationalComplex.dyadic_contour_sound {evaluate : GAlgebra.RationalComplex → GAlgebra.RationalComplex}
+  {error : GAlgebra.RationalComplex.ContourError} {depth : Nat} {width : Rat}
+  {p q : GAlgebra.RationalComplex.ContourVertex} {result : Int × Nat}
+  (accepted : GAlgebra.RationalComplex.dyadicContour evaluate error depth width p q = some result) :
+  GAlgebra.RationalComplex.DyadicContourPath evaluate error depth width p q result
+GAlgebra.RationalComplex.edge_qualification_sound {margin : Rat} {p q : GAlgebra.RationalComplex}
+  (accepted : GAlgebra.RationalComplex.edgeQualifies margin p q = true) : GAlgebra.RationalComplex.Separated margin p q
+GAlgebra.RationalComplex.phase_pi_caps :
+  GAlgebra.RationalComplex.phasePiLower✝ ≤
+      16 * GAlgebra.RationalComplex.phaseArctanSum✝ (1 / 5) 6 -
+        4 * GAlgebra.RationalComplex.phaseArctanSum✝ (1 / 239) 7 ∧
+    16 * GAlgebra.RationalComplex.phaseArctanSum✝ (1 / 5) 7 - 4 * GAlgebra.RationalComplex.phaseArctanSum✝ (1 / 239) 6 ≤
+      GAlgebra.RationalComplex.phasePiUpper✝
+GAlgebra.RationalComplex.rounded_coordinate_error (units x : Rat) (positive : 0 < units) :
+  0 ≤ x - GAlgebra.RationalComplex.roundedCoordinate units x ∧
+    x - GAlgebra.RationalComplex.roundedCoordinate units x < 1 / units
+GAlgebra.RationalComplex.segment_coordinate_above (a b parameter threshold : Rat) (first : threshold < a)
+  (second : threshold < b) (nonnegative : 0 ≤ parameter) (at_most_one : parameter ≤ 1) :
+  threshold < (1 - parameter) * a + parameter * b
+GAlgebra.RationalComplex.zetaBands (left right : Rat) (heights : List Rat) (cutoff bits depth : Nat) :
+  Option (List (Int × Nat) × Nat)
+GAlgebra.RationalComplex.zetaCriticalIndex (height : Rat) (cutoff bits depth : Nat) : Option (Int × Nat)
+GAlgebra.RationalComplex.zetaCriticalSignTests (lower upper : Rat) (brackets : List (Rat × Rat)) (cutoff bits : Nat) :
+  Option (List Bool)
+GAlgebra.RepairMorphism.transport.{u_1, u_2, u_3, u_4} {U : Type u_1} {V : Type u_2} {U' : Type u_3} {V' : Type u_4}
+  {B : U → V} {K : U → Prop} {B' : U' → V'} {K' : U' → Prop} (F : GAlgebra.RepairMorphism B K B' K') {x : V} {y : V'}
+  (h : F.onTarget x = y) : GAlgebra.Repairable B K x → GAlgebra.Repairable B' K' y
+GAlgebra.Repairable.{u_1, u_2} {U : Type u_1} {V : Type u_2} (B : U → V) (K : U → Prop) (target : V) : Prop
+GAlgebra.ScalarGeometry.Frame.{u_1, u_2} {K : Type u_1} {V : Type u_2} [GAlgebra.Abelian K] [GAlgebra.Abelian V] [Mul K]
+  {P : GAlgebra.Pairing K V} (G : GAlgebra.ScalarGeometry P) (S : GAlgebra.Subgroup V) : Type u_2
+GAlgebra.ScalarGeometry.frame_splitting.{u_1, u_2} {K : Type u_1} {V : Type u_2} [GAlgebra.Abelian K]
+  [GAlgebra.Abelian V] [Mul K] {P : GAlgebra.Pairing K V} (G : GAlgebra.ScalarGeometry P) {S : GAlgebra.Subgroup V}
+  (F : G.Frame S) : GAlgebra.OrthogonalSplitting P S
+GAlgebra.ScalarGeometry.ontoFrame_agrees_on_basis.{u_1, u_2} {K : Type u_1} {V : Type u_2} [GAlgebra.Abelian K]
+  [GAlgebra.Abelian V] [Mul K] {P : GAlgebra.Pairing K V} (G : GAlgebra.ScalarGeometry P) {S : GAlgebra.Subgroup V}
+  (F : G.Frame S) (x e : V) (he : e ∈ F.vectors) : P.dot ((G.ontoFrame F).toFun x) e = P.dot x e
+GAlgebra.ScalarGeometry.orthogonal_extension_step.{u_1, u_2} {K : Type u_1} {V : Type u_2} [GAlgebra.Abelian K]
+  [GAlgebra.Abelian V] [Mul K] {P : GAlgebra.Pairing K V} (G : GAlgebra.ScalarGeometry P) {S : GAlgebra.Subgroup V}
+  (F : G.Frame S) (x : V) (hx : ¬S.mem x) :
+  (G.frameRemainder F).toFun x ≠ 0 ∧
+    P.Perp S ((G.frameRemainder F).toFun x) ∧
+      ∀ (v : V),
+        (∃ s c, S.mem s ∧ s + G.scale c x = v) ↔ ∃ s c, S.mem s ∧ s + G.scale c ((G.frameRemainder F).toFun x) = v
+GAlgebra.SectorStepCost : Type
+GAlgebra.SectorStepCost.total (edge : GAlgebra.SectorStepCost) : Rat
+GAlgebra.Subgroup.kernelQuotient.{u_1, u_2} {X : Type u_1} {Y : Type u_2} [GAlgebra.Abelian X] [GAlgebra.Abelian Y]
+  (f : GAlgebra.AddMap X Y) (onto : ∀ (y : Y), ∃ x, f.toFun x = y) :
+  GAlgebra.Iso (Quotient (GAlgebra.Subgroup.kernel f).congruence) Y
+GAlgebra.Subgroup.kernel_subcomplex.{u_1, u_2, u_3} {X : Type u_1} {Y : Type u_2} {Z : Type u_3} [GAlgebra.Abelian X]
+  [GAlgebra.Abelian Y] [GAlgebra.Abelian Z] (d : GAlgebra.AddMap X Y) (d' : GAlgebra.AddMap X Z)
+  (f : GAlgebra.AddMap Y Z) (commute : ∀ (x : X), f.toFun (d.toFun x) = d'.toFun x) (x : X) :
+  (GAlgebra.Subgroup.kernel d').mem x → (GAlgebra.Subgroup.kernel f).mem (d.toFun x)
+GAlgebra.Subgroup.mapClasses.{u_1, u_2} {X : Type u_1} {Y : Type u_2} [GAlgebra.Abelian X] [GAlgebra.Abelian Y]
+  (S : GAlgebra.Subgroup X) (T : GAlgebra.Subgroup Y) (f : GAlgebra.AddMap X Y)
+  (hf : ∀ (x : X), S.mem x → T.mem (f.toFun x)) : Quotient S.congruence → Quotient T.congruence
+GAlgebra.Subgroup.map_from_generators_surj.{u_1, u_2, u_3} {X : Type u_2} {Y : Type u_3} [GAlgebra.Abelian X]
+  [GAlgebra.Abelian Y] {I : Type u_1} (f : GAlgebra.AddMap X Y) (basis : I → Y)
+  (spans : ∀ (y : Y), ∃ is, List.foldr (fun i acc => basis i + acc) 0 is = y)
+  (lift : ∀ (i : I), ∃ x, f.toFun x = basis i) (y : Y) : ∃ x, f.toFun x = y
+GAlgebra.Subgroup.quotientBridge.{u_1, u_2} {X : Type u_1} {Y : Type u_2} [GAlgebra.Abelian X] [GAlgebra.Abelian Y]
+  (S : GAlgebra.Subgroup X) (T : GAlgebra.Subgroup Y) (f : GAlgebra.AddMap X Y) (g : GAlgebra.AddMap Y X)
+  (hf : ∀ (x : X), S.mem x → T.mem (f.toFun x)) (hg : ∀ (y : Y), T.mem y → S.mem (g.toFun y))
+  (left : ∀ (x : X), S.mem (g.toFun (f.toFun x) + -x)) (right : ∀ (y : Y), T.mem (f.toFun (g.toFun y) + -y)) :
+  GAlgebra.Iso (Quotient S.congruence) (Quotient T.congruence)
+GAlgebra.Subgroup.quotient_add_classes.{u_1} {X : Type u_1} [GAlgebra.Abelian X] (S : GAlgebra.Subgroup X)
+  {a a' b b' : X} (ha : S.classOf a = S.classOf a') (hb : S.classOf b = S.classOf b') :
+  S.classOf (a + b) = S.classOf (a' + b')
+GAlgebra.Subgroup.quotient_diff_closed.{u_1, u_2, u_3} {X : Type u_1} {Y : Type u_2} {Z : Type u_3} [GAlgebra.Abelian X]
+  [GAlgebra.Abelian Y] [GAlgebra.Abelian Z] (S : GAlgebra.Subgroup X) (T : GAlgebra.Subgroup Y)
+  (U : GAlgebra.Subgroup Z) (d : GAlgebra.AddMap X Y) (e : GAlgebra.AddMap Y Z)
+  (hd : ∀ (x : X), S.mem x → T.mem (d.toFun x)) (he : ∀ (y : Y), T.mem y → U.mem (e.toFun y))
+  (square : ∀ (x : X), e.toFun (d.toFun x) = 0) (q : Quotient S.congruence) :
+  T.mapClasses U e he (S.mapClasses T d hd q) = U.classOf 0
+GAlgebra.Subgroup.quotient_extension_kernel.{u_1} {X : Type u_1} [GAlgebra.Abelian X] (S T : GAlgebra.Subgroup X)
+  (sub : ∀ (x : X), S.mem x → T.mem x) : GAlgebra.Iso (Quotient (S.restrictCongruence T)) (S.QuotientKernel T sub)
+GAlgebra.Subgroup.quotient_scalar_classes.{u_1, u_2} {X : Type u_2} [GAlgebra.Abelian X] {K : Type u_1}
+  (S : GAlgebra.Subgroup X) (scale : K → X → X) (add : ∀ (k : K) (x y : X), scale k (x + y) = scale k x + scale k y)
+  (neg : ∀ (k : K) (x : X), scale k (-x) = -scale k x) (stable : ∀ (k : K) (x : X), S.mem x → S.mem (scale k x)) (k : K)
+  {a b : X} (h : S.classOf a = S.classOf b) : S.classOf (scale k a) = S.classOf (scale k b)
+GAlgebra.Subgroup.quotient_square_mod.{u_1, u_2, u_3} {X : Type u_1} {Y : Type u_2} {Z : Type u_3} [GAlgebra.Abelian X]
+  [GAlgebra.Abelian Y] [GAlgebra.Abelian Z] (S : GAlgebra.Subgroup X) (T : GAlgebra.Subgroup Y)
+  (U : GAlgebra.Subgroup Z) (f g : GAlgebra.AddMap X Y) (j k : GAlgebra.AddMap Y Z)
+  (hf : ∀ (x : X), S.mem x → T.mem (f.toFun x)) (hg : ∀ (x : X), S.mem x → T.mem (g.toFun x))
+  (hj : ∀ (y : Y), T.mem y → U.mem (j.toFun y)) (hk : ∀ (y : Y), T.mem y → U.mem (k.toFun y))
+  (h : ∀ (x : X), U.mem (j.toFun (f.toFun x) + -k.toFun (g.toFun x))) (q : Quotient S.congruence) :
+  T.mapClasses U j hj (S.mapClasses T f hf q) = T.mapClasses U k hk (S.mapClasses T g hg q)
+GAlgebra.Task.{u_1, u_2, u_3} (X : Type u_1) (A : Type u_2) (O : Type u_3) : Type (max (max u_1 u_2) u_3)
+GAlgebra.Task.EquivBeh.{u_1, u_2, u_3} {X : Type u_1} {A : Type u_2} {O : Type u_3} (M : GAlgebra.Task X A O)
+  (x y : X) : Prop
+GAlgebra.Task.Exact.{u_1, u_2, u_3, u_4} {X : Type u_1} {Y : Type u_2} {A : Type u_3} {O : Type u_4}
+  (M : GAlgebra.Task X A O) (N : GAlgebra.Task Y A O) (p : X → Y) : Prop
+GAlgebra.Task.Exact.comp.{u_1, u_2, u_3, u_4, u_5} {X : Type u_1} {Y : Type u_4} {Z : Type u_5} {A : Type u_2}
+  {O : Type u_3} {M : GAlgebra.Task X A O} {N : GAlgebra.Task Y A O} {P : GAlgebra.Task Z A O} {p : X → Y} {q : Y → Z}
+  (hp : M.Exact N p) (hq : N.Exact P q) : M.Exact P (q ∘ p)
+GAlgebra.Task.Exact.run.{u_1, u_2, u_3, u_4} {X : Type u_1} {Y : Type u_4} {A : Type u_2} {O : Type u_3}
+  {M : GAlgebra.Task X A O} {N : GAlgebra.Task Y A O} {p : X → Y} (h : M.Exact N p) (w : List A) (x : X) :
+  p (M.run w x) = N.run w (p x)
+GAlgebra.Task.Exact.signature.{u_1, u_2, u_3, u_4} {X : Type u_1} {Y : Type u_4} {A : Type u_2} {O : Type u_3}
+  {M : GAlgebra.Task X A O} {N : GAlgebra.Task Y A O} {p : X → Y} (h : M.Exact N p) (w : List A) (x : X) :
+  M.signature x w = N.signature (p x) w
+GAlgebra.Task.active_coordinate_projection.{u_1, u_2, u_3, u_4} {A : Type u_3} {O : Type u_4} {I : Type u_1}
+  {Value : Type u_2} (M : GAlgebra.Task (I → Value) A O) (keep : I → Prop) [DecidablePred keep] (fallback : I → Value)
+  (reads : ∀ {x y : I → Value}, (∀ (i : I), keep i → x i = y i) → M.observe x = M.observe y)
+  (updates :
+    ∀ (a : A) {x y : I → Value}, (∀ (i : I), keep i → x i = y i) → ∀ (i : I), keep i → M.act a x i = M.act a y i) :
+  ∃ N, M.Exact N fun x i => x i.val
+GAlgebra.Task.auxiliary_compression.{u_1, u_2} {C : Type u_1} {A : Type u_2} (a₀ : A) :
+  ∃ put get, (∀ (c : C), get (put c) = c) ∧ ∀ (x : C × A), get (put (get x)) = get x
+GAlgebra.Task.behaviour.{u_1, u_2, u_3} {X : Type u_1} {A : Type u_2} {O : Type u_3} (M : GAlgebra.Task X A O) :
+  Setoid X
+GAlgebra.Task.behaviour_congruence.{u_1, u_2, u_3} {X : Type u_1} {A : Type u_2} {O : Type u_3}
+  (M : GAlgebra.Task X A O) (a : A) {x y : X} (h : M.EquivBeh x y) : M.EquivBeh (M.act a x) (M.act a y)
+GAlgebra.Task.coarsest_task_quotient.{u_1, u_2, u_3, u_4} {X : Type u_1} {Y : Type u_4} {A : Type u_2} {O : Type u_3}
+  {M : GAlgebra.Task X A O} {N : GAlgebra.Task Y A O} (p : X → Y) (h : M.Exact N p) (onto : ∀ (y : Y), ∃ x, p x = y) :
+  ∃ r,
+    N.Exact M.quotient r ∧
+      (∀ (x : X), r (p x) = M.encode x) ∧
+        (∀ (q : Quotient M.behaviour), ∃ y, r y = q) ∧
+          ∀ (s : Y → Quotient M.behaviour), (∀ (x : X), s (p x) = M.encode x) → s = r
+GAlgebra.Task.encode_exact.{u_1, u_2, u_3} {X : Type u_1} {A : Type u_2} {O : Type u_3} (M : GAlgebra.Task X A O) :
+  M.Exact M.quotient M.encode
+GAlgebra.Task.finite_refinement_fixed.{u_1, u_2, u_3} {X : Type u_1} {A : Type u_2} {O : Type u_3}
+  (M : GAlgebra.Task X A O) (n : Nat) (fixed : ∀ (x y : X), M.EquivAt n x y ↔ M.EquivAt (n + 1) x y) (x y : X) :
+  M.EquivAt n x y ↔ M.EquivBeh x y
+GAlgebra.Task.finite_refinement_step.{u_1, u_2, u_3} {X : Type u_1} {A : Type u_2} {O : Type u_3}
+  (M : GAlgebra.Task X A O) (n : Nat) (x y : X) :
+  M.EquivAt (n + 1) x y ↔ M.observe x = M.observe y ∧ ∀ (a : A), M.EquivAt n (M.act a x) (M.act a y)
+GAlgebra.Task.fixed_law_exact.{u_1, u_2, u_3, u_4} {A : Type u_3} {O : Type u_4} {L : Type u_1} {X : L → Type u_2}
+  (M : (l : L) → GAlgebra.Task (X l) A O) (l : L) : (M l).Exact (GAlgebra.Task.lawUnion M) fun x => ⟨l, x⟩
+GAlgebra.Task.fixed_law_retract.{u_1, u_2} {L : Type u_1} {X : L → Type u_2} (l : L) (x : X l) : ⟨l, x⟩.snd = x
+GAlgebra.Task.lawUnion.{u_1, u_2, u_3, u_4} {A : Type u_1} {O : Type u_2} {L : Type u_3} {X : L → Type u_4}
+  (M : (l : L) → GAlgebra.Task (X l) A O) : GAlgebra.Task (Sigma X) A O
+GAlgebra.Task.law_information_necessary.{u_1, u_2, u_3, u_4} {X : Type u_1} {Y : Type u_4} {A : Type u_2} {O : Type u_3}
+  {M : GAlgebra.Task X A O} {N : GAlgebra.Task Y A O} {p : X → Y} (h : M.Exact N p) {x y : X} {w : List A}
+  (different : M.signature x w ≠ M.signature y w) : p x ≠ p y
+GAlgebra.Task.ordered_record_readback.{u_1, u_2} {X : Type u_1} {A : Type u_2} (κ : X → List A → Nat) (x y : X)
+  (u v : List A) (h : (x, u, κ x u) = (y, v, κ y v)) : x = y ∧ u = v
+GAlgebra.Task.quotient_differential_necessary.{u_1, u_2, u_3, u_4} {X : Type u_3} {Y : Type u_2} {Z : Type u_4}
+  {O : Type u_1} (q : X → Y) (p : Z → O) (d : X → Z) (d' : Y → O) (h : ∀ (x : X), d' (q x) = p (d x)) {x y : X}
+  (he : q x = q y) : p (d x) = p (d y)
+GAlgebra.Task.quotient_differential_sufficient.{u_1, u_2, u_3} {X : Type u_1} {Y : Type u_2} {O : Type u_3} (q : X → Y)
+  (f : X → O) (onto : ∀ (y : Y), ∃ x, q x = y) (compatible : ∀ (x y : X), q x = q y → f x = f y) :
+  ∃ g, (∀ (x : X), g (q x) = f x) ∧ ∀ (g' : Y → O), (∀ (x : X), g' (q x) = f x) → g' = g
+GAlgebra.Task.reduced_exact_is_bijective.{u_1, u_2, u_3, u_4} {X : Type u_1} {Y : Type u_4} {A : Type u_2}
+  {O : Type u_3} {M : GAlgebra.Task X A O} {N : GAlgebra.Task Y A O} (p : X → Y) (h : M.Exact N p)
+  (onto : ∀ (y : Y), ∃ x, p x = y) (reduced : ∀ (x y : X), M.EquivBeh x y → p x = p y) :
+  (∀ (y z : Y), M.factor p onto y = M.factor p onto z → y = z) ∧
+    ∀ (q : Quotient M.behaviour), ∃ y, M.factor p onto y = q
+GAlgebra.Task.two_step_law_example :
+  (GAlgebra.Task.lawUnion GAlgebra.Task.lawExample).signature ⟨false, 0⟩ [(), ()] = false ∧
+    (GAlgebra.Task.lawUnion GAlgebra.Task.lawExample).signature ⟨true, 0⟩ [(), ()] = true
+GAlgebra.Term.evaluations_commute.{u_1, u_2, u_3} {X : Type u_1} {Y : Type u_2} {F : Type u_3} {arity : F → Nat}
+  (e : X → Y) (ops : (f : F) → (Fin (arity f) → X) → X) (ops' : (f : F) → (Fin (arity f) → Y) → Y)
+  (h : ∀ (f : F) (args : Fin (arity f) → X), e (ops f args) = ops' f fun i => e (args i)) (env : Nat → X)
+  (t : GAlgebra.Term F arity) : e (GAlgebra.Term.eval ops env t) = GAlgebra.Term.eval ops' (e ∘ env) t
+GAlgebra.TwoStep.{u_1, u_2, u_3} (U : Type u_1) (V : Type u_2) (W : Type u_3) [GAlgebra.Abelian U] [GAlgebra.Abelian V]
+  [GAlgebra.Abelian W] : Type (max (max u_1 u_2) u_3)
+GAlgebra.TwoStep.ChainMap.homology.{u_1, u_2, u_3, u_4, u_5, u_6} {U : Type u_1} {V : Type u_2} {W : Type u_3}
+  {U' : Type u_4} {V' : Type u_5} {W' : Type u_6} [GAlgebra.Abelian U] [GAlgebra.Abelian V] [GAlgebra.Abelian W]
+  [GAlgebra.Abelian U'] [GAlgebra.Abelian V'] [GAlgebra.Abelian W'] {C : GAlgebra.TwoStep U V W}
+  {C' : GAlgebra.TwoStep U' V' W'} (f : C.ChainMap C') : C.H₁ → C'.H₁
+GAlgebra.TwoStep.Cycles.{u_1, u_2, u_3} {U : Type u_1} {V : Type u_2} {W : Type u_3} [GAlgebra.Abelian U]
+  [GAlgebra.Abelian V] [GAlgebra.Abelian W] (C : GAlgebra.TwoStep U V W) : Type u_2
+GAlgebra.TwoStep.boundary_iff_zero_class.{u_1, u_2, u_3} {U : Type u_1} {V : Type u_2} {W : Type u_3}
+  [GAlgebra.Abelian U] [GAlgebra.Abelian V] [GAlgebra.Abelian W] (C : GAlgebra.TwoStep U V W) (z : C.Cycles) :
+  C.cycleClass z = C.cycleClass C.zeroCycle ↔ ∃ u, C.up.toFun u = z.val
+GAlgebra.TwoStep.cycleClass.{u_1, u_2, u_3} {U : Type u_1} {V : Type u_2} {W : Type u_3} [GAlgebra.Abelian U]
+  [GAlgebra.Abelian V] [GAlgebra.Abelian W] (C : GAlgebra.TwoStep U V W) (z : C.Cycles) : C.H₁
+GAlgebra.TwoStep.homology_iso.{u_1, u_2, u_3, u_4, u_5, u_6} {U : Type u_1} {V : Type u_2} {W : Type u_3}
+  {U' : Type u_4} {V' : Type u_5} {W' : Type u_6} [GAlgebra.Abelian U] [GAlgebra.Abelian V] [GAlgebra.Abelian W]
+  [GAlgebra.Abelian U'] [GAlgebra.Abelian V'] [GAlgebra.Abelian W'] {C : GAlgebra.TwoStep U V W}
+  {C' : GAlgebra.TwoStep U' V' W'} (f : C.ChainMap C') (g : C'.ChainMap C)
+  (left : ∀ (v : V), g.mid.toFun (f.mid.toFun v) = v) (right : ∀ (v : V'), f.mid.toFun (g.mid.toFun v) = v) :
+  GAlgebra.Iso C.H₁ C'.H₁
+GAlgebra.TwoStep.homotopy_retract_reflects_boundary.{u_1, u_2, u_3, u_4, u_5, u_6} {U : Type u_1} {V : Type u_2}
+  {W : Type u_3} {U' : Type u_4} {V' : Type u_5} {W' : Type u_6} [GAlgebra.Abelian U] [GAlgebra.Abelian V]
+  [GAlgebra.Abelian W] [GAlgebra.Abelian U'] [GAlgebra.Abelian V'] [GAlgebra.Abelian W'] {C : GAlgebra.TwoStep U V W}
+  {C' : GAlgebra.TwoStep U' V' W'} (j : C.ChainMap C') (r : C'.ChainMap C) (H : GAlgebra.AddMap V U)
+  (K : GAlgebra.AddMap W V)
+  (retract : ∀ (v : V), r.mid.toFun (j.mid.toFun v) + -v = C.up.toFun (H.toFun v) + K.toFun (C.down.toFun v))
+  (z : C.Cycles) (w : U') (hw : C'.up.toFun w = j.mid.toFun z.val) :
+  C.up.toFun (r.high.toFun w + -H.toFun z.val) = z.val
+GAlgebra.TwoStep.legal_quotient_solution_writeback.{u_1, u_2, u_3} {U : Type u_1} {V : Type u_2} {W : Type u_3}
+  [GAlgebra.Abelian U] [GAlgebra.Abelian V] [GAlgebra.Abelian W] (C : GAlgebra.TwoStep U V W) (S : GAlgebra.Subgroup V)
+  (h : GAlgebra.AddMap V U) (k : GAlgebra.AddMap W V)
+  (contraction : ∀ (r : V), S.mem r → C.up.toFun (h.toFun r) + k.toFun (C.down.toFun r) = r) (ω : C.Cycles) (u : U)
+  (qSolution : S.classOf ω.val = S.classOf (C.up.toFun u)) (legal : U → Prop)
+  (hl : legal (u + h.toFun (ω.val + -C.up.toFun u))) : ∃ z, legal z ∧ C.up.toFun z = ω.val
+GAlgebra.TwoStep.quotient_solution_writeback.{u_1, u_2, u_3} {U : Type u_1} {V : Type u_2} {W : Type u_3}
+  [GAlgebra.Abelian U] [GAlgebra.Abelian V] [GAlgebra.Abelian W] (C : GAlgebra.TwoStep U V W) (S : GAlgebra.Subgroup V)
+  (h : GAlgebra.AddMap V U) (k : GAlgebra.AddMap W V)
+  (contraction : ∀ (r : V), S.mem r → C.up.toFun (h.toFun r) + k.toFun (C.down.toFun r) = r) (ω : C.Cycles) (u : U)
+  (qSolution : S.classOf ω.val = S.classOf (C.up.toFun u)) : C.up.toFun (u + h.toFun (ω.val + -C.up.toFun u)) = ω.val
+GAlgebra.TwoStep.sameClass.{u_1, u_2, u_3} {U : Type u_1} {V : Type u_2} {W : Type u_3} [GAlgebra.Abelian U]
+  [GAlgebra.Abelian V] [GAlgebra.Abelian W] (C : GAlgebra.TwoStep U V W) : Setoid C.Cycles
+GAlgebra.ZeroLineSpec.goal.{u_1, u_2} {Z : Type u_1} {K : Type u_2} (S : GAlgebra.ZeroLineSpec Z K) : Prop
+GAlgebra.affine_chart_compose.{u_1, u_2, u_3} {X : Type u_1} {Y : Type u_2} {Z : Type u_3} [GAlgebra.Abelian X]
+  [GAlgebra.Abelian Y] [GAlgebra.Abelian Z] (first : GAlgebra.AddMap X Y) (second : GAlgebra.AddMap Y Z) (state : X)
+  (a : Y) (b : Z) : second.toFun (first.toFun state + a) + b = second.toFun (first.toFun state) + (second.toFun a + b)
+GAlgebra.affine_product_delta (left right leftStep rightStep : Rat) :
+  (left + leftStep) * (right + rightStep) - left * right = left * rightStep + right * leftStep + leftStep * rightStep
+GAlgebra.arithmetic_family_readback (tupleAsymptotic : List Int → Prop) (grandRiemann : Prop)
+  (valid : GAlgebra.ArithmeticObligation → Prop)
+  (readback :
+    ∀ (σ : GAlgebra.ArithmeticObligation), valid σ → GAlgebra.ArithmeticObligation.goal tupleAsymptotic grandRiemann σ)
+  (covered : ∀ (σ : GAlgebra.ArithmeticObligation), valid σ) (σ : GAlgebra.ArithmeticObligation) :
+  GAlgebra.ArithmeticObligation.goal tupleAsymptotic grandRiemann σ
+GAlgebra.atanhLogBounds (r : Rat) (n : Nat) : GAlgebra.RationalInterval
+GAlgebra.atanhLogSequence (r : Rat) (nonnegative : 0 ≤ r) (third : r ≤ 1 / 3) : GAlgebra.IntervalSequence
+GAlgebra.atanh_log_term_bounds (r : Rat) (nonnegative : 0 ≤ r) (n : Nat) :
+  0 ≤ GAlgebra.atanhLogTerm r n ∧ GAlgebra.atanhLogTerm r n ≤ 2 * r * (r * r) ^ n
+GAlgebra.automorphicSquareSpectrum (real imag : Rat) : Rat × Rat
+GAlgebra.automorphic_kernel_difference (a pole x y : Rat) :
+  (x - a) * (pole - y) - (y - a) * (pole - x) = (x - y) * (pole - a)
+GAlgebra.automorphic_real_weight_sign (boundary pole multiplicity : Rat) (positive : 0 < multiplicity) :
+  0 ≤ multiplicity * (pole - boundary) ↔ boundary ≤ pole
+GAlgebra.automorphic_square_halfline (real imag : Rat) :
+  (GAlgebra.automorphicSquareSpectrum real imag).snd = 0 ∧ 9 / 4 ≤ (GAlgebra.automorphicSquareSpectrum real imag).fst ↔
+    real = 1 / 2
+GAlgebra.bernsteinAverage.{u_1} {K : Type u_1} [Lean.Grind.CommRing K] (x : K) : Nat → (Nat → K) → K
+GAlgebra.bernsteinFalling.{u_1} {K : Type u_1} [Lean.Grind.CommRing K] (x : K) : Nat → K
+GAlgebra.bernstein_falling_average.{u_1} {K : Type u_1} [Lean.Grind.CommRing K] (x : K) (n r : Nat) :
+  (GAlgebra.bernsteinAverage x n fun k => GAlgebra.bernsteinFalling (↑k) r) = GAlgebra.bernsteinFalling (↑n) r * x ^ r
+GAlgebra.block_gate_optimistic_example :
+  (GAlgebra.blockGateSearch✝ fun x => true) = some (0, [4, 5]) ∧
+    (GAlgebra.blockGateSearch✝ fun edge => decide (GAlgebra.blockGateResidual✝ edge ≤ 1)) = some (4, [2, 3]) ∧
+      GAlgebra.optimisticHit GAlgebra.blockGateSearch✝ (fun edge => decide (GAlgebra.blockGateResidual✝ edge ≤ 1))
+          [1, 3, 5] =
+        some (2, [0, 1])
+GAlgebra.commutator.{u_1} {X : Type u_1} [GAlgebra.Abelian X] (B : GAlgebra.Bilinear X X X) (x y : X) : X
+GAlgebra.commutator_alternating.{u_1} {X : Type u_1} [GAlgebra.Abelian X] (B : GAlgebra.Bilinear X X X) (x : X) :
+  GAlgebra.commutator B x x = 0
+GAlgebra.commutator_jacobi.{u_1} {X : Type u_1} [GAlgebra.Abelian X] (B : GAlgebra.Bilinear X X X)
+  (assoc : ∀ (x y z : X), B.eval (B.eval x y) z = B.eval x (B.eval y z)) (x y z : X) :
+  GAlgebra.commutator B (GAlgebra.commutator B x y) z + GAlgebra.commutator B (GAlgebra.commutator B y z) x +
+      GAlgebra.commutator B (GAlgebra.commutator B z x) y =
+    0
+GAlgebra.cone_dual_certificate_sound.{u_1, u_2} {I : Type u_1} {V : Type u_2} [GAlgebra.Abelian V] (is : List I)
+  (v : I → V) (scale : Rat → V → V) (L : GAlgebra.AddMap V Rat)
+  (linear : ∀ (c : Rat) (x : V), L.toFun (scale c x) = c * L.toFun x) (dual : ∀ (i : I), 0 ≤ L.toFun (v i)) {target : V}
+  (negative : L.toFun target < 0) :
+  ¬∃ c, (∀ (i : I), 0 ≤ c i) ∧ GAlgebra.finiteSum (fun i => scale (c i) (v i)) is = target
+GAlgebra.contour_finite_upper_bound.{u_1} {I : Type u_1} (xs : List I) (values bounds : I → Rat)
+  (controls : ∀ (i : I), i ∈ xs → values i ≤ bounds i) : GAlgebra.finiteSum values xs ≤ GAlgebra.finiteSum bounds xs
+GAlgebra.convection_cannot_be_alternating.{u_1} {X : Type u_1} [GAlgebra.Abelian X] (B : GAlgebra.Bilinear X X X)
+  (u : X) (nonzero : B.eval u u ≠ 0) : ¬∃ b, (∀ (x y : X), B.eval x y = b x y) ∧ ∀ (x : X), b x x = 0
+GAlgebra.correction (a b : Nat) : Int × Int × Int
+GAlgebra.cosine_quadratic_weight (c : Rat) : 3 + 4 * c + (2 * c ^ 2 - 1) = 2 * (1 + c) ^ 2
+GAlgebra.cubic_harmonic_indices_complete (degreeHalf a b : Nat) :
+  (a, b) ∈ GAlgebra.cubicHarmonicIndices degreeHalf ↔ 2 * a + 3 * b = degreeHalf
+GAlgebra.cubic_poloidal_residual_polynomial (x : Rat) :
+  5 * (-88 + 64 * x - 8 * x ^ 2) - 8 * (5 - 2 * x) * (2 * x - 11) = 8 * x * (8 - x)
+GAlgebra.curl_residual_writeback.{u_1, u_2, u_3} {Pressure : Type u_1} {Velocity : Type u_2} {Curl : Type u_3}
+  [GAlgebra.Abelian Pressure] [GAlgebra.Abelian Velocity] [GAlgebra.Abelian Curl]
+  (complex : GAlgebra.TwoStep Pressure Velocity Curl) (curlLift : Curl → Velocity) (gradientLift : Velocity → Pressure)
+  (residual : Velocity)
+  (lift_curl : complex.down.toFun (curlLift (complex.down.toFun residual)) = complex.down.toFun residual)
+  (lift_gradient : ∀ (v : Velocity), complex.down.toFun v = 0 → complex.up.toFun (gradientLift v) = v) :
+  residual + complex.up.toFun (gradientLift (curlLift (complex.down.toFun residual) + -residual)) =
+    curlLift (complex.down.toFun residual)
+GAlgebra.derivation_sound.{u_1} {P : Type u_1} {H V : P → Prop} {R : List P → P → Prop} (leaf : ∀ (p : P), H p → V p)
+  (node : ∀ (xs : List P) (p : P), R xs p → (∀ (q : P), q ∈ xs → V q) → V p) {p : P} (h : GAlgebra.Derivation H R p) :
+  V p
+GAlgebra.det2 (u v : Rat × Rat) : Rat
+GAlgebra.dirichlet_gauss_rescale_vanish.{u_1} {K : Type u_1} [Lean.Grind.Field K] (character value : K)
+  (nontrivial : character ≠ 1) (rescale : character * value = value) : value = 0
+GAlgebra.discharge_open_hypotheses.{u_1} {P : Type u_1} {base fresh : P → Prop} {R : List P → P → Prop}
+  (filled : ∀ (p : P), fresh p → GAlgebra.Derivation base R p) {p : P}
+  (d : GAlgebra.Derivation (fun q => base q ∨ fresh q) R p) : GAlgebra.Derivation base R p
+GAlgebra.dyadic_mantissa_bounds (n : Nat) (positive : 0 < n) :
+  1 ≤ GAlgebra.dyadicMantissa n ∧ GAlgebra.dyadicMantissa n ≤ 2
+GAlgebra.even_harmonic_root_order_preserved (half current previous auxiliaryChange : Int) (halfNonnegative : 0 ≤ half)
+  (currentBound : 0 ≤ current ∧ current ≤ 2 * half) (previousBound : 0 ≤ previous ∧ previous ≤ 2 * half)
+  (balance : (2 * half + 1) * auxiliaryChange = (2 * half - 1) * (current - previous)) : current = previous
+GAlgebra.failure_absorbs.{u_1, u_2} {X : Type u_1} {A : Type u_2} (act : A → X → Option X) (a : A) :
+  GAlgebra.totalAction act a none = none
+GAlgebra.fiberRight.{u_1, u_2} {L : Type u_1} {K : Type u_2} [GAlgebra.FiberGroup K] (point : L × K) (h : K) : L × K
+GAlgebra.fiberTransport.{u_1, u_2} {L : Type u_1} {K : Type u_2} [GAlgebra.FiberGroup K] (target : L) (k : K)
+  (point : L × K) : L × K
+GAlgebra.fiber_right_action.{u_1, u_2} {L : Type u_1} {K : Type u_2} [GAlgebra.FiberGroup K] (point : L × K) (h k : K) :
+  GAlgebra.fiberRight point 1 = point ∧
+    GAlgebra.fiberRight (GAlgebra.fiberRight point h) k = GAlgebra.fiberRight point (h * k)
+GAlgebra.fiber_right_unique.{u_1, u_2} {L : Type u_1} {K : Type u_2} [GAlgebra.FiberGroup K] (base : L)
+  (g target h : K) : GAlgebra.fiberRight (base, g) h = (base, target) ↔ h = g⁻¹ * target
+GAlgebra.fiber_transport_comp.{u_1, u_2} {L : Type u_1} {K : Type u_2} [GAlgebra.FiberGroup K] (middle target : L)
+  (a b : K) (point : L × K) :
+  GAlgebra.fiberTransport target b (GAlgebra.fiberTransport middle a point) =
+    GAlgebra.fiberTransport target (b * a) point
+GAlgebra.fiber_transport_defect_zero.{u_1, u_2} {L : Type u_1} {K : Type u_2} [GAlgebra.FiberGroup K]
+  (origin target : L) (positive negative : K) :
+  negative⁻¹ * positive = 1 ↔
+    ∀ (g : K), GAlgebra.fiberTransport target positive (origin, g) = GAlgebra.fiberTransport target negative (origin, g)
+GAlgebra.fiber_transport_equivariant.{u_1, u_2} {L : Type u_1} {K : Type u_2} [GAlgebra.FiberGroup K] (target : L)
+  (k h : K) (point : L × K) :
+  GAlgebra.fiberTransport target k (GAlgebra.fiberRight point h) =
+    GAlgebra.fiberRight (GAlgebra.fiberTransport target k point) h
+GAlgebra.finiteEndpointMass.{u_1, u_2, u_3} {P : Type u_1} {S : Type u_2} {W : Type u_3} [DecidableEq S]
+  [GAlgebra.Abelian W] (paths : List P) (terminal : P → S) (weight : P → W) (point : S) : W
+GAlgebra.finiteSum.{u_1, u_2} {I : Type u_1} {V : Type u_2} [GAlgebra.Abelian V] (f : I → V) : List I → V
+GAlgebra.finite_branch_transport {m : Nat} (P Q : Fin m → Prop) (proofs : ∀ (i : Fin m), Q i)
+  (replay : ∀ (i : Fin m), Q i → P i) (i : Fin m) : P i
+GAlgebra.finite_dag_sound.{u_1} {N : Type u_1} (rank : N → Nat) (edge : N → N → Prop) (P : N → Prop)
+  (low : ∀ (c p : N), edge c p → rank c < rank p) (rule : ∀ (p : N), (∀ (c : N), edge c p → P c) → P p) (p : N) : P p
+GAlgebra.finite_diagonal_form_nonnegative_iff.{u_1} {Mode : Type u_1} [DecidableEq Mode] (modes : List Mode)
+  (distinct : modes.Nodup) (weight : Mode → Rat) :
+  (∀ (v : Mode → Rat), 0 ≤ GAlgebra.finiteSum (fun i => weight i * v i ^ 2) modes) ↔
+    ∀ (i : Mode), i ∈ modes → 0 ≤ weight i
+GAlgebra.finite_endpoint_gate_mass.{u_1, u_2, u_3} {P : Type u_1} {S : Type u_2} {W : Type u_3} [DecidableEq S]
+  [GAlgebra.Abelian W] (paths : List P) (points : List S) (terminal : P → S) (weight : P → W) (passes : S → Bool)
+  (distinct : points.Nodup) (covered : ∀ (path : P), path ∈ paths → terminal path ∈ points)
+  (accepted : ∀ (path : P), path ∈ paths → weight path ≠ 0 → passes (terminal path) = true) :
+  GAlgebra.finiteSum (fun s => if passes s = true then GAlgebra.finiteEndpointMass paths terminal weight s else 0)
+      points =
+    GAlgebra.finiteSum weight paths
+GAlgebra.finite_endpoint_mass_coarsen.{u_1, u_2, u_3, u_4} {P : Type u_1} {S : Type u_2} {Q : Type u_3} {W : Type u_4}
+  [DecidableEq S] [DecidableEq Q] [GAlgebra.Abelian W] (paths : List P) (points : List S) (terminal : P → S)
+  (weight : P → W) (quotient : S → Q) (point : Q) (distinct : points.Nodup)
+  (covered : ∀ (path : P), path ∈ paths → terminal path ∈ points) :
+  GAlgebra.finiteEndpointMass points quotient (GAlgebra.finiteEndpointMass paths terminal weight) point =
+    GAlgebra.finiteEndpointMass paths (fun path => quotient (terminal path)) weight point
+GAlgebra.finite_endpoint_pairing.{u_1, u_2, u_3, u_4} {P : Type u_1} {S : Type u_2} {W : Type u_3} {V : Type u_4}
+  [DecidableEq S] [GAlgebra.Abelian W] [GAlgebra.Abelian V] (paths : List P) (points : List S) (terminal : P → S)
+  (weight : P → W) (test : S → GAlgebra.AddMap W V) (distinct : points.Nodup)
+  (covered : ∀ (path : P), path ∈ paths → terminal path ∈ points) :
+  GAlgebra.finiteSum (fun s => (test s).toFun (GAlgebra.finiteEndpointMass paths terminal weight s)) points =
+    GAlgebra.finiteSum (fun path => (test (terminal path)).toFun (weight path)) paths
+GAlgebra.finite_feasibility_not_uniform : (∀ (n : Nat), ∃ u, u = n + 1) ∧ ¬∃ M, ∀ (n : Nat), ∃ u, u = n + 1 ∧ u ≤ M
+GAlgebra.finite_lattice_hit_iff.{u_1} {State : Type u_1} (lattice : List State) (check : State → Bool) :
+  (List.find? check lattice).isSome = true ↔ ∃ s, s ∈ lattice ∧ check s = true
+GAlgebra.finite_lattice_hit_readback.{u_1, u_2} {State : Type u_1} {Target : Type u_2} (lattice : List State)
+  (check : State → Bool) (read : State → Target) (valid : Target → Prop)
+  (certificate : ∀ (s : State), s ∈ lattice → check s = true → valid (read s)) {s : State}
+  (hit : List.find? check lattice = some s) : valid (read s)
+GAlgebra.finite_resolvent_common_denominator.{u_1} {K : Type u_1} [Lean.Grind.Field K] (residue : K → K)
+  (poles : List K) (point : K) (outside : ¬point ∈ poles) :
+  GAlgebra.poleDenominator poles point * (List.map (fun pole => residue pole / (point - pole)) poles).sum =
+    GAlgebra.poleNumerator residue poles point
+GAlgebra.finite_resolvent_numerator_ne_zero_at_pole.{u_1} {K : Type u_1} [Lean.Grind.Field K] (residue : K → K)
+  (poles : List K) (point : K) (distinct : poles.Nodup) (inside : point ∈ poles) (nonzero_residue : residue point ≠ 0) :
+  GAlgebra.poleNumerator residue poles point ≠ 0
+GAlgebra.finite_row_dual_transport.{u_1, u_2} {I : Type u_1} {J : Type u_2} (rows : List I) (columns : List J)
+  (matrix : I → J → Rat) (test : I → Rat) (value : J → Rat) :
+  GAlgebra.finiteSum (fun i => test i * GAlgebra.finiteSum (fun j => matrix i j * value j) columns) rows =
+    GAlgebra.finiteSum (fun j => GAlgebra.finiteSum (fun i => test i * matrix i j) rows * value j) columns
+GAlgebra.finite_strict_refinement_bound (count : Nat → Nat) (n : Nat) (cap : ∀ (i : Nat), count i ≤ n)
+  (inc : ∀ (i : Nat), count i ≤ count (i + 1)) : ∃ i, i ≤ n - count 0 ∧ count (i + 1) = count i
+GAlgebra.flow_mother_readback.{u_1, u_2, u_3, u_4, u_5} {Mother : Type u_1} {N : Type u_2} {F : Type u_3} {U : Type u_4}
+  {P : Type u_5} (S : GAlgebra.FlowSpec N F U P) (legal periodic nonzero : Mother → Prop)
+  (read : ∀ (x : Mother), legal x → periodic x → nonzero x → ∀ (ν : N), S.positive ν → S.atViscosity ν) :
+  (∃ x, legal x ∧ periodic x ∧ nonzero x) → S.goal
+GAlgebra.frame_projected_jacgap_descent.{u_1} {V : Type u_1} [GAlgebra.Abelian V] {P : GAlgebra.Pairing Rat V}
+  (geometry : GAlgebra.ScalarGeometry P) {S : GAlgebra.Subgroup V} (frame : geometry.Frame S) (gradient : V)
+  (covered :
+    P.dot ((geometry.frameRemainder frame).toFun gradient) ((geometry.frameRemainder frame).toFun gradient) <
+      P.dot gradient gradient) :
+  P.dot gradient (-(geometry.ontoFrame frame).toFun gradient) < 0
+GAlgebra.frozen_domain_cannot_be_widened : ∃ R, (∀ (x : Unit), R true) ∧ ¬∀ (b : Bool), R b
+GAlgebra.gatedCost.{u_1, u_2} {P : Type u_1} {R : Type u_2} [Lean.Grind.Semiring R] (passes : P → Bool) (cost : P → R)
+  (path : P) : R
+GAlgebra.gated_cost_minimizer.{u_1, u_2} {P : Type u_1} {R : Type u_2} [Lean.Grind.Ring R] [LE R] [LT R]
+  [Std.IsLinearOrder R] [Std.LawfulOrderLT R] [Lean.Grind.OrderedRing R] (paths : List P) (passes : P → Bool)
+  (cost : P → R) (bounds : ∀ (path : P), path ∈ paths → 0 ≤ cost path ∧ cost path < 1) {chosen : P}
+  (member : chosen ∈ paths)
+  (minimum : ∀ (path : P), path ∈ paths → GAlgebra.gatedCost passes cost chosen ≤ GAlgebra.gatedCost passes cost path)
+  (feasible : ∃ path, path ∈ paths ∧ passes path = true) :
+  passes chosen = true ∧ ∀ (path : P), path ∈ paths → passes path = true → cost chosen ≤ cost path
+GAlgebra.gaussian_period_energy_gate (viscosity gradient kinetic cross work kineticLower workUpper lossUpper : Rat)
+  (positive : 0 < viscosity) (gradientNonnegative : 0 ≤ gradient)
+  (balance : 2 * viscosity * viscosity * gradient + viscosity * kinetic + cross = 2 * viscosity * work)
+  (kineticBound : kineticLower ≤ kinetic) (workBound : work ≤ workUpper) (lossBound : -lossUpper ≤ cross) :
+  viscosity * kineticLower ≤ 2 * viscosity * workUpper + lossUpper
+GAlgebra.gaussian_period_square_balance (viscosity enstrophy radialSquare headSquare cross joinedSquare work : Rat)
+  (expanded : joinedSquare = headSquare + 2 * cross + radialSquare)
+  (balance : 4 * viscosity ^ 2 * enstrophy + radialSquare + 2 * cross = 4 * viscosity * work) :
+  4 * viscosity ^ 2 * enstrophy + joinedSquare = headSquare + 4 * viscosity * work
+GAlgebra.gaussian_reference_amplitude_read (root trial energy pairing viscosity : Rat)
+  (chosen : root * pairing = -(2 * viscosity * energy)) :
+  root * (2 * viscosity * trial * energy + trial ^ 2 * pairing) = 2 * viscosity * energy * trial * (root - trial)
+GAlgebra.globalClassicalEvolutionGoal.{u_1, u_2} {Input : Type u_1} {Solution : Type u_2} (legal : Input → Prop)
+  (solvesGlobally : Input → Solution → Prop) : Prop
+GAlgebra.grandRiemannGoal.{u, v, w} {Rep : Nat → Type u} {Z : (n : Nat) → Rep n → Type v} {K : Type w} (firstRank : Nat)
+  (fibers : (n : Nat) → (π : Rep n) → GAlgebra.ZeroLineSpec (Z n π) K) : Prop
+GAlgebra.grand_riemann_fiber_equivalence.{u, v, w} {Rep : Nat → Type u} {Z : (n : Nat) → Rep n → Type v} {K : Type w}
+  (firstRank : Nat) (fibers : (n : Nat) → (π : Rep n) → GAlgebra.ZeroLineSpec (Z n π) K)
+  (certificate : (n : Nat) → Rep n → Prop)
+  (localReadback :
+    ∀ (n : Nat) (π : Rep (n + firstRank)), certificate (n + firstRank) π ↔ (fibers (n + firstRank) π).goal) :
+  GAlgebra.grandRiemannGoal firstRank fibers ↔ ∀ (n : Nat) (π : Rep (n + firstRank)), certificate (n + firstRank) π
+GAlgebra.grand_riemann_rank_one_readback.{u, v, w} {Rep : Nat → Type u} {Z : (n : Nat) → Rep n → Type v} {K : Type w}
+  (fibers : (n : Nat) → (π : Rep n) → GAlgebra.ZeroLineSpec (Z n π) K) (zeta : Rep 1)
+  (full : GAlgebra.grandRiemannGoal 1 fibers) : (fibers 1 zeta).goal
+GAlgebra.grand_riemann_rank_split.{u, v, w} {Rep : Nat → Type u} {Z : (n : Nat) → Rep n → Type v} {K : Type w}
+  (fibers : (n : Nat) → (π : Rep n) → GAlgebra.ZeroLineSpec (Z n π) K) :
+  GAlgebra.grandRiemannGoal 1 fibers ↔ (∀ (π : Rep 1), (fibers 1 π).goal) ∧ GAlgebra.grandRiemannGoal 2 fibers
+GAlgebra.harmonic_projection_coeff_cancel (coefficient degree index : Rat)
+  (nonzero : 2 * (index + 1) * (2 * degree - 2 * index - 1) ≠ 0) :
+  coefficient +
+      -coefficient / (2 * (index + 1) * (2 * degree - 2 * index - 1)) *
+        (2 * (index + 1) * (2 * degree - 2 * index - 1)) =
+    0
+GAlgebra.higher_arity_truncation {n i j : Nat} (h : 6 ≤ n) (arity : i + j = n + 1) : 4 ≤ i ∨ 4 ≤ j
+GAlgebra.hodge_cycle_restrict.{u_1, u_2, u_3, u_4} {K : Type u_1} {U : Type u_2} {V : Type u_3} {W : Type u_4}
+  [GAlgebra.Abelian K] [GAlgebra.Abelian U] [GAlgebra.Abelian V] [GAlgebra.Abelian W] {P : GAlgebra.Pairing K U}
+  {Q : GAlgebra.Pairing K V} {R : GAlgebra.Pairing K W} (B : GAlgebra.AdjointPair P Q) (D : GAlgebra.AdjointPair Q R)
+  {v : V} (closed : D.forward.toFun v = 0) : GAlgebra.hodge B D v = B.gram v
+GAlgebra.hodge_homology_iso.{u_1, u_2, u_3, u_4} {K : Type u_1} {U : Type u_2} {V : Type u_3} {W : Type u_4}
+  [GAlgebra.Abelian K] [GAlgebra.Abelian U] [GAlgebra.Abelian V] [GAlgebra.Abelian W] {P : GAlgebra.Pairing K U}
+  {Q : GAlgebra.Pairing K V} {R : GAlgebra.Pairing K W} (B : GAlgebra.AdjointPair P Q) (D : GAlgebra.AdjointPair Q R)
+  (positive : ∀ (u : U) (w : W), R.dot w w + P.dot u u = 0 → u = 0 ∧ w = 0)
+  (closed : ∀ (u : U), D.forward.toFun (B.forward.toFun u) = 0)
+  (S : GAlgebra.OrthogonalSplitting Q (GAlgebra.Subgroup.range B.forward)) :
+  GAlgebra.Iso (GAlgebra.pairedComplex B D closed).H₁ { v // GAlgebra.hodge B D v = 0 }
+GAlgebra.hodge_kernel.{u_1, u_2, u_3, u_4} {K : Type u_1} {U : Type u_2} {V : Type u_3} {W : Type u_4}
+  [GAlgebra.Abelian K] [GAlgebra.Abelian U] [GAlgebra.Abelian V] [GAlgebra.Abelian W] {P : GAlgebra.Pairing K U}
+  {Q : GAlgebra.Pairing K V} {R : GAlgebra.Pairing K W} (B : GAlgebra.AdjointPair P Q) (D : GAlgebra.AdjointPair Q R)
+  (positive : ∀ (u : U) (w : W), R.dot w w + P.dot u u = 0 → u = 0 ∧ w = 0) (v : V) :
+  GAlgebra.hodge B D v = 0 ↔ D.forward.toFun v = 0 ∧ B.adjoint.toFun v = 0
+GAlgebra.integer_expansion :
+  ¬GAlgebra.Repairable (fun u => 2 * u) (fun x => True) 1 ∧
+    ∀ (x : Int), GAlgebra.Repairable (GAlgebra.block (fun u => 2 * u) fun w => w) (fun x => True) x
+GAlgebra.jacobiDefect.{u_1} {X : Type u_1} [GAlgebra.Abelian X] (B : GAlgebra.Bilinear X X X) (x y z : X) : X
+GAlgebra.jacobi_alternating_first_two.{u_1} {X : Type u_1} [GAlgebra.Abelian X] (B : GAlgebra.Bilinear X X X)
+  (skew : ∀ (x y : X), B.eval x y = -B.eval y x) (x y z : X) :
+  GAlgebra.jacobiDefect B y x z = -GAlgebra.jacobiDefect B x y z
+GAlgebra.jacobi_four_arity.{u_1} {X : Type u_1} [GAlgebra.Abelian X] (B : GAlgebra.Bilinear X X X)
+  (skew : ∀ (x y : X), B.eval x y = -B.eval y x) (x y z w : X) :
+  GAlgebra.jacobiDefect B (B.eval x y) z w + -GAlgebra.jacobiDefect B (B.eval x z) y w +
+            GAlgebra.jacobiDefect B (B.eval x w) y z +
+          GAlgebra.jacobiDefect B (B.eval y z) x w +
+        -GAlgebra.jacobiDefect B (B.eval y w) x z +
+      GAlgebra.jacobiDefect B (B.eval z w) x y =
+    B.eval (GAlgebra.jacobiDefect B x y z) w + -B.eval (GAlgebra.jacobiDefect B x y w) z +
+        B.eval (GAlgebra.jacobiDefect B x z w) y +
+      -B.eval (GAlgebra.jacobiDefect B y z w) x
+GAlgebra.jacobi_lift_of_section.{u_1, u_2} {X : Type u_2} [GAlgebra.Abelian X] {H : Type u_1} [GAlgebra.Abelian H]
+  (B : GAlgebra.Bilinear X X X) (d : GAlgebra.AddMap H X) (lift : X → H) (rightInv : ∀ (v : X), d.toFun (lift v) = v)
+  (x y z : X) : d.toFun (lift (GAlgebra.jacobiDefect B x y z)) = GAlgebra.jacobiDefect B x y z
+GAlgebra.jointKineticLimitGoal.{u_1, u_2} {Input : Type u_1} {Scale : Type u_2} (prepared : Input → Prop)
+  (power cutoff : Scale → Prop) (jointConvergence : Input → Scale → Scale → Prop) : Prop
+GAlgebra.joint_reachability_expansion (m : Nat) (positive : 0 < m) :
+  (∀ (a : Nat), GAlgebra.correction a 0 ≠ GAlgebra.correction 0 m) ∧
+    (∀ (k : Nat), k ≤ m → GAlgebra.sumCoordinates (GAlgebra.correction 0 k) = 0) ∧
+      (∀ (a b : Nat), GAlgebra.correction a b = GAlgebra.correction 0 m → m ≤ a + b) ∧
+        GAlgebra.sumCoordinates (GAlgebra.correction 0 m) = 0
+GAlgebra.kineticTotalDifferential.{u_1, u_2, u_3} {A : Type u_1} {E : Type u_2} {C : Type u_3} [GAlgebra.Abelian A]
+  [GAlgebra.Abelian E] [GAlgebra.Abelian C] (dA : GAlgebra.AddMap A A) (dE : GAlgebra.AddMap E E)
+  (dC : GAlgebra.AddMap C C) (first : GAlgebra.AddMap A E) (second : GAlgebra.AddMap E C)
+  (homotopy : GAlgebra.AddMap A C) (point : A × E × C) : A × E × C
+GAlgebra.kinetic_boussinesq_energy_readback (density temperature : Rat) (boussinesq : density + temperature = 0) :
+  (3 - 5) / 2 * density + (15 - 8 * 3 + 15) / 4 * temperature = 5 / 2 * temperature
+GAlgebra.kinetic_centered_moment_budget (δ radius particle kinetic mass momentum centered cutoff total : Rat)
+  (positive : 0 < δ) (massBound : mass ≤ particle + kinetic) (momentumBound : momentum ≤ radius * (particle + kinetic))
+  (estimate : total ≤ (mass + momentum) / δ + centered + cutoff) :
+  total ≤ (1 + radius) * (particle + kinetic) / δ + centered + cutoff
+GAlgebra.kinetic_elastic_pair_balance (v w vNormal wNormal direction vEnergy wEnergy : Rat) :
+  have impact := vNormal - wNormal;
+  v - impact * direction + (w + impact * direction) = v + w ∧
+    vEnergy - 2 * impact * vNormal + impact ^ 2 + (wEnergy + 2 * impact * wNormal + impact ^ 2) = vEnergy + wEnergy
+GAlgebra.kinetic_entropy_hellinger_bound (root rootLog : Rat) (rootNonnegative : 0 ≤ root)
+  (rootEntropyNonnegative : 0 ≤ root * rootLog - root + 1) : (root - 1) ^ 2 ≤ root ^ 2 * (2 * rootLog) - root ^ 2 + 1
+GAlgebra.kinetic_entropy_law_readback.{u_1, u_2} {Law : Type u_1} {Time : Type u_2} (transport : Time → Law → Law)
+  (entropy count : Law → Rat) (result : Law → Prop) (initial : Law) (entropyBudget countBudget : Rat)
+  (prepared : entropy initial ≤ entropyBudget ∧ count initial ≤ countBudget)
+  (preserved :
+    ∀ (time : Time) (law : Law), entropy (transport time law) = entropy law ∧ count (transport time law) = count law)
+  (readback : ∀ (law : Law), entropy law ≤ entropyBudget → count law ≤ countBudget → result law) (time : Time) :
+  entropy (transport time initial) ≤ entropyBudget ∧
+    count (transport time initial) ≤ countBudget ∧ result (transport time initial)
+GAlgebra.kinetic_equilibrium_mass_budget (insertion retained : Rat) (insertionRange : 0 ≤ insertion ∧ insertion ≤ 1)
+  (retainedRange : 0 ≤ retained ∧ retained ≤ 1) :
+  0 ≤ 1 - insertion * retained ∧ 1 - insertion * retained ≤ 1 - insertion + (1 - retained)
+GAlgebra.kinetic_force_scale_readback (δ force density : Rat) (nonzero : δ ≠ 0) :
+  δ ^ 2 * force * density / δ ^ 2 = force * density
+GAlgebra.kinetic_occupancy_pair_bound (n : Int) (nonnegative : 0 ≤ n) : 2 * n - n * (n - 1) ≤ 2 * if 0 < n then 1 else 0
+GAlgebra.kinetic_power_gate (β exponent cutoff timeLoss : Rat) (positiveLoss : 0 < 1 + timeLoss) :
+  0 < exponent - cutoff - (1 + timeLoss) * β ↔ β < (exponent - cutoff) / (1 + timeLoss)
+GAlgebra.kinetic_scaled_error_budget (δ total particle kinetic tail particleBudget : Rat) (positive : 0 < δ)
+  (estimate : total ≤ particle / δ + kinetic + tail) (particleBound : particle ≤ δ * particleBudget) :
+  total ≤ particleBudget + kinetic + tail
+GAlgebra.kinetic_total_closure_iff.{u_1, u_2, u_3} {A : Type u_1} {E : Type u_2} {C : Type u_3} [GAlgebra.Abelian A]
+  [GAlgebra.Abelian E] [GAlgebra.Abelian C] (dA : GAlgebra.AddMap A A) (dE : GAlgebra.AddMap E E)
+  (dC : GAlgebra.AddMap C C) (first : GAlgebra.AddMap A E) (second : GAlgebra.AddMap E C)
+  (homotopy : GAlgebra.AddMap A C) (squareA : ∀ (x : A), dA.toFun (dA.toFun x) = 0)
+  (squareE : ∀ (y : E), dE.toFun (dE.toFun y) = 0) (squareC : ∀ (z : C), dC.toFun (dC.toFun z) = 0)
+  (firstChain : ∀ (x : A), first.toFun (dA.toFun x) = dE.toFun (first.toFun x))
+  (secondChain : ∀ (y : E), dC.toFun (second.toFun y) = second.toFun (dE.toFun y)) :
+  (∀ (point : A × E × C),
+      have D := GAlgebra.kineticTotalDifferential dA dE dC first second homotopy;
+      D (D point) = (0, 0, 0)) ↔
+    ∀ (x : A), second.toFun (first.toFun x) = dC.toFun (homotopy.toFun x) + homotopy.toFun (dA.toFun x)
+GAlgebra.kinetic_total_square_identity.{u_1, u_2, u_3} {A : Type u_1} {E : Type u_2} {C : Type u_3} [GAlgebra.Abelian A]
+  [GAlgebra.Abelian E] [GAlgebra.Abelian C] (dA : GAlgebra.AddMap A A) (dE : GAlgebra.AddMap E E)
+  (dC : GAlgebra.AddMap C C) (first : GAlgebra.AddMap A E) (second : GAlgebra.AddMap E C)
+  (homotopy : GAlgebra.AddMap A C) (squareA : ∀ (x : A), dA.toFun (dA.toFun x) = 0)
+  (squareE : ∀ (y : E), dE.toFun (dE.toFun y) = 0) (squareC : ∀ (z : C), dC.toFun (dC.toFun z) = 0)
+  (firstChain : ∀ (x : A), first.toFun (dA.toFun x) = dE.toFun (first.toFun x))
+  (secondChain : ∀ (y : E), dC.toFun (second.toFun y) = second.toFun (dE.toFun y)) (x : A) (y : E) (z : C) :
+  have D := GAlgebra.kineticTotalDifferential dA dE dC first second homotopy;
+  D (D (x, y, z)) = (0, 0, second.toFun (first.toFun x) + -(dC.toFun (homotopy.toFun x) + homotopy.toFun (dA.toFun x)))
+GAlgebra.lattice_center_relative_energy (p q : Int) : (p + q) ^ 2 + (p - q) ^ 2 = 2 * (p ^ 2 + q ^ 2)
+GAlgebra.lattice_divisible_collision_shell (x y z : Int) (multiple : (x ^ 2 + y ^ 2 + z ^ 2) % 4 = 0) :
+  x % 2 = 0 ∧ y % 2 = 0 ∧ z % 2 = 0
+GAlgebra.lattice_parity_reconstruct (center relative : Int) (sameParity : relative % 2 = center % 2) :
+  (center + relative) / 2 + (center - relative) / 2 = center ∧
+    (center + relative) / 2 - (center - relative) / 2 = relative
+GAlgebra.lattice_triad_conjugate_cancel (leftReal leftImag rightReal rightImag : Rat) :
+  -(leftReal * rightImag + leftImag * rightReal) + -(leftReal * -rightImag + -leftImag * rightReal) = 0
+GAlgebra.leray_kernel_constant : 3 < (7 / 4) ^ 2 ∧ (10 + 6 * (7 / 4)) ^ 2 < 144 * 3
+GAlgebra.lhtsPartialJacGap.{u_1} {I : Type u_1} (before after : I → Rat) (step : Rat) (i : I) : Rat
+GAlgebra.lhtsPressure.{u_1} {I : Type u_1} (components : List I) (pressure before after : I → Rat) (step : Rat) : Rat
+GAlgebra.lhts_component_chain.{u_1} {I : Type u_1} (before middle after : I → Rat) (i : I) :
+  before i - after i = before i - middle i + (middle i - after i)
+GAlgebra.lhts_partial_credit.{u_1} {I : Type u_1} (before after : I → Rat) (step : Rat) (nonzero : step ≠ 0) (i : I) :
+  before i - after i = -(GAlgebra.lhtsPartialJacGap before after step i * step)
+GAlgebra.linearized.{u_1, u_2} {X : Type u_1} {P : Type u_2} [GAlgebra.Abelian X] [GAlgebra.Abelian P]
+  (L : GAlgebra.AddMap X X) (G : GAlgebra.AddMap P X) (B : GAlgebra.Bilinear X X X) (u w : X) (π : P) : X
+GAlgebra.mangoldtLogSequence (n : Nat) : GAlgebra.IntervalSequence
+GAlgebra.naturalLogSequence (n : Nat) (positive : 0 < n) : GAlgebra.IntervalSequence
+GAlgebra.nonnegative_sum_zero.{u_1, u_2} {I : Type u_1} {K : Type u_2} [GAlgebra.Abelian K] [LE K] (a : I → K)
+  (zero : 0 ≤ 0) (plus : ∀ (x y : K), 0 ≤ x → 0 ≤ y → 0 ≤ x + y)
+  (split : ∀ (x y : K), 0 ≤ x → 0 ≤ y → x + y = 0 → x = 0 ∧ y = 0) (positive : ∀ (i : I), 0 ≤ a i) (is : List I) :
+  0 ≤ GAlgebra.finiteSum a is ∧ (GAlgebra.finiteSum a is = 0 ↔ ∀ (i : I), i ∈ is → a i = 0)
+GAlgebra.observed_rate_telescope.{u_1, u_2} {Rate : Type u_1} {TestValue : Type u_2} [GAlgebra.Abelian Rate]
+  [GAlgebra.Abelian TestValue] (rate : Nat → Rate) (observe : GAlgebra.AddMap Rate TestValue) (start count : Nat) :
+  GAlgebra.finiteSum (fun n => observe.toFun (rate (n + 1) + -rate n)) (List.range' start count) =
+    observe.toFun (rate (start + count) + -rate start)
+GAlgebra.operator_transport_defect_comp.{u_1, u_2, u_3, u_4, u_5, u_6} {Source : Type u_1} {Middle : Type u_2}
+  {Target : Type u_3} {SourceValue : Type u_4} {MiddleValue : Type u_5} {TargetValue : Type u_6}
+  [GAlgebra.Abelian SourceValue] [GAlgebra.Abelian MiddleValue] [GAlgebra.Abelian TargetValue] (first : Source → Middle)
+  (next : Middle → Target) (sourceOp : Source → SourceValue) (middleOp : Middle → MiddleValue)
+  (targetOp : Target → TargetValue) (firstRead : GAlgebra.AddMap SourceValue MiddleValue)
+  (nextRead : GAlgebra.AddMap MiddleValue TargetValue) (x : Source) :
+  targetOp (next (first x)) + -nextRead.toFun (firstRead.toFun (sourceOp x)) =
+    targetOp (next (first x)) + -nextRead.toFun (middleOp (first x)) +
+      nextRead.toFun (middleOp (first x) + -firstRead.toFun (sourceOp x))
+GAlgebra.operator_transport_pairing.{u_1, u_2, u_3, u_4, u_5} {X : Type u_1} {Y : Type u_2} {U : Type u_3}
+  {V : Type u_4} {Test : Type u_5} [GAlgebra.Abelian U] [GAlgebra.Abelian V] [GAlgebra.Abelian Test] (move : X → Y)
+  (sourceOp : X → U) (targetOp : Y → V) (read : GAlgebra.AddMap U V) (test : GAlgebra.AddMap V Test) (x : X)
+  (vanishes : targetOp (move x) + -read.toFun (sourceOp x) = 0) :
+  test.toFun (targetOp (move x)) = test.toFun (read.toFun (sourceOp x))
+GAlgebra.operator_transport_rate.{u_1, u_2, u_3, u_4} {X : Type u_1} {Y : Type u_2} {U : Type u_3} {V : Type u_4}
+  [GAlgebra.Abelian U] [GAlgebra.Abelian V] (move : X → Y) (sourceOp : X → U) (targetOp : Y → V)
+  (read : GAlgebra.AddMap U V) (divideSource : GAlgebra.AddMap U U) (divideTarget : GAlgebra.AddMap V V)
+  (commutes : ∀ (value : U), divideTarget.toFun (read.toFun value) = read.toFun (divideSource.toFun value))
+  (x next : X) :
+  have defect := fun z => targetOp (move z) + -read.toFun (sourceOp z);
+  divideTarget.toFun (targetOp (move next) + -targetOp (move x)) =
+    read.toFun (divideSource.toFun (sourceOp next + -sourceOp x)) + divideTarget.toFun (defect next + -defect x)
+GAlgebra.optimisticHit.{u_1} {Edge : Type u_1} [DecidableEq Edge] (search : (Edge → Bool) → Option (Nat × List Edge))
+  (verify : Edge → Bool) (pending : List Edge) : Option (Nat × List Edge)
+GAlgebra.ordered_expansion :
+  ¬GAlgebra.Repairable (fun u => u) (fun u => 0 ≤ u) (-1) ∧
+    ∀ (x : Rat), GAlgebra.Repairable (GAlgebra.block (fun u => u) fun w => -w) (fun p => 0 ≤ p.fst ∧ 0 ≤ p.snd) x
+GAlgebra.ordered_product_factorization.{u_1} {R : Type u_1} [Lean.Grind.Semiring R] (as : List R) :
+  GAlgebra.orderedExpansion as = GAlgebra.factoredExpansion as
+GAlgebra.parabolic_ratio_chart (time radius ratio phase coordinate : Rat) :
+  time + (1 - ratio ^ 2) * radius ^ 2 + (ratio * radius) ^ 2 * phase =
+      time + radius ^ 2 * (1 - ratio ^ 2 + ratio ^ 2 * phase) ∧
+    ratio * radius * coordinate = radius * (ratio * coordinate)
+GAlgebra.parity_obstruction (x : Int) : GAlgebra.Repairable (fun u => 2 * u) (fun x => True) x ↔ x % 2 = 0
+GAlgebra.period_pulse_contraction_gate (radius center linear quadratic distance : Rat)
+  (centerBound : center ≤ radius / 4) (linearBound : linear ≤ 1 / 4) (quadraticBound : quadratic ≤ 1 / 4)
+  (distanceNonnegative : 0 ≤ distance) (distanceBound : distance ≤ radius) :
+  linear + quadratic ≤ 1 / 2 ∧ center + (linear + quadratic) * distance ≤ radius
+GAlgebra.periodic_bilinear_mode_transfer.{u_1, u_2} {Scale : Type u_1} {X : Type u_2} [Mul Scale]
+  (scale : Scale → X → X) (shift : X → X) (combine : X → X → X)
+  (covariant : ∀ (v w : X), shift (combine v w) = combine (shift v) (shift w))
+  (homogeneous : ∀ (a b : Scale) (v w : X), combine (scale a v) (scale b w) = scale (a * b) (combine v w)) {a b : Scale}
+  {v w : X} (left : shift v = scale a v) (right : shift w = scale b w) :
+  shift (combine v w) = scale (a * b) (combine v w)
+GAlgebra.periodic_calibrated_resultant (gap gain : Rat) (positive : 0 < gain) :
+  have target := 1 + max 0 gap / gain;
+  1 ≤ target ∧ gain ≤ gain * target - gap
+GAlgebra.periodic_center_inverse_budget (result input low tail lowProjection tailProjection coupling inverse : Rat)
+  (couplingNonnegative : 0 ≤ coupling) (inverseNonnegative : 0 ≤ inverse) (lowBound : low ≤ lowProjection * input)
+  (tailBound : tail ≤ tailProjection * input) (estimate : result ≤ tail + inverse * (low + coupling * tail)) :
+  result ≤ (lowProjection * inverse + tailProjection * (1 + coupling * inverse)) * input
+GAlgebra.periodic_center_mixed_budget (fraction : Rat) : 256 * fraction * (1 - fraction) ^ 3 ≤ 27
+GAlgebra.periodic_centered_residual.{u_1} {Z : Type u_1} [GAlgebra.Abelian Z] (mean : GAlgebra.AddMap Z Z)
+  (quadratic : Z → Z → Z) (a w : Z) (addLeft : ∀ (x y z : Z), quadratic (x + y) z = quadratic x z + quadratic y z)
+  (addRight : ∀ (x y z : Z), quadratic x (y + z) = quadratic x y + quadratic x z) (fixMean : mean.toFun a = a)
+  (centered : mean.toFun w = 0) (fixStationary : mean.toFun (quadratic a a) = quadratic a a)
+  (leftCentered : mean.toFun (quadratic a w) = 0) (rightCentered : mean.toFun (quadratic w a) = 0) :
+  mean.toFun (a + w + quadratic (a + w) (a + w)) = a + quadratic a a + mean.toFun (quadratic w w)
+GAlgebra.periodic_chart_caps :
+  1 / 4 + 4 * (1 / 128) < 1 / 2 ∧ 2 * (1 / 256 + 1 / 128 / 4 + 2 * (1 / 128) ^ 2) ≤ 1 / 64 ∧ 4 * 4 * (1 / 64) = 1 / 4
+GAlgebra.periodic_diffusion_ball_reach (linearDistance driftDistance speed step radius : Rat)
+  (linearInside : linearDistance ≤ radius / 2) (driftBound : driftDistance ≤ speed * step)
+  (stepBound : speed * step ≤ radius / 2) : linearDistance + driftDistance ≤ radius
+GAlgebra.periodic_enstrophy_ratio_gate (t : Rat) (nonnegative : 0 ≤ t) :
+  18 * t ^ 2 < 5 * (1 + t ^ 2) * (1 + t) ∧
+    ∀ (angular : Rat), 5 ≤ angular → (angular + 3) * t ^ 2 < (1 + t ^ 2) * (angular + t)
+GAlgebra.periodic_even_paired_degree (pairs : List (Int × Int))
+  (unit : ∀ (p : Int × Int), p ∈ pairs → (p.fst = 1 ∨ p.fst = -1) ∧ (p.snd = 1 ∨ p.snd = -1)) :
+  ∃ degree, (List.map (fun p => p.fst + p.snd) pairs).sum = 2 * degree
+GAlgebra.periodic_even_shape_coarse_constants :
+  1 - (2 + 1 / 4) / 4 = 7 / 16 ∧ 1 / 16 * (5 / 4) ^ 2 < 1 / 4 * (7 / 16) ∧ 2 / 16 * (5 / 4) < 7 / 16
+GAlgebra.periodic_finite_reduction_readback.{u_1} {Z : Type u_1} [GAlgebra.Abelian Z] (project : GAlgebra.AddMap Z Z)
+  (z e response : Z) (tail : z + (response + -project.toFun response) = e) :
+  z + response = e + project.toFun response ∧
+    e + -project.toFun z = e + project.toFun response + -project.toFun (e + project.toFun response)
+GAlgebra.periodic_finite_test_preserved.{u_1, u_2} {Z : Type u_1} {W : Type u_2} [GAlgebra.Abelian Z]
+  [GAlgebra.Abelian W] (project : GAlgebra.AddMap Z Z) (read : GAlgebra.AddMap Z W) (z e response : Z)
+  (fixed : ∀ (v : Z), read.toFun (project.toFun v) = read.toFun v)
+  (tail : z + (response + -project.toFun response) = e) : read.toFun z = read.toFun e
+GAlgebra.periodic_first_harmonic_gap (gap bound size leading error residual : Rat) (linearLower : gap * size ≤ leading)
+  (cubicUpper : error ≤ bound * size ^ 3) (reverseTriangle : leading ≤ residual + error) :
+  (gap - bound * size ^ 2) * size ≤ residual
+GAlgebra.periodic_fluctuation_absorbs (amplitude rate : Rat) (nonnegative : 0 ≤ amplitude) (contracts : rate < 1)
+  (estimate : amplitude ≤ rate * amplitude) : amplitude = 0
+GAlgebra.periodic_frame_readback.{u_1, u_2} {X : Type u_1} {Y : Type u_2} (current next : X → Y) (movePoint : X → X)
+  (moveValue undoValue : Y → Y) (seamMatch : ∀ (p : X), next (movePoint p) = moveValue (current p))
+  (returns : ∀ (y : Y), undoValue (moveValue y) = y) : (fun p => undoValue (next (movePoint p))) = current
+GAlgebra.periodic_gaussian_moment_caps :
+  3 ≤ (7 / 4) ^ 2 ∧
+    16 ≤ 3 * (7 / 3) ^ 2 ∧
+      7 / 4 * (19 / 8) + 891 / 64 ≤ 19 ∧ 7 / 4 * (161 / 24) + 2 * (2807 / 64) ≤ 100 ∧ 4 * (259 / 48) ≤ 22
+GAlgebra.periodic_head_barrier_budget (error loss barrier penalty inside outside : Rat) (smallError : error < penalty)
+  (balance : loss = (1 + barrier) * penalty) (insideUpper : inside ≤ error - loss + penalty * barrier)
+  (outsideUpper : outside ≤ error - penalty) : inside < 0 ∧ outside < 0
+GAlgebra.periodic_head_pressure_cancel
+  (head radial drift speedSq viscosity curlSq meanForce positionForce forceDivergence : Rat)
+  (headEq : head = drift / 2 - speedSq / 2 - viscosity * curlSq + meanForce - viscosity * forceDivergence)
+  (radialEq : radial = speedSq - drift + positionForce) :
+  head + radial / 2 = -viscosity * curlSq + meanForce + positionForce / 2 - viscosity * forceDivergence
+GAlgebra.periodic_high_harmonic_balance (baseline correction tail linear source : Rat)
+  (equation : baseline * tail - linear = source - baseline * correction * tail) :
+  linear + source = baseline * (1 + correction) * tail
+GAlgebra.periodic_high_mixed_frequency (j k : Int) (M : Nat) (low : j.natAbs ≤ 5) (high : M < k.natAbs)
+  (cutoff : 15 ≤ M) : M - 4 ≤ (j + k).natAbs ∧ 10 < (j + k).natAbs
+GAlgebra.periodic_joint_radial_gate (linearRead exactRead error : Rat) (margin : error < linearRead)
+  (lower : -error ≤ exactRead - linearRead) : 0 < exactRead
+GAlgebra.periodic_lift_calibration_scale.{u_1} {K : Type u_1} [Lean.Grind.Field K]
+  (target original fifthRead lift gain : K) (nonzero : lift ^ 2 * gain ≠ 0) :
+  (fifthRead + (target - original - lift ^ 2 * fifthRead) / (lift ^ 2 * gain) * gain) * lift ^ 2 = target - original
+GAlgebra.periodic_lifted_cross_modes (j k : Int) (secondMode : j = -2 ∨ j = 2) (fifthMode : k = -5 ∨ k = 5) :
+  j + k = -7 ∨ j + k = -3 ∨ j + k = 3 ∨ j + k = 7
+GAlgebra.periodic_lifted_mode_separation (j k : Int) (first : j = -5 ∨ j = -2 ∨ j = 2 ∨ j = 5)
+  (second : k = -5 ∨ k = -2 ∨ k = 2 ∨ k = 5) :
+  (j + k ≠ 2 ∧ j + k ≠ -2) ∧ (j + k = 10 ↔ j = 5 ∧ k = 5) ∧ (j + k = -10 ↔ j = -5 ∧ k = -5)
+GAlgebra.periodic_low_harmonic_lower (fluctuation low tail lower : Rat) (lowerBound : lower ≤ fluctuation)
+  (decomposition : fluctuation ≤ low + tail) (tailBound : tail ≤ fluctuation / 2) : lower / 2 ≤ low
+GAlgebra.periodic_mean_feedback_readback.{u_1, u_2} {X : Type u_1} {Y : Type u_2} [GAlgebra.Abelian X]
+  [GAlgebra.Abelian Y] (response : GAlgebra.AddMap X Y) (lift : GAlgebra.AddMap Y X) (base : X) (defect shift : Y)
+  (balanced : response.toFun base = 0) (rightInverse : ∀ (r : Y), response.toFun (lift.toFun r) = r) :
+  defect + response.toFun (base + lift.toFun (shift + -defect)) = shift
+GAlgebra.periodic_mean_read_preserved.{u_1} {Z : Type u_1} [GAlgebra.Abelian Z] (project : GAlgebra.AddMap Z Z)
+  (read : GAlgebra.AddMap Z Rat) (write : GAlgebra.AddMap Rat Z)
+  (projector : ∀ (v : Z), project.toFun (project.toFun v) = project.toFun v)
+  (readWrite : ∀ (a : Rat), read.toFun (write.toFun a) = a)
+  (writeInRange : ∀ (a : Rat), project.toFun (write.toFun a) = write.toFun a) :
+  have corrected := fun v => project.toFun v + write.toFun (read.toFun (v + -project.toFun v));
+  (∀ (v : Z), read.toFun (corrected v) = read.toFun v) ∧
+    (∀ (v : Z), project.toFun (corrected v) = corrected v) ∧ ∀ (v : Z), corrected (project.toFun v) = project.toFun v
+GAlgebra.periodic_mode_cancellation_gap (j k : Int) (M m : Nat) (cutoff : m ≤ M) (high : M < j.natAbs)
+  (low : (j + k).natAbs ≤ m) : 2 * (M + 1 - m) ≤ j.natAbs + k.natAbs - (j + k).natAbs
+GAlgebra.periodic_parameter_interpolation (first second : Rat) (firstNonnegative : 0 ≤ first)
+  (secondNonnegative : 0 ≤ second) : min first second ^ 3 ≤ first * second ^ 2
+GAlgebra.periodic_phase_border_coordinates.{u_1, u_2} {E : Type u_1} {Phase : Type u_2} [GAlgebra.Abelian E]
+  [GAlgebra.Abelian Phase] (linear : GAlgebra.AddMap E E) (insert : GAlgebra.AddMap Phase E)
+  (read : GAlgebra.AddMap E Phase) (base target : E) (parameters correction phase : Phase)
+  (nullColumns : ∀ (p : Phase), linear.toFun (insert.toFun p) = 0)
+  (linearMatch : linear.toFun base + -insert.toFun parameters = target)
+  (phaseMatch : read.toFun (insert.toFun correction) = phase + -read.toFun base) :
+  linear.toFun (base + insert.toFun correction) + -insert.toFun parameters = target ∧
+    read.toFun (base + insert.toFun correction) = phase
+GAlgebra.periodic_phase_gap_bound (amplitude fluctuation loss scale : Rat) (positiveScale : 0 < scale)
+  (dissipation : fluctuation < amplitude → loss ≤ scale * fluctuation) : min amplitude (loss / scale) ≤ fluctuation
+GAlgebra.periodic_phase_half_order_budget (factor head near middle slow far : Rat) (headBound : head ≤ 2 * factor)
+  (nearBound : near ≤ 4 * factor) (middleBound : middle ≤ 2 * factor) (slowBound : slow ≤ 6 * factor)
+  (farBound : far ≤ 6 * factor) : head + near + middle + slow + far ≤ 20 * factor
+GAlgebra.periodic_phase_weight_mul (base : Rat) (baseAtLeastOne : 1 ≤ base) (j k : Int) :
+  base ^ (j + k).natAbs ≤ base ^ j.natAbs * base ^ k.natAbs
+GAlgebra.periodic_pressure_cell_floor (pressure correction viscosity enstrophy cellMass curlSq : Rat)
+  (viscosityNonnegative : 0 ≤ viscosity) (balance : pressure = viscosity * enstrophy) (correctionMean : correction = 0)
+  (cellBound : cellMass * curlSq ≤ enstrophy) : viscosity * (cellMass * curlSq) ≤ pressure - correction
+GAlgebra.periodic_pressure_phase_balance
+  (head pressureHead pressureTime pressureDiffusion pressureDrift curlLoss gradientLoss response : Rat)
+  (headEquation : head = pressureTime - curlLoss + response)
+  (pressureEquation : pressureHead = pressureTime - pressureDiffusion + pressureDrift)
+  (lossEquation : gradientLoss = curlLoss - pressureDiffusion) :
+  response = head - pressureHead + gradientLoss + pressureDrift
+GAlgebra.periodic_pressure_phase_interval_budget (amplitude observation error modulus width gain : Rat)
+  (widthPositive : 0 < width) (gainPositive : 0 < gain)
+  (weightedBound : (amplitude - modulus) * (width * gain) ≤ observation + error) :
+  amplitude ≤ (observation + error) / (width * gain) + modulus
+GAlgebra.periodic_pressure_phase_projection.{u_1, u_2} {Phase : Type u_1} {Residual : Type u_2}
+  (lift : (Phase → Rat) → Residual) (observe : Residual → Phase → Rat) (gain : Phase → Rat)
+  (gainPositive : ∀ (s : Phase), 0 < gain s)
+  (observed : ∀ (coefficient : Phase → Rat) (s : Phase), observe (lift coefficient) s = gain s * coefficient s) :
+  have read := fun residual s => observe residual s / gain s;
+  (∀ (coefficient : Phase → Rat), read (lift coefficient) = coefficient) ∧
+    ∀ (residual : Residual), lift (read (lift (read residual))) = lift (read residual)
+GAlgebra.periodic_pressure_scalar_readback (base perturbation margin coefficient defect : Rat)
+  (positiveMargin : 0 < margin) (baseFloor : 2 * margin ≤ base) (errorLower : -margin ≤ perturbation)
+  (balance : defect = (base + perturbation) * coefficient) :
+  margin ≤ base + perturbation ∧ (defect = 0 ↔ coefficient = 0)
+GAlgebra.periodic_projected_quadratic.{u_1, u_2} {Z : Type u_1} {W : Type u_2} [GAlgebra.Abelian Z] [GAlgebra.Abelian W]
+  (project : GAlgebra.AddMap Z W) (quadratic : Z → Z → Z) (e w : Z)
+  (addLeft : ∀ (a b c : Z), quadratic (a + b) c = quadratic a c + quadratic b c)
+  (addRight : ∀ (a b c : Z), quadratic a (b + c) = quadratic a b + quadratic a c) (hidden : project.toFun w = 0) :
+  project.toFun (e + w + quadratic (e + w) (e + w)) =
+    project.toFun (e + quadratic e e) +
+      (project.toFun (quadratic e w) + (project.toFun (quadratic w e) + project.toFun (quadratic w w)))
+GAlgebra.periodic_projection_budget_split (timeFraction : Rat) (withinBudget : timeFraction ≤ 1) :
+  timeFraction * (1 - timeFraction) ^ 2 ≤ 4 / 27
+GAlgebra.periodic_projection_tail_split.{u_1} {Z : Type u_1} [GAlgebra.Abelian Z] (time space : GAlgebra.AddMap Z Z)
+  (x : Z) : x + -time.toFun (space.toFun x) = x + -time.toFun x + time.toFun (x + -space.toFun x)
+GAlgebra.periodic_quarter_turn_difference.{u_1} {K : Type u_1} [Lean.Grind.CommRing K] (x y : K) :
+  (-y - x) * (-y - x) + (x - y) * (x - y) = 2 * (x * x + y * y)
+GAlgebra.periodic_radial_heat_gap (q q' r : Rat) (lowerNonnegative : 0 ≤ q') (ordered : q' ≤ q)
+  (radiusNonnegative : 0 ≤ r) :
+  have gap := 1 - (q' * r) ^ 2 - (1 - (q * r) ^ 2);
+  0 ≤ gap ∧ gap ≤ 2 * q * (q - q') * r ^ 2
+GAlgebra.periodic_rational_rotation_no_return (real imag : Nat → Int) (realBase : real 0 = 1) (imagBase : imag 0 = 0)
+  (realStep : ∀ (n : Nat), real (n + 1) = 3 * real n - 4 * imag n)
+  (imagStep : ∀ (n : Nat), imag (n + 1) = 4 * real n + 3 * imag n) {n : Nat} (positive : 0 < n) :
+  ¬(real n = 5 ^ n ∧ imag n = 0)
+GAlgebra.periodic_read_projection.{u_1, u_2} {Z : Type u_1} {Coordinates : Type u_2} (read : Z → Coordinates)
+  (lift : Coordinates → Z) (readLift : ∀ (a : Coordinates), read (lift a) = a) :
+  have project := fun z => lift (read z);
+  (∀ (z : Z), read (project z) = read z) ∧ ∀ (z : Z), project (project z) = project z
+GAlgebra.periodic_readout_calibration.{u_1} {K : Type u_1} [Lean.Grind.Field K] (base gain target : K)
+  (nonzero : gain ≠ 0) : base + (target - base) / gain * gain = target
+GAlgebra.periodic_reduced_radius_gate (residual defect bend radius : Rat) (bendPositive : 0 < bend)
+  (gate : residual + defect * radius + bend * radius ^ 2 / 2 < radius) : 2 * bend * residual < (1 - defect) ^ 2
+GAlgebra.periodic_rotating_frame_period.{u_1} {X : Type u_1} (flow : Rat → X) (rotate : Rat → X → X)
+  (period angularSpeed : Rat) (compose : ∀ (a b : Rat) (x : X), rotate a (rotate b x) = rotate (a + b) x)
+  (seam : ∀ (s : Rat), flow (s + period) = rotate (angularSpeed * period) (flow s)) (s : Rat) :
+  rotate (-angularSpeed * (s + period)) (flow (s + period)) = rotate (-angularSpeed * s) (flow s)
+GAlgebra.periodic_rotation_gap_budget (gap root logValue heat rotation : Rat) (gapNonneg : 0 ≤ gap)
+  (gapBound : gap ≤ root) (heatNonneg : 0 ≤ heat) (rotationNonneg : 0 ≤ rotation)
+  (logBound : gap * logValue ≤ 2 * (root - gap)) :
+  gap * (4 * heat + 2 * rotation * (1 + logValue)) ≤ 4 * (heat + rotation) * root
+GAlgebra.periodic_rotation_generator_difference.{u_1, u_2, u_3} {Pressure : Type u_1} {Velocity : Type u_2}
+  {Curl : Type u_3} [GAlgebra.Abelian Pressure] [GAlgebra.Abelian Velocity] [GAlgebra.Abelian Curl]
+  (complex : GAlgebra.TwoStep Pressure Velocity Curl) (common first second : Velocity) (p p' : Pressure)
+  (original : common + first + complex.up.toFun p = 0) (transported : common + second + complex.up.toFun p' = 0) :
+  complex.down.toFun (second + -first) = 0
+GAlgebra.periodic_sample_locked.{u_1, u_2} {Z : Type u_1} {V : Type u_2} [GAlgebra.Abelian Z] [GAlgebra.Abelian V]
+  (read : GAlgebra.AddMap Z V) (project : Z → Z) (preserves : ∀ (z : Z), read.toFun (project z) = read.toFun z)
+  (center tail : Z) (tailProjection : project tail = 0) : read.toFun (center + tail) = read.toFun center
+GAlgebra.periodic_seam_covariance.{u_1, u_2} {X : Type u_1} {Y : Type u_2} [GAlgebra.Abelian X] [GAlgebra.Abelian Y]
+  (transport : GAlgebra.AddMap X Y) (heat seam : GAlgebra.AddMap X X) (targetHeat targetSeam : GAlgebra.AddMap Y Y)
+  (heatLaw : ∀ (x : X), transport.toFun (heat.toFun x) = targetHeat.toFun (transport.toFun x))
+  (seamLaw : ∀ (x : X), transport.toFun (seam.toFun x) = targetSeam.toFun (transport.toFun x)) (initial source : X)
+  (seamMatch : initial = seam.toFun (heat.toFun initial + source)) :
+  transport.toFun initial = targetSeam.toFun (targetHeat.toFun (transport.toFun initial) + transport.toFun source)
+GAlgebra.periodic_second_harmonic_cosine (amplitude radius sineProduct cosineProduct : Rat) :
+  (amplitude * radius / 2) ^ 2 * cosineProduct / 2 - (amplitude * radius) ^ 2 * sineProduct / 2 =
+    amplitude ^ 2 * radius ^ 2 * (cosineProduct - 4 * sineProduct) / 8
+GAlgebra.periodic_separated_feedback_readback.{u_1, u_2, u_3} {Z : Type u_1} {Y : Type u_2} {W : Type u_3}
+  [GAlgebra.Abelian Z] [GAlgebra.Abelian Y] [GAlgebra.Abelian W] (meanRead : GAlgebra.AddMap Z Y)
+  (firstRead : GAlgebra.AddMap Z W) (meanResponse firstResponse remainder : Z) (meanTarget : Y) (firstTarget : W)
+  (meanOnMean : meanRead.toFun meanResponse = meanTarget) (meanOnFirst : meanRead.toFun firstResponse = 0)
+  (firstOnMean : firstRead.toFun meanResponse = 0) (firstOnFirst : firstRead.toFun firstResponse = firstTarget) :
+  meanRead.toFun (meanResponse + firstResponse + remainder) = meanTarget + meanRead.toFun remainder ∧
+    firstRead.toFun (meanResponse + firstResponse + remainder) = firstTarget + firstRead.toFun remainder
+GAlgebra.periodic_shape_amplitude (initial correction : Rat) (negative : initial < 0)
+  (preservedSign : -1 < correction) :
+  have coefficient := initial * (1 + correction);
+  have amplitude := -1 / coefficient;
+  0 < amplitude ∧ amplitude + amplitude ^ 2 * coefficient = 0
+GAlgebra.periodic_shape_denominator (observed cap error diagonal : Rat) (observedPositive : 0 < observed)
+  (observedUpper : observed ≤ cap) (errorUpper : error ≤ observed / 2)
+  (readUpper : observed ^ 2 * diagonal ≤ -observed + error) : diagonal ≤ -1 / (2 * cap)
+GAlgebra.periodic_shape_diagonal_readback.{u_1} {Z : Type u_1} [GAlgebra.Abelian Z] (project : GAlgebra.AddMap Z Z)
+  (scale : Rat → Z → Z) (shape tail response residual : Z) (coefficient : Rat)
+  (scaleAdd : ∀ (a b : Z), scale coefficient (a + b) = scale coefficient a + scale coefficient b)
+  (finitePart : project.toFun response = scale coefficient shape + residual)
+  (tailPart : response + -project.toFun response = scale coefficient tail) :
+  response = scale coefficient (shape + tail) + residual
+GAlgebra.periodic_shape_tree_gate (lower seed linear quadratic radius : Rat) (quadraticNonnegative : 0 ≤ quadratic)
+  (radiusNonnegative : 0 ≤ radius) (room : seed + linear * radius + quadratic * radius ^ 2 ≤ lower * radius)
+  (slope : linear + 2 * quadratic * radius < lower) :
+  have gap := lower - linear;
+  have s := seed / gap;
+  have M := quadratic / gap;
+  0 < gap ∧ s + M * radius ^ 2 ≤ radius ∧ 2 * M * radius < 1 ∧ 4 * M * s < 1
+GAlgebra.periodic_swirl_barrier_positive (bound drift rate factor : Rat) (boundNonnegative : 0 ≤ bound)
+  (driftLower : -bound ≤ drift) (rateLower : 2 * bound + 1 ≤ rate) (factorPositive : 0 < factor)
+  (region : 0 < drift ∨ 1 ≤ factor) : 0 < drift + (rate + drift) * factor
+GAlgebra.periodic_tail_budget_difference.{u_1} {K : Type u_1} [Lean.Grind.CommRing K]
+  (gap quadratic cubic optimum radius : K) (balanced : gap = 2 * quadratic * optimum + 3 * cubic * optimum ^ 2) :
+  gap * optimum - quadratic * optimum ^ 2 - cubic * optimum ^ 3 -
+      (gap * radius - quadratic * radius ^ 2 - cubic * radius ^ 3) =
+    (radius - optimum) ^ 2 * (quadratic + cubic * (2 * optimum + radius))
+GAlgebra.periodic_tail_cubic_scale.{u_1} {K : Type u_1} [Lean.Grind.CommRing K] (curvature radius : K) :
+  27 * curvature * (2 * curvature * radius ^ 3) ^ 2 = 4 * (3 * curvature * radius ^ 2) ^ 3
+GAlgebra.periodic_tail_defect_bound (distance defect rate : Rat) (positiveGap : 0 < 1 - rate)
+  (differenceBound : distance ≤ defect + rate * distance) : distance ≤ defect / (1 - rate)
+GAlgebra.periodic_tail_gate_slack.{u_1} {K : Type u_1} [Lean.Grind.CommRing K]
+  (gap finiteMixed tailQuadratic finiteQuadratic optimum : K)
+  (balanced : gap = 2 * (finiteMixed + tailQuadratic) * optimum + 3 * finiteQuadratic * optimum ^ 2) :
+  gap - (finiteMixed + 2 * tailQuadratic) * optimum - finiteQuadratic * optimum ^ 2 =
+    finiteMixed * optimum + 2 * finiteQuadratic * optimum ^ 2
+GAlgebra.periodic_tail_residual_identity.{u_1} {Z : Type u_1} [GAlgebra.Abelian Z] (linear : GAlgebra.AddMap Z Z)
+  (z h value defect quadratic : Z) (seedRead : linear.toFun h = -defect)
+  (combineRead : linear.toFun value = -quadratic) :
+  defect + (linear.toFun z + quadratic) = linear.toFun (z + -h + -value)
+GAlgebra.periodic_trace_energy_readback (initial terminal dissipation ratio observed transportError tailError : Rat)
+  (positiveGap : 0 < 1 - ratio) (seam : terminal = ratio * initial) (spend : initial - terminal = dissipation)
+  (readUpper : initial ≤ observed + transportError + tailError) :
+  dissipation = (1 - ratio) * initial ∧ dissipation / (1 - ratio) ≤ observed + transportError + tailError
+GAlgebra.periodic_trace_rotation_minimax (q cosine : Rat) (qPositive : 0 < q) :
+  have first := 1 + q ^ 2 - 2 * q * cosine;
+  have second := 1 + q ^ 2 - 2 * q * (2 * cosine ^ 2 - 1);
+  have optimum := 1 + q + q ^ 2;
+  cosine = -1 / 2 ∧ first = optimum ∧ second = optimum ∨ first < optimum ∨ second < optimum
+GAlgebra.periodic_trace_rotation_norm (a q cosine sine x y : Rat) (unitCircle : cosine ^ 2 + sine ^ 2 = 1) :
+  ((a - q * cosine) * x + q * sine * y) ^ 2 + ((a - q * cosine) * y - q * sine * x) ^ 2 =
+    (a ^ 2 + q ^ 2 - 2 * a * q * cosine) * (x ^ 2 + y ^ 2)
+GAlgebra.periodic_trace_tensor_off_diagonal (diagonalFirst diagonalSecond offDiagonal : Rat) :
+  (diagonalFirst + diagonalSecond + 2 * offDiagonal) / 2 - (diagonalFirst + diagonalSecond) / 2 = offDiagonal
+GAlgebra.periodic_trace_tensor_radial (trace quadratic : Rat) :
+  3 * (trace + 2 * quadratic) - 15 * quadratic = 3 * trace - 9 * quadratic
+GAlgebra.periodic_trace_three_radii (ratio leading firstTail atStart afterMove afterTwoMoves : Rat) :
+  leading + firstTail * ratio ^ 4 + ratio ^ 6 * afterTwoMoves -
+        (1 + ratio ^ 2) * (leading + firstTail * ratio ^ 2 + ratio ^ 3 * afterMove) +
+      ratio ^ 2 * (leading + firstTail + atStart) =
+    ratio ^ 2 * atStart - ratio ^ 3 * afterMove - ratio ^ 3 * (ratio ^ 2 * afterMove - ratio ^ 3 * afterTwoMoves)
+GAlgebra.periodic_tree_radius (s M eta R : Rat) (nonnegS : 0 ≤ s) (positiveGap : 0 < eta)
+  (gapBound : 4 * M * s + eta ^ 2 ≤ 1) (radius : R * (1 + eta) = 2 * s) : M * R ^ 2 ≤ R - s ∧ 2 * M * R < 1
+GAlgebra.periodic_two_mode_common_zero_iff.{u_1} {K : Type u_1} [Lean.Grind.Field K] (A B C beta gamma : K)
+  (gainNonzero : beta ≠ 0) :
+  have resultant := A * gamma ^ 2 - B * beta * gamma + C * beta ^ 2;
+  (∀ (x y : K), A * x ^ 2 + B * x * y + C * y ^ 2 = 0 → x * (beta * x + gamma * y) = 0 → x = 0 ∧ y = 0) ↔
+    C ≠ 0 ∧ resultant ≠ 0
+GAlgebra.periodic_two_mode_resultant.{u_1} {K : Type u_1} [Lean.Grind.CommRing K] (A B C beta gamma x y : K) :
+  beta ^ 2 * (A * x ^ 2 + B * x * y + C * y ^ 2) -
+      (beta * x + gamma * y) * (A * (beta * x - gamma * y) + B * beta * y) =
+    (A * gamma ^ 2 - B * beta * gamma + C * beta ^ 2) * (y * y)
+GAlgebra.periodic_unit_shape_budget (x y : Rat) (unit : x + y = 1) : x ^ 2 + 2 * x * y + y ^ 2 = 1
+GAlgebra.periodic_weighted_block_bound (low high lowMass highMass lowBudget highBudget : Rat)
+  (lowNonnegative : 0 ≤ lowMass) (highNonnegative : 0 ≤ highMass) (lowBound : low ≤ lowBudget * lowMass)
+  (highBound : high ≤ highBudget * highMass) : low + high ≤ max lowBudget highBudget * (lowMass + highMass)
+GAlgebra.periodic_weighted_phase_gate (amplitude delta timeBudget spaceBudget timeTail spaceTail : Rat)
+  (amplitudePositive : 0 < amplitude) (deltaPositive : 0 < delta) (scaledBudget : delta * amplitude ≤ 1 / 16)
+  (jointBudget : timeBudget + spaceBudget ≤ delta) (timeBound : timeTail ≤ timeBudget)
+  (spaceBound : spaceTail ≤ spaceBudget) :
+  timeTail + spaceTail ≤ delta ∧ 0 < 4 * delta * (2 * amplitude) ∧ 4 * delta * (2 * amplitude) ≤ 1 / 2
+GAlgebra.poloidal_harmonic_product_coefficients (degree : Rat) :
+  2 * (degree * (degree + 1)) - 2 * degree * (2 * degree + 1) = -2 * degree ^ 2 ∧
+    2 * degree ^ 2 - degree * (degree + 1) = degree * (degree - 1)
+GAlgebra.positive_two_direction_certificate (u v t : Rat × Rat) (h : 0 < GAlgebra.det2 u v) :
+  (∃ a b, 0 < a ∧ 0 < b ∧ GAlgebra.stressCombine u v a b = t) ↔ 0 < GAlgebra.det2 t v ∧ 0 < GAlgebra.det2 u t
+GAlgebra.pressure_inner_weight_ratio (overlap weightedSize weightedDrift : Rat) (overlapNonnegative : 0 ≤ overlap)
+  (overlapUpper : overlap ≤ 1) (sizeNonnegative : 0 ≤ weightedSize) (driftBound : 2 * weightedDrift ≤ overlap / 2) :
+  2 * (1 - overlap) + weightedSize / 2 + 2 * weightedDrift ≤ (1 - overlap / 2) * (2 + weightedSize)
+GAlgebra.pressure_outer_weight_ratio (weight threshold size : Rat) (weightNonnegative : 0 ≤ weight)
+  (outside : threshold ≤ size) :
+  (2 + 3 * weight * size / 4) * (2 + weight * threshold) ≤ (2 + 3 * weight * threshold / 4) * (2 + weight * size)
+GAlgebra.primeFiberCoefficient.{u_1, u_2} {A : Type u_1} {B : Type u_2} [DecidableEq B] (source : List A)
+  (relation : A → B) (degree : A → Nat) (weight : A → Rat) (target : B) (total : Nat) : Rat
+GAlgebra.prime_dyadic_growth (counts : Nat → Rat) (δ : Rat) (increments : ∀ (j : Nat), δ ≤ counts (j + 1) - counts j)
+  (J : Nat) : counts 0 + ↑J * δ ≤ counts J
+GAlgebra.prime_fiber_coarsening.{u_1, u_2, u_3} {A : Type u_1} {B : Type u_2} {C : Type u_3} [DecidableEq B]
+  [DecidableEq C] (source : List A) (keys : List B) (unique : keys.Nodup) (relation : A → B) (degree : A → Nat)
+  (weight : A → Rat) (coarsen : B → C) (target : C) (total : Nat) (covers : ∀ (a : A), a ∈ source → relation a ∈ keys) :
+  GAlgebra.primeFiberCoefficient source (fun a => coarsen (relation a)) degree weight target total =
+    GAlgebra.finiteSum
+      (fun key =>
+        if coarsen key = target then GAlgebra.primeFiberCoefficient source relation degree weight key total else 0)
+      keys
+GAlgebra.prime_fiber_cutoff.{u_1, u_2} {A : Type u_1} {B : Type u_2} [DecidableEq B] (source : List A)
+  (relation : A → B) (degree : A → Nat) (weight : A → Rat) (target : B) (total : Nat) (keep : A → Bool)
+  (covers : ∀ (a : A), a ∈ source → degree a = total → keep a = true) :
+  GAlgebra.primeFiberCoefficient (List.filter keep source) relation degree weight target total =
+    GAlgebra.primeFiberCoefficient source relation degree weight target total
+GAlgebra.prime_finite_mass_positive_iff.{u_1} {A : Type u_1} (source : List A) (weight : A → Rat)
+  (nonnegative : ∀ (a : A), 0 ≤ weight a) : 0 < GAlgebra.finiteSum weight source ↔ ∃ a, a ∈ source ∧ 0 < weight a
+GAlgebra.prime_phase_margin_readback (main error size c δ : Rat) (mainLower : c * size ≤ main)
+  (errorLower : -(c - δ) * size ≤ error) : δ * size ≤ main + error
+GAlgebra.prime_power_base_exact {n p k : Nat} (prime : GAlgebra.TrialPrime p) (exponent_positive : 1 ≤ k)
+  (power : p ^ k = n) : GAlgebra.primePowerBase n = some p
+GAlgebra.prime_power_base_sound {n p : Nat} (found : GAlgebra.primePowerBase n = some p) :
+  GAlgebra.TrialPrime p ∧ ∃ k, 1 ≤ k ∧ p ^ k = n
+GAlgebra.prime_power_base_unique {p q k l : Nat} (p_prime : GAlgebra.TrialPrime p) (q_prime : GAlgebra.TrialPrime q)
+  (k_positive : 1 ≤ k) (power : p ^ k = q ^ l) : p = q
+GAlgebra.prime_tuple_implies_twins (tupleAsymptotic : List Int → Prop) (grandRiemann : Prop)
+  (full : GAlgebra.ArithmeticObligation.goal tupleAsymptotic grandRiemann GAlgebra.ArithmeticObligation.primeTuples)
+  (weight : Nat → Rat) (support : ∀ (n : Nat), weight n ≠ 0 → GAlgebra.TrialPrime n ∧ GAlgebra.TrialPrime (n + 2))
+  (growth :
+    tupleAsymptotic [0, 2] →
+      ∀ (cutoff : Nat),
+        ∃ size,
+          cutoff < size ∧
+            GAlgebra.finiteSum weight (List.range (cutoff + 1)) < GAlgebra.finiteSum weight (List.range size)) :
+  GAlgebra.ArithmeticObligation.goal tupleAsymptotic grandRiemann GAlgebra.ArithmeticObligation.twinPrimes
+GAlgebra.profile_geometric_identity (rate bound : Rat) (start count : Nat) :
+  (1 - rate) * GAlgebra.finiteSum (fun k => bound * rate ^ (k + 1)) (List.range' start count) =
+    bound * rate ^ (start + 1) - bound * rate ^ (start + count + 1)
+GAlgebra.rank_gain_count (n old new added : Nat) (coverage : old + added = new) (bound : new ≤ n) :
+  n - old - (n - new) = added
+GAlgebra.reflected_zero_from_completed_equation.{u_1, u_2} {Z : Type u_1} {K : Type u_2} [Mul K] [Zero K]
+  (zeta completion completed : Z → K) (mirror : Z → Z) (product : ∀ (z : Z), completed z = completion z * zeta z)
+  (symmetry : ∀ (z : Z), completed (mirror z) = completed z) (mul_zero : ∀ (x : K), x * 0 = 0)
+  (left_regular : ∀ (z : Z) (t : K), zeta z = 0 → completion (mirror z) * t = 0 → t = 0) {z : Z} (zero : zeta z = 0) :
+  zeta (mirror z) = 0
+GAlgebra.repairImage.{u_1, u_2} {U : Type u_1} {V : Type u_2} (B : U → V) (K : U → Prop) : V → Prop
+GAlgebra.repair_expansion.{u_1, u_2, u_3} {U : Type u_1} {W : Type u_2} {V : Type u_3} [Add V] (B : U → V) (R : W → V)
+  (K : U → Prop) (L : W → Prop) (x : V) :
+  GAlgebra.repairImage (GAlgebra.block B R) (fun p => K p.fst ∧ L p.snd) x ↔
+    GAlgebra.sumSet (GAlgebra.repairImage B K) (GAlgebra.repairImage R L) x
+GAlgebra.repair_expansion_closed.{u_1, u_2, u_3, u_4} {U : Type u_1} {W : Type u_2} {V : Type u_3} {Z : Type u_4}
+  [GAlgebra.Abelian V] [GAlgebra.Abelian Z] (B : U → V) (R : W → V) (D : GAlgebra.AddMap V Z)
+  (hB : ∀ (u : U), D.toFun (B u) = 0) (hR : ∀ (w : W), D.toFun (R w) = 0) (p : U × W) :
+  D.toFun (GAlgebra.block B R p) = 0
+GAlgebra.repair_expansion_preserves_old.{u_1, u_2, u_3} {U : Type u_1} {W : Type u_2} {V : Type u_3}
+  [GAlgebra.Abelian V] [Zero W] (B : U → V) (R : W → V) (K : U → Prop) (L : W → Prop) (h0 : L 0) (hR : R 0 = 0)
+  {x : V} : GAlgebra.Repairable B K x → GAlgebra.Repairable (GAlgebra.block B R) (fun p => K p.fst ∧ L p.snd) x
+GAlgebra.repair_transport_family.{u_1, u_2, u_3, u_4, u_5} {ι : Type u_1} {U : ι → Type u_2} {V : ι → Type u_3}
+  {U' : ι → Type u_4} {V' : ι → Type u_5} {B : (i : ι) → U i → V i} {K : (i : ι) → U i → Prop}
+  {B' : (i : ι) → U' i → V' i} {K' : (i : ι) → U' i → Prop}
+  (F : (i : ι) → GAlgebra.RepairMorphism (B i) (K i) (B' i) (K' i))
+  (G : (i : ι) → GAlgebra.RepairMorphism (B' i) (K' i) (B i) (K i)) {x : (i : ι) → V i} {y : (i : ι) → V' i}
+  (hF : ∀ (i : ι), (F i).onTarget (x i) = y i) (hG : ∀ (i : ι), (G i).onTarget (y i) = x i) :
+  (∀ (i : ι), GAlgebra.Repairable (B i) (K i) (x i)) ↔ ∀ (i : ι), GAlgebra.Repairable (B' i) (K' i) (y i)
+GAlgebra.repair_transport_iff.{u_1, u_2, u_3, u_4} {U : Type u_1} {V : Type u_2} {U' : Type u_3} {V' : Type u_4}
+  {B : U → V} {K : U → Prop} {B' : U' → V'} {K' : U' → Prop} (F : GAlgebra.RepairMorphism B K B' K')
+  (G : GAlgebra.RepairMorphism B' K' B K) {x : V} {y : V'} (hF : F.onTarget x = y) (hG : G.onTarget y = x) :
+  GAlgebra.Repairable B K x ↔ GAlgebra.Repairable B' K' y
+GAlgebra.repairable_iff_fiber.{u_1, u_2} {U : Type u_1} {V : Type u_2} (B : U → V) (K : U → Prop) (target : V) :
+  GAlgebra.Repairable B K target ↔ Nonempty { u // K u ∧ B u = target }
+GAlgebra.residual.{u_1, u_2} {X : Type u_1} {P : Type u_2} [GAlgebra.Abelian X] [GAlgebra.Abelian P]
+  (L : GAlgebra.AddMap X X) (G : GAlgebra.AddMap P X) (B : GAlgebra.Bilinear X X X) (f u : X) (p : P) : X
+GAlgebra.residual_perturbation.{u_1, u_2} {X : Type u_1} {P : Type u_2} [GAlgebra.Abelian X] [GAlgebra.Abelian P]
+  (L : GAlgebra.AddMap X X) (G : GAlgebra.AddMap P X) (B : GAlgebra.Bilinear X X X) (f u w : X) (p π : P) :
+  GAlgebra.residual L G B f (u + w) (p + π) =
+    GAlgebra.residual L G B f u p + (GAlgebra.linearized L G B u w π + B.eval w w)
+GAlgebra.reuseSupportedTest.{u_1, u_2, u_3} {I : Type u_1} {Value : Type u_2} {Result : Type u_3} (support : List I)
+  (changed : I → Bool) (read : List Value → Result) (cached : Result) (next : I → Value) : Result
+GAlgebra.reuseSupportedTest_correct.{u_1, u_2, u_3} {I : Type u_1} {Value : Type u_2} {Result : Type u_3}
+  (support : List I) (changed : I → Bool) (read : List Value → Result) (cached : Result) (old next : I → Value)
+  (stored : cached = read (List.map old support)) (unchanged : ∀ (i : I), changed i = false → old i = next i) :
+  GAlgebra.reuseSupportedTest support changed read cached next = read (List.map next support)
+GAlgebra.reuse_cost_iff (B K c a : Int) : B + K * c < K * a ↔ B < K * (a - c)
+GAlgebra.scaled_peak_lower (reference actual error : Rat) (approximation : reference - error ≤ actual)
+  (small : error ≤ reference / 2) : reference / 2 ≤ actual
+GAlgebra.sector_path_cost_sum (edges : List GAlgebra.SectorStepCost) :
+  (List.map GAlgebra.SectorStepCost.total edges).sum =
+    (List.map GAlgebra.SectorStepCost.localWork edges).sum + (List.map GAlgebra.SectorStepCost.transport edges).sum +
+        (List.map GAlgebra.SectorStepCost.verification edges).sum +
+      (List.map GAlgebra.SectorStepCost.quotient edges).sum
+GAlgebra.selection_word_count (as : List Nat) : (GAlgebra.selectionWords as).length = 2 ^ as.length
+GAlgebra.shared_verification_saves_weighted.{u_1} {Job : Type u_1} (jobs : List Job) (recompute : Job → Bool)
+  (cost : Job → Rat) (overhead : Rat) :
+  (List.map cost (List.filter recompute jobs)).sum + overhead < (List.map cost jobs).sum ↔
+    overhead < (List.map cost (List.filter (fun job => !recompute job) jobs)).sum
+GAlgebra.spectral_coefficient_margin.{u_1} {R : Type u_1} [Lean.Grind.CommRing R] [LE R] [LT R] [Std.IsLinearOrder R]
+  [Std.LawfulOrderLT R] [Lean.Grind.OrderedRing R] (u v size : R) (uNonnegative : 0 ≤ u) (sizeNonnegative : 0 ≤ size)
+  (dominated : 4 * v ≤ u) (triangle : size ≤ u + v) : size * size ≤ 25 * (u * u + v * v) - 100 * (u * v)
+GAlgebra.spectral_localizing_forms (cap mass shifted : Rat) :
+  0 ≤ shifted ∧ shifted ≤ cap * mass ↔ 0 ≤ shifted ∧ 0 ≤ cap * mass - shifted
+GAlgebra.spectral_localizing_forms_all.{u_1} {Polynomial : Type u_1} (cap : Rat) (mass shifted : Polynomial → Rat) :
+  (∀ (p : Polynomial), 0 ≤ shifted p ∧ shifted p ≤ cap * mass p) ↔
+    ∀ (p : Polynomial), 0 ≤ shifted p ∧ 0 ≤ cap * mass p - shifted p
+GAlgebra.spectral_positive_quotient_bound (cap mass shifted : Rat) (capNonnegative : 0 ≤ cap)
+  (massNonnegative : 0 ≤ mass) (shiftedNonnegative : 0 ≤ shifted)
+  (squareBound : shifted * shifted ≤ cap * mass * shifted) : shifted ≤ cap * mass
+GAlgebra.spectral_upper_weight_numerator (a inverseA pole inversePole multiplicity : Rat)
+  (boundaryInverse : a * inverseA = 1) (poleInverse : pole * inversePole = 1) :
+  a * (multiplicity * inversePole * (inverseA - inversePole)) = multiplicity * (pole - a) * (inversePole * inversePole)
+GAlgebra.stressCombine (u v : Rat × Rat) (a b : Rat) : Rat × Rat
+GAlgebra.strict_coefficients_can_lose_old :
+  GAlgebra.Repairable (fun u => u) (fun u => u = 0) 0 ∧
+    ¬GAlgebra.Repairable (GAlgebra.block (fun u => u) fun w => w) (fun p => p.fst = 0 ∧ 0 < p.snd) 0
+GAlgebra.strongestBudgetHit.{u_1} {Result : Type u_1} (probe : Nat → Option Result) (cap : Nat) : Option (Nat × Result)
+GAlgebra.strongest_budget_hit_no_feasible.{u_1} {Result : Type u_1} (probe : Nat → Option Result)
+  (monotone : ∀ (i j : Nat), i ≤ j → probe i = none → probe j = none) {cap : Nat}
+  (missed : GAlgebra.strongestBudgetHit probe cap = none) (grade : Nat) : probe grade = none
+GAlgebra.strongest_budget_hit_spec.{u_1} {Result : Type u_1} (probe : Nat → Option Result)
+  (monotone : ∀ (i j : Nat), i ≤ j → probe i = none → probe j = none) {cap grade : Nat} {witness : Result}
+  (accepted : GAlgebra.strongestBudgetHit probe cap = some (grade, witness)) :
+  grade ≤ cap ∧ probe grade = some witness ∧ ∀ (other : Nat), other ≤ cap → probe other ≠ none → other ≤ grade
+GAlgebra.synchronized_construction.{u_1, u_2} {X : Type u_1} {Z : Type u_2} (D : Nat → Z → X) (T : Nat → X → X)
+  (T' : Nat → Z → Z) (x : Nat → X) (z : Nat → Z) (legal : Nat → Z → Prop) (hx : ∀ (n : Nat), x (n + 1) = T n (x n))
+  (hz : ∀ (n : Nat), z (n + 1) = T' n (z n)) (h0 : D 0 (z 0) = x 0) (hl0 : legal 0 (z 0))
+  (square : ∀ (n : Nat) (a : Z), legal n a → D (n + 1) (T' n a) = T n (D n a))
+  (preserves : ∀ (n : Nat) (a : Z), legal n a → legal (n + 1) (T' n a)) (n : Nat) : D n (z n) = x n ∧ legal n (z n)
+GAlgebra.theta_small_height_bound (height remainder : Rat) (window : height ^ 2 ≤ 36) (nonnegative : 0 ≤ remainder)
+  (small : remainder ≤ 10832 / 404595) : (1 + height ^ 2) * remainder < 1
+GAlgebra.threeDim_jacobi_nonzero :
+  GAlgebra.jacobiDefect GAlgebra.threeDimBilinear (1, 0, 0) (0, 1, 0) (0, 0, 1) = (0, 0, 1) ∧
+    GAlgebra.jacobiDefect GAlgebra.threeDimBilinear (1, 0, 0) (0, 1, 0) (0, 0, 1) ≠ 0
+GAlgebra.threeDim_skew (x y : GAlgebra.Triple) :
+  GAlgebra.threeDimBilinear.eval x y = -GAlgebra.threeDimBilinear.eval y x
+GAlgebra.toroidal_harmonic_top_coefficient (degree square radiusDerivative : Rat) :
+  degree ^ 2 * (2 * square + radiusDerivative) - degree * (degree + 1) * radiusDerivative =
+    degree * (2 * degree * square - radiusDerivative)
+GAlgebra.totalAction.{u_1, u_2} {X : Type u_1} {A : Type u_2} (act : A → X → Option X) (a : A) : Option X → Option X
+GAlgebra.tphHit.{u_1, u_2} {Tag : Type u_1} {n : Tag → Nat} {Edge : Tag → Type u_2}
+  (models : (tag : Tag) → GAlgebra.LHTSFinite (n tag) (Edge tag)) (state : (tag : Tag) × Fin (n tag) × List Nat)
+  (limit : Nat) : Option (Nat × List (Edge state.fst))
+GAlgebra.translate_proof.{u_1, u_2} {P : Type u_1} {Q : Type u_2} {H : P → Prop} {H' : Q → Prop} {R : List P → P → Prop}
+  {R' : List Q → Q → Prop} (read : P → Q) (leaf : ∀ (p : P), H p → GAlgebra.Derivation H' R' (read p))
+  (node :
+    ∀ (xs : List P) (p : P),
+      R xs p → (∀ (q : P), q ∈ xs → GAlgebra.Derivation H' R' (read q)) → GAlgebra.Derivation H' R' (read p))
+  {p : P} (h : GAlgebra.Derivation H R p) : GAlgebra.Derivation H' R' (read p)
+GAlgebra.trial_prime_correct (p : Nat) : GAlgebra.trialPrime p = true ↔ GAlgebra.TrialPrime p
+GAlgebra.twin_offsets_admissible : GAlgebra.PrimeOffsetsAdmissible [0, 2]
+GAlgebra.twoTerm_arity_three_one_negative.{u_1} {X : Type u_1} [GAlgebra.Abelian X] (B : GAlgebra.Bilinear X X X)
+  (x y z : X) :
+  have u := (0, x);
+  have v := (y, 0);
+  have w := (z, 0);
+  have jac :=
+    GAlgebra.pairAdd
+      (GAlgebra.pairAdd (GAlgebra.twoTermB B (GAlgebra.twoTermB B u v) w)
+        (GAlgebra.twoTermB B (GAlgebra.twoTermB B v w) u))
+      (GAlgebra.twoTermB B (GAlgebra.twoTermB B w u) v);
+  GAlgebra.pairAdd jac (GAlgebra.twoTermH B (GAlgebra.twoTermD u) v w) = (0, 0)
+GAlgebra.twoTerm_arity_three_zero.{u_1} {X : Type u_1} [GAlgebra.Abelian X] (B : GAlgebra.Bilinear X X X) (x y z : X) :
+  GAlgebra.jacobiDefect B x y z + (GAlgebra.twoTermD (GAlgebra.twoTermH B (x, 0) (y, 0) (z, 0))).fst = 0
+GAlgebra.twoTerm_differential_square.{u_1} {X : Type u_1} [GAlgebra.Abelian X] (u : X × X) :
+  GAlgebra.twoTermD (GAlgebra.twoTermD u) = (0, 0)
+GAlgebra.twoTerm_double_ternary_zero.{u_1} {X : Type u_1} [GAlgebra.Abelian X] (B : GAlgebra.Bilinear X X X)
+  (u v w d e : X × X) : GAlgebra.twoTermH B (GAlgebra.twoTermH B u v w) d e = (0, 0)
+GAlgebra.twoTerm_signed_leibniz.{u_1} {X : Type u_1} [GAlgebra.Abelian X] (B : GAlgebra.Bilinear X X X) (u v : X × X) :
+  GAlgebra.twoTermD (GAlgebra.twoTermB B u v) =
+    GAlgebra.pairAdd (GAlgebra.twoTermB B (GAlgebra.twoTermD u) v)
+      (GAlgebra.twoTermB B (u.fst, -u.snd) (GAlgebra.twoTermD v))
+GAlgebra.typed_transport_shared_difference.{u_1, u_2} {Source : Type u_1} {Target : Type u_2}
+  (transport : Source → Target) (sourceTest : Source → Rat) (targetTest : Target → Rat) (state : Source)
+  (successor : Target) (step : Rat) (preserved : targetTest (transport state) = sourceTest state) :
+  (targetTest successor - sourceTest state) / step = (targetTest successor - targetTest (transport state)) / step
+GAlgebra.uniqueGlobalClassicalEvolutionGoal.{u_1, u_2} {Input : Type u_1} {Solution : Type u_2} (legal : Input → Prop)
+  (solvesGlobally : Input → Solution → Prop) : Prop
+GAlgebra.unique_zero_fixed_under_reflection.{u_1} {Point : Type u_1} (reflect : Point → Point)
+  (inside isZero : Point → Prop)
+  (preserves : ∀ (p : Point), inside p → isZero p → inside (reflect p) ∧ isZero (reflect p))
+  (unique : ∀ (p q : Point), inside p → isZero p → inside q → isZero q → p = q) {p : Point} (member : inside p)
+  (root : isZero p) : reflect p = p
+GAlgebra.verified_relaxed_minimum.{u_1} {Path : Type u_1} (cost : Path → Nat) (exact relaxed : Path → Prop)
+  (included : ∀ (p : Path), exact p → relaxed p) (candidate : Path) (verified : exact candidate)
+  (optimal : ∀ (p : Path), relaxed p → cost candidate ≤ cost p) :
+  exact candidate ∧ ∀ (p : Path), exact p → cost candidate ≤ cost p
+GAlgebra.weighted_coverage_image.{u_1, u_2, u_3, u_4} {I : Type u_1} {K : Type u_2} {V : Type u_3} {U : I → Type u_4}
+  [GAlgebra.Abelian V] (is : List I) (B : (i : I) → U i → V) (scale : (i : I) → K → U i → U i) (r : I → K)
+  (undo : (i : I) → U i → U i) (undo_eq : ∀ (i : I) (x : U i), scale i (r i) (undo i x) = x) (v : V) :
+  (∃ u, GAlgebra.finiteSum (fun i => B i (scale i (r i) (u i))) is = v) ↔
+    ∃ u, GAlgebra.finiteSum (fun i => B i (u i)) is = v
+GAlgebra.weighted_gram_factorization.{u_1, u_2, u_3, u_4} {I : Type u_1} {K : Type u_2} {V : Type u_3}
+  {U : I → Type u_4} [Mul K] [GAlgebra.Abelian V] (is : List I) (B : (i : I) → U i → V) (adj : (i : I) → V → U i)
+  (scale : (i : I) → K → U i → U i) (r γ : I → K)
+  (mulScale : ∀ (i : I) (a b : K) (x : U i), scale i a (scale i b x) = scale i (a * b) x)
+  (weight : ∀ (i : I), r i * r i = γ i) (v : V) :
+  GAlgebra.finiteSum (fun i => B i (scale i (r i) (scale i (r i) (adj i v)))) is =
+    GAlgebra.finiteSum (fun i => B i (scale i (γ i) (adj i v))) is
+GAlgebra.xi_bernstein_high_exponent_constants :
+  have cap := 4 / 9;
+  2 / 5 < cap - 1 / 200 ∧
+    9 / 800 < 1 / 2 ∧
+      9 / 800 < 2 * (99 / 100) - 1 ∧ 40 * cap < 4096 ∧ 32 / 4096 < 1 / (160 * cap) ∧ 12 * (160 * cap) ^ 5 < 4096 ^ 3
+GAlgebra.xi_bernstein_low_exponent_constants :
+  have cosine := 444 / 445;
+  have damping := 9977 / 10000;
+  have scale := 9 / 800;
+  have a := 9 / 4;
+  have endRatio := fun pole => pole / 225 * ((1 - damping * a / 225) / (1 - a / pole)) ^ 91;
+  (1 - damping ^ 2) * scale < 2 * (cosine - damping) ∧
+    92 * damping * a / 225 < 1 ∧
+      endRatio 200 < 4997 / 5000 ∧
+        endRatio 210 < 4997 / 5000 ∧ (800 / 791) ^ 91 < 3 ∧ 7000 * (1 - 4997 / 5000) = 21 / 5 ∧ 3 * (210 / 40) / 16 < 1
+GAlgebra.xi_bernstein_quadratic_constants :
+  6 / 169 < 1 / 20 ∧
+    108 / 8192 ^ 2 < 1 ∧
+      5 + 22 < 32 ∧
+        24 * 16 / 8192 + 1056 / (8192 ^ 2 * 2 ^ 19) < 1 / 2 ∧
+          256 * 512 * 3 ^ 4 < 2 ^ 24 ∧
+            84 * 3 / 2 ^ 64 < 1 / 2 ^ 30 ∧
+              2 * (4 / (1 - 1 / 4) + 1 / 4 / (1 - 1 / 4) ^ 2) < 16 ∧
+                20 + 3 * 12 * 16 < 600 ∧ 600 / 2 ^ 1024 < 1 / 2 ^ 30 ∧ 2 / 2 ^ 30 < 1 / 2 ^ 24
+GAlgebra.xi_exterior_factor_constants :
+  305 / 10 ^ 14 < 1 / 210 ^ 5 + 313 / 338 / 270 ^ 5 ∧
+    16 ^ 2 + 5 / 2 < 270 ∧
+      2 / 270 < 4 / 9 ∧
+        (1 / 210 - 1 / 270) * 945 = 1 ∧
+          2835 / (270 * 16) = 21 / 32 ∧ 2 * (21 / 32 + 76 / (270 * 16)) < 27 / 20 ∧ 1 - (27 / 20) ^ 2 / 2 > 1 / 16
+GAlgebra.xi_exterior_factor_phase (angle weight roots budget : Rat) (angleRange : 0 ≤ angle ∧ angle ≤ budget)
+  (weightRange : 0 ≤ weight ∧ weight ≤ angle) (rootsRange : 0 ≤ roots ∧ roots ≤ budget) :
+  (-2 * budget ≤ 2 * angle - 2 * roots ∧ 2 * angle - 2 * roots ≤ 2 * budget) ∧
+    -2 * budget ≤ angle - weight - 2 * roots ∧ angle - weight - 2 * roots ≤ 2 * budget
+GAlgebra.xi_origin_moment_bounds (c0 c1 c2 c3 c4 : Rat)
+  (bounds0 : 6906623153000067 / 100000000000000000 ≤ c0 ∧ c0 ≤ 6906623153000068 / 100000000000000000)
+  (bounds1 : 4571535067558049 / 100000000000000000 ≤ c1 ∧ c1 ≤ 4571535067558050 / 100000000000000000)
+  (bounds2 : -32502923154427 / 100000000000000000 ≤ c2 ∧ c2 ≤ -32502923154426 / 100000000000000000)
+  (bounds3 : -6808631547988 / 100000000000000000 ≤ c3 ∧ c3 ≤ -6808631547987 / 100000000000000000)
+  (bounds4 : 201194269826 / 100000000000000000 ≤ c4 ∧ c4 ≤ 201194269827 / 100000000000000000) :
+  have lowerMoment := 20 / 2187 * c0 - 10 / 729 * c1 + 4 / 243 * c2 - c3 / 81;
+  have upperMoment := 70 / 19683 * c0 - 35 / 6561 * c1 + 5 / 729 * c2 - 5 / 729 * c3 + c4 / 243;
+  0 < lowerMoment ∧
+    lowerMoment < 635 / 1000000000000 ∧ 304 / 100000000000000 < upperMoment ∧ upperMoment < 305 / 100000000000000
+GAlgebra.xi_origin_summation_bounds :
+  1 + 16 / 2 + 120 / 6 + 1820 / 30 + 8008 / 42 + 12870 / 30 + 8008 * 5 / 66 + 1820 * 691 / 2730 + 120 * 7 / 6 +
+        3617 / 510 <
+      10000 ∧
+    10000 * 17 * 18 * 19 * 20 / (24 * 16 * 64 ^ 16) < 1 / 10 ^ 22
+GAlgebra.xi_paired_phase_numerator.{u_1} {K : Type u_1} [Lean.Grind.CommRing K] (u q r : K) :
+  q * (u ^ 2 + r ^ 2) - u * (q ^ 2 + r ^ 2) = (u - q) * (u * q - r ^ 2)
+GAlgebra.xi_polynomial_sector_constants :
+  1 / 38 + 1 / 38 < 4 / 9 ∧ 6 / 19 + 2 * 76 * (3 / 722) = 18 / 19 ∧ (18 / 19) ^ 2 < 1
+GAlgebra.xi_ray_amplitude_gap (scale realPart imaginaryPart magnitude : Rat) (positive : 0 < scale)
+  (nonreal : realPart < magnitude) (square : magnitude ^ 2 = realPart ^ 2 + imaginaryPart ^ 2) :
+  (1 - scale * magnitude) ^ 2 < (1 - scale * realPart) ^ 2 + (scale * imaginaryPart) ^ 2
+GAlgebra.xi_ray_height_budgets : 144 / 49 < 4 ∧ 9 / 4 < 16 / 5
+GAlgebra.xi_ray_height_sides (center width : Rat) (widthNonnegative : 0 ≤ width) (room : 5 * width ≤ center) :
+  (center - 2 * width) ^ 2 + width ^ 2 ≤ center ^ 2 - 3 * width * center ∧
+    center ^ 2 + 3 * width * center ≤ (center + 2 * width) ^ 2
+GAlgebra.xi_ray_phase_chord (value : Rat) (lower : -1 / 4 ≤ value) (upper : value ≤ 1) :
+  value ^ 2 ≤ 3 * value / 4 + 1 / 4
+GAlgebra.xi_ray_resolvent_factor.{u_1} {K : Type u_1} [Lean.Grind.CommRing K] (pole inverse scale : K)
+  (inverseRead : pole * inverse = 1) (p q : Nat) :
+  pole ^ (p + q) * (inverse ^ q * (1 - scale * inverse) ^ p) = (pole - scale) ^ p
+GAlgebra.xi_ray_square_modulus.{u_1} {K : Type u_1} [Lean.Grind.CommRing K] (a height lateral : K) :
+  (a + height ^ 2 - lateral ^ 2) ^ 2 + (2 * lateral * height) ^ 2 =
+    (a + height ^ 2 + lateral ^ 2) ^ 2 - 4 * a * lateral ^ 2
+GAlgebra.xi_ray_strip_budget (slope : Rat) (range : 9 ≤ slope) : 2 * (slope + 1) * slope ≤ 9 / 4 * slope ^ 2 - 1
+GAlgebra.xi_real_resolvent_constants :
+  9 / 4 + 1 < 13 ^ 2 ∧
+    (1 / 2 - 13 / 8 / 5) / (5 / 2) > 1 / 16 ∧ (1 / 2 + 2 / 5) / 2 < 1 / 2 ∧ 8 * (1 / 2) / 128 = 1 / 32
+GAlgebra.xi_reflected_resolvent_split.{u_1} {K : Type u_1} [Lean.Grind.Field K] (s zero : K)
+  (firstNonzero : s - zero ≠ 0) (secondNonzero : s - 1 + zero ≠ 0) :
+  (s + s - 1) / ((s - zero) * (s - 1 + zero)) = 1 / (s - zero) + 1 / (s - 1 + zero)
+GAlgebra.xi_separated_pole_budgets :
+  have momentUpper := 305 / 10 ^ 14;
+  have cosineLower := 313 / 338;
+  have cap := 4 / 9;
+  momentUpper < 497 / 722 / 180 ^ 5 ∧
+    momentUpper < 2 * cosineLower / 225 ^ 5 ∧
+      momentUpper < 1 / 200 ^ 5 ∧
+        635 / 10 ^ 12 < 210 * (304 / 10 ^ 14) ∧
+          (momentUpper * 210 ^ 5 - 1) / cosineLower < 27 / 100 ∧
+            27 / 100 * ((cap + 1 / 225) / (cap - 1 / 200)) < 7 / 25 ∧ 27 / 100 * (210 / 225) < 7 / 25
+GAlgebra.xi_shifted_coefficient_constants :
+  have cap := 4 / 9;
+  have shiftRatio := 21 / 20000;
+  have perturbation := 13 / 500;
+  6906623153000068 / (3 * 10 ^ 17) < 3 / 125 ∧
+    99 / 100 < 1 - (1 / 13) ^ 2 / 2 ∧
+      3 / 125 / (99 / 100) < 1 / 40 ∧
+        44100 / 8000 < 6 ∧
+          210 / 40 * (cap + 1 / 200) / (cap - 1 / 200) < 6 ∧
+            24 * shiftRatio * (1 + shiftRatio) ^ 3 < perturbation ∧
+              1 + perturbation < 2 * (313 / 338 - perturbation) ∧
+                (7 / 25 + perturbation) / (1 - shiftRatio) ^ 4 < 1 / 3 ∧ 1 / 225 + 2 / 200000 < 1 / 210
+GAlgebra.xi_vertical_resolvent_constants :
+  1 + 7 / 10 + (7 / 10) ^ 2 / 2 + (7 / 10) ^ 3 / 6 > 2 ∧
+    7 / 10 / 4 + (7 / 10 + 1) / 2 < 11 / 10 ∧
+      7 / 10 + 1 / 2 + 7 / 10 + 11 / 10 = 3 ∧
+        ∀ (logarithm : Rat), 12 ≤ logarithm → (40 * logarithm + 220) / 512 < logarithm / 8
+GAlgebra.zero_line_readback_along_shift.{u_1, u_2, u_3} {Z : Type u_1} {W : Type u_2} {K : Type u_3}
+  (base : GAlgebra.ZeroLineSpec Z K) (twist : GAlgebra.ZeroLineSpec W K) (shift : W → Z)
+  (zeroTransport : ∀ (z : W), twist.nontrivial z → base.nontrivial (shift z))
+  (realPartPreserved : ∀ (z : W), base.realPart (shift z) = twist.realPart z) (sameLine : base.half = twist.half)
+  (baseProof : base.goal) : twist.goal
+'GAlgebra.AdjointPair' does not depend on any axioms
+'GAlgebra.AdjointPair.gram_energy' does not depend on any axioms
+'GAlgebra.AdjointPair.gram_kernel_orthogonal' depends on axioms: [propext]
+'GAlgebra.ArithmeticObligation' does not depend on any axioms
+'GAlgebra.ArithmeticObligation.goal' does not depend on any axioms
+'GAlgebra.Bilinear' does not depend on any axioms
+'GAlgebra.Derivation' does not depend on any axioms
+'GAlgebra.DirectedGraph' does not depend on any axioms
+'GAlgebra.DirectedGraph.Path' does not depend on any axioms
+'GAlgebra.DirectedGraph.constrained_hit_complete_and_minimal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.DirectedGraph.constrained_hit_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.DirectedGraph.face_boundary_zero' depends on axioms: [propext]
+'GAlgebra.DirectedGraph.finite_hit_complete_and_minimal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.DirectedGraph.finite_hit_global_minimal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.DirectedGraph.finite_hit_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.DirectedGraph.full_resource_digits' depends on axioms: [propext, Quot.sound]
+'GAlgebra.DirectedGraph.hitTable' depends on axioms: [propext]
+'GAlgebra.DirectedGraph.pathSum' does not depend on any axioms
+'GAlgebra.DirectedGraph.path_boundary' depends on axioms: [propext]
+'GAlgebra.DirectedGraph.path_sum_append' depends on axioms: [propext]
+'GAlgebra.DirectedGraph.resourceConstrainedHit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.DirectedGraph.resourceTrace' does not depend on any axioms
+'GAlgebra.DirectedGraph.resourceTrace_dominates' depends on axioms: [propext]
+'GAlgebra.DirectedGraph.spend_resources_complete' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.DirectedGraph.spend_resources_sound' depends on axioms: [propext, Quot.sound]
+'GAlgebra.FiberGroup' does not depend on any axioms
+'GAlgebra.FlowSpec.atViscosity' does not depend on any axioms
+'GAlgebra.FlowSpec.goal' does not depend on any axioms
+'GAlgebra.Formula.extend_map' depends on axioms: [Quot.sound]
+'GAlgebra.Formula.formula_transport' depends on axioms: [Quot.sound]
+'GAlgebra.LHTSFinite' depends on axioms: [propext, Quot.sound]
+'GAlgebra.LHTSFinite.prune' depends on axioms: [propext, Quot.sound]
+'GAlgebra.OrderedTailTree' does not depend on any axioms
+'GAlgebra.OrderedTailTree.eval' does not depend on any axioms
+'GAlgebra.OrderedTailTree.eval_grade' depends on axioms: [propext, Quot.sound]
+'GAlgebra.OrderedTailTree.eval_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.OrderedTailTree.eval_transport' depends on axioms: [propext]
+'GAlgebra.OrthogonalSplitting' does not depend on any axioms
+'GAlgebra.OrthogonalSplitting.quotient_orthogonal' depends on axioms: [propext, Quot.sound]
+'GAlgebra.Pairing' does not depend on any axioms
+'GAlgebra.PrimeOffsetsAdmissible' does not depend on any axioms
+'GAlgebra.QuadraticTailLaw' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.QuadraticTailLaw.Legal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.QuadraticTailLaw.eval_legal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.RationalComplex.ContourError.margin' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.RationalComplex.DyadicContourPath.optimal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.RationalComplex.contourGap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.RationalComplex.contour_gap_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.RationalComplex.contour_mesh_component' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.RationalComplex.contour_separated_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.RationalComplex.criticalLineBatches' does not depend on any axioms
+'GAlgebra.RationalComplex.critical_dot_upper_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.RationalComplex.critical_line_batch_sizes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.RationalComplex.crossing_coordinate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.RationalComplex.crossing_reverse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.RationalComplex.dyadicContour' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.RationalComplex.dyadic_contour_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.RationalComplex.edge_qualification_sound' does not depend on any axioms
+'GAlgebra.RationalComplex.phase_pi_caps' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.RationalComplex.rounded_coordinate_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.RationalComplex.segment_coordinate_above' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.RationalComplex.zetaBands' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.RationalComplex.zetaCriticalIndex' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.RationalComplex.zetaCriticalSignTests' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.RepairMorphism.transport' does not depend on any axioms
+'GAlgebra.Repairable' does not depend on any axioms
+'GAlgebra.ScalarGeometry.Frame' does not depend on any axioms
+'GAlgebra.ScalarGeometry.frame_splitting' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.ScalarGeometry.ontoFrame_agrees_on_basis' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.ScalarGeometry.orthogonal_extension_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.SectorStepCost' does not depend on any axioms
+'GAlgebra.SectorStepCost.total' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.Subgroup.kernelQuotient' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.Subgroup.kernel_subcomplex' depends on axioms: [propext]
+'GAlgebra.Subgroup.mapClasses' depends on axioms: [propext, Quot.sound]
+'GAlgebra.Subgroup.map_from_generators_surj' does not depend on any axioms
+'GAlgebra.Subgroup.quotientBridge' depends on axioms: [propext, Quot.sound]
+'GAlgebra.Subgroup.quotient_add_classes' depends on axioms: [propext, Quot.sound]
+'GAlgebra.Subgroup.quotient_diff_closed' depends on axioms: [propext, Quot.sound]
+'GAlgebra.Subgroup.quotient_extension_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.Subgroup.quotient_scalar_classes' depends on axioms: [propext, Quot.sound]
+'GAlgebra.Subgroup.quotient_square_mod' depends on axioms: [propext, Quot.sound]
+'GAlgebra.Task' does not depend on any axioms
+'GAlgebra.Task.EquivBeh' does not depend on any axioms
+'GAlgebra.Task.Exact' does not depend on any axioms
+'GAlgebra.Task.Exact.comp' does not depend on any axioms
+'GAlgebra.Task.Exact.run' does not depend on any axioms
+'GAlgebra.Task.Exact.signature' does not depend on any axioms
+'GAlgebra.Task.active_coordinate_projection' depends on axioms: [propext, Quot.sound]
+'GAlgebra.Task.auxiliary_compression' does not depend on any axioms
+'GAlgebra.Task.behaviour' does not depend on any axioms
+'GAlgebra.Task.behaviour_congruence' does not depend on any axioms
+'GAlgebra.Task.coarsest_task_quotient' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.Task.encode_exact' depends on axioms: [propext, Quot.sound]
+'GAlgebra.Task.finite_refinement_fixed' depends on axioms: [propext, Quot.sound]
+'GAlgebra.Task.finite_refinement_step' depends on axioms: [propext]
+'GAlgebra.Task.fixed_law_exact' does not depend on any axioms
+'GAlgebra.Task.fixed_law_retract' does not depend on any axioms
+'GAlgebra.Task.lawUnion' does not depend on any axioms
+'GAlgebra.Task.law_information_necessary' does not depend on any axioms
+'GAlgebra.Task.ordered_record_readback' does not depend on any axioms
+'GAlgebra.Task.quotient_differential_necessary' does not depend on any axioms
+'GAlgebra.Task.quotient_differential_sufficient' depends on axioms: [Classical.choice, Quot.sound]
+'GAlgebra.Task.reduced_exact_is_bijective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.Task.two_step_law_example' depends on axioms: [propext]
+'GAlgebra.Term.evaluations_commute' depends on axioms: [propext, Quot.sound]
+'GAlgebra.TwoStep' does not depend on any axioms
+'GAlgebra.TwoStep.ChainMap.homology' depends on axioms: [Quot.sound]
+'GAlgebra.TwoStep.Cycles' does not depend on any axioms
+'GAlgebra.TwoStep.boundary_iff_zero_class' depends on axioms: [propext, Quot.sound]
+'GAlgebra.TwoStep.cycleClass' does not depend on any axioms
+'GAlgebra.TwoStep.homology_iso' depends on axioms: [Quot.sound]
+'GAlgebra.TwoStep.homotopy_retract_reflects_boundary' does not depend on any axioms
+'GAlgebra.TwoStep.legal_quotient_solution_writeback' depends on axioms: [propext, Quot.sound]
+'GAlgebra.TwoStep.quotient_solution_writeback' depends on axioms: [propext, Quot.sound]
+'GAlgebra.TwoStep.sameClass' does not depend on any axioms
+'GAlgebra.ZeroLineSpec.goal' does not depend on any axioms
+'GAlgebra.affine_chart_compose' does not depend on any axioms
+'GAlgebra.affine_product_delta' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.arithmetic_family_readback' does not depend on any axioms
+'GAlgebra.atanhLogBounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.atanhLogSequence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.atanh_log_term_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.automorphicSquareSpectrum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.automorphic_kernel_difference' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.automorphic_real_weight_sign' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.automorphic_square_halfline' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.bernsteinAverage' does not depend on any axioms
+'GAlgebra.bernsteinFalling' does not depend on any axioms
+'GAlgebra.bernstein_falling_average' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.block_gate_optimistic_example' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.commutator' does not depend on any axioms
+'GAlgebra.commutator_alternating' does not depend on any axioms
+'GAlgebra.commutator_jacobi' depends on axioms: [propext]
+'GAlgebra.cone_dual_certificate_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.contour_finite_upper_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.convection_cannot_be_alternating' does not depend on any axioms
+'GAlgebra.correction' does not depend on any axioms
+'GAlgebra.cosine_quadratic_weight' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.cubic_harmonic_indices_complete' depends on axioms: [propext, Quot.sound]
+'GAlgebra.cubic_poloidal_residual_polynomial' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.curl_residual_writeback' does not depend on any axioms
+'GAlgebra.derivation_sound' does not depend on any axioms
+'GAlgebra.det2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.dirichlet_gauss_rescale_vanish' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.discharge_open_hypotheses' does not depend on any axioms
+'GAlgebra.dyadic_mantissa_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.even_harmonic_root_order_preserved' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.failure_absorbs' does not depend on any axioms
+'GAlgebra.fiberRight' does not depend on any axioms
+'GAlgebra.fiberTransport' does not depend on any axioms
+'GAlgebra.fiber_right_action' depends on axioms: [propext]
+'GAlgebra.fiber_right_unique' depends on axioms: [propext]
+'GAlgebra.fiber_transport_comp' depends on axioms: [propext]
+'GAlgebra.fiber_transport_defect_zero' does not depend on any axioms
+'GAlgebra.fiber_transport_equivariant' depends on axioms: [propext]
+'GAlgebra.finiteEndpointMass' does not depend on any axioms
+'GAlgebra.finiteSum' does not depend on any axioms
+'GAlgebra.finite_branch_transport' does not depend on any axioms
+'GAlgebra.finite_dag_sound' does not depend on any axioms
+'GAlgebra.finite_diagonal_form_nonnegative_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.finite_endpoint_gate_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.finite_endpoint_mass_coarsen' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.finite_endpoint_pairing' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.finite_feasibility_not_uniform' depends on axioms: [propext, Quot.sound]
+'GAlgebra.finite_lattice_hit_iff' depends on axioms: [propext, Quot.sound]
+'GAlgebra.finite_lattice_hit_readback' depends on axioms: [propext]
+'GAlgebra.finite_resolvent_common_denominator' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.finite_resolvent_numerator_ne_zero_at_pole' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.finite_row_dual_transport' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.finite_strict_refinement_bound' depends on axioms: [propext, Quot.sound]
+'GAlgebra.flow_mother_readback' does not depend on any axioms
+'GAlgebra.frame_projected_jacgap_descent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.frozen_domain_cannot_be_widened' does not depend on any axioms
+'GAlgebra.gatedCost' does not depend on any axioms
+'GAlgebra.gated_cost_minimizer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.gaussian_period_energy_gate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.gaussian_period_square_balance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.gaussian_reference_amplitude_read' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.globalClassicalEvolutionGoal' does not depend on any axioms
+'GAlgebra.grandRiemannGoal' does not depend on any axioms
+'GAlgebra.grand_riemann_fiber_equivalence' does not depend on any axioms
+'GAlgebra.grand_riemann_rank_one_readback' does not depend on any axioms
+'GAlgebra.grand_riemann_rank_split' does not depend on any axioms
+'GAlgebra.harmonic_projection_coeff_cancel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.higher_arity_truncation' depends on axioms: [propext, Quot.sound]
+'GAlgebra.hodge_cycle_restrict' depends on axioms: [propext]
+'GAlgebra.hodge_homology_iso' depends on axioms: [propext, Quot.sound]
+'GAlgebra.hodge_kernel' depends on axioms: [propext]
+'GAlgebra.integer_expansion' depends on axioms: [propext, Quot.sound]
+'GAlgebra.jacobiDefect' does not depend on any axioms
+'GAlgebra.jacobi_alternating_first_two' depends on axioms: [propext]
+'GAlgebra.jacobi_four_arity' depends on axioms: [propext]
+'GAlgebra.jacobi_lift_of_section' does not depend on any axioms
+'GAlgebra.jointKineticLimitGoal' does not depend on any axioms
+'GAlgebra.joint_reachability_expansion' depends on axioms: [propext, Quot.sound]
+'GAlgebra.kineticTotalDifferential' does not depend on any axioms
+'GAlgebra.kinetic_boussinesq_energy_readback' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.kinetic_centered_moment_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.kinetic_elastic_pair_balance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.kinetic_entropy_hellinger_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.kinetic_entropy_law_readback' does not depend on any axioms
+'GAlgebra.kinetic_equilibrium_mass_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.kinetic_force_scale_readback' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.kinetic_occupancy_pair_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.kinetic_power_gate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.kinetic_scaled_error_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.kinetic_total_closure_iff' depends on axioms: [propext]
+'GAlgebra.kinetic_total_square_identity' depends on axioms: [propext]
+'GAlgebra.lattice_center_relative_energy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.lattice_divisible_collision_shell' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.lattice_parity_reconstruct' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.lattice_triad_conjugate_cancel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.leray_kernel_constant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.lhtsPartialJacGap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.lhtsPressure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.lhts_component_chain' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.lhts_partial_credit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.linearized' does not depend on any axioms
+'GAlgebra.mangoldtLogSequence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.naturalLogSequence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.nonnegative_sum_zero' depends on axioms: [propext, Quot.sound]
+'GAlgebra.observed_rate_telescope' depends on axioms: [propext, Quot.sound]
+'GAlgebra.operator_transport_defect_comp' does not depend on any axioms
+'GAlgebra.operator_transport_pairing' does not depend on any axioms
+'GAlgebra.operator_transport_rate' does not depend on any axioms
+'GAlgebra.optimisticHit' depends on axioms: [propext]
+'GAlgebra.ordered_expansion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.ordered_product_factorization' depends on axioms: [propext]
+'GAlgebra.parabolic_ratio_chart' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.parity_obstruction' depends on axioms: [propext, Quot.sound]
+'GAlgebra.period_pulse_contraction_gate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_bilinear_mode_transfer' does not depend on any axioms
+'GAlgebra.periodic_calibrated_resultant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_center_inverse_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_center_mixed_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_centered_residual' depends on axioms: [propext]
+'GAlgebra.periodic_chart_caps' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_diffusion_ball_reach' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_enstrophy_ratio_gate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_even_paired_degree' depends on axioms: [propext, Quot.sound]
+'GAlgebra.periodic_even_shape_coarse_constants' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_finite_reduction_readback' depends on axioms: [propext]
+'GAlgebra.periodic_finite_test_preserved' does not depend on any axioms
+'GAlgebra.periodic_first_harmonic_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_fluctuation_absorbs' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_frame_readback' depends on axioms: [Quot.sound]
+'GAlgebra.periodic_gaussian_moment_caps' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_head_barrier_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_head_pressure_cancel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_high_harmonic_balance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_high_mixed_frequency' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_joint_radial_gate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_lift_calibration_scale' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_lifted_cross_modes' depends on axioms: [propext, Quot.sound]
+'GAlgebra.periodic_lifted_mode_separation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_low_harmonic_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_mean_feedback_readback' does not depend on any axioms
+'GAlgebra.periodic_mean_read_preserved' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_mode_cancellation_gap' depends on axioms: [propext, Quot.sound]
+'GAlgebra.periodic_parameter_interpolation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_phase_border_coordinates' does not depend on any axioms
+'GAlgebra.periodic_phase_gap_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_phase_half_order_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_phase_weight_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_pressure_cell_floor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_pressure_phase_balance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_pressure_phase_interval_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_pressure_phase_projection' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_pressure_scalar_readback' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_projected_quadratic' depends on axioms: [propext]
+'GAlgebra.periodic_projection_budget_split' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_projection_tail_split' does not depend on any axioms
+'GAlgebra.periodic_quarter_turn_difference' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_radial_heat_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_rational_rotation_no_return' depends on axioms: [propext, Quot.sound]
+'GAlgebra.periodic_read_projection' does not depend on any axioms
+'GAlgebra.periodic_readout_calibration' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_reduced_radius_gate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_rotating_frame_period' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_rotation_gap_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_rotation_generator_difference' does not depend on any axioms
+'GAlgebra.periodic_sample_locked' does not depend on any axioms
+'GAlgebra.periodic_seam_covariance' does not depend on any axioms
+'GAlgebra.periodic_second_harmonic_cosine' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_separated_feedback_readback' depends on axioms: [propext]
+'GAlgebra.periodic_shape_amplitude' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_shape_denominator' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_shape_diagonal_readback' does not depend on any axioms
+'GAlgebra.periodic_shape_tree_gate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_swirl_barrier_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_tail_budget_difference' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_tail_cubic_scale' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_tail_defect_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_tail_gate_slack' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_tail_residual_identity' depends on axioms: [propext]
+'GAlgebra.periodic_trace_energy_readback' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_trace_rotation_minimax' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_trace_rotation_norm' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_trace_tensor_off_diagonal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_trace_tensor_radial' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_trace_three_radii' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_tree_radius' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_two_mode_common_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_two_mode_resultant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_unit_shape_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_weighted_block_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.periodic_weighted_phase_gate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.poloidal_harmonic_product_coefficients' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.positive_two_direction_certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.pressure_inner_weight_ratio' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.pressure_outer_weight_ratio' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.primeFiberCoefficient' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.prime_dyadic_growth' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.prime_fiber_coarsening' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.prime_fiber_cutoff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.prime_finite_mass_positive_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.prime_phase_margin_readback' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.prime_power_base_exact' depends on axioms: [propext, Quot.sound]
+'GAlgebra.prime_power_base_sound' depends on axioms: [propext, Quot.sound]
+'GAlgebra.prime_power_base_unique' depends on axioms: [propext, Quot.sound]
+'GAlgebra.prime_tuple_implies_twins' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.profile_geometric_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.rank_gain_count' depends on axioms: [propext, Quot.sound]
+'GAlgebra.reflected_zero_from_completed_equation' does not depend on any axioms
+'GAlgebra.repairImage' does not depend on any axioms
+'GAlgebra.repair_expansion' does not depend on any axioms
+'GAlgebra.repair_expansion_closed' depends on axioms: [propext]
+'GAlgebra.repair_expansion_preserves_old' depends on axioms: [propext]
+'GAlgebra.repair_transport_family' does not depend on any axioms
+'GAlgebra.repair_transport_iff' does not depend on any axioms
+'GAlgebra.repairable_iff_fiber' does not depend on any axioms
+'GAlgebra.residual' does not depend on any axioms
+'GAlgebra.residual_perturbation' depends on axioms: [propext]
+'GAlgebra.reuseSupportedTest' does not depend on any axioms
+'GAlgebra.reuseSupportedTest_correct' depends on axioms: [propext, Quot.sound]
+'GAlgebra.reuse_cost_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.scaled_peak_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.sector_path_cost_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.selection_word_count' depends on axioms: [propext, Quot.sound]
+'GAlgebra.shared_verification_saves_weighted' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.spectral_coefficient_margin' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.spectral_localizing_forms' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.spectral_localizing_forms_all' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.spectral_positive_quotient_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.spectral_upper_weight_numerator' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.stressCombine' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.strict_coefficients_can_lose_old' depends on axioms: [propext, Quot.sound]
+'GAlgebra.strongestBudgetHit' depends on axioms: [propext, Quot.sound]
+'GAlgebra.strongest_budget_hit_no_feasible' depends on axioms: [propext, Quot.sound]
+'GAlgebra.strongest_budget_hit_spec' depends on axioms: [propext, Quot.sound]
+'GAlgebra.synchronized_construction' does not depend on any axioms
+'GAlgebra.theta_small_height_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.threeDim_jacobi_nonzero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.threeDim_skew' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.toroidal_harmonic_top_coefficient' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.totalAction' does not depend on any axioms
+'GAlgebra.tphHit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.translate_proof' does not depend on any axioms
+'GAlgebra.trial_prime_correct' depends on axioms: [propext, Quot.sound]
+'GAlgebra.twin_offsets_admissible' depends on axioms: [propext, Quot.sound]
+'GAlgebra.twoTerm_arity_three_one_negative' depends on axioms: [propext]
+'GAlgebra.twoTerm_arity_three_zero' does not depend on any axioms
+'GAlgebra.twoTerm_differential_square' does not depend on any axioms
+'GAlgebra.twoTerm_double_ternary_zero' depends on axioms: [propext]
+'GAlgebra.twoTerm_signed_leibniz' depends on axioms: [propext]
+'GAlgebra.typed_transport_shared_difference' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.uniqueGlobalClassicalEvolutionGoal' does not depend on any axioms
+'GAlgebra.unique_zero_fixed_under_reflection' does not depend on any axioms
+'GAlgebra.verified_relaxed_minimum' does not depend on any axioms
+'GAlgebra.weighted_coverage_image' depends on axioms: [propext]
+'GAlgebra.weighted_gram_factorization' depends on axioms: [propext]
+'GAlgebra.xi_bernstein_high_exponent_constants' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.xi_bernstein_low_exponent_constants' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.xi_bernstein_quadratic_constants' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.xi_exterior_factor_constants' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.xi_exterior_factor_phase' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.xi_origin_moment_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.xi_origin_summation_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.xi_paired_phase_numerator' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.xi_polynomial_sector_constants' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.xi_ray_amplitude_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.xi_ray_height_budgets' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.xi_ray_height_sides' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.xi_ray_phase_chord' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.xi_ray_resolvent_factor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.xi_ray_square_modulus' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.xi_ray_strip_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.xi_real_resolvent_constants' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.xi_reflected_resolvent_split' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.xi_separated_pole_budgets' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.xi_shifted_coefficient_constants' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.xi_vertical_resolvent_constants' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.zero_line_readback_along_shift' does not depend on any axioms
+
+$ python -B g_algebra_rh_ns/check_mapping.py
+Exit code 0, 0.277 s
+6 public references, 157 TeX mappings, 372 Lean theorems, 0 main-route dependencies on finite zeta verification
+
+Lean 输入 SHA-256
+fde850d24186b6e99c8c0debd641fb3ab85198b109eb66f71a1fea02bd6ea1b3  g_algebra_rh_ns/lean/.gitignore
+ee40453b3adabef2d2b7706ce9818151c4f24eef6fe35b83b7abb960f53b2b5b  g_algebra_rh_ns/lean/Audit.lean
+31a43fba15ad7986fb8b1c36a1fcd4ed87c78d17c386252fc18aece8acf913b6  g_algebra_rh_ns/lean/GAlgebra/AnalyticCertificates.lean
+bcccc18df5f1320d73e009b4ca64f24d176823450ce69d404140c45c95c89eb0  g_algebra_rh_ns/lean/GAlgebra/ArithmeticEnclosures.lean
+321d30cb501cba9866a6440ac5b05bf6428ec77d3a79483b5dc9de5ad28b707f  g_algebra_rh_ns/lean/GAlgebra/Chain.lean
+4e306b42dd675655b6aa5259c716fe16c4566f55c59eac4b57e93fc2091d9695  g_algebra_rh_ns/lean/GAlgebra/Core.lean
+351a659aba0b1acbd673d5e4241a9de552af2cacfb9369d4b5806f1cfdc166e4  g_algebra_rh_ns/lean/GAlgebra/Coverage.lean
+a8f769999a6a7de813a4c9e759ee73912fe13aaeab7c460633b5f246a32976ee  g_algebra_rh_ns/lean/GAlgebra/FiniteGeometry.lean
+dfebb4812d60545575e8690dff95be94931c572dca5e78cf0ab09abbfe3b8b70  g_algebra_rh_ns/lean/GAlgebra/FlowGluing.lean
+3b8082595bfd96cee2a1468eb362f2f8cfc19647667652978d23aacf2c206f5c  g_algebra_rh_ns/lean/GAlgebra/GrandRiemann.lean
+db4f901bef9cae82e5c95c817ae0fed610c3de1e0db2f3f0b7459ca486150ff1  g_algebra_rh_ns/lean/GAlgebra/HomotopyAlgebra.lean
+872ccf75dc4189f859b19193c268f7ba3d6a39a57114f530c2a869d594af4fb5  g_algebra_rh_ns/lean/GAlgebra/IntervalSequence.lean
+7d9e7f5f97a418e338c90844601a7d899deb36203b5d871cab588bfb40ce8769  g_algebra_rh_ns/lean/GAlgebra/KineticLimit.lean
+d0843001696e38c2768a20e57285d08b66bf1c40957a278fe84105839be22b18  g_algebra_rh_ns/lean/GAlgebra/Law.lean
+df30971d063dd9271d05494907fd8aeb3be091d4237ab646244c1cca97467ae7  g_algebra_rh_ns/lean/GAlgebra/Operators.lean
+0e61e9f6bb19336fc01d9530e4e7a55135b3b6eba4e6a6a55576cdb7e86f6cd8  g_algebra_rh_ns/lean/GAlgebra/Paths.lean
+5f51a6693a69658a10d062020d1c61a9f45a4b07033a02bd757d9ddd421cd681  g_algebra_rh_ns/lean/GAlgebra/PrimePoisson.lean
+d997b7b65afadde1d9b39e6bc2b2cd7afe1cad3837854444dbd3622c6ae913db  g_algebra_rh_ns/lean/GAlgebra/Proof.lean
+dd368d7c6d8d4b729ffd73d814e92455af70c037cbbda85ba76039976e4fa6ec  g_algebra_rh_ns/lean/GAlgebra/Repair.lean
+eb96fe3d7f3d57733f82c0ca091dea50645f03115d491116d09bf6368a10baec  g_algebra_rh_ns/lean/GAlgebra/SpectralMoments.lean
+dbd05065e19584600a0bd205f17effd8588a1c70fbad88d7ef75efe8fd8f76bd  g_algebra_rh_ns/lean/GAlgebra/Targets.lean
+ae985ba349f04b63a8ecb7414937de68c64631602a02e2a7f01accbb81b3b4b0  g_algebra_rh_ns/lean/GAlgebra/ZetaWindow.lean
+8fa7d3a780d25a230d65218c29b0f5e88e7703318be8ba879e74f2ac68875bff  g_algebra_rh_ns/lean/GAlgebra.lean
+2099361aa7ee0b8bccbab4f72dcd702e8e16d9c7420b9947e1f00b5c98b57016  g_algebra_rh_ns/lean/lake-manifest.json
+db7a9857d6d9fb4102064f1340ea44ff78dd261728ac2cdda4e253b80c2dfb82  g_algebra_rh_ns/lean/lakefile.toml
+582a63f8f9c5128067b688778c1051cf1464c3ca9d57b9325025c051c29b774a  g_algebra_rh_ns/lean/lean-toolchain
+
+映射输入 SHA-256
+da95859ee3f7d61d652459020f8577404b0da7d78309d6b8e8a52fc0348ed0d2  20261124_g_algebra_rh_ns_formal_system.tex
+3b5e8520a8a2918d822de15403a54856f9a804e71de4e0b085d94ec96cf0ed30  g_algebra_rh_ns/check_mapping.py
+b27c6c9c7ecbb07e9ce26f300b67c73a9e0b88c96360057af08e7ef508aecc13  g_algebra_rh_ns/parts/analysis.texinc
+48732742b50896aa2e2da3f298242297195f6cdb0b67d81573ba3697200ccdff  g_algebra_rh_ns/parts/arithmetic_enclosures.texinc
+6f4e17c093055fac7089385189fe07770fb8b2b7ea592686b8082cf247e7d26e  g_algebra_rh_ns/parts/chains.texinc
+04fa99a5ed0d67aeaf832eb9fef39bd2dfb1b2f3f81424283431ca24bd10741a  g_algebra_rh_ns/parts/coverage.texinc
+24e60f53b6801c92bc74604f2f218f71486e95511cd2f07af26f9a3960a241d5  g_algebra_rh_ns/parts/flow_core.texinc
+2554ca454c11e61bb196174faa1d0110b87f16ec2427d8b391e0407db5402b0e  g_algebra_rh_ns/parts/flow_periodic.texinc
+09849c904f21968a95de3632f04125958e017d9e8b7a5a426ae9937bb2e6b1af  g_algebra_rh_ns/parts/g_pde_chain.texinc
+42c3ea9766bbd48ab743e9e25640191e795b4d19c89d22eb2a223edd5c98c88a  g_algebra_rh_ns/parts/grand_riemann.texinc
+786d213fdb36640fa25352d503e80f814c0915a78cbe253154fa3425f8334d54  g_algebra_rh_ns/parts/internal_basis.texinc
+baa3155af859bbf142e4ae84e793db0479dc4fd8d3f1b7392757d36b5a499631  g_algebra_rh_ns/parts/kinetic_limit.texinc
+1a03af7c7ffe0b62696924c8ae8f35e1817f4cbe5423d649a2dd6a499999d4b0  g_algebra_rh_ns/parts/law.texinc
+90fc6abab743c618d37ba59fbb2bc5b8dd3779a495b865ae53e10bfecead642f  g_algebra_rh_ns/parts/mapping.texinc
+7f252371c890b88843ed504bf483e407fd294e6a9d1b867f9cc4e2f50e631d4b  g_algebra_rh_ns/parts/prime_poisson.texinc
+d4bf2ccdd978d9fbe4b6feefec0ee420e730082b2f931fe6b38dcfaaf64a8511  g_algebra_rh_ns/parts/proof_guide.texinc
+6f5e8c8434ea64132cd64aa41dec42083b45f99122a6630b29cc5a507c76f265  g_algebra_rh_ns/parts/repair.texinc
+82592abbf3f00328e1589fe27c3eaa1d823d24d456ddcf581435bfc8395922d1  g_algebra_rh_ns/parts/spectral_moments.texinc
+fd43a3c6e29841c4d290fded451c4e3ac8493dc29ef01cd5f9a9dfccad23763c  g_algebra_rh_ns/parts/targets.texinc
+8b3966e181152b022ac9d308e4dbd7727d8a378d41554839185f1ed70beace51  g_algebra_rh_ns/parts/zeta_window.texinc
+50b3398b75f66112abc1d8288467cb7279384987cf08ba611fc00c97b6f96a82  g_algebra_rh_ns/proof-index.md
+9a864a8fbca1cb725cc5971ebb34253986bd0db9ca4d21a4b3a4d1e4efe54b03  g_algebra_rh_ns/proof-map.json
+961b1224a2e157e2e59ea685faae826e19f28f6f5569ec173c59e320089423a9  g_algebra_rh_ns/sources.json

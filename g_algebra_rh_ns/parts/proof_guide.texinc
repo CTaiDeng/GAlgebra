@@ -6,16 +6,16 @@
 \[
  \boxed{\begin{gathered}
  \text{固定原命题、实际输入和完整量词}
-       \ \longrightarrow\ \text{保结构上卷到 G 母体}\\
- \longrightarrow\ \text{分型内核直接求解}
+       \ \longrightarrow\ \text{沿任务商保结构上卷}\\
+ \longrightarrow\ \text{在 G 母体分型下卷求解}
        \ \longrightarrow\ \text{纤维丛协变与多复合反身统一闭合}\\
- \longrightarrow\ \text{法空间回读经典推导}.
+ \longrightarrow\ \text{将见证回读到投影域}.
  \end{gathered}}
 \]
 固定分型 \(\sigma\) 和法对象
 \(\mathfrak X_G=(X,L,\Phi,\mathsf{Coh},\mathsf{Adm},o,\mathsf{Cert})\)。
-对原命题量化的输入 \(i\in\mathcal I_\sigma\)，
-母体保留初值、定义域、参数、许可作用域以及结论 \(P_\sigma(i)\)。
+对原命题量化的输入 \(i\in\mathcal I_\sigma\)，上卷保留初值、定义域、参数、许可作用域和结论 \(P_\sigma(i)\)。
+回读要求同一任务商坐标与随附证据确定同一目标读数，见定理~\ref{thm:pde-rate-quotient}。
 记 \(M_\sigma(i)\) 为该内核的母体命题。其证据包含方程及正则性、
 实际输入和保留条件、原量词所需的全域覆盖或极限条件。
 
@@ -29,18 +29,18 @@
 整周期有序树全和的反身闭合由定理~\ref{thm:flow-period-composite} 给出。
 \end{remark}
 
-验收登记实际已证的双向等价 \(M_\sigma(i)\Longleftrightarrow P_\sigma(i)\)、
-充分回读 \(D_\sigma(i):M_\sigma(i)\Longrightarrow P_\sigma(i)\) 或精确读数。
-母体命题已证时，在原输入域按定理~\ref{thm:pde-rate-quotient} 回读
+法空间结果按双向等价 \(M_\sigma(i)\Longleftrightarrow P_\sigma(i)\)、
+充分回读 \(D_\sigma(i):M_\sigma(i)\Longrightarrow P_\sigma(i)\) 或精确读数验收。母体证明另依其实际覆盖域登记。
+取得覆盖原量词的母体证明 \(\pi_\sigma(i)\) 后，应用同一已证正向回读
 \[
  \boxed{\frac{\pi_\sigma(i):M_\sigma(i)
        \qquad D_\sigma(i):M_\sigma(i)\Longrightarrow P_\sigma(i)}
       {D_\sigma(i)(\pi_\sigma(i)):P_\sigma(i)}}
  \qquad (i\in\mathcal I_\sigma).
 \]
-该推导保留原假设、定义域和完整量词，原命题在同一回读处证毕。
-给定回读前提的定理按其蕴含方向验收。原命题要求存在性时，
-交付这条推导所得的存在性结论。原命题要求显式构造时，构造随同一回读交付。
+所得推导保留原假设、定义域和完整量词，就是 \(P_\sigma\) 的证明。原命题在同一回读处证毕。
+充分回读依定理的前提及推出的结论验收。原命题要求存在性时，交付同一回读所得的存在性结论。
+原命题要求显式构造时，构造随同一回读交付。
 
 \subsection{分型回读的定理与覆盖域}
 

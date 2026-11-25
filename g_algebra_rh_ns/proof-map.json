@@ -459,7 +459,7 @@
       "GAlgebra.bernsteinAverage",
       "GAlgebra.bernstein_falling_average"
     ],
-    "note": "核验全称局部化双侧序、平方坐标半轴、有限 Gram 分解和二项平均的降阶乘恒等式。二项式判据的系数极限和实际算术的连续回读在正文。"
+    "note": "核验有理双侧序与两条非负条件的全称等价、平方谱半轴读数、有限 Gram 分解和降阶乘恒等式。正文证明实际矩条件与临界线命题的等价。"
   },
   {
     "label": "thm:xi-single-positive-kernel",
@@ -672,7 +672,7 @@
       "GAlgebra.automorphic_square_halfline",
       "GAlgebra.spectral_localizing_forms"
     ],
-    "note": "核验上端局部化权、差商通分及半轴坐标。实际输入的正性、稠密与算子完成的覆盖见正文。"
+    "note": "核验上端局部化权、差商通分及半轴坐标。正文证明实际输入上的矩条件与临界线命题等价，并在矩条件下给出算子完成及回读。"
   },
   {
     "label": "thm:grh-family-readback",

@@ -22,7 +22,7 @@
 \label{sec:lean-map}
 Lean 名称均在 \lean{GAlgebra} 命名空间。文件与行号见配套索引。
 所用声明的类型及公理依赖在 \lean{Audit.lean} 中检查。
-最后一列标明 Lean 覆盖与正文承担的连续分析。
+最后一列按实际声明类型标明 Lean 核验的结论及正文的证明环节。
 \small
 \begin{longtable}{@{}P{.09\textwidth}P{.55\textwidth}P{.29\textwidth}@{}}
 \toprule 正文 & Lean 声明 & 证明覆盖\\\midrule
@@ -79,7 +79,7 @@ Lean 名称均在 \lean{GAlgebra} 命名空间。文件与行号见配套索引�
 \ref{thm:xi-moment-generator} & \lean{reflected_zero_from_completed_equation}\par \lean{automorphic_square_halfline} & 核验零点反射和平方坐标。Euler 对数导数、Cauchy 系数及整乘积在正文。\\[.25em]
 \ref{thm:spectral-positive-operator} & \lean{spectral_localizing_forms}\par \lean{spectral_positive_quotient_bound}\par \lean{finite_resolvent_numerator_ne_zero_at_pole} & 核验双侧有理序关系、范数估计的消去及有限极点不消去。Hilbert 完备和割平面同源预解式在正文。\\[.25em]
 \ref{lem:spectral-polynomial-density} & \lean{finite_resolvent_numerator_ne_zero_at_pole}\par \lean{finite_diagonal_form_nonnegative_iff} & 核验有限对角型和残数不消去。多项式测试稠密、共轭成对以及核的混合导数见正文。\\[.25em]
-\ref{thm:xi-moment-readback} & \lean{spectral_localizing_forms_all}\par \lean{automorphic_square_halfline}\par \lean{weighted_gram_factorization}\par \lean{bernsteinFalling}\par \lean{bernsteinAverage}\par \lean{bernstein_falling_average} & 核验全称局部化双侧序、平方坐标半轴、有限 Gram 分解和二项平均的降阶乘恒等式。二项式判据的系数极限和实际算术的连续回读在正文。\\[.25em]
+\ref{thm:xi-moment-readback} & \lean{spectral_localizing_forms_all}\par \lean{automorphic_square_halfline}\par \lean{weighted_gram_factorization}\par \lean{bernsteinFalling}\par \lean{bernsteinAverage}\par \lean{bernstein_falling_average} & 核验有理双侧序与两条非负条件的全称等价、平方谱半轴读数、有限 Gram 分解和降阶乘恒等式。正文证明实际矩条件与临界线命题的等价。\\[.25em]
 \ref{thm:xi-single-positive-kernel} & \lean{weighted_gram_factorization}\par \lean{finite_resolvent_numerator_ne_zero_at_pole} & 核验有限 Gram 分解与极点代数。算术差商与同一局部化矩义务的等价在正文。\\[.25em]
 \ref{prop:xi-polynomial-sector} & \lean{xi_polynomial_sector_constants}\par \lean{spectral_localizing_forms} & 核验辐角常数及当前测试域的两条序关系。复对数直线积分与整个谱上的求和见正文。\\[.25em]
 \ref{lem:xi-origin-moment-bounds} & \lean{xi_origin_summation_bounds}\par \lean{xi_origin_moment_bounds} & 核验 Bernoulli 余项的有理常数和五项输入区间推出两项矩包围的线性比较。实际算术系数的复分析及区间构造见正文。\\[.25em]
@@ -94,7 +94,7 @@ Lean 名称均在 \lean{GAlgebra} 命名空间。文件与行号见配套索引�
 \ref{lem:grh-rank-one-base} & \lean{grand_riemann_rank_split}\par \lean{grand_riemann_rank_one_readback}\par \lean{zero_line_readback_along_shift} & 核验秩一与高秩的全秩拼接和保实坐标回读。正文给出阿代尔字符分解、Euler 平移及秩一纤维的量词覆盖。\\[.25em]
 \ref{thm:dirichlet-analytic-input} & \lean{dirichlet_gauss_rescale_vanish}\par \lean{reflected_zero_from_completed_equation} & 核验 Gauss 和置换后的域上消去及完备函数方程的反射传递。有限 Fourier 展开、Gaussian 输运、Mellin 回读和增长估计在正文。\\[.25em]
 \ref{thm:grh-square-spectrum} & \lean{automorphicSquareSpectrum}\par \lean{automorphic_square_halfline}\par \lean{finite_resolvent_common_denominator}\par \lean{finite_resolvent_numerator_ne_zero_at_pole} & 核验平方谱坐标和实半轴的精确回读，以及有限预解式的极点代数。对偶完备化、重数与整乘积在正文。\\[.25em]
-\ref{thm:grh-localized-moments} & \lean{spectral_upper_weight_numerator}\par \lean{automorphic_real_weight_sign}\par \lean{automorphic_kernel_difference}\par \lean{automorphic_square_halfline}\par \lean{spectral_localizing_forms} & 核验上端局部化权、差商通分及半轴坐标。实际输入的正性、稠密与算子完成的覆盖见正文。\\[.25em]
+\ref{thm:grh-localized-moments} & \lean{spectral_upper_weight_numerator}\par \lean{automorphic_real_weight_sign}\par \lean{automorphic_kernel_difference}\par \lean{automorphic_square_halfline}\par \lean{spectral_localizing_forms} & 核验上端局部化权、差商通分及半轴坐标。正文证明实际输入上的矩条件与临界线命题等价，并在矩条件下给出算子完成及回读。\\[.25em]
 \ref{thm:grh-family-readback} & \lean{grandRiemannGoal}\par \lean{grand_riemann_fiber_equivalence}\par \lean{grand_riemann_rank_split} & 核验逐纤维给定等价的秩域全称拼接。实际算术局部化矩义务在各纤维登记。\\[.25em]
 \ref{thm:prime-poisson-fiber} & \lean{primeFiberCoefficient}\par \lean{prime_fiber_cutoff}\par \lean{prime_fiber_coarsening} & 核验保留总次数的有限截短及关系纤维合并。Fourier 正交、PDE 与绝对收敛见正文。\\[.25em]
 \ref{prop:prime-additive-readback} & \lean{prime_finite_mass_positive_iff}\par \lean{trial_prime_correct} & 核验有限非负加权和的正性读回及素数判定。Abel 极限、奇异级数和加权渐近与普通计数的等价见正文。\\[.25em]

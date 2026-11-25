@@ -173,8 +173,8 @@ T_{ij;k,l}+\beta(b_{kl},b_{ij})-T_{ij;l,k}.
 \]
 定理~\ref{thm:flow-period-pulse-readback} 及黏性伸缩已证
 \(\mathsf E_{\rm per}\Longrightarrow\mathsf P_{\rm NS}\)。
-原命题另含固定空间紧支速度时，由同一母体推导随回读证明
-\(\exists K\Subset\RR^3\ \forall t<1,\ \operatorname{supp}u(t)\subseteq K\)。
+固定空间紧支速度 \(\exists K\Subset\RR^3\ \forall t<1,\ \operatorname{supp}u(t)\subseteq K\) 属于另加的题面条件。
+定理~\ref{thm:flow-period-pulse-readback} 的无力尾段具有引理~\ref{lem:flow-spatial-analyticity} 的空间解析性。统一紧支会使该段速度恒为零，与此回读的非零爆破结论不相容。
 
 共同结构的核验提交运算复合、合法域、原量词与结论的保持。已有反向蕴含的分型按等价读数复用。
 \end{definition}
