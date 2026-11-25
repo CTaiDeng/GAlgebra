@@ -1,5 +1,7 @@
 # GAlgebra
 
+> Gao, Z. (2026). G 代数在数论与动力学/PDE 中的统一证明框架:分型求解、法空间回读与 Lean 形式化(A Unified G-Algebra Proof Framework for Number Theory and Dynamics/PDEs: Type-Specific Solution Methods, Law-Space Readback, and Lean Formalization) (Version v1.0). Zenodo. <https://doi.org/10.5281/zenodo.24529523>
+
 ### 作者：GaoZheng（高政）
 
 [作者博客](https://mymetamathematics.blogspot.com) · [![ORCID](https://orcid.org/sites/default/files/images/orcid_16x16.png) 0009-0008-3013-6626](https://orcid.org/0009-0008-3013-6626)
