@@ -26,13 +26,13 @@ $$
 
 ## 整体证明义务完成进度表
 
-核对日期 **2026-11-25**。GAlgebra 1.0.0 的专项表对应 **150 页正式稿**和 **157 条 TeX–Lean 映射**。**14 项法空间结果均已得证**，包括 **7 项双向等价、6 项充分回读和 1 项精确读数**，对应 2 项最初义务及 12 项追加义务或子义务。[义务定义](parts/targets.texinc#L140)
+核对日期 **2026-11-27**。本表对应 **152 页正式稿**和 **160 条 TeX–Lean 映射**。按原义务登记的 **14 项法空间结果均已得证**，包括 **7 项双向等价、6 项充分回读和 1 项精确读数**，对应 2 项最初义务及 12 项追加义务或子义务。[义务定义](parts/targets.texinc#L140)
 
 表中列明回读的母体前件、实际已证的母体内容及其覆盖域。覆盖原量词的母体证明与已证正向回读合成时，原命题在回读处证毕。固定参数的接触通量和 Maxwell 平衡子域的联合极限均按已证的适用域登记。
 
 | 归属 | 原命题与量词 | 回读所用母体命题或读数条件 | 已证母体内容及覆盖域 | 已证回读或精确读数 | 已证结果类型 |
 | --- | --- | --- | --- | --- | --- |
-| 最初 | **经典黎曼猜想** \(\mathsf B_{\mathbf 1}\)。实际 \(\zeta\) 的每个非平凡零点 \(\rho\) 均满足 \(\Re\rho=\tfrac12\)。 | 实际矩泛函的全称条件 \(\mathsf E_\zeta\)。对所有 \(p\in\mathbb R[t]\)，\(0\le\mathcal L(tp^2)\le(4/9)\mathcal L(p^2)\)。[母体命题](parts/targets.texinc#L146) | 由实际 \(\xi\) 的 Euler 与 Gamma 数据构造 \(R,\mathcal L\)，并证明指定指数域的正性及有理方向的半径包络。[矩生成](parts/spectral_moments.texinc#L37) · [指数域](parts/spectral_moments.texinc#L565) · [半径包络](parts/spectral_moments.texinc#L930) | \(\mathsf E_\zeta\Longleftrightarrow\mathsf B_{\mathbf 1}\)，保留全部非平凡零点的量词。[回读定理](parts/spectral_moments.texinc)（`thm:xi-moment-readback`） | **双向等价已证** |
+| 最初 | **经典黎曼猜想** \(\mathsf B_{\mathbf 1}\)。实际 \(\zeta\) 的每个非平凡零点 \(\rho\) 均满足 \(\Re\rho=\tfrac12\)。 | 实际矩泛函的全称条件 \(\mathsf E_\zeta\)。对所有 \(p\in\mathbb R[t]\)，\(0\le\mathcal L(tp^2)\le(4/9)\mathcal L(p^2)\)。全方向的精确判据为 \(\mathcal A=1\)。[母体命题](parts/targets.texinc#L146) · [归一化半径](parts/spectral_moments.texinc#L1031) | 已由 \(\xi\) 的 Euler 与 Gamma 数据构造 \(R,\mathcal L\)，证明指定指数域的正性。对 \(f=t^2\prod_j h_j\)、\(h_j\in\mathcal C_{1/270}\)，两条矩下界对任意因子数共用 \(9/16\) 的范数平方余量。若对每对 \(p>99q\) 都有 \(\sup_{k\ge1}E_{kp,kq}<\infty\)，方向判据给出覆盖全部实多项式的 \(\pi_\zeta:\mathsf E_\zeta\)。[矩生成](parts/spectral_moments.texinc#L37) · [指数域](parts/spectral_moments.texinc#L565) · [乘积见证](parts/spectral_moments.texinc#L994) | \(\mathsf E_\zeta\Longleftrightarrow\mathsf B_{\mathbf 1}\)。给定上述全称见证，\(D_\zeta(\pi_\zeta):\mathsf B_{\mathbf 1}\) 即证毕原命题。[回读定理](parts/spectral_moments.texinc#L155) | **双向等价已证** |
 | 最初 | **带光滑紧支外力的 Navier–Stokes 有限时间爆破**。每个 \(\nu>0\)，全空间上零初值、\(0\le t<1\) 光滑、动能有界且 \(\limsup_{t\uparrow1}\lVert u(t)\rVert_\infty=\infty\)，外力在 \(\mathbb R^3\times(0,\infty)\) 光滑紧支。 | \(\mathsf E_{\rm per}\)。单位黏性下存在合法的 \((a,R,v)\)，满足 \(F_{a,R}(v)=0\) 及 \(v\not\equiv0\)。[母体存在性](parts/targets.texinc#L168) | 整周期有序复合在所列条件下给出尾方程闭合，并保留接缝、远场迹及已核验的有限读数。[整周期闭合](parts/flow_periodic.texinc#L216) · [有限读数](parts/flow_periodic.texinc#L4619) | \(\mathsf E_{\rm per}\Longrightarrow\mathsf P_{\rm NS}\)。控制右逆及紧支脉冲给出回读，黏性伸缩覆盖每个 \(\nu>0\)。[周期回读](parts/flow_periodic.texinc)（`lem:flow-period-controlled-inverse`、`thm:flow-period-pulse-readback`） | **充分回读已证** |
 | 追加 | **二元哥德巴赫猜想**。每个偶数 \(N\ge4\) 为两个素数之和。 | 对每个偶数 \(N\ge4\)，\(G_2(N)>0\)。[和频条件](parts/prime_poisson.texinc#L66) | 去阻尼后的和频 \(G_2(N)\) 精确读取加权素数对。[整数关系投影](parts/prime_poisson.texinc#L4) | 各 \(N\) 的 \(G_2(N)>0\) 与该 \(N\) 有素数分拆等价。[计数回读](parts/prime_poisson.texinc)（`prop:prime-additive-readback`） | **双向等价已证** |
 | 追加 | **孪生素数猜想**。对每个阈值 \(X\) 存在 \(p>X\)，且 \(p,p+2\) 均为素数。 | \(T_{(0,2)}(t)\to\infty\)（\(t\downarrow0\)）。[差频条件](parts/prime_poisson.texinc#L67) | 差频 \(2\) 的 Abel 迹给出孪生素数对的非负加权和。[差分投影](parts/prime_poisson.texinc#L55) | \(T_{(0,2)}(t)\to\infty\)（\(t\downarrow0\)）与素数对首项无界等价。[计数回读](parts/prime_poisson.texinc)（`prop:prime-additive-readback`） | **双向等价已证** |
@@ -51,7 +51,7 @@ $$
 
 ## 已证的补充核验
 
-- **有限算术。** 独立轮廓计数和临界线符号证书核验 \(0<\Im\rho\le1270\) 的 \(871\) 个零点均为临界线单零点。[有限零点证书](parts/zeta_window.texinc)
+- **有限算术。** 独立轮廓计数和临界线符号证书核验 \(0<\Im\rho\le1270\) 的 \(871\) 个零点均为临界线单零点。同一窗口给出 \(99<p/q\le715716\) 的半径下界 \(\operatorname{rad}S_{p,q}\ge M_{p,q}^{-1}\)。[有限零点证书](parts/zeta_window.texinc#L284) · [窗口覆盖的方向](parts/zeta_window.texinc#L315)
 - **分型引理。** 已证的算术局部估计、周期协变界与动力学误差界，按各自的假设和 TeX 标签核对。[证明索引](proof-index.md)
 
 ## 复核

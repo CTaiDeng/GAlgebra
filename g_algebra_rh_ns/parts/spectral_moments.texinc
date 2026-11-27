@@ -990,3 +990,80 @@ Euler 对数导数的绝对值至多为
 两者均被排除，得到所列高度偏差。
 端点的平方展开见 \lean{xi_ray_height_sides}。
 \end{proof}
+
+\begin{proposition}[实际矩泛函在多项式乘积族上的统一正性]\label{prop:xi-product-moment-certificate}
+沿用定理~\ref{thm:xi-coefficient-cone} 的实际矩泛函、权重 \(W_i\) 和范数 \(\|\cdot\|_i\)。
+取其实单极点的坐标 \(\lambda=1/\mu_*\)，令 \(r=1/270\)。对实多项式 \(h(t)=\sum_k h_k t^k\)，置
+\[
+  L_r(h)=\sum_k |h_k|r^k,\qquad
+  \mathcal C_r=\{h\in\RR[t]:L_r(h)\le |h(\lambda)|\}.
+\]
+对任意 \(n\ge0\) 及 \(h_1,\ldots,h_n\in\mathcal C_r\)，令 \(f(t)=t^2\prod_{j=1}^n h_j(t)\)。则
+\[
+  \mathcal L(tf^2)\ge\tfrac9{16}\|f\|_1^2,\qquad
+  \mathcal L((c-t)f^2)\ge\tfrac9{16}\|f\|_2^2,\qquad c=\tfrac49 .
+\]
+这一见证覆盖任意多个因子 \(t-x_j\)，其中各 \(0\le x_j\le1/1890\) 可独立选取。
+对任一 \(v\in\RR[t]\) 满足 \(v(\lambda)\ne0\)，凡整数 \(m\ge0\) 满足
+\((7/9)^m L_r(v)\le |v(\lambda)|\)，同一结论也适用于
+\(f=t^{m+2}v\prod_{j=1}^n h_j\)。
+\end{proposition}
+\begin{proof}
+系数卷积的三角不等式给出 \(L_r(hg)\le L_r(h)L_r(g)\)，而在 \(\lambda\) 的取值保乘法。
+因此 \(\mathcal C_r\) 含 \(1\) 且对乘法闭合。有理乘积预算的核验见 \lean{xi_product_budget}。
+记 \(h=\prod_jh_j\)，则在 \(|t|\le r\) 上有 \(|h(t)|\le L_r(h)\le |h(\lambda)|\)。
+由定理~\ref{thm:xi-coefficient-cone} 及其证明，除 \(\rho_*\) 外均有 \(|t_\rho|<r\)，且
+\[
+ \sum_{\rho\ne\rho_*}|W_i(\rho)|\,|t_\rho|^4
+       \le \tfrac7{25}|W_i(\rho_*)|\lambda^4 \qquad (i=1,2).
+\]
+令 \(G_i=|W_i(\rho_*)|\lambda^4|h(\lambda)|^2\)，
+\(U_i=\sum_{\rho\ne\rho_*}|W_i(\rho)|\,|f(t_\rho)|^2\)，则 \(25U_i\le7G_i\)。
+实单极点给出正实权。两组矩的共轭求和分别至少为 \(G_i-U_i\)，而 \(\|f\|_i^2=G_i+U_i\)。
+由 \(16(G_i-U_i)-9(G_i+U_i)=7G_i-25U_i\ge0\) 得到两式，见 \lean{xi_product_moment_margin}。
+因为 \(\lambda>1/210\) 且 \(1/270+2/1890=1/210\)，所列线性因子满足
+\(L_r(t-x_j)=r+x_j\le\lambda-x_j\)。
+最后 \(r/\lambda<7/9\)，故所列 \(m\) 给出 \(L_r(t^mv)\le\lambda^m|v(\lambda)|\)。
+\(\mathcal C_r\) 的乘法闭合将同一证据传到整个复合族。
+相应的两式正是原矩条件在上述 \(f\) 上的两条局部化不等式。
+\end{proof}
+
+\begin{theorem}[全部有理方向的归一化半径与全称矩条件]\label{thm:xi-joint-ray-gain}
+取定理~\ref{thm:xi-bernstein-ray-readback} 的实际 \(R,S_{p,q},M_{p,q}\) 及 \(a=9/4\)。对正整数 \(p,q\) 置
+\[
+ E_{p,q}=(M_{p,q}\operatorname{rad}S_{p,q})^{-1},\qquad
+ \mathcal A=\sup_{p,q\ge1}E_{p,q}^{1/(p+q)} .
+\]
+令 \(\mu\) 遍历 \(R\) 的极点，\(t_\mu=1/\mu\)。则
+\[
+ \mathcal A=\sup_\mu\bigl(a|t_\mu|+|1-at_\mu|\bigr)\ge1,\qquad
+ \mathcal A=1\ \Longleftrightarrow\ \mathsf E_\zeta .
+\]
+若对每一对 \(p>99q\) 都有 \(\sup_{k\ge1}E_{kp,kq}<\infty\)，则得到
+覆盖全部 \(f\in\RR[t]\) 的母体见证 \(\pi_\zeta:\mathsf E_\zeta\)，其正向回读为 \(D_\zeta(\pi_\zeta):\mathsf B_{\mathbf 1}\)。
+\end{theorem}
+\begin{proof}
+固定 \(R\) 的极点 \(\mu\)，置 \(x=a|t_\mu|\)、\(y=|1-at_\mu|\)。
+定理~\ref{thm:xi-moment-generator} 给出 \(\Re\mu>38\)，故 \(0<|t_\mu|<1/38\)，\(x,y>0\) 且 \(x+y\) 在实际谱上一致有界。
+在同一谱纤维上，\(P_{p,q}P_{p',q'}=P_{p+p',q+q'}\)，任意有限混合复合按总指数读取并归一化。
+写 \(\theta=q/(p+q)\)。加权算术几何平均给出
+\[
+ \left(\frac{|P_{p,q}(t_\mu)|}{M_{p,q}}\right)^{1/(p+q)}
+ =\left(\frac{x}{\theta}\right)^\theta
+  \left(\frac{y}{1-\theta}\right)^{1-\theta}\le x+y .
+\]
+把 \(\theta\) 视为实参数时，等号恰在 \(\theta=x/(x+y)\) 成立。正整数 \(p,q\) 给出的 \(\theta\) 在 \((0,1)\) 稠密，
+故对方向取上确界即得 \(x+y\)。交换方向与谱点的两次上确界，精确半径公式即给出所列的 \(\mathcal A\)。
+实际谱非空，见定理~\ref{thm:xi-single-positive-kernel} 的证明。逐点由三角不等式有
+\(a|t_\mu|+|1-at_\mu|\ge1\)，等号当且仅当 \(at_\mu\in[0,1]\)。
+由于 \(t_\mu=1/\mu\ne0\)，\(\mathcal A=1\) 等价于每个 \(\mu\in[a,\infty)\)。
+定理~\ref{thm:spectral-positive-operator} 将这一条件与 \(\mathsf E_\zeta\) 双向等同。
+
+同一方向重复 \(k\) 次时，\(P_{kp,kq}=P_{p,q}^k\)、\(M_{kp,kq}=M_{p,q}^k\)，
+精确半径公式给出 \(E_{kp,kq}=E_{p,q}^k\)。乘积的幂恒等式见 \lean{xi_ray_repeat_factor}。
+固定 \(p>99q\)，取假设给出的上界 \(C_{p,q}\)。若 \(E_{p,q}=1+d\) 且 \(d>0\)，则
+\(E_{kp,kq}\ge1+kd\)，由阿基米德性可取 \(k\) 使 \(1+kd>C_{p,q}\)，与上界矛盾。故 \(E_{p,q}\le1\)。
+有序环推导见 \lean{xi_ray_power_bound}。这给出每对 \(p>99q\) 的完整半径下界。
+定理~\ref{thm:xi-bernstein-ray-readback} 遂给出 \(\pi_\zeta:\mathsf E_\zeta\)。
+定理~\ref{thm:xi-moment-readback} 的正向回读给出 \(D_\zeta(\pi_\zeta):\mathsf B_{\mathbf 1}\)，原命题在此证毕。
+\end{proof}

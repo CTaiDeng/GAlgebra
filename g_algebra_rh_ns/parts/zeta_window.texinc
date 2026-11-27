@@ -309,6 +309,18 @@
 六带的七条水平切线总计 \(720\) 条弦，需 \(727\) 次顶点评估。
 变号核验再读 \(1594\) 个临界线端点。按照命题~\ref{prop:certified-block-cost} 的计量，
 同组端点的对数表、零点总重数和各区间的临界线见证可分别复用。
-最后一个变号区间的右端为 \(81127/64\)。谱矩证书选用 \(1270\) 的截面，
-使该锚点与谱尾之间留有较大的半径间隔。
+最后一个变号区间的右端为 \(81127/64\)。
+\end{proof}
+
+\begin{corollary}[高度 \(1270\) 的窗口所覆盖的有理方向]\label{cor:xi-window-ray-range}
+对满足 \(99<p/q\le715716\) 的正整数 \(p,q\)，
+定理~\ref{thm:xi-bernstein-ray-readback} 的生成函数满足
+\(\operatorname{rad}S_{p,q}\ge M_{p,q}^{-1}\)。此范围包含各所列方向的全部正整数倍。
+\end{corollary}
+\begin{proof}
+置 \(a=9/4\)、\(T=\sqrt{ap/q}\)。由 \(a\cdot715716=1269^2\) 得 \(T+1\le1270\)，
+端点等式见 \lean{xi_ray_window_endpoint}。若下界失效，精确半径公式给出
+\(|P_{p,q}(t_\rho)|>M_{p,q}\) 的正高度谱点。推论~\ref{cor:xi-ray-strip-envelope} 给出
+\(|\gamma-T|<2|\beta|<1\)，故 \(0<\gamma<1270\)。命题~\ref{prop:critical-line-coverage}
+在这个窗口给出 \(\beta=0\)，与严格不等式矛盾。同倍放大 \(p,q\) 保持斜率。
 \end{proof}

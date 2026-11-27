@@ -603,4 +603,7 @@ theorem unique_zero_fixed_under_reflection {Point : Type _} (reflect : Point →
   obtain ⟨other_member, other_root⟩ := preserves p member root
   exact unique _ _ other_member other_root member root
 
+theorem xi_ray_window_endpoint : (9 / 4 : Rat) * 715716 = 1269 ^ 2 := by
+  decide +kernel
+
 end GAlgebra

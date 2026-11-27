@@ -1,53 +1,56 @@
-GAlgebra 1.0.0 Lean 构建与核验记录
-核验日期 2026-11-25（北京时间）
-
-Lean 命令在独立副本中运行，映射命令在仓库根目录运行。
-构建段记录 Lake 任务状态。完整声明类型与公理依赖见 Audit.lean 输出段。
+GAlgebra Lean 构建与核验记录
+核验日期 2026-11-27（北京时间）
+Git 基线 v2.1.0，提交 cc3c68d32b315c346edc7359ace75cdf4987e14d
+核验对象为该基线上的当前工作树。构建和映射输入的实际字节由文末 49 项 SHA-256 标识。
+输入集合 SHA-256 3e01468edf52ad7190f9693ee4f3ae6b9791da3b6ad966214f5b5e6047a8f2f7
+集合摘要按仓库相对路径升序，将全部 49 行“摘要、两个空格、路径、LF”以 UTF-8 编码后计算。
+配套正式稿 PDF 152 页，SHA-256 8a111dd878f62f6fb042d91dfd4e0edbc30fd7ecf21b0a9393812a1b00fb517b（单独列示）。
+证明边界　类型与传递公理核验覆盖 399 个映射声明。对实际 ξ，覆盖原量词的法空间见证 \pi_\zeta 经已证正向回读 D_\zeta，原命题即在 D_\zeta(\pi_\zeta) 处证毕。
+Lean 命令使用 out/ 下仅含 26 项 Lean 工程输入的新副本。映射命令在仓库根目录运行。各命令合并记录标准输出与标准错误。
+构建段列出 Lake 作业状态。构建中回显的 Audit 声明在独立 Audit.lean 命令下完整收录一次。内核命令成功时可以无输出。
 
 $ lean --version
-Exit code 0, 0.151 s
+Exit code 0, 0.123 s
 Lean (version 4.36.0, x86_64-w64-windows-gnu, commit 611c117bfaf7b7ae1cfcf246ce6fba31e8f509e9, Release)
 
 $ lake --version
-Exit code 0, 0.146 s
+Exit code 0, 0.130 s
 Lake version 5.0.0-src+611c117 (Lean version 4.36.0)
 
 $ lake build
-Exit code 0, 23.178 s
-✔ [2/46] Built GAlgebra.Core (3.4s)
+Exit code 0, 20.518 s
+✔ [2/46] Built GAlgebra.Core (3.5s)
 ✔ [4/46] Built GAlgebra.SpectralMoments (3.5s)
-✔ [6/46] Built GAlgebra.Proof (2.8s)
-✔ [8/46] Built GAlgebra.Chain (2.8s)
-✔ [10/46] Built GAlgebra.Law (4.4s)
-✔ [12/46] Built GAlgebra.Repair (4.4s)
-✔ [14/46] Built GAlgebra.IntervalSequence (4.4s)
-✔ [16/46] Built GAlgebra.Paths (4.4s)
-✔ [18/46] Built GAlgebra.Operators (2.0s)
-✔ [20/46] Built GAlgebra.Coverage (2.1s)
-✔ [22/46] Built GAlgebra.ArithmeticEnclosures (2.8s)
-✔ [24/46] Built GAlgebra.FiniteGeometry (2.1s)
-✔ [26/46] Built GAlgebra.HomotopyAlgebra (2.3s)
-✔ [28/46] Built GAlgebra.Targets (2.3s)
-✔ [30/46] Built GAlgebra.KineticLimit (2.4s)
-✔ [32/46] Built GAlgebra.PrimePoisson (1.0s)
-✔ [34/46] Built GAlgebra.ZetaWindow (8.1s)
-✔ [36/46] Built GAlgebra.GrandRiemann (7.7s)
-✔ [38/46] Built GAlgebra.AnalyticCertificates (7.7s)
-✔ [40/46] Built GAlgebra.FlowGluing (7.7s)
-✔ [42/46] Built GAlgebra (880ms)
-ℹ [44/46] Built Audit (1.9s)
+✔ [6/46] Built GAlgebra.Law (3.6s)
+✔ [8/46] Built GAlgebra.Paths (3.7s)
+✔ [10/46] Built GAlgebra.Proof (3.6s)
+✔ [12/46] Built GAlgebra.Repair (3.6s)
+✔ [14/46] Built GAlgebra.Chain (3.6s)
+✔ [16/46] Built GAlgebra.IntervalSequence (3.6s)
+✔ [18/46] Built GAlgebra.Coverage (1.7s)
+✔ [20/46] Built GAlgebra.Operators (2.1s)
+✔ [22/46] Built GAlgebra.ArithmeticEnclosures (2.2s)
+✔ [24/46] Built GAlgebra.FiniteGeometry (1.8s)
+✔ [26/46] Built GAlgebra.HomotopyAlgebra (2.1s)
+✔ [28/46] Built GAlgebra.Targets (2.1s)
+✔ [30/46] Built GAlgebra.KineticLimit (2.1s)
+✔ [32/46] Built GAlgebra.PrimePoisson (1.6s)
+✔ [34/46] Built GAlgebra.ZetaWindow (7.2s)
+✔ [36/46] Built GAlgebra.GrandRiemann (6.5s)
+✔ [38/46] Built GAlgebra.AnalyticCertificates (6.5s)
+✔ [40/46] Built GAlgebra.FlowGluing (6.6s)
+✔ [42/46] Built GAlgebra (824ms)
+ℹ [44/46] Built Audit (1.7s)
 Build completed successfully (46 jobs).
 
 $ lake env leanchecker GAlgebra
-Exit code 0, 12.654 s
-
+Exit code 0, 12.077 s
 
 $ lake env leanchecker Audit
-Exit code 0, 4.599 s
-
+Exit code 0, 4.028 s
 
 $ lake env lean Audit.lean
-Exit code 0, 1.826 s
+Exit code 0, 2.021 s
 GAlgebra.AdjointPair.{u_1, u_2, u_3} {K : Type u_1} {U : Type u_2} {V : Type u_3} [GAlgebra.Abelian K]
   [GAlgebra.Abelian U] [GAlgebra.Abelian V] (P : GAlgebra.Pairing K U) (Q : GAlgebra.Pairing K V) : Type (max u_2 u_3)
 GAlgebra.AdjointPair.gram_energy.{u_1, u_2, u_3} {K : Type u_1} {U : Type u_2} {V : Type u_3} [GAlgebra.Abelian K]
@@ -1342,6 +1345,12 @@ GAlgebra.xi_paired_phase_numerator.{u_1} {K : Type u_1} [Lean.Grind.CommRing K] 
   q * (u ^ 2 + r ^ 2) - u * (q ^ 2 + r ^ 2) = (u - q) * (u * q - r ^ 2)
 GAlgebra.xi_polynomial_sector_constants :
   1 / 38 + 1 / 38 < 4 / 9 ∧ 6 / 19 + 2 * 76 * (3 / 722) = 18 / 19 ∧ (18 / 19) ^ 2 < 1
+GAlgebra.xi_product_budget.{u_1} {I : Type u_1} (bound anchor : I → Rat) (nonnegative : ∀ (i : I), 0 ≤ bound i)
+  (budget : ∀ (i : I), bound i ≤ anchor i) (word : List I) :
+  0 ≤ (List.map bound word).prod ∧ (List.map bound word).prod ≤ (List.map anchor word).prod
+GAlgebra.xi_product_moment_margin.{u_1} {R : Type u_1} [Lean.Grind.CommRing R] [LE R] [LT R] [Std.IsLinearOrder R]
+  [Std.LawfulOrderLT R] [Lean.Grind.OrderedRing R] (anchor tail readout : R) (budget : 25 * tail ≤ 7 * anchor)
+  (lower : anchor - tail ≤ readout) : 9 * (anchor + tail) ≤ 16 * readout
 GAlgebra.xi_ray_amplitude_gap (scale realPart imaginaryPart magnitude : Rat) (positive : 0 < scale)
   (nonreal : realPart < magnitude) (square : magnitude ^ 2 = realPart ^ 2 + imaginaryPart ^ 2) :
   (1 - scale * magnitude) ^ 2 < (1 - scale * realPart) ^ 2 + (scale * imaginaryPart) ^ 2
@@ -1351,6 +1360,12 @@ GAlgebra.xi_ray_height_sides (center width : Rat) (widthNonnegative : 0 ≤ widt
     center ^ 2 + 3 * width * center ≤ (center + 2 * width) ^ 2
 GAlgebra.xi_ray_phase_chord (value : Rat) (lower : -1 / 4 ≤ value) (upper : value ≤ 1) :
   value ^ 2 ≤ 3 * value / 4 + 1 / 4
+GAlgebra.xi_ray_power_bound.{u_1} {R : Type u_1} [Lean.Grind.CommRing R] [LE R] [LT R] [Std.IsLinearOrder R]
+  [Std.LawfulOrderLT R] [Lean.Grind.OrderedRing R] (gain bound : R)
+  (archimedean : ∀ (step level : R), 0 < step → ∃ k, level < ↑k * step)
+  (bounded : ∀ (k : Nat), gain ^ (k + 1) ≤ bound) : gain ≤ 1
+GAlgebra.xi_ray_repeat_factor.{u_1} {K : Type u_1} [Lean.Grind.CommRing K] (x y : K) (p q k : Nat) :
+  (x ^ q * y ^ p) ^ k = x ^ (q * k) * y ^ (p * k)
 GAlgebra.xi_ray_resolvent_factor.{u_1} {K : Type u_1} [Lean.Grind.CommRing K] (pole inverse scale : K)
   (inverseRead : pole * inverse = 1) (p q : Nat) :
   pole ^ (p + q) * (inverse ^ q * (1 - scale * inverse) ^ p) = (pole - scale) ^ p
@@ -1358,6 +1373,7 @@ GAlgebra.xi_ray_square_modulus.{u_1} {K : Type u_1} [Lean.Grind.CommRing K] (a h
   (a + height ^ 2 - lateral ^ 2) ^ 2 + (2 * lateral * height) ^ 2 =
     (a + height ^ 2 + lateral ^ 2) ^ 2 - 4 * a * lateral ^ 2
 GAlgebra.xi_ray_strip_budget (slope : Rat) (range : 9 ≤ slope) : 2 * (slope + 1) * slope ≤ 9 / 4 * slope ^ 2 - 1
+GAlgebra.xi_ray_window_endpoint : 9 / 4 * 715716 = 1269 ^ 2
 GAlgebra.xi_real_resolvent_constants :
   9 / 4 + 1 < 13 ^ 2 ∧
     (1 / 2 - 13 / 8 / 5) / (5 / 2) > 1 / 16 ∧ (1 / 2 + 2 / 5) / 2 < 1 / 2 ∧ 8 * (1 / 2) / 128 = 1 / 32
@@ -1777,13 +1793,18 @@ GAlgebra.zero_line_readback_along_shift.{u_1, u_2, u_3} {Z : Type u_1} {W : Type
 'GAlgebra.xi_origin_summation_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
 'GAlgebra.xi_paired_phase_numerator' depends on axioms: [propext, Classical.choice, Quot.sound]
 'GAlgebra.xi_polynomial_sector_constants' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.xi_product_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.xi_product_moment_margin' depends on axioms: [propext, Classical.choice, Quot.sound]
 'GAlgebra.xi_ray_amplitude_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
 'GAlgebra.xi_ray_height_budgets' depends on axioms: [propext, Classical.choice, Quot.sound]
 'GAlgebra.xi_ray_height_sides' depends on axioms: [propext, Classical.choice, Quot.sound]
 'GAlgebra.xi_ray_phase_chord' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.xi_ray_power_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.xi_ray_repeat_factor' depends on axioms: [propext, Classical.choice, Quot.sound]
 'GAlgebra.xi_ray_resolvent_factor' depends on axioms: [propext, Classical.choice, Quot.sound]
 'GAlgebra.xi_ray_square_modulus' depends on axioms: [propext, Classical.choice, Quot.sound]
 'GAlgebra.xi_ray_strip_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GAlgebra.xi_ray_window_endpoint' depends on axioms: [propext, Classical.choice, Quot.sound]
 'GAlgebra.xi_real_resolvent_constants' depends on axioms: [propext, Classical.choice, Quot.sound]
 'GAlgebra.xi_reflected_resolvent_split' depends on axioms: [propext, Classical.choice, Quot.sound]
 'GAlgebra.xi_separated_pole_budgets' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -1792,12 +1813,30 @@ GAlgebra.zero_line_readback_along_shift.{u_1, u_2, u_3} {Z : Type u_1} {W : Type
 'GAlgebra.zero_line_readback_along_shift' does not depend on any axioms
 
 $ python -B g_algebra_rh_ns/check_mapping.py
-Exit code 0, 0.277 s
-6 public references, 157 TeX mappings, 372 Lean theorems, 0 main-route dependencies on finite zeta verification
+Exit code 0, 0.429 s
+6 public references, 160 TeX mappings, 377 Lean theorems, 0 main-route dependencies on finite zeta verification
+
+附录独立有限抽样
+将以下 Lean 源码保存为独立构建目录上一级的 FiniteWindowSample.lean。
+
+import GAlgebra.ZetaWindow
+
+open GAlgebra.RationalComplex
+
+#eval zetaCriticalIndex 192 1024 60 14
+#eval (do
+  let b ← criticalLineBatches.head?
+  zetaCriticalSignTests b.lower b.upper (b.brackets.take 1) b.cutoff b.bits : Option (List Bool))
+
+$ lake env lean ../FiniteWindowSample.lean
+Exit code 0, 22.648 s
+some (74, 84)
+some [true]
 
 Lean 输入 SHA-256
 fde850d24186b6e99c8c0debd641fb3ab85198b109eb66f71a1fea02bd6ea1b3  g_algebra_rh_ns/lean/.gitignore
-ee40453b3adabef2d2b7706ce9818151c4f24eef6fe35b83b7abb960f53b2b5b  g_algebra_rh_ns/lean/Audit.lean
+9309981d2f437352ef3b44bc16b1c8426e94710489f1331e1924e73d3c6f357e  g_algebra_rh_ns/lean/Audit.lean
+8fa7d3a780d25a230d65218c29b0f5e88e7703318be8ba879e74f2ac68875bff  g_algebra_rh_ns/lean/GAlgebra.lean
 31a43fba15ad7986fb8b1c36a1fcd4ed87c78d17c386252fc18aece8acf913b6  g_algebra_rh_ns/lean/GAlgebra/AnalyticCertificates.lean
 bcccc18df5f1320d73e009b4ca64f24d176823450ce69d404140c45c95c89eb0  g_algebra_rh_ns/lean/GAlgebra/ArithmeticEnclosures.lean
 321d30cb501cba9866a6440ac5b05bf6428ec77d3a79483b5dc9de5ad28b707f  g_algebra_rh_ns/lean/GAlgebra/Chain.lean
@@ -1815,16 +1854,15 @@ df30971d063dd9271d05494907fd8aeb3be091d4237ab646244c1cca97467ae7  g_algebra_rh_n
 5f51a6693a69658a10d062020d1c61a9f45a4b07033a02bd757d9ddd421cd681  g_algebra_rh_ns/lean/GAlgebra/PrimePoisson.lean
 d997b7b65afadde1d9b39e6bc2b2cd7afe1cad3837854444dbd3622c6ae913db  g_algebra_rh_ns/lean/GAlgebra/Proof.lean
 dd368d7c6d8d4b729ffd73d814e92455af70c037cbbda85ba76039976e4fa6ec  g_algebra_rh_ns/lean/GAlgebra/Repair.lean
-eb96fe3d7f3d57733f82c0ca091dea50645f03115d491116d09bf6368a10baec  g_algebra_rh_ns/lean/GAlgebra/SpectralMoments.lean
+d52b777aba88b66907debd5bebc43b026cad155c3d8d3a49dd3c76d2b1e89bf9  g_algebra_rh_ns/lean/GAlgebra/SpectralMoments.lean
 dbd05065e19584600a0bd205f17effd8588a1c70fbad88d7ef75efe8fd8f76bd  g_algebra_rh_ns/lean/GAlgebra/Targets.lean
-ae985ba349f04b63a8ecb7414937de68c64631602a02e2a7f01accbb81b3b4b0  g_algebra_rh_ns/lean/GAlgebra/ZetaWindow.lean
-8fa7d3a780d25a230d65218c29b0f5e88e7703318be8ba879e74f2ac68875bff  g_algebra_rh_ns/lean/GAlgebra.lean
+ae68cb9b76594dcdf0e4053164a9ca5312d993956edf1459c752e82acb403609  g_algebra_rh_ns/lean/GAlgebra/ZetaWindow.lean
 2099361aa7ee0b8bccbab4f72dcd702e8e16d9c7420b9947e1f00b5c98b57016  g_algebra_rh_ns/lean/lake-manifest.json
 db7a9857d6d9fb4102064f1340ea44ff78dd261728ac2cdda4e253b80c2dfb82  g_algebra_rh_ns/lean/lakefile.toml
 582a63f8f9c5128067b688778c1051cf1464c3ca9d57b9325025c051c29b774a  g_algebra_rh_ns/lean/lean-toolchain
 
 映射输入 SHA-256
-da95859ee3f7d61d652459020f8577404b0da7d78309d6b8e8a52fc0348ed0d2  20261124_g_algebra_rh_ns_formal_system.tex
+914bb7fc32f91fd649cda978668e5ffb9dd11cd8ecc14f64bc5765dd3db4e185  20261124_g_algebra_rh_ns_formal_system.tex
 3b5e8520a8a2918d822de15403a54856f9a804e71de4e0b085d94ec96cf0ed30  g_algebra_rh_ns/check_mapping.py
 b27c6c9c7ecbb07e9ce26f300b67c73a9e0b88c96360057af08e7ef508aecc13  g_algebra_rh_ns/parts/analysis.texinc
 48732742b50896aa2e2da3f298242297195f6cdb0b67d81573ba3697200ccdff  g_algebra_rh_ns/parts/arithmetic_enclosures.texinc
@@ -1837,13 +1875,13 @@ b27c6c9c7ecbb07e9ce26f300b67c73a9e0b88c96360057af08e7ef508aecc13  g_algebra_rh_n
 786d213fdb36640fa25352d503e80f814c0915a78cbe253154fa3425f8334d54  g_algebra_rh_ns/parts/internal_basis.texinc
 baa3155af859bbf142e4ae84e793db0479dc4fd8d3f1b7392757d36b5a499631  g_algebra_rh_ns/parts/kinetic_limit.texinc
 1a03af7c7ffe0b62696924c8ae8f35e1817f4cbe5423d649a2dd6a499999d4b0  g_algebra_rh_ns/parts/law.texinc
-90fc6abab743c618d37ba59fbb2bc5b8dd3779a495b865ae53e10bfecead642f  g_algebra_rh_ns/parts/mapping.texinc
+a8c039902fd5f4a7ad8971fd58ebd71577079d46fa5b47b052239638299eaf68  g_algebra_rh_ns/parts/mapping.texinc
 7f252371c890b88843ed504bf483e407fd294e6a9d1b867f9cc4e2f50e631d4b  g_algebra_rh_ns/parts/prime_poisson.texinc
-d4bf2ccdd978d9fbe4b6feefec0ee420e730082b2f931fe6b38dcfaaf64a8511  g_algebra_rh_ns/parts/proof_guide.texinc
+80823ce1ec68deab01c748568978b9ce278f44d52f2cdc4d9f28593b103830a6  g_algebra_rh_ns/parts/proof_guide.texinc
 6f5e8c8434ea64132cd64aa41dec42083b45f99122a6630b29cc5a507c76f265  g_algebra_rh_ns/parts/repair.texinc
-82592abbf3f00328e1589fe27c3eaa1d823d24d456ddcf581435bfc8395922d1  g_algebra_rh_ns/parts/spectral_moments.texinc
+9a8d7496224dce812fa7217a3d42d4e935886d88045b3fa70cba1ef1392c93b1  g_algebra_rh_ns/parts/spectral_moments.texinc
 fd43a3c6e29841c4d290fded451c4e3ac8493dc29ef01cd5f9a9dfccad23763c  g_algebra_rh_ns/parts/targets.texinc
-8b3966e181152b022ac9d308e4dbd7727d8a378d41554839185f1ed70beace51  g_algebra_rh_ns/parts/zeta_window.texinc
-50b3398b75f66112abc1d8288467cb7279384987cf08ba611fc00c97b6f96a82  g_algebra_rh_ns/proof-index.md
-9a864a8fbca1cb725cc5971ebb34253986bd0db9ca4d21a4b3a4d1e4efe54b03  g_algebra_rh_ns/proof-map.json
+999fd4abdb3c516110f7435ea8fc47cce9643ab9b50f96715d64654e1db2902b  g_algebra_rh_ns/parts/zeta_window.texinc
+a782119915c371270f316e22c047ab310c0e8e3ef8ea71ed3b9609366f51332d  g_algebra_rh_ns/proof-index.md
+8f533abe564c2430bb4ab60f531488196a6695c854f732c28909ef347eba183d  g_algebra_rh_ns/proof-map.json
 961b1224a2e157e2e59ea685faae826e19f28f6f5569ec173c59e320089423a9  g_algebra_rh_ns/sources.json

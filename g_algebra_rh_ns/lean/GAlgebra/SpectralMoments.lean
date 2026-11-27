@@ -462,4 +462,68 @@ theorem spectral_coefficient_margin {R : Type _} [CommRing R] [LE R] [LT R]
     grind
   grind
 
+open Lean.Grind in
+theorem xi_ray_repeat_factor {K : Type _} [CommRing K] (x y : K) (p q k : Nat) :
+    (x ^ q * y ^ p) ^ k = x ^ (q * k) * y ^ (p * k) := by
+  induction k with
+  | zero => simp [Semiring.pow_zero, Semiring.one_mul]
+  | succ k ih =>
+    simp only [Semiring.pow_succ, ih, Nat.mul_succ, Semiring.pow_add]
+    grind
+
+theorem xi_product_budget {I : Type _} (bound anchor : I → Rat)
+    (nonnegative : ∀ i, 0 ≤ bound i) (budget : ∀ i, bound i ≤ anchor i) (word : List I) :
+    0 ≤ (word.map bound).prod ∧ (word.map bound).prod ≤ (word.map anchor).prod := by
+  induction word with
+  | nil =>
+    change (0 : Rat) ≤ 1 ∧ (1 : Rat) ≤ 1
+    decide
+  | cons i rest ih =>
+    simp only [List.map_cons, List.prod_cons]
+    have anchorNonnegative := Rat.le_trans (nonnegative i) (budget i)
+    exact ⟨Rat.mul_nonneg (nonnegative i) ih.1, Rat.le_trans
+      (Rat.mul_le_mul_of_nonneg_right (budget i) ih.1)
+      (Rat.mul_le_mul_of_nonneg_left ih.2 anchorNonnegative)⟩
+
+open Lean.Grind Std in
+theorem xi_product_moment_margin {R : Type _} [CommRing R] [LE R] [LT R]
+    [IsLinearOrder R] [LawfulOrderLT R] [OrderedRing R] (anchor tail readout : R)
+    (budget : 25 * tail ≤ 7 * anchor) (lower : anchor - tail ≤ readout) :
+    9 * (anchor + tail) ≤ 16 * readout := by
+  grind
+
+section PowerBounds
+open Lean.Grind Std
+attribute [local instance] Semiring.natCast
+
+theorem xi_ray_power_bound {R : Type _} [CommRing R] [LE R] [LT R]
+    [IsLinearOrder R] [LawfulOrderLT R] [OrderedRing R] (gain bound : R)
+    (archimedean : ∀ step level : R, 0 < step → ∃ k : Nat, level < (k : R) * step)
+    (bounded : ∀ k : Nat, gain ^ (k + 1) ≤ bound) : gain ≤ 1 := by
+  by_cases unit : gain ≤ 1
+  · exact unit
+  · have stepPos : 0 < gain - 1 := by grind
+    have bernoulli (k : Nat) : 1 + (k : R) * (gain - 1) ≤ gain ^ k := by
+      induction k with
+      | zero =>
+        rw [Semiring.natCast_zero, Semiring.pow_zero]
+        grind
+      | succ k ih =>
+        have growth := OrderedRing.mul_nonneg
+          (show 0 ≤ gain ^ k - (1 + (k : R) * (gain - 1)) by grind)
+          (show 0 ≤ gain by grind)
+        have stepSquare := OrderedRing.mul_nonneg
+          (show 0 ≤ gain - 1 by grind) (show 0 ≤ gain - 1 by grind)
+        have surplus := OrderedRing.mul_nonneg (show 0 ≤ (k : R) from
+          OrderedRing.natCast_nonneg) stepSquare
+        rw [Semiring.natCast_succ, Semiring.pow_succ]
+        grind
+    obtain ⟨k, crossed⟩ := archimedean (gain - 1) bound stepPos
+    have lower := bernoulli (k + 1)
+    rw [Semiring.natCast_succ] at lower
+    have upper := bounded k
+    grind
+
+end PowerBounds
+
 end GAlgebra

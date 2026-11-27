@@ -384,13 +384,18 @@ import GAlgebra.ZetaWindow
 #check GAlgebra.xi_origin_summation_bounds
 #check GAlgebra.xi_paired_phase_numerator
 #check GAlgebra.xi_polynomial_sector_constants
+#check GAlgebra.xi_product_budget
+#check GAlgebra.xi_product_moment_margin
 #check GAlgebra.xi_ray_amplitude_gap
 #check GAlgebra.xi_ray_height_budgets
 #check GAlgebra.xi_ray_height_sides
 #check GAlgebra.xi_ray_phase_chord
+#check GAlgebra.xi_ray_power_bound
+#check GAlgebra.xi_ray_repeat_factor
 #check GAlgebra.xi_ray_resolvent_factor
 #check GAlgebra.xi_ray_square_modulus
 #check GAlgebra.xi_ray_strip_budget
+#check GAlgebra.xi_ray_window_endpoint
 #check GAlgebra.xi_real_resolvent_constants
 #check GAlgebra.xi_reflected_resolvent_split
 #check GAlgebra.xi_separated_pole_budgets
@@ -779,13 +784,18 @@ import GAlgebra.ZetaWindow
 #print axioms GAlgebra.xi_origin_summation_bounds
 #print axioms GAlgebra.xi_paired_phase_numerator
 #print axioms GAlgebra.xi_polynomial_sector_constants
+#print axioms GAlgebra.xi_product_budget
+#print axioms GAlgebra.xi_product_moment_margin
 #print axioms GAlgebra.xi_ray_amplitude_gap
 #print axioms GAlgebra.xi_ray_height_budgets
 #print axioms GAlgebra.xi_ray_height_sides
 #print axioms GAlgebra.xi_ray_phase_chord
+#print axioms GAlgebra.xi_ray_power_bound
+#print axioms GAlgebra.xi_ray_repeat_factor
 #print axioms GAlgebra.xi_ray_resolvent_factor
 #print axioms GAlgebra.xi_ray_square_modulus
 #print axioms GAlgebra.xi_ray_strip_budget
+#print axioms GAlgebra.xi_ray_window_endpoint
 #print axioms GAlgebra.xi_real_resolvent_constants
 #print axioms GAlgebra.xi_reflected_resolvent_split
 #print axioms GAlgebra.xi_separated_pole_budgets

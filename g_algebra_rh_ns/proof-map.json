@@ -554,6 +554,22 @@
     "note": "核验平方谱模长恒等式、全方向半径的有理比较和高度偏差两侧的代数预算。解析极值、包络与实际谱点的严格超额区域在正文。"
   },
   {
+    "label": "prop:xi-product-moment-certificate",
+    "lean": [
+      "GAlgebra.xi_product_budget",
+      "GAlgebra.xi_product_moment_margin"
+    ],
+    "note": "核验任意长乘积的有理预算与有序环上的两型余量。实际谱权、系数范数及乘积测试的覆盖域在正文。"
+  },
+  {
+    "label": "thm:xi-joint-ray-gain",
+    "lean": [
+      "GAlgebra.xi_ray_repeat_factor",
+      "GAlgebra.xi_ray_power_bound"
+    ],
+    "note": "核验乘积的幂恒等式，以及阿基米德有序环中有界正整数幂推出底数至多为一。实际谱上的方向上确界、全称矩条件及其正向回读在正文。"
+  },
+  {
     "label": "lem:zeta-rational-polygon",
     "lean": [
       "GAlgebra.RationalComplex.rounded_coordinate_error",
@@ -613,6 +629,14 @@
       "GAlgebra.RationalComplex.zetaCriticalSignTests"
     ],
     "note": "六带的有理输入及七条水平切线可复算。坐标区间容量、总重数和实际通过数共同签发覆盖。"
+  },
+  {
+    "label": "cor:xi-window-ray-range",
+    "lean": [
+      "GAlgebra.xi_ray_window_endpoint",
+      "GAlgebra.RationalComplex.critical_line_batch_sizes"
+    ],
+    "note": "核验斜率端点的有理等式及临界线零点的批次数。正文由高度 1270 的窗口覆盖与偏差界推出所列斜率范围的半径下界。"
   },
   {
     "label": "thm:dyadic-log-enclosure",

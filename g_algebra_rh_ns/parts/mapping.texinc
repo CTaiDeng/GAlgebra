@@ -91,6 +91,8 @@ Lean 名称均在 \lean{GAlgebra} 命名空间。文件与行号见配套索引�
 \ref{thm:xi-bernstein-quadratic} & \lean{xi_paired_phase_numerator}\par \lean{xi_bernstein_quadratic_constants} & 核验两相位的通分消去和二次指数域的正质量、全尾有理预算。实际谱权的相位与峰值比较由正文证明。\\[.25em]
 \ref{thm:xi-bernstein-ray-readback} & \lean{xi_ray_resolvent_factor}\par \lean{xi_ray_amplitude_gap}\par \lean{xi_ray_phase_chord} & 核验有理方向上底数与极点的幂因子分解、非实谱点的模长严格超额和相位平均的弦线比较。算术 Cauchy 读数、收敛半径及最终非负性的全域回读在正文。\\[.25em]
 \ref{cor:xi-ray-strip-envelope} & \lean{xi_ray_square_modulus}\par \lean{xi_ray_strip_budget}\par \lean{xi_ray_height_budgets}\par \lean{xi_ray_height_sides} & 核验平方谱模长恒等式、全方向半径的有理比较和高度偏差两侧的代数预算。解析极值、包络与实际谱点的严格超额区域在正文。\\[.25em]
+\ref{prop:xi-product-moment-certificate} & \lean{xi_product_budget}\par \lean{xi_product_moment_margin} & 核验任意长乘积的有理预算与有序环上的两型余量。实际谱权、系数范数及乘积测试的覆盖域在正文。\\[.25em]
+\ref{thm:xi-joint-ray-gain} & \lean{xi_ray_repeat_factor}\par \lean{xi_ray_power_bound} & 核验乘积的幂恒等式，以及阿基米德有序环中有界正整数幂推出底数至多为一。实际谱上的方向上确界、全称矩条件及其正向回读在正文。\\[.25em]
 \ref{lem:grh-rank-one-base} & \lean{grand_riemann_rank_split}\par \lean{grand_riemann_rank_one_readback}\par \lean{zero_line_readback_along_shift} & 核验秩一与高秩的全秩拼接和保实坐标回读。正文给出阿代尔字符分解、Euler 平移及秩一纤维的量词覆盖。\\[.25em]
 \ref{thm:dirichlet-analytic-input} & \lean{dirichlet_gauss_rescale_vanish}\par \lean{reflected_zero_from_completed_equation} & 核验 Gauss 和置换后的域上消去及完备函数方程的反射传递。有限 Fourier 展开、Gaussian 输运、Mellin 回读和增长估计在正文。\\[.25em]
 \ref{thm:grh-square-spectrum} & \lean{automorphicSquareSpectrum}\par \lean{automorphic_square_halfline}\par \lean{finite_resolvent_common_denominator}\par \lean{finite_resolvent_numerator_ne_zero_at_pole} & 核验平方谱坐标和实半轴的精确回读，以及有限预解式的极点代数。对偶完备化、重数与整乘积在正文。\\[.25em]
@@ -186,6 +188,7 @@ Lean 名称均在 \lean{GAlgebra} 命名空间。文件与行号见配套索引�
 \ref{thm:critical-line-count-signs} & \lean{RationalComplex.zetaCriticalIndex}\par \lean{RationalComplex.zetaCriticalSignTests}\par \lean{RationalComplex.critical_dot_upper_bound}\par \lean{RationalComplex.crossing_coordinate} & 有限核验。核验水平切线的有理相位整数、过轴和临界线负点积。全带辐角原理与变号重数饱和见正文。\\[.25em]
 \ref{thm:zeta-certified-windows} & \lean{RationalComplex.zetaBands}\par \lean{unique_zero_fixed_under_reflection} & 有限核验。七十四个绕数及共享求值次数可执行复算。实际零点及其重数的反射回读在正文。\\[.25em]
 \ref{prop:critical-line-coverage} & \lean{RationalComplex.criticalLineBatches}\par \lean{RationalComplex.critical_line_batch_sizes}\par \lean{RationalComplex.zetaCriticalIndex}\par \lean{RationalComplex.zetaCriticalSignTests} & 有限核验。六带的有理输入及七条水平切线可复算。坐标区间容量、总重数和实际通过数共同签发覆盖。\\[.25em]
+\ref{cor:xi-window-ray-range} & \lean{xi_ray_window_endpoint}\par \lean{RationalComplex.critical_line_batch_sizes} & 有限核验。核验斜率端点的有理等式及临界线零点的批次数。正文由高度 1270 的窗口覆盖与偏差界推出所列斜率范围的半径下界。\\[.25em]
 \ref{thm:dyadic-log-enclosure} & \lean{atanhLogBounds}\par \lean{atanh_log_term_bounds}\par \lean{atanhLogSequence}\par \lean{dyadic_mantissa_bounds}\par \lean{naturalLogSequence} & 有限核验。从有理输入计算实际端点，证明嵌套、宽度趋零及整数二进制归约。与实对数的等同由正文积分证明。\\[.25em]
 \ref{prop:mangoldt-enclosure} & \lean{trial_prime_correct}\par \lean{prime_power_base_sound}\par \lean{prime_power_base_unique}\par \lean{prime_power_base_exact}\par \lean{mangoldtLogSequence} & 有限核验。素数幂判定、基底唯一性和端点生成均直接核验。实际 von Mangoldt 权重的实值读回使用对数包围定理。\\[.25em]
 \end{longtable}

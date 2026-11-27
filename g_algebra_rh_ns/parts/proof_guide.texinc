@@ -48,7 +48,9 @@
 \item[谱型。]
 定义~\ref{def:goals} 登记实际 \(\xi\) 所生成的全称矩条件 \(\mathsf E_\zeta\)。
 定理~\ref{thm:xi-moment-readback} 经正自伴算子和同源预解式给出
-该条件与全部非平凡零点位于临界线的双向等价。
+该条件与全部非平凡零点位于临界线的双向等价。命题~\ref{prop:xi-product-moment-certificate} 在所列任意长乘积族上给出两条矩不等式的同一余量。定理~\ref{thm:xi-joint-ray-gain} 给出全方向判据 \(\mathcal A=1\)。
+若每个 \(p>99q\) 方向的重复复合有界，该定理给出覆盖全部实多项式的 \(\pi_\zeta\)。
+正向回读 \(D_\zeta(\pi_\zeta)\) 即证毕经典黎曼原命题。
 定理~\ref{thm:grh-localized-moments} 与定理~\ref{thm:grh-family-readback}
 给出相应的 Dirichlet 纤维及全秩回读，保留各秩的解析输入和零点量词。
 
