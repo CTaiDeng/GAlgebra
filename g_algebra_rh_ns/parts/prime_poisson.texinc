@@ -200,7 +200,7 @@ Hardy--Littlewood 渐近式等价。
 前四个投影由定理~\ref{thm:prime-poisson-fiber} 与命题~\ref{prop:prime-additive-readback}
 给出。自守谱按定理~\ref{thm:grh-localized-moments} 与定理~\ref{thm:grh-family-readback}
 从每个实际算术矩泛函的全称正性回读 \(\mu\in[9/4,\infty)\)。
-秩一基例与高秩证书按引理~\ref{lem:grh-rank-one-base} 拼接成全秩覆盖。
+秩一基例与高秩证书按引理~\ref{lem:grh-rank-one-base} 拼接成全秩覆盖。给定全秩矩见证，其秩一平凡分量按定理~\ref{thm:grh-family-readback} 给出经典见证。
 定理~\ref{thm:prime-mellin-reuse} 保持两类输入共同的一阶扭曲迹。
 按定理~\ref{thm:proof} 合成时，分型、覆盖量词及回读恒等式随证书保存。
 因此只要运输或任务商保持这些读数，已核验的证据可以作为下一次合法复合的输入

@@ -524,6 +524,263 @@ theorem xi_ray_power_bound {R : Type _} [CommRing R] [LE R] [LT R]
     have upper := bounded k
     grind
 
+theorem xi_ray_subgeometric_bound {R : Type _} [Field R] [LE R] [LT R]
+    [IsLinearOrder R] [LawfulOrderLT R] [OrderedRing R] (gain : R)
+    (archimedean : ∀ step level : R, 0 < step → ∃ k : Nat, level < (k : R) * step)
+    (bounded : ∀ rate : R, 1 < rate → ∃ bound : R, ∀ k : Nat,
+      gain ^ (k + 1) ≤ bound * rate ^ (k + 1)) : gain ≤ 1 := by
+  by_cases unit : gain ≤ 1
+  · exact unit
+  · let rate := (gain + 1) / 2
+    have cancel (a b : R) (hb : 0 < b) : a / b * b = a := by
+      rw [Field.div_eq_mul_inv, Semiring.mul_assoc, Field.inv_mul_cancel (Preorder.ne_of_gt hb),
+        Semiring.mul_one]
+    have middle : rate * 2 = gain + 1 := cancel _ _ (by grind)
+    have aboveOne : 1 < rate := by grind
+    have positive : 0 < rate := by grind
+    have powersPositive (n : Nat) : 0 < rate ^ n := by
+      induction n with
+      | zero => rw [Semiring.pow_zero]; grind
+      | succ n ih => rw [Semiring.pow_succ]; exact OrderedRing.mul_pos ih positive
+    obtain ⟨bound, upper⟩ := bounded rate aboveOne
+    have normalized (k : Nat) : (gain / rate) ^ (k + 1) ≤ bound := by
+      apply (Field.IsOrdered.mul_le_mul_iff_of_pos_right (powersPositive (k + 1))).mp
+      rw [← CommSemiring.mul_pow, cancel gain rate positive]
+      exact upper k
+    have unitRatio := xi_ray_power_bound (gain / rate) bound archimedean normalized
+    have compare := OrderedRing.mul_le_mul_of_nonneg_right unitRatio (Preorder.le_of_lt positive)
+    rw [cancel gain rate positive, Semiring.one_mul] at compare
+    grind
+
 end PowerBounds
+
+theorem xi_ray_sector_endpoint :
+    let damping := (9977 / 10000 : Rat)
+    (1 / 120 : Rat) * (1 - damping / 120) ^ 111 < (111 : Rat) ^ 111 / 112 ^ 112 := by
+  decide +kernel
+
+theorem xi_heat_tail_constants :
+    let x := (19 / 4 : Rat)
+    let y := (10 / 3 : Rat)
+    (269 : Rat) ^ 2 + 269 < 270 ^ 2 ∧
+    (4 / 3 + 1 / 15 : Rat) ^ 2 < 2 ∧
+    (269 : Rat) < (33 / 2 : Rat) ^ 2 ∧
+    x * (33 / 2) < (4 / 3) * (269 - 210) ∧
+    8 * (270 : Rat) ^ 2 < (40 * 197) *
+      (1 + x + x ^ 2 / 2 + x ^ 3 / 6 + x ^ 4 / 24 + x ^ 5 / 120) ∧
+    (14 / 15 + 1 / 15 : Rat) = 1 ∧
+    y * (33 / 2) < (14 / 15) * (269 - 210) ∧
+    3 * (270 : Rat) ^ 2 < (40 * 197) *
+      (1 + y + y ^ 2 / 2 + y ^ 3 / 6 + y ^ 4 / 24 + y ^ 5 / 120 +
+        y ^ 6 / 720 + y ^ 7 / 5040 + y ^ 8 / 40320) := by
+  decide +kernel
+
+open Lean.Grind in
+theorem xi_heat_laplace_weights {K : Type _} [CommRing K] (pole inverse cap value : K)
+    (reciprocal : pole * inverse = 1) :
+    (inverse * value) ^ 2 = inverse ^ 2 * value ^ 2 ∧
+    (cap * pole - 1) * (inverse * value) ^ 2 = inverse * (cap - inverse) * value ^ 2 := by
+  have recover : (pole * inverse) * (cap * inverse * value ^ 2) =
+      cap * inverse * value ^ 2 := by rw [reciprocal, Semiring.one_mul]
+  constructor <;> grind
+
+open Lean.Grind Std in
+theorem xi_cosine_energy_weight {R : Type _} [CommRing R] [LE R] [LT R]
+    [IsLinearOrder R] [LawfulOrderLT R] [OrderedRing R]
+    (value cosine : R) (upper : cosine ≤ 1) :
+    0 ≤ value ^ 2 - cosine * value ^ 2 := by
+  have square : 0 ≤ value * value := by
+    by_cases h : 0 ≤ value
+    · exact OrderedRing.mul_nonneg h h
+    · have opp : 0 ≤ -value := by grind
+      have product := OrderedRing.mul_nonneg opp opp
+      grind
+  have weight := OrderedRing.mul_nonneg (show 0 ≤ 1 - cosine by grind) square
+  grind
+
+theorem xi_arithmetic_cutoff_constants :
+    let r := (1 / 270 : Rat)
+    (1 - 2 * (4 / 9 : Rat)) ^ 2 = 1 / 81 ∧
+    r * (1 + 2 * r) < (1 / 210 : Rat) * (1 - 2 / 200) := by
+  decide +kernel
+
+theorem xi_heat_chart_actions {X Y : Type _} (encode : X → Y) (decode : Y → X)
+    (leftInverse : ∀ x, decode (encode x) = x) (first second : X → X) (x : X) :
+    (encode ∘ second ∘ decode) ((encode ∘ first ∘ decode) (encode x)) =
+      encode (second (first x)) := by
+  simp [Function.comp_def, leftInverse]
+
+open Lean.Grind in
+theorem xi_tph_haar_split {R : Type _} [CommRing R] (a b x y : R) :
+    (a + b) * (a * x ^ 2 + b * y ^ 2) - (a * x + b * y) ^ 2 =
+      a * b * (x - y) ^ 2 := by grind
+
+open Lean.Grind Std in
+theorem xi_tph_orthogonal_path {R : Type _} [CommRing R] [LE R] [LT R]
+    [IsLinearOrder R] [LawfulOrderLT R] [OrderedRing R]
+    (residual captured : Nat → R)
+    (split : ∀ n, residual n = captured n + residual (n + 1))
+    (cover : ∀ n, 3 * residual n ≤ 4 * captured n) (n : Nat) :
+    (4 : R) ^ n * residual n ≤ residual 0 := by
+  have scaleNonnegative (k : Nat) : 0 ≤ (4 : R) ^ k := by
+    induction k with
+    | zero => rw [Semiring.pow_zero]; grind
+    | succ k ih => rw [Semiring.pow_succ]; exact OrderedRing.mul_nonneg ih (by grind)
+  induction n with
+  | zero => rw [Semiring.pow_zero, Semiring.one_mul]; grind
+  | succ k ih =>
+    have step : 4 * residual (k + 1) ≤ residual k := by
+      have balance := split k
+      have capturedBound := cover k
+      grind
+    have scaled := OrderedRing.mul_le_mul_of_nonneg_left step (scaleNonnegative k)
+    rw [Semiring.pow_succ, Semiring.mul_assoc]
+    grind
+
+open Lean.Grind in
+theorem xi_heat_harmonic_weights {R : Type _} [CommRing R] (c : R) :
+    3 + 4 * c + (2 * c ^ 2 - 1) = 2 * (1 + c) ^ 2 := by grind
+
+theorem xi_tph_base_factorial (f : Nat → Nat) (start : f 0 = 1)
+    (step : ∀ m, f (m + 1) = (m + 1) * f m) (s k : Nat) :
+    f s * f k ≤ f (s + k) := by
+  induction k with
+  | zero => simp [start]
+  | succ k ih =>
+    change f s * f (k + 1) ≤ f ((s + k) + 1)
+    rw [step (s + k), step k]
+    calc
+      f s * ((k + 1) * f k) = (k + 1) * (f s * f k) := by ac_rfl
+      _ ≤ (s + k + 1) * f (s + k) := Nat.mul_le_mul (by omega) ih
+
+open Lean.Grind in
+theorem xi_centered_lattice_forcing {R : Type _} [CommRing R]
+    (regulator lattice background primes moment kernel : R)
+    (regularized : regulator * background = kernel)
+    (divisors : lattice * primes = background * background + moment) :
+    (regulator * lattice) * (background - primes) =
+      kernel * (lattice - background) - regulator * moment := by
+  have square : regulator * (background * background) = kernel * background := by
+    rw [← regularized]
+    grind
+  calc
+    (regulator * lattice) * (background - primes) =
+        (regulator * background) * lattice - regulator * (lattice * primes) := by grind
+    _ = kernel * lattice - (regulator * (background * background) + regulator * moment) := by
+      rw [regularized, divisors]
+      grind
+    _ = kernel * (lattice - background) - regulator * moment := by rw [square]; grind
+
+open Lean.Grind in
+theorem xi_causal_lattice_inverse {R : Type _} [CommRing R]
+    (regulator lattice inverseLattice background kernel : R)
+    (regularized : regulator * background = kernel)
+    (unit : regulator + kernel = 1) (inverse : lattice * inverseLattice = 1) :
+    (regulator * lattice) * ((1 + background) * inverseLattice) = 1 := by
+  have left : regulator * (1 + background) = 1 := by
+    calc
+      regulator * (1 + background) = regulator + regulator * background := by grind
+      _ = 1 := by rw [regularized, unit]
+  calc
+    (regulator * lattice) * ((1 + background) * inverseLattice) =
+        (regulator * (1 + background)) * (lattice * inverseLattice) := by grind
+    _ = 1 := by rw [left, inverse]; grind
+
+open Lean.Grind in
+theorem xi_heat_weight_transport {K X : Type _} [CommRing K]
+    (first second combined state : X → K)
+    (compose : ∀ x, second x * first x = combined x) (x : X) :
+    second x * (first x * state x) = combined x * state x := by
+  rw [← Semiring.mul_assoc, compose]
+
+theorem xi_positive_subfamily_readback {Weight : Type _} (positive small : Weight → Prop)
+    (energy : {s : Weight // positive s} → Prop) {conclusion : Prop}
+    (witness : ∀ s, energy s)
+    (readback : (∀ s : {s : Weight // positive s ∧ small s},
+      energy ⟨s.val, s.property.1⟩) → conclusion) :
+    (∀ s : {s : Weight // positive s ∧ small s}, energy ⟨s.val, s.property.1⟩) ∧
+      conclusion := by
+  have restricted (s : {s : Weight // positive s ∧ small s}) :
+      energy ⟨s.val, s.property.1⟩ := witness _
+  exact ⟨restricted, readback restricted⟩
+
+open Lean.Grind in
+theorem xi_tph_pair_transform {R : Type _} [CommRing R] (t x y : R) :
+    (x + t * y) + t * (t * x - y) = (1 + t ^ 2) * x ∧
+    t * (x + t * y) - (t * x - y) = (1 + t ^ 2) * y ∧
+    (x + t * y) ^ 2 + (t * x - y) ^ 2 = (1 + t ^ 2) * (x ^ 2 + y ^ 2) := by
+  constructor
+  · grind
+  · constructor <;> grind
+
+theorem xi_packet_ratio_quotient {m n : Nat} (hm : 0 < m) :
+    let g := m.gcd n
+    Nat.Coprime (m / g) (n / g) ∧ (m / g) * g = m ∧ (n / g) * g = n ∧
+    ∀ d e k : Nat, Nat.Coprime d e → m = d * k → n = e * k →
+      k = g ∧ m / g = d ∧ n / g = e := by
+  dsimp only
+  have hg := Nat.gcd_pos_of_pos_left n hm
+  refine ⟨Nat.coprime_div_gcd_div_gcd hg, Nat.div_mul_cancel (Nat.gcd_dvd_left m n),
+    Nat.div_mul_cancel (Nat.gcd_dvd_right m n), ?_⟩
+  intro d e k coprime left right
+  have greatest : m.gcd n = k := by
+    rw [left, right, Nat.gcd_mul_right, coprime.gcd_eq_one, Nat.one_mul]
+  have hk : 0 < k := greatest ▸ hg
+  rw [greatest, left, right]
+  exact ⟨rfl, Nat.mul_div_cancel _ hk, Nat.mul_div_cancel _ hk⟩
+
+open Lean.Grind in
+theorem xi_packet_signed_gram {R : Type _} [CommRing R] (values : List R) :
+    let sums := values.foldr (fun x (p : R × R) => (x + p.1, x * p.1 + p.2)) (0, 0)
+    sums.1 = values.sum ∧
+      values.sum ^ 2 = (values.map (fun x => x ^ 2)).sum + 2 * sums.2 := by
+  induction values with
+  | nil => simp <;> grind
+  | cons x xs ih =>
+    dsimp only at ih ⊢
+    obtain ⟨total, square⟩ := ih
+    simp only [List.foldr_cons, List.map_cons, List.sum_cons, total]
+    constructor
+    · trivial
+    · grind
+
+open Lean.Grind in
+theorem xi_signed_block_abel {R : Type _} [CommRing R]
+    (partialSum weight : Nat → R) (n : Nat) :
+    ((List.range n).map (fun j => (partialSum (j + 1) - partialSum j) * weight j)).sum =
+      partialSum n * weight n - partialSum 0 * weight 0 +
+      ((List.range n).map (fun j => partialSum (j + 1) * (weight j - weight (j + 1)))).sum := by
+  have appendOne (xs : List R) (v : R) : (xs ++ [v]).sum = xs.sum + v := by
+    induction xs with
+    | nil => simp <;> grind
+    | cons a xs step =>
+      simp only [List.cons_append, List.sum_cons, step]
+      grind
+  induction n with
+  | zero => simp <;> grind
+  | succ n ih =>
+    simp only [List.range_succ, List.map_append, List.map_cons, List.map_nil, appendOne, ih]
+    grind
+
+open Lean.Grind in
+/-- Finite signed Gram difference used in the classical fiber's local window estimate. -/
+theorem xi_packet_gram_compression {R I J : Type _} [CommRing R]
+    (left : List I) (right : List J) (u p : I → R) (v q : J → R) :
+    (left.map (fun i => (right.map (fun j => u i * v j - p i * q j)).sum)).sum =
+      (left.map (fun i => u i - p i)).sum * (right.map v).sum +
+      (left.map p).sum * (right.map (fun j => v j - q j)).sum := by
+  have row (i : I) (ys : List J) :
+      (ys.map (fun j => u i * v j - p i * q j)).sum =
+        (u i - p i) * (ys.map v).sum + p i * (ys.map (fun j => v j - q j)).sum := by
+    induction ys with
+    | nil => simp <;> grind
+    | cons j js ih =>
+      simp only [List.map_cons, List.sum_cons, ih]
+      grind
+  induction left with
+  | nil => simp <;> grind
+  | cons i xs ih =>
+    simp only [List.map_cons, List.sum_cons, ih, row i right]
+    grind
 
 end GAlgebra

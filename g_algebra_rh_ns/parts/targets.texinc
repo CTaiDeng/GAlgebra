@@ -142,7 +142,7 @@ T_{ij;k,l}+\beta(b_{kl},b_{ij})-T_{ij;l,k}.
 
 \begin{definition}[原目标与共同结构的核验条件]\label{def:goals}
 数论目标由定义~\ref{def:arithmetic-family} 给出。谱型采用定义~\ref{def:grh-obligation} 的全秩标准自守纤维。
-经典黎曼猜想记为 \(\mathsf B_{\mathbf 1}\)，要求实际 \(\zeta\) 的每个非平凡零点满足 \(\Re\rho=1/2\)。
+经典黎曼猜想记为 \(\mathsf B_{\mathbf 1}\)，是 \(F=\QQ\)、秩一平凡特征与零虚平移的特例，要求实际 \(\zeta\) 的每个非平凡零点满足 \(\Re\rho=1/2\)。
 对定理~\ref{thm:xi-moment-generator} 的实际算术矩泛函，记
 \[
  \boxed{\mathsf E_\zeta:\quad
@@ -152,7 +152,7 @@ T_{ij;k,l}+\beta(b_{kl},b_{ij})-T_{ij;l,k}.
 定理~\ref{thm:xi-moment-readback} 给出正算子闭合和等价的全阶矩阵，
 定理~\ref{thm:xi-single-positive-kernel} 与定理~\ref{thm:xi-bernstein-ray-readback}
 分别给出同一义务的算术差商和有理方向收敛半径读数。
-本项的法空间验收式为已证的 \(\mathsf E_\zeta\Longleftrightarrow\mathsf B_{\mathbf 1}\)。
+本项已证 \(\mathsf E_\zeta\Longleftrightarrow\mathsf B_{\mathbf 1}\)。给定全秩矩见证，定理~\ref{thm:grh-family-readback} 的秩一限制给出 \(\pi_\zeta\)，原命题在正向回读处证毕。
 
 流体目标 \(\mathsf P_{\rm NS}\) 要求对任意 \(\nu>0\) 有
 \(f\in C_c^\infty(\RR^3\times(0,\infty);\RR^3)\)，以及 \(0\le t<1\) 的光滑速度 \(u\) 和压力 \(p\) 满足
@@ -193,7 +193,7 @@ T_{ij;k,l}+\beta(b_{kl},b_{ij})-T_{ij;l,k}.
 \]
 全秩读数取 \(r=1\)。在 \(\QQ\) 上，引理~\ref{lem:grh-rank-one-base}
 核验平凡特征与原始 Dirichlet 特征对秩一的覆盖。
-平凡特征的回读见定义~\ref{def:goals}，原始特征的解析输入见定理~\ref{thm:dirichlet-analytic-input}。
+平凡特征取零虚平移即有 \(L(s,\mathbf1)=\zeta(s)\)，其经典回读见定理~\ref{thm:xi-moment-readback}。原始特征的解析输入见定理~\ref{thm:dirichlet-analytic-input}。
 每个秩保留 \((n,\pi,\tilde\pi)\)、完备化数据、算术预解式及矩泛函。
 定理~\ref{thm:grh-family-readback} 在给定解析输入的秩域内证明零点条件与逐纤维全称矩正性的等价。
 \end{definition}

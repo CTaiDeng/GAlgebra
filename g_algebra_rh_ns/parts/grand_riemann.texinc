@@ -35,7 +35,7 @@
 由 Euler 读数及解析延拓得到所述等式。虚平移保持完备化中非平凡零点的实部，
 其抽象回读见 \lean{zero_line_readback_along_shift}。
 
-全秩结论限制到秩 \(1\) 即涵盖平凡及原始 Dirichlet 纤维的零点命题，限制到 \(n\ge2\) 得高秩结论。
+全秩结论在 \(n=1\) 取导子 \(1\) 的平凡特征和 \(\tau=0\)，即得 \(\zeta\) 的全部非平凡零点结论，见 \lean{grand_riemann_rank_one_readback}。其余秩一纤维按上述虚平移读取，限制到 \(n\ge2\) 得高秩结论。
 合成时，秩 \(1\) 使用上述基例，秩 \(n\ge2\) 使用高秩证书。
 这里的等价比较零点谓词，\(\mathsf B_G\) 的证书来源由母体的合法域单独登记。
 秩的逻辑分解见 \lean{grand_riemann_rank_split}。
@@ -228,7 +228,7 @@ Gamma 非零性由定理~\ref{thm:criticalstrip} 的积分乘积证明。
 中心重数仍由原 \(R_\pi\) 的留数回读。
 \end{proof}
 
-\begin{theorem}[从算术矩正性回读给定秩域]\label{thm:grh-family-readback}
+\begin{theorem}[秩域矩见证的回读与经典秩一特例]\label{thm:grh-family-readback}
 对已核验解析输入的纤维，\(r=1,2\)，有
 \[
  \boxed{\quad
@@ -237,14 +237,23 @@ Gamma 非零性由定理~\ref{thm:criticalstrip} 的积分乘积证明。
  \forall n\ge r\ \forall\pi\in\mathcal A_n(F),\quad \mathsf E_\pi .
  \quad}
 \]
-对偶纤维共用 \(R_\pi,\mathcal L_\pi\) 及局部化矩证书。平凡基例的 \(\mathsf E_\pi\) 即
-定义~\ref{def:goals} 的 \(\mathsf E_\zeta\)。
+对偶纤维共用 \(R_\pi,\mathcal L_\pi\) 及局部化矩证书。在 \(F=\QQ,\ r=1\) 时，给定右侧的全秩法空间见证 \(\Pi\)，
+取其秩一平凡分量即可得到定义~\ref{def:goals} 的见证 \(\pi_\zeta:\mathsf E_\zeta\)。
+因此 \(\mathsf P_{\rm GRH}^{\ge1}(\QQ)\Rightarrow\mathsf B_{\mathbf1}\)。
 \end{theorem}
 \begin{proof}
 定理~\ref{thm:grh-localized-moments} 给出逐纤维等价，对完整秩域取全称。
 秩下限的依赖类型核验见 \lean{grandRiemannGoal} 与 \lean{grand_riemann_fiber_equivalence}。
 交换 \(\pi,\tilde\pi\) 保持 \(B_\pi,Y_\pi,A_\pi\) 及重数，故保持全部算术矩读数。
-在平凡纤维 \(\Xi_{\pi_0}=\xi\)，有 \(R_{\pi_0}=2R\)，正因子 \(2\) 保持两条序关系。
+取 \(\pi_0=\mathbf1\) 为导子 \(1\)、虚平移 \(\tau=0\) 的秩一表示，则 \(L(s,\pi_0)=\zeta(s)\)。
+它自对偶，故 \(\Xi_{\pi_0}=\xi\)、\(B_{\pi_0}=\xi^2\)。对数导数给出 \(R_{\pi_0}=2R\)，逐项取 Taylor 系数即得 \(\mathcal L_{\pi_0}=2\mathcal L\)。
+对每个 \(p\in\RR[t]\)，全秩见证的分量 \(\Pi(1,\pi_0)\) 给出
+\[
+ 0\le 2\mathcal L(tp^2)\le \tfrac49\bigl(2\mathcal L(p^2)\bigr).
+\]
+两端的矩读数同除以 \(2\)，即得覆盖全部实多项式的 \(\pi_\zeta\)。施用定理~\ref{thm:xi-moment-readback} 的正向回读，
+经典命题即在 \(D_\zeta(\pi_\zeta):\mathsf B_{\mathbf1}\) 处证毕。
+正因子约去与全族见证的限制、回读分别见 \lean{grh_trivial_moment_scale}、\lean{grh_trivial_moment_readback}。
 在原始 Dirichlet 纤维，定理~\ref{thm:dirichlet-analytic-input} 给出实际算术输入。
 秩一的原标签和虚平移由引理~\ref{lem:grh-rank-one-base} 覆盖。
 

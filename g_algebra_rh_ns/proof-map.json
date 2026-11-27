@@ -565,9 +565,93 @@
     "label": "thm:xi-joint-ray-gain",
     "lean": [
       "GAlgebra.xi_ray_repeat_factor",
-      "GAlgebra.xi_ray_power_bound"
+      "GAlgebra.xi_ray_power_bound",
+      "GAlgebra.xi_ray_sector_endpoint",
+      "GAlgebra.xi_ray_subgeometric_bound"
     ],
-    "note": "核验乘积的幂恒等式，以及阿基米德有序环中有界正整数幂推出底数至多为一。实际谱上的方向上确界、全称矩条件及其正向回读在正文。"
+    "note": "核验重复幂恒等式、斜率 111 的严格有理端点，以及阿基米德有序环的有界幂推论和有序域的次指数推论。实际谱的区间估计、谱尾、方向上确界及全称矩回读在正文。"
+  },
+  {
+    "label": "prop:xi-heat-moment-forms",
+    "lean": [
+      "GAlgebra.xi_heat_tail_constants",
+      "GAlgebra.xi_heat_laplace_weights"
+    ],
+    "note": "核验谱尾预算和两组 Laplace 权重的代数恒等式。正文证明任意多项式的配对恒等式、两个热核的下界及非负卷积测试的矩正性。正文还给出二项矩的热核读数及偶次重复方向的卷积变号数。混合配对在非负多项式对上取乘数二，乘数一等价于全称矩条件。"
+  },
+  {
+    "label": "prop:xi-arithmetic-quadratic",
+    "lean": [
+      "GAlgebra.xi_cosine_energy_weight",
+      "GAlgebra.xi_arithmetic_cutoff_constants"
+    ],
+    "note": "核验余弦差乘平方的有序环正性及集中测试的有理预算。正文证明全和恒等式、绝对尾界、消去有理项后的全称判据及固定截断的负方向。"
+  },
+  {
+    "label": "thm:xi-law-heat-evolution",
+    "lean": [
+      "GAlgebra.xi_heat_chart_actions"
+    ],
+    "note": "核验带逆编码的有序动作复合。正文构造实际初始分布和唯一热演化，验证谱态的留数逆、算子协变及固定正时间的全称能量判据。"
+  },
+  {
+    "label": "thm:xi-tph-orthogonal-solve",
+    "lean": [
+      "GAlgebra.xi_tph_haar_split",
+      "GAlgebra.xi_tph_orthogonal_path"
+    ],
+    "note": "核验加权二分的正交平方恒等式及任意长度复合的残差收缩。正文证明全部正权指数下高阶尾部的全域预算，并将全称见证归结为起始单元的能量预算。"
+  },
+  {
+    "label": "cor:xi-tph-boundary-budget",
+    "lean": [
+      "GAlgebra.xi_heat_harmonic_weights"
+    ],
+    "note": "核验三个频率权重的完全平方恒等式。正文从实际法空间预解式和热解推出临界权上所有多项式阶的可积性，并给出任意有限 TPH 起始单元族的统一预算。"
+  },
+  {
+    "label": "thm:xi-tph-base-projection",
+    "lean": [
+      "GAlgebra.xi_tph_base_factorial"
+    ],
+    "note": "核验全部自然数阶的阶乘乘积下界。正文由实际 G-PDE 给出起始均值的正交尾界、中心化一次素数输入的低阶 Gram 预算及未经中心化的非负频率读数的发散。"
+  },
+  {
+    "label": "thm:xi-causal-cell-readback",
+    "lean": [
+      "GAlgebra.xi_centered_lattice_forcing",
+      "GAlgebra.xi_causal_lattice_inverse",
+      "GAlgebra.xi_heat_weight_transport",
+      "GAlgebra.xi_positive_subfamily_readback",
+      "GAlgebra.xi_tph_pair_transform",
+      "GAlgebra.Task.encode_exact",
+      "GAlgebra.Task.Exact.run",
+      "GAlgebra.Task.Exact.signature"
+    ],
+    "note": "Lean 核验卷积分解与逆、权乘子复合、正权子族的限制与回读、同阶二分的自逆和平方恒等式，以及任务商沿任意作用词保持读数。正文给出实际 TPH 树的协变复合、常数测试的充分性、临界权增益及整数格强迫的衰减。"
+  },
+  {
+    "label": "prop:xi-centered-inverse-packets",
+    "lean": [
+      "GAlgebra.xi_packet_ratio_quotient",
+      "GAlgebra.xi_packet_signed_gram"
+    ],
+    "note": "Lean 核验公因子与互素指标的唯一分解、有限有符号平方和的交叉项展开。正文从实际强迫消去连续逆核的增长项，并证明每个小正权上的对角界、两类交叉项的统一可和性以及全体交叉项绝对和的发散。"
+  },
+  {
+    "label": "cor:xi-signed-packet-blocks",
+    "lean": [
+      "GAlgebra.xi_signed_block_abel"
+    ],
+    "note": "Lean 核验任意长度带符号序列的分部求和恒等式。正文从实际整数格热核证明双侧高斯局部化、带互素条件的区间抵消、远隔项的绝对界及相近指标子族的窗口统一界。"
+  },
+  {
+    "label": "thm:xi-packet-gram-compression",
+    "lean": [
+      "GAlgebra.xi_packet_gram_compression",
+      "GAlgebra.xi_tph_base_factorial"
+    ],
+    "note": "经典纤维的独立 G-PDE 判据。Lean 核验有限测试的带符号 Gram 差及阶乘乘积界。正文证明全体整数的窗口迹范数界、正交细分的一致性、低阶读数恢复和整块符号估计。"
   },
   {
     "label": "lem:zeta-rational-polygon",
@@ -667,7 +751,7 @@
       "GAlgebra.grand_riemann_rank_one_readback",
       "GAlgebra.zero_line_readback_along_shift"
     ],
-    "note": "核验秩一与高秩的全秩拼接和保实坐标回读。正文给出阿代尔字符分解、Euler 平移及秩一纤维的量词覆盖。"
+    "note": "核验全秩零点结论限制到指定秩一表示、按秩拼接及虚平移保实部。正文以导子 1 的平凡特征和零平移识别经典纤维。"
   },
   {
     "label": "thm:dirichlet-analytic-input",
@@ -703,9 +787,11 @@
     "lean": [
       "GAlgebra.grandRiemannGoal",
       "GAlgebra.grand_riemann_fiber_equivalence",
-      "GAlgebra.grand_riemann_rank_split"
+      "GAlgebra.grand_riemann_rank_split",
+      "GAlgebra.grh_trivial_moment_scale",
+      "GAlgebra.grh_trivial_moment_readback"
     ],
-    "note": "核验逐纤维给定等价的秩域全称拼接。实际算术局部化矩义务在各纤维登记。"
+    "note": "核验秩域等价拼接，以及给定全秩矩见证后取秩一平凡分量、约去因子 2 并施用经典回读。正文从自对偶完备化导出实际矩泛函的倍数关系。"
   },
   {
     "label": "thm:prime-poisson-fiber",

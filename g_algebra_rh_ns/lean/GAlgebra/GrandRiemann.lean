@@ -137,4 +137,30 @@ theorem automorphic_defect_zero_iff (imaginaryDefect positionDefect : Rat)
 theorem automorphic_dyadic_tail_constant : (2 * 3 : Rat) / (1 - 1 / 16) = 32 / 5 := by
   decide +kernel
 
+open Lean.Grind Std in
+/-- The two moment inequalities are invariant under the trivial fiber's factor of two. -/
+theorem grh_trivial_moment_scale {K : Type w} [CommRing K] [LE K] [LT K]
+    [IsLinearOrder K] [LawfulOrderLT K] [OrderedRing K] (shifted mass cap : K) :
+    (0 ≤ 2 * shifted ∧ 2 * shifted ≤ cap * (2 * mass)) ↔
+      (0 ≤ shifted ∧ shifted ≤ cap * mass) := by
+  grind
+
+open Lean.Grind Std in
+/-- Restrict the given family of moment witnesses to rank one, normalize, and read back once. -/
+theorem grh_trivial_moment_readback {Rep : Nat → Type u} {Test : Type v} {K : Type w}
+    {Z : Type _} [CommRing K] [LE K] [LT K] [IsLinearOrder K] [LawfulOrderLT K] [OrderedRing K]
+    (zeta : ZeroLineSpec Z K) (trivialFiber : Rep 1) (cap : K)
+    (shifted mass : (n : Nat) → Rep n → Test → K) (zetaShifted zetaMass : Test → K)
+    (trivialShifted : ∀ p, shifted 1 trivialFiber p = 2 * zetaShifted p)
+    (trivialMass : ∀ p, mass 1 trivialFiber p = 2 * zetaMass p)
+    (familyWitness : ∀ (k : Nat) (π : Rep (k + 1)) (p : Test),
+      0 ≤ shifted (k + 1) π p ∧ shifted (k + 1) π p ≤ cap * mass (k + 1) π p)
+    (readback : (∀ p, 0 ≤ zetaShifted p ∧ zetaShifted p ≤ cap * zetaMass p) → zeta.goal) :
+    zeta.goal := by
+  apply readback
+  intro p
+  have bounds := familyWitness 0 trivialFiber p
+  rw [trivialShifted p, trivialMass p] at bounds
+  exact (grh_trivial_moment_scale (zetaShifted p) (zetaMass p) cap).mp bounds
+
 end GAlgebra

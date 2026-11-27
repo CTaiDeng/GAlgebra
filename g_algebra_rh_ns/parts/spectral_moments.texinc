@@ -154,7 +154,7 @@
 
 \begin{theorem}[经典黎曼母体义务的精确回读]\label{thm:xi-moment-readback}
 取定理~\ref{thm:xi-moment-generator} 的实际 \(\mathcal L\)，记 \(c=4/9\)。
-按定义~\ref{def:goals} 登记唯一母体命题
+按定义~\ref{def:goals} 登记母体命题
 \(\mathsf E_\zeta=\bigl[\forall p\in\RR[t],\ 0\le\mathcal L(tp^2)\le c\,\mathcal L(p^2)\bigr]\)。
 则
 \[
@@ -200,7 +200,7 @@
 \(\mathcal L\) 在该空间只读取有限个固定矩，所以 \(\mathcal L(q)\ge0\)。
 分别取 \(q=tp^2\) 和 \(q=(c-t)p^2\)，即得 \(\mathsf E_\zeta\)。
 \end{proof}
-
+给定全秩矩见证时，定理~\ref{thm:grh-family-readback} 将其秩一平凡分量归一化为 \(\pi_\zeta\)，上述正向回读即给出 \(D_\zeta(\pi_\zeta)\)。
 \begin{theorem}[同一算术正性的差商读数]\label{thm:xi-single-positive-kernel}
 对实际 \(R\) 令 \(K_0(x,y)=(xR(x)-yR(y))/(x-y)\)，对角取导数。
 在某个固定负侧原点邻域 \(K_0\) 的任意有限取样半正，等价于 \(\mathsf E_\zeta\)。
@@ -1039,8 +1039,19 @@ Euler 对数导数的绝对值至多为
  \mathcal A=\sup_\mu\bigl(a|t_\mu|+|1-at_\mu|\bigr)\ge1,\qquad
  \mathcal A=1\ \Longleftrightarrow\ \mathsf E_\zeta .
 \]
-若对每一对 \(p>99q\) 都有 \(\sup_{k\ge1}E_{kp,kq}<\infty\)，则得到
-覆盖全部 \(f\in\RR[t]\) 的母体见证 \(\pi_\zeta:\mathsf E_\zeta\)，其正向回读为 \(D_\zeta(\pi_\zeta):\mathsf B_{\mathbf 1}\)。
+令 \(\ell=p/q\)，\(m_\ell=\ell^\ell/(1+\ell)^{1+\ell}\)。对 \(p\le111q\)，
+所有 \(k\ge1\) 均有 \(E_{kp,kq}\le1\)。对任意方向，满足 \(|\mu|\ge a/m_\ell\) 的极点
+在每次重复中的归一化增益也都至多为 \(1\)。
+
+以下两项分别等价于 \(\mathsf E_\zeta\)：
+\begin{enumerate}
+\item 对每对 \(p>119q\) 和每个 \(\varepsilon>0\)，存在 \(C_{p,q,\varepsilon}>0\)，使
+  \(E_{kp,kq}\le C_{p,q,\varepsilon}e^{\varepsilon k}\) 对所有正整数 \(k\) 成立。
+\item 对每对 \(p>119q\)，实际 \(R\) 在 \(270<|\mu|<a/m_\ell\) 中的每个极点均满足
+  \(a|t_\mu|\,|1-at_\mu|^\ell\le m_\ell\)。
+\end{enumerate}
+由任一项的证明即得覆盖全部 \(f\in\RR[t]\) 的法空间见证
+\(\pi_\zeta:\mathsf E_\zeta\)，其正向回读为 \(D_\zeta(\pi_\zeta):\mathsf B_{\mathbf 1}\)。
 \end{theorem}
 \begin{proof}
 固定 \(R\) 的极点 \(\mu\)，置 \(x=a|t_\mu|\)、\(y=|1-at_\mu|\)。
@@ -1059,11 +1070,1262 @@ Euler 对数导数的绝对值至多为
 由于 \(t_\mu=1/\mu\ne0\)，\(\mathcal A=1\) 等价于每个 \(\mu\in[a,\infty)\)。
 定理~\ref{thm:spectral-positive-operator} 将这一条件与 \(\mathsf E_\zeta\) 双向等同。
 
+写 \(x=a|t_\mu|\)、\(y=|1-at_\mu|\)。由 \(2\Re\mu>a\) 知 \(|\mu-a|<|\mu|\)，故 \(y<1\)。
+定向增益在该极点的底数为
+\[
+ \frac{|P_{p,q}(t_\mu)|}{M_{p,q}}=\left(\frac{x y^\ell}{m_\ell}\right)^q .
+\]
+若 \(|\mu|\ge a/m_\ell\)，则 \(x\le m_\ell\)，底数至多为 \(1\)。
+对实单极点 \(\mu_*\)，有 \(y=1-x\)，而 \(m_\ell=\max_{0\le s\le1}s(1-s)^\ell\)。
+定理~\ref{thm:xi-coefficient-cone} 证明 \(|\mu|\le270\) 内只有 \(\mu_*\)。
+对其余极点，\(x<a/270=1/120\)，并由定理~\ref{thm:xi-bernstein-ranges} 证明中的角度界有
+\(y\le1-\kappa x\)，其中 \(\kappa=9977/10000\)。
+
+对 \(0<\ell\le111\)，函数 \(s(1-\kappa s)^\ell\) 在 \([0,1/120]\) 上递增，
+因为其导数的符号由 \(1-(1+\ell)\kappa s>0\) 决定。
+以 \(b=1-\kappa/120\) 记右端点的因子。比值 \(b^\ell/(120m_\ell)\) 的对数导数
+为 \(\log(b(1+\ell)/\ell)>0\)，后一不等式同样来自 \((1+\ell)\kappa<120\)。
+端点的严格有理比较
+\[
+  \frac1{120}\left(1-\frac{9977}{1200000}\right)^{111}
+        <\frac{111^{111}}{112^{112}}
+\]
+见 \lean{xi_ray_sector_endpoint}。故整个斜率区间都有
+\(xy^\ell\le b^\ell/120<m_\ell\)（\(\mu\ne\mu_*\)）。
+结合实单极点和精确半径公式即得 \(E_{p,q}\le1\)。
+
 同一方向重复 \(k\) 次时，\(P_{kp,kq}=P_{p,q}^k\)、\(M_{kp,kq}=M_{p,q}^k\)，
-精确半径公式给出 \(E_{kp,kq}=E_{p,q}^k\)。乘积的幂恒等式见 \lean{xi_ray_repeat_factor}。
-固定 \(p>99q\)，取假设给出的上界 \(C_{p,q}\)。若 \(E_{p,q}=1+d\) 且 \(d>0\)，则
-\(E_{kp,kq}\ge1+kd\)，由阿基米德性可取 \(k\) 使 \(1+kd>C_{p,q}\)，与上界矛盾。故 \(E_{p,q}\le1\)。
-有序环推导见 \lean{xi_ray_power_bound}。这给出每对 \(p>99q\) 的完整半径下界。
+故 \(E_{kp,kq}=E_{p,q}^k\)，见 \lean{xi_ray_repeat_factor}。
+若 \(E_{p,q}\le1\)，任意 \(\varepsilon>0\) 都可取 \(C_{p,q,\varepsilon}=1\)。
+反之，若 \(E_{p,q}>1\)，取 \(1<r<E_{p,q}\) 及 \(\varepsilon=\log r\)。
+第一项使 \((E_{p,q}/r)^k\) 对一切 \(k\ge1\) 有界，而 Bernoulli 不等式给出
+\((E_{p,q}/r)^k\ge1+k(E_{p,q}/r-1)\)，矛盾。
+两步有序代数推导见 \lean{xi_ray_power_bound} 及 \lean{xi_ray_subgeometric_bound}。
+对固定方向，第二项与 \(E_{p,q}\le1\) 等价，因为圆盘内的实单极点及外侧谱尾均已受控，
+而 \(R\) 亚纯，所列有界环域内仅有有限个极点。
+
+斜率下端 \(119\) 来自同一个谱间隔。若实际 \(R\) 有非实极点 \(\mu\)，它满足 \(|\mu|>270\)，
+故 \(\ell_0=|\mu|/a-1>119\)。此时 \(x=1/(1+\ell_0)\)，且由严格三角不等式 \(y>1-x\)。
+所以 \(xy^{\ell_0}>x(1-x)^{\ell_0}=m_{\ell_0}\)。由连续性，同一严格不等式也在某个
+有理方向 \(\ell=p/q>119\) 成立，违背任一项所给的 \(E_{p,q}\le1\)。
+由此所有极点均为实数，满足 \(y=1-x\)，从而每个方向的底数均至多为 \(1\)。
 定理~\ref{thm:xi-bernstein-ray-readback} 遂给出 \(\pi_\zeta:\mathsf E_\zeta\)。
+反向由同一定理，全称矩条件给出所需半径，故两项都成立。
 定理~\ref{thm:xi-moment-readback} 的正向回读给出 \(D_\zeta(\pi_\zeta):\mathsf B_{\mathbf 1}\)，原命题在此证毕。
+\end{proof}
+
+\begin{proposition}[实际预解式的热核与两条局部化矩配对]\label{prop:xi-heat-moment-forms}
+沿用定理~\ref{thm:xi-moment-generator} 的实际 \(R,\mathcal L\) 及 \(a=9/4,\ c=1/a\)。
+令 \(\mu_*\) 为定理~\ref{thm:xi-coefficient-cone} 的实单极点，\(\lambda=1/\mu_*\)。
+对 \(s>0\) 定义
+\[
+ H_\xi(s)=\sum_\mu d_\mu e^{-s\mu},\qquad J_\xi(s)=-cH_\xi'(s)-H_\xi(s).
+\]
+两个实核在整个正半轴满足
+\[
+ H_\xi(s)\ge\tfrac78 e^{-\mu_*s},\qquad
+ J_\xi(s)\ge\tfrac78(c\mu_*-1)e^{-\mu_*s}.
+\]
+任取实多项式 \(f(t)=\sum_j f_jt^j\)，定义
+\[
+ F(u)=\sum_j f_j\frac{u^j}{j!},\qquad
+ C_f(s)=\int_0^s F(u)F(s-u)\,du .
+\]
+同一个 \(f\) 的两项矩读数精确等于
+\[
+ \mathcal L(tf^2)=\int_0^\infty H_\xi(s)C_f(s)\,ds,\qquad
+ \mathcal L((c-t)f^2)=\int_0^\infty J_\xi(s)C_f(s)\,ds .
+\]
+若 \(C_f\) 在正半轴非负，则右端分别至少为
+\(\tfrac78\lambda^2 f(\lambda)^2\) 和
+\(\tfrac78\lambda(c-\lambda)f(\lambda)^2\)。
+特别地，任一在正半轴同号的 \(F\) 都给出两条局部化不等式。
+对 \(K=H_\xi,J_\xi\)，记
+\(B_K(U,V)=\int_0^\infty\int_0^\infty K(u+v)U(u)V(v)\,du\,dv\)。
+对任意在正半轴非负的实多项式 \(U,V\)，有
+\[
+ 0\le B_K(U,V)\le 2\sqrt{B_K(U,U)B_K(V,V)} .
+\]
+两个核在同一量词下都满足乘数为 \(1\) 的上界，当且仅当 \(\mathsf E_\zeta\) 成立。
+\end{proposition}
+\begin{proof}
+写 \(\mu=h+iv\)。命题~\ref{prop:xi-polynomial-sector} 证明中的平方谱界给出 \(v^2\le h\)。
+定理~\ref{thm:xi-coefficient-cone} 的证明给出 \(\sum_\mu d_\mu/|\mu|<1/40\) 及
+\(200<\mu_*<210\)。其他极点满足 \(|\mu|>270\)，故
+\(h>269\)，因为 \(269^2+269<270^2\)。又有 \(|\mu|\le h+1\)。
+这些界使热级数及其逐项导数在 \(s>0\) 的紧区间上绝对一致收敛。共轭配对给出实值。
+
+同时估计 \(H_\xi\) 与 \(J_\xi/(c\mu_*-1)\)。两者在谱点 \(\mu\) 的因子 \(w_\mu\)
+分别为 \(1\) 与 \((\mu-a)/(\mu_*-a)\)，在实单极点都等于 \(1\)。
+对其余极点，\(|w_\mu|\le(h+1)/197\)，因为 \(2h>a\) 给出 \(|\mu-a|<|\mu|\)。
+两种因子的辐角均满足 \(|\arg w_\mu|\le 1/15\)，其中
+\(|v|/(h-a)\le16/(15\sqrt h)\le1/15\)。
+若 \(s\sqrt h\le4/3\)，则相位绝对值至多为 \(4/3+1/15=7/5\)，
+由 \(\cos x\ge1-x^2/2\) 得该项实部非负。
+其余各项满足 \(s(h-\mu_*)>(4/3)(h-210)/\sqrt h\)。
+它们的绝对值之和除以实单极点的贡献，至多为
+\[
+ \left(\sum_{\mu\ne\mu_*}\frac{d_\mu}{|\mu|}\right)
+ \sup_{h\ge269}(h+1)^2\exp\!\left(-\frac{4(h-210)}{3\sqrt h}\right)/197 .
+\]
+上确界在 \(269\) 取得，因为对数导数
+\(2/(h+1)-(2/3)(h^{-1/2}+210h^{-3/2})<0\)。
+由 \(\sqrt{269}<33/2\) 和 \((4/3)\cdot59>(19/4)(33/2)\)，
+所列相对上界小于 \(270^2e^{-19/4}/(40\cdot197)<1/8\)。
+最后一步用 \(e^{19/4}\ge\sum_{j=0}^{5}(19/4)^j/j!\)，有理预算见 \lean{xi_heat_tail_constants}。
+加回实单极点即得两条热核下界。
+
+对每个 \(\mu\)，分部积分给出
+\(\int_0^\infty e^{-\mu u}F(u)\,du=t_\mu f(t_\mu)\)。
+取 \(s=u+v'\) 后，卷积 \(C_f\) 的 Laplace 积分为这个数的平方。
+交换两个积分及谱和有绝对控制。具体地，
+\(\int_0^\infty e^{-hu}|F(u)|\,du\le A_f/h\)，其中
+\(A_f=\sum_j |f_j|/38^j\)，而 \(\sum_\mu d_\mu(1+|\mu|)/h^2<\infty\)。
+乘以 \(1\) 或 \(c\mu-1\) 后的平方分别为
+\(t_\mu^2 f(t_\mu)^2\) 和 \(t_\mu(c-t_\mu)f(t_\mu)^2\)，
+见 \lean{xi_heat_laplace_weights}。求和遂给出对任意 \(f\) 的两条恒等式。
+若 \(C_f\ge0\)，将热核下界代入积分，并在 \(\mu_*\) 读取卷积，得到所述正性余量。
+若 \(f\ne0\)，则 \(F\) 在充分小的正区间上严格同号，故 \(C_f\) 在该区间为正，
+在 \(C_f\ge0\) 的测试域内有 \(\lambda^2 f(\lambda)^2=\int_0^\infty e^{-\mu_*s}C_f(s)\,ds>0\)。
+例如 \(F(u)=(1-bu)^{2n}\) 允许任意 \(b>0,\ n\ge1\) 和交替系数。
+对于带符号的 \(C_f\)，验收使用上面两个积分的符号。取 \(f(t)=1-t\) 即有
+\(C_f(s)=s-s^2+s^3/6\) 及 \(C_f(3)=-3/2\)。
+
+定理~\ref{thm:xi-moment-readback} 的二项矩也可直接从同一热核读取。对任意 \(j\ge1,n\ge0\)，
+\[
+ B_{j,n}=\frac1{(j+n-1)!}\int_0^\infty s^{j+n-1}e^{-as}
+                 (-1)^n\frac{d^n}{ds^n}\bigl(e^{as}H_\xi(s)\bigr)\,ds .
+\]
+逐项导数给出因子 \((\mu-a)^n\)，其 Laplace 积分为
+\((\mu-a)^n/\mu^{j+n}=t_\mu^j(1-at_\mu)^n\)。
+交换求和与积分所需的绝对和为 \(\sum_\mu d_\mu|\mu-a|^n/h^{j+n}<\infty\)，
+因为 \(|\mu-a|<|\mu|\le h+1\)、\(h>38\) 且 \(\sum_\mu d_\mu/|\mu|<\infty\)。
+
+在任意有理方向上，取正整数 \(p,q,k\) 和 \(g(t)=t^{kq-1}(1-at)^{kp}\)。
+则 \(B_{2kq,2kp}=\mathcal L(tg^2)=\int_0^\infty H_\xi(s)C_g(s)\,ds\)。
+写 \(m=2kp,r=2kq-1\)。对每个 \(w>0\)，该测试卷积的 Laplace 变换为
+\(w^{-2}g(1/w)^2=(w-a)^m/w^{r+m+1}\)。在 \(w=a\) 处取前 \(m\) 项导数，得
+\(\int_0^\infty s^d e^{-as}C_g(s)\,ds=0\)（\(0\le d<m\)）。
+记 \(g_i=[t^i]g(t)\)。卷积系数为 \([s^\ell]C_g=\sum_{i+j+1=\ell}g_i g_j/\ell!\)，
+所以 \(C_g(s)/s^r\) 是次数恰为 \(m\) 的多项式。
+若 \(C_g\) 在正半轴的变号点少于 \(m\) 个，将这些点对应的线性因子相乘，
+所得次数小于 \(m\) 的多项式与 \(C_g\) 的乘积严格同号于有限集以外，
+其带权积分非零，违背上面的正交关系。
+因此 \(C_g\) 在正半轴恰有 \(2kp\) 个简单变号点。
+这些方向读数保留热核对变号卷积的完整积分。
+
+这族正性见证的覆盖域还受谱坐标约束。若 \(C_f\ge0\)，对任意 \(\Re w\ge\mu_*\)，
+同一卷积的 Laplace 变换给出
+\[
+ |w^{-1} f(1/w)|^2
+ =\left|\int_0^\infty e^{-ws} C_f(s)\,ds\right|\le\lambda^2 f(\lambda)^2 .
+\]
+引理~\ref{lem:xi-resolvent-shells} 给出 \(R(-X^2)\ge(\log X)/(16X)\)（\(X\ge1024\)），
+故实际 \(R\) 还有其他极点，否则该读数为 \(O(X^{-2})\)。
+任取其中一个 \(\mu\)，则 \(\Re\mu>269>\mu_*\)。
+若上述测试能在这两个谱坐标上同时逼近 \(g(t)=t-\lambda\)，
+右侧趋于零而左侧在 \(w=\mu\) 处趋于 \(|t_\mu(t_\mu-\lambda)|^2>0\)，矛盾。
+
+为控制两项测试之间的配对，将 \(K=\sum_\mu d_\mu k_\mu e^{-s\mu}\) 与
+\(G_K(s)=\sum_\mu d_\mu |k_\mu|e^{-s\Re\mu}\) 比较，其中 \(k_\mu=1\) 或 \(c\mu-1\)。
+写 \(A=k_{\mu_*}e^{-s\mu_*}>0\)。在其余项中，以 \(s\sqrt h\le14/15\) 选出的部分
+在 \(G_K\) 中的和记作 \(L\)，其余部分的和记作 \(T\)。前一部分的相位绝对值
+至多为 \(14/15+1/15=1\)，故其在 \(K\) 中的实部至少为 \(L/2\)。
+对后一部分重用前面的谱尾估计，得
+\[
+ \frac{T}{A}\le \frac{1}{40\cdot197}\sup_{h\ge269}
+ (h+1)^2\exp\!\left(-\frac{14(h-210)}{15\sqrt h}\right)
+ <\frac{270^2 e^{-10/3}}{40\cdot197}<\frac13 .
+\]
+上确界取在 \(269\)，因为对数导数为
+\(2/(h+1)-(7/15)(h^{-1/2}+210h^{-3/2})<0\)。
+这里用 \((14/15)\cdot59>(10/3)(33/2)\) 及
+\(e^{10/3}\ge\sum_{j=0}^8(10/3)^j/j!\)，见 \lean{xi_heat_tail_constants}。
+于是 \(K\ge A+L/2-T\ge(A+L+T)/2=G_K/2\)，另由三角不等式有 \(K\le G_K\)。
+
+对在正半轴非负的 \(U,V\)，这一比较可以积分。记
+\(\widehat U(h)=\int_0^\infty e^{-hu}U(u)\,du\)，则 \(B_{G_K}(U,V)\) 是
+实数 \(\widehat U(h),\widehat V(h)\) 关于正权 \(d_\mu |k_\mu|\) 的内积。
+其收敛性由上述绝对控制给出。这个内积的 Cauchy--Schwarz 不等式给出
+\[
+ 0\le B_K(U,V)\le B_{G_K}(U,V)
+ \le\sqrt{B_{G_K}(U,U)B_{G_K}(V,V)}
+ \le 2\sqrt{B_K(U,U)B_K(V,V)} .
+\]
+完整的矩见证等价于两核对所有这些 \(U,V\) 满足
+\(B_K(U,V)^2\le B_K(U,U)B_K(V,V)\)。
+正向由半正型的 Cauchy--Schwarz 不等式给出。反向，任意实多项式 \(F\) 可写成
+\(U-V\)，其中 \(U=(F+1)^2/4,\ V=(F-1)^2/4\)。所列上界遂给出
+\(B_K(F,F)\ge(\sqrt{B_K(U,U)}-\sqrt{B_K(V,V)})^2\)。
+系数变换 \(f_j\mapsto f_j/j!\) 为双射，两条配对恒等式保留了全部实多项式的量词。
+\end{proof}
+
+\begin{proposition}[实际预解式的算术二次型与素数幂全和]\label{prop:xi-arithmetic-quadratic}
+取定理~\ref{thm:xi-moment-generator} 的实际 \(R,\mathcal L\) 及 \(a=9/4,\ c=1/a\)。
+令 \(t(v)=(a+v^2)^{-1}\)，对实多项式 \(f(t)=\sum_i f_i t^i\) 和 \(y\ge0\) 置
+\[
+ Q_y(f)=\frac1\pi\int_0^\infty \cos(yv)\,t(v)^2 f(t(v))^2\,dv,\qquad
+ A_4(f)=\sum_i |f_i|4^i .
+\]
+记 \(\psi=\Gamma'/\Gamma\)，\(\kappa=(\psi(1/4)-\log\pi)/2<0\)，
+\(\omega(y)=e^{-y/2}/(1-e^{-2y})\)（\(y>0\)）。
+当 \(n=p^k\) 为素数幂时置 \(\Lambda(n)=\log p\)，其余取零。则对每个 \(f\) 有
+\[
+\begin{aligned}
+ \mathcal L(tf^2)
+ &=\tfrac14 f(1/2)^2+\kappa Q_0(f)
+   +\int_0^\infty \omega(y)\bigl(Q_0(f)-Q_y(f)\bigr)\,dy\\
+ &\hspace{18mm}-\sum_{n\ge2}\frac{\Lambda(n)}{\sqrt n}\,Q_{\log n}(f).
+\end{aligned}
+\]
+积分项对所有实多项式非负。对每个 \(N\ge2\)，素数幂和的绝对尾部至多为
+\[
+ 2 A_4(f)^2 \sum_{n>N}\frac{\log n}{n^{1/2+\sqrt2}} .
+\]
+母体命题 \(\mathsf E_\zeta\) 等价于下式对所有 \(g\in\RR[t]\) 成立。
+在式中取 \(f=(1-2t)g\)，则
+\[
+ \sum_{n\ge2}\frac{\Lambda(n)}{\sqrt n}Q_{\log n}(f)
+ \ \le\ \kappa Q_0(f)+\int_0^\infty \omega(y)\bigl(Q_0(f)-Q_y(f)\bigr)\,dy .
+\]
+把恒等式右端的素数幂和截至任意固定 \(N\) 后，所得二次型在
+\(f_j=(1-2t)t^j\) 上对一切充分大的 \(j\) 严格为负。实际全和给出的
+\(\mathcal L(tf_j^2)\) 对所有 \(j\ge3\) 严格为正。
+\end{proposition}
+\begin{proof}
+在 \(|z|\le1/4\) 取 \(w=\sqrt{a-z}\) 的正实部分支，令 \(I_y(z)=e^{-yw}/(2w)\)。
+有 \(\Re w\ge\sqrt2\)。对实 \(w>0\)，将 \(e^{iyv}/(v^2+w^2)\) 沿上半圆积分，
+圆弧贡献为 \(O(1/r)\)（半径 \(r\to\infty\)），极点 \(iw\) 的留数给出
+\[
+ I_y(z)=\frac1\pi\int_0^\infty\frac{\cos(yv)}{a+v^2-z}\,dv .
+\]
+两侧在所取分支全纯，故等式在圆盘上成立。在圆内展开几何级数，常数及各次导数
+可由可积函数控制，得到
+\(\sum_{i,j}f_i f_j[z^{i+j+1}]I_y(z)=Q_y(f)\)。
+圆周上的 Cauchy 估计给出 \(\lvert[z^m]I_y\rvert\le 4^m e^{-\sqrt2\,y}/(2\sqrt2)\)，
+所以 \(|Q_y(f)|\le 2 A_4(f)^2 e^{-\sqrt2\,y}\)。这同时给出所列绝对尾界。
+
+引理~\ref{lem:xi-resolvent-shells} 证明中的 Gamma 对数导数级数在 \(1/4+w/2\)
+与 \(1/4\) 处相减，把每项分母写为指数积分并对几何级数求和，可得
+\[
+ \tfrac12\bigl(\psi(1/4+w/2)-\psi(1/4)\bigr)
+ =\int_0^\infty \omega(y)(1-e^{-wy})\,dy .
+\]
+实 \(w>0\) 时各差项的积分非负，复 \(w\) 在紧子集时由
+\(1-e^{-wy}=O(y)\) 及 \(\omega\) 在无穷远的指数衰减延拓。又由该引理证明中
+\(\psi(x)\le\log x\) 得 \(\kappa<0\)。定理~\ref{thm:xi-moment-generator}
+的两个有理项合为 \((a-1/4-z)^{-1}=(2-z)^{-1}\)。于是同一预解式满足
+\[
+ R(z)=\frac1{2-z}+\kappa I_0(z)
+    +\int_0^\infty\omega(y)(I_0(z)-I_y(z))\,dy
+    -\sum_{n\ge2}\frac{\Lambda(n)}{\sqrt n}\,I_{\log n}(z).
+\]
+积分在圆盘上一致绝对收敛，最后一和由 \(\sum_{n\ge2}(\log n)n^{-1/2-\sqrt2}\) 控制。
+施用上述有限系数配对即得恒等式。有理项给出 \(\tfrac14 f(1/2)^2\)。
+此外，\(Q_0-Q_y\) 的被积函数是
+\((1-\cos(yv))(t(v)f(t(v)))^2/\pi\)，逐点非负，
+相应的有序环因子见 \lean{xi_cosine_energy_weight}。
+
+取 \(f=(1-2t)g\) 消去有理项。若所列全和不等式对全部 \(g\) 成立，
+则实际离散谱在权 \(b_\mu=d_\mu t_\mu^2(1-2t_\mu)^2\) 下的二次型半正。
+这些权绝对可和，且均非零，因为 \(t_\mu=1/\mu\) 及 \(\Re\mu>38\)。
+引理~\ref{lem:spectral-polynomial-density} 遂给出全部 \(\mu\) 为实，故 \(\mu>a\)。
+定理~\ref{thm:spectral-positive-operator} 给出完整的 \(\mathsf E_\zeta\)。
+反向以每个这样的 \(f\) 代入全称矩条件即得所列不等式。
+因此全和比较的证明即可在法空间给出 \(\pi_\zeta\)，再用定理~\ref{thm:xi-moment-readback}
+的已证正向回读即证毕原命题。
+
+最后令 \(f_j=(1-2t)t^j\)。用 \(Q_0(f_j)>0\) 归一化其积分权，得 \(v\ge0\) 上的概率测度
+\(d\nu_j=t(v)^{2j+2}(1-2t(v))^2\,dv/(\pi Q_0(f_j))\)。
+因 \(0<t(v)\le4/9\)，有 \(1/81\le (1-2t(v))^2\le1\)。写 \(l=2j+2\)，
+对 \(v(a+v^2)^{-(l-1)}\) 的导数在正半轴上积分，两个端点的值都为零。
+所得恒等式为
+\((2l-3)\int_0^\infty v^2(a+v^2)^{-l}\,dv=a\int_0^\infty(a+v^2)^{-l}\,dv\)。
+于是 \(\int v^2\,d\nu_j\le 81a/(4j+1)\)，且
+\[
+ 0\le 1-\frac{Q_y(f_j)}{Q_0(f_j)}\le\frac{81a\,y^2}{2(4j+1)} .
+\]
+由于 \(\int_0^\infty y^2\omega(y)\,dy<\infty\)，归一化后的积分项趋于零。
+固定 \(N\) 时有限和逐项取极限，截断二次型除以 \(Q_0(f_j)\) 后趋于
+\(\kappa-\sum_{2\le n\le N}\Lambda(n)/\sqrt n<0\)。
+对实际全和，取命题~\ref{prop:xi-product-moment-certificate} 的 \(r=1/270,\lambda=1/\mu_*\)。
+有 \(t\in\mathcal C_r\)，且
+\(r(1+2r)<(1/210)(1-2/200)<\lambda(1-2\lambda)\)，
+故 \(t(1-2t)\in\mathcal C_r\)，有理预算见 \lean{xi_arithmetic_cutoff_constants}。
+当 \(j\ge3\) 时写 \(f_j=t^2[t(1-2t)]t^{j-3}\)，该命题给出正余量，
+因为实单极点的权非零且 \(f_j(\lambda)>0\)。
+\end{proof}
+
+\begin{theorem}[实际谱型纤维的 G-PDE 与协变演化]\label{thm:xi-law-heat-evolution}
+沿用命题~\ref{prop:xi-arithmetic-quadratic} 的 \(R,a,\kappa,\omega,\Lambda\)。
+在广义集合的 G 代数中，保留实际输入、类型、合法作用词、测试及随附证据。
+在热演化图册取法空间变量 \(\tau>0,\ x\in\RR\)。对测试函数 \(\varphi\) 记
+\(\varphi_e(y)=(\varphi(y)+\varphi(-y))/2\)，定义初始分布
+\[
+\begin{aligned}
+ \langle W,\varphi\rangle
+ &=\int_{\RR}\cosh(y/2)\varphi(y)\,dy+\kappa\varphi(0)\\
+ &\quad+\int_0^\infty\omega(y)\,[\varphi(0)-\varphi_e(y)]\,dy
+ -\sum_{n\ge2}\frac{\Lambda(n)}{\sqrt n}\varphi_e(\log n).
+\end{aligned}
+\]
+记 \(p_\tau(x)=(4\pi\tau)^{-1/2}e^{-x^2/(4\tau)}\)。以下 Cauchy 问题在指数加权分布类中有唯一解：
+\[
+ (\partial_\tau-\partial_x^2+a)U=0,\qquad U(0)=W,\qquad
+ U(\tau,x)=e^{-a\tau}\langle W,p_\tau(x-\cdot)\rangle .
+\]
+这里的测试空间由光滑函数组成，其每阶导数乘 \(e^{m|x|}\) 后有界（每个整数 \(m\ge1\)）。
+解在 \(\tau=0\) 有所列弱初迹。在每个有限时间段上，解对测试的配对绝对值
+由有限个上述半范数之和乘同一常数控制。
+取固定时刻 \(u=U(1,\cdot)\)，则
+\[
+ \mathsf E_\zeta\quad\Longleftrightarrow\quad
+ \int_{\RR}|u(x)|^2 e^{-2\varepsilon |x|}\,dx<\infty
+ \quad\text{对每个 }\varepsilon>0 .
+\]
+从实际 \(W\) 已有此积分对 \(\varepsilon>1/2\) 有限。
+\end{theorem}
+\begin{proof}
+初始分布的三个非离散项分别由指数衰减、原点取值和
+\(\varphi(0)-\varphi_e(y)=O(y)\) 控制。对 \(j\le\log n<j+1\)，
+素数幂权的总和至多为 \(C(1+j)e^{j/2}\)，由 \(\Lambda(n)\le\log n\) 和该段的整数数目得到。
+因而 \(W\) 在所列测试空间上连续。高斯卷积及其时空导数对正时间紧集绝对收敛，
+直接微分给出方程。高斯近似恒等核在各测试半范数中收敛，且有界时间段上保持共同的半范数上界，
+故初迹为 \(W\)。对两个解的差 \(V\) 及紧支光滑测试 \(\varphi\)，
+\(\langle V(s),e^{-a(\tau-s)}p_{\tau-s}*\varphi\rangle\) 在 \(0<s<\tau\) 的导数为零。
+以弱初迹及共同的半范数上界取两端极限，即得唯一性。高斯卷积满足
+\(U(\tau+s)=e^{-as}p_s*U(\tau)\)。逐段把上述权上界乘以平移高斯求和，得
+\[
+ |U(\tau,x)|\le C_\tau(1+|x|)e^{|x|/2}.
+\]
+同一估计适用于固定正时间的一阶空间导数，常数可依赖该时间。两式中的常数均独立于 \(x\)。
+
+为核验谱图册与热图册之间的性变态射，取 \(X>0,\ w=\sqrt{a+X}\)。
+高斯核的时间 Laplace 积分为 \(e^{-w|y|}/(2w)\)，因为它满足
+\((w^2-\partial_y^2)K=\delta_0\)，在两端衰减，导数在零点的跳量为 \(-1\)。
+在 \(x=0\) 对 \(U\) 取此变换。初始分布中的 \(\cosh\) 项给出 \(1/(2+X)\)，
+Gamma 差项可用 \(p_\tau(0)-p_\tau(y)\ge0\) 交换积分，离散项由
+\(\sum (\log n)n^{-1/2-w}<\infty\) 控制。命题~\ref{prop:xi-arithmetic-quadratic}
+的预解式恒等式遂给出 \(R(-X)\)。这也是 \(H_\xi(\tau)\) 的 Laplace 变换。
+变换的唯一性可由 \(v=e^{-\tau}\) 得到：取 \(X=1,2,\ldots\)，差所定的有限测度在
+\([0,1]\) 上的全部幂矩为零，多项式稠密，故在每个正时间 \(U(\tau,0)=H_\xi(\tau)\)。
+
+令 \(\mu\) 遍历同一 \(R\) 的极点，\(\nu_\mu^2=\mu-a\)。由命题~\ref{prop:xi-heat-moment-forms}
+的 \(h=\Re\mu>38,\ (\Im\mu)^2\le h\)，有
+\(\lvert\Im\nu_\mu\rvert^2\le h/(4(h-a))<1\)。
+对每个正时间，下式右侧在复 \(x\) 的紧集一致绝对收敛：
+\[
+ U(\tau,x)=\sum_\mu d_\mu e^{-\tau\mu}\cos(x\nu_\mu).
+\]
+确实，\(\sum d_\mu/|\mu|<\infty\)，紧集上的余弦增长由
+\(\exp(C\sqrt{|\mu|+a})\) 控制。高斯卷积也在 \(x\) 上整。两侧为偶函数，在 \(x=0\) 相等，
+满足同一方程，故所有偶阶空间导数均由 \((\partial_\tau+a)^j U(\tau,0)\) 给出，恒等式成立。
+
+更一般地，谱态保留共轭相容且至多多项式增长的系数 \(b_\mu\)。在上式各项乘 \(b_\mu\)
+得到热态 \(T_\tau b\)。其在 \(\Re w>1\) 的单侧空间 Laplace 变换为
+\[
+ \int_0^\infty e^{-wx}(T_\tau b)(x)\,dx
+   =\sum_\mu d_\mu b_\mu e^{-\tau\mu}\frac{w}{w^2+\mu-a}.
+\]
+右侧在极点外局部一致收敛。在 \(w^2=a-\mu\) 的任一根处，留数为
+\(d_\mu b_\mu e^{-\tau\mu}/2\)，包括 \(b_\mu=0\) 时的零读数。
+这给出 \(T_\tau\) 在其像上的逆和两次往返的恒等证据。
+谱动作 \(b_\mu\mapsto e^{-s\mu}b_\mu\) 运为热半群，\(b_\mu\mapsto t_\mu b_\mu\)
+运为卷积算子 \(S=(a-\partial_x^2)^{-1}\)，其核为 \(e^{-\sqrt a|x|}/(2\sqrt a)\)。
+对余弦逐项卷积即得 \(1/\mu\) 因子，因为 \(|\Im\nu_\mu|<1<\sqrt a\)。
+乘 \(1-2t\) 的测试因而运为 \(I-2S\)，在实际谱态上有逆，
+几何多项式逆的复合误差逐坐标等于 \((2t_\mu)^{n+1}\)，模一致小于等于 \(19^{-(n+1)}\)。
+
+对其他合法带类型边 \(A:X_i\rightharpoonup X_j\)，在这些已认证的像上按
+\(T_j A T_i^{-1}\) 运输，定义域取原定义域的像，携带两条局部化测试、后继及证据。
+相邻边中间的往返相消，任意有序词均保持其复合，见 \lean{xi_heat_chart_actions}。
+例如在多项式测试态 \(b_\mu=g(t_\mu)\) 上，乘 \(t\) 与 \(g\mapsto g'\) 都有明确定义，
+其交换子 \([\partial_t,M_t]\) 为恒等。导数只在多项式图册使用，该多项式可由随附系数读回。
+两动作在热图册上的交换子亦为恒等。此处的异构演化保留法态、合法词和证书的联合读数，
+符合定理~\ref{thm:pde-operator-transport} 与定理~\ref{thm:typed-cross-lhts} 的共同测试条件
+\cite{GNotes,GUnified}。
+
+最后令 \(b_\mu=1,\ \tau=1\)。若对每个 \(\varepsilon>0\) 有所列加权平方可积性，
+对 \(\Re w>0\) 取 \(0<\varepsilon<\Re w\)，Cauchy--Schwarz 不等式使上述 Laplace 积分
+在右半平面的紧集上全纯。每个非实 \(\mu\) 都会在 \(\Re w>0\) 给出一个非零留数，与全纯性矛盾。
+故实际 \(\mu\) 皆实且大于 \(38\)，定理~\ref{thm:spectral-positive-operator} 给出 \(\mathsf E_\zeta\)。
+反向由该定理可取全部 \(\nu_\mu\) 为实数，故 \(|u(x)|\le\sum_\mu d_\mu e^{-\Re\mu}\)，
+所列积分对每个正权指数有限。上述从 \(W\) 得到的增长界已直接覆盖 \(\varepsilon>1/2\)。
+\end{proof}
+
+\begin{theorem}[G-PDE 解的 TPH 高阶正交复合与全称回读]\label{thm:xi-tph-orthogonal-solve}
+取定理~\ref{thm:xi-law-heat-evolution} 的实际初值 \(W\) 和 \(u=U(1,\cdot)\)。
+固定 \(\varepsilon>0\)，记 \(dm=e^{-2\varepsilon|x|}\,dx\)。在每个整数单位区间
+取归一化常数测试，再对每个二分单元 \(I=I_0\cup I_1\) 取响应方向
+\[
+ h_I=\sqrt{\frac{m(I_0)m(I_1)}{m(I)}}\left(
+ \frac{\mathbf1_{I_0}}{m(I_0)}-\frac{\mathbf1_{I_1}}{m(I_1)}\right).
+\]
+全族记为 \(\mathcal B_\varepsilon\)。每个方向 \(b\) 的 TPH 系数由初值图册读为
+\[
+ c_b=\langle W,e^{-a}p_1*(e^{-2\varepsilon|\cdot|}b)\rangle .
+\]
+在每个整端点窗口 \([-L,L]\) 上，实际响应的高阶正交块可使每次复合后的残差范数
+至多为前次的一半。对完整空间，母体见证的求解义务精确写为
+\[
+ \forall\varepsilon>0\quad \exists M_\varepsilon<\infty\quad
+ \forall\,\mathcal F\subset\mathcal B_\varepsilon\ \text{有限},\qquad
+                 \sum_{b\in\mathcal F}|c_b|^2\le M_\varepsilon .
+\]
+对单位区间 \([n,n+1)\) 同时选取起始深度 \(d_n=|n|+1\)。实际初值给出这些起始单元
+以上全部更细正交方向的统一能量上界。再细化 \(k\) 层后的剩余平方能量至多为
+\(C_*4^{-k}\)，常数独立于窗口与 \(\varepsilon>0\)。因而全称求解只需在上述起始单元上
+取得下述均值预算。实际初值对此预算中的每个 \(\varepsilon>1/2\) 给出统一上界。
+\end{theorem}
+\begin{proof}
+由高斯核的对称性，\(c_b=\int u\,b\,dm\)。初值配对合法，因为有界紧支测试经过热伴随
+成为各导数均超指数衰减的光滑函数。随附数据保存分型、区间、父子关系、权和测试，
+并按热半群把伴随沿动作词逆序运输。双重高斯卷积等于合并时间的单次卷积，
+故先复合再回读给出同一响应。归一化常数和 \(h_I\) 分别记录均值与有符号增量，
+二者共同恢复两个子单元的均值。该加权正交分解的恒等式为
+\[
+ (m_0+m_1)(m_0 z_0^2+m_1 z_1^2)-(m_0 z_0+m_1 z_1)^2
+       =m_0m_1(z_0-z_1)^2 ,
+\]
+见 \lean{xi_tph_haar_split}。不同分支的支撑不交，祖先方向在每个后代的支撑上为常数，
+而后代方向积分为零。由此各阶补空间相互正交，展开与合成在共同覆盖域上往返一致。
+
+在固定 \(L\ge1\) 上令 \(P_j\) 为深度 \(j\) 的分段加权平均，\(r_j=u-P_j u\)。
+投影更新的是求解状态中的响应分量，初值 \(W\)、实际热演化及各运输证据随态保存。
+每个父单元的子块都由同一二分规则生成。对全部后继共同有
+\[
+ \|r_m\|_{L^2(dm;[-L,L])}\le 2^{-m}C_L,\qquad
+ C_L=\sup_{[-L,L]}|u'|\sqrt{m([-L,L])}<\infty ,
+\]
+因为单元振幅至多为单元长度乘导数上界。若 \(r_j\ne0\)，TPH 可一次选择
+整数 \(m>j\) 使 \(2^{-m}C_L\le\|r_j\|/2\)，取整个新响应块 \(P_m-P_j\)。
+在该窗口上，\(P_j^*=P_j,\ P_iP_j=P_{\min(i,j)}\)。对 \(j<m<l\)，两次增量
+\(P_m-P_j,\ P_l-P_m\) 正交，其和为 \(P_l-P_j\)。因此细分与再合成给出同一响应。
+设 \(E=P_m-P_j,\ \Phi(z)=\|u-z\|^2/2\)。在两端图册间运输的 LHTS 块动作
+\(H_{E,\alpha}(z)=z+\alpha E(u-z)\)（\(0\le\alpha\le1\)）满足
+\[
+ \Phi(z)-\Phi(H_{E,\alpha}(z))
+ =\alpha(1-\alpha/2)\,\|E(u-z)\|^2 .
+\]
+这由 \(E^*=E=E^2\) 展开平方即得。TPH 在上述后继中取满足残差范数减半界的整块和
+\(\alpha=1\)。从 \(z=P_j u\) 得 \(P_m u\)，负梯度在新补空间的投影被精确实现。
+谱型、热型和测试图册的随附数据沿同一作用词运输。广义分形轨迹上的块选择及其复合
+由此具有定理~\ref{thm:lhts-fractal-coverage} 所用的统一覆盖量 \(\sqrt3/2\)。
+残差为零时已完成该窗口的全部响应。对任意 \(n\) 次合法的这种块复合，
+末端残差平方至多为初始值的 \(4^{-n}\)，代数递推见 \lean{xi_tph_orthogonal_path}。
+块内系数和递归残差的平方和恒等于窗口总能量，因而任意深度的合法分块给出同一极限。
+
+在全空间对每个 \(n\in\ZZ\) 采用同一选块规则 \(d_n=|n|+1\)，令 \(P^{(k)}u\)
+在各单位区间上取深度 \(d_n+k\) 的分段平均，先在每个单元定义它。上一定理给出
+该单位区间的导数上界 \(C(2+|n|)e^{|n|/2}\)。由单元长度及 \(dm\le dx\)，
+\[
+ \int_{\RR}|u-P^{(k)}u|^2\,dm
+ \le C_*4^{-k},\qquad C_*=
+ C'^2\sum_{n\in\ZZ}(2+|n|)^2(e/4)^{|n|}<\infty .
+\]
+这里 \(\log2>1/2\) 可对 \(1/x\) 在 \([1,2]\) 上积分验证。
+这一估计在任意单元继续细化后仍成立，因为加权平均最小化该单元上的平方误差。
+全空间的高阶增量是其有限分支和的平方范数极限。对非零全域余项，
+取 \(m>k\) 使 \(\sqrt{C_*}2^{-m}\le\|u-P^{(k)}u\|/2\)，
+同一正交分解即给出全空间高阶块的 \(\sqrt3/2\) 覆盖。它控制同一母体内的全部后继分型。
+
+以 \(\mathcal I\) 表示所有深度 \(d_n\) 的起始单元，令
+\(a_I=\langle W,e^{-a}p_1*(e^{-2\varepsilon|\cdot|}\mathbf1_I)\rangle=\int_I u\,dm\)。
+加权均值的平方能量为 \(|a_I|^2/m(I)\)，其余量与常数正交。
+由 \(k=0\) 的全空间高阶界，完整预算等价于
+\[
+ \sup_{\mathcal J\subset\mathcal I\ {\rm finite}}
+          \sum_{I\in\mathcal J}\frac{|a_I|^2}{m(I)}<\infty
+               \qquad(\text{每个 }\varepsilon>0).
+\]
+若上述 \(M_\varepsilon\) 存在，在每个 \([-L,L]\) 对深度取极限，
+正交恒等式及已证局部收敛给出 \(\int_{-L}^L|u|^2\,dm\le M_\varepsilon\)。
+对 \(L\to\infty\) 取单调极限即得完整空间的加权平方可积性。
+反向由任意有限正交投影的范数上界可取 \(M_\varepsilon=\int_{\RR}|u|^2\,dm\)。
+对 \(\varepsilon>1/2\)，上一定理直接给出
+\(M_\varepsilon\le C_1^2\int_{\RR}(1+|x|)^2e^{-(2\varepsilon-1)|x|}\,dx\)
+（取 \(M_\varepsilon\) 为实际能量）。对每个正 \(\varepsilon\) 获得独立于窗口、块及深度的预算，
+就由同一定理构造覆盖全部实多项式的 \(\pi_\zeta:\mathsf E_\zeta\)。
+按定理~\ref{thm:xi-moment-readback} 施用已证的 \(D_\zeta\)，原命题在 \(D_\zeta(\pi_\zeta)\) 处证毕。
+\end{proof}
+
+\begin{corollary}[TPH 起始单元在临界权的统一能量预算]\label{cor:xi-tph-boundary-budget}
+取定理~\ref{thm:xi-law-heat-evolution} 的实际法空间热解 \(u=U(1,\cdot)\)。
+存在仅依赖这一输入的 \(c_0,C_0>0\)，使对 \(X=|x|\ge2\) 有
+\[
+ |u(x)|\le C_0\left(1+\exp\bigl(X/2-c_0 X/\log(2+X)\bigr)\right).
+\]
+从而对每个整数 \(m\ge0\)，有
+\(\int_{\RR}(1+|x|)^{2m}|u(x)|^2 e^{-|x|}\,dx<\infty\)。
+定理~\ref{thm:xi-tph-orthogonal-solve} 的起始单元均值预算因此对每个
+\(\varepsilon\ge1/2\) 成立。
+\end{corollary}
+\begin{proof}
+在热图册中对偶合成三个频率的读数。先记 \(a=9/4,\ h_\mu=\Re\mu\)。
+由定理~\ref{thm:xi-law-heat-evolution} 已证的 \(\varepsilon>1/2\) 加权能量，
+\(u\) 的单侧 Laplace 变换在 \(\Re w>1/2\) 全纯。该定理的留数逆在
+\(w^2=a-\mu\) 给出 \(d_\mu e^{-\mu}/2\ne0\)，故每个这样的根满足 \(|\Re w|\le1/2\)。
+对每个 \(\mu\)，选根 \(w_\mu=b_\mu+i \eta_\mu\)，其中 \(b_\mu\ge0\)。
+于是 \(\eta_\mu^2=h_\mu-a+b_\mu^2>1\)。以下作用均取自同一实际 \(R,W\)。
+
+在 \(\Re\lambda>1/2\) 置 \(F(\lambda)=2\lambda R(a-\lambda^2)\)。两个图册给出
+\[
+\begin{aligned}
+ F(\lambda)
+ &=\sum_\mu d_\mu\left(\frac1{\lambda-w_\mu}+\frac1{\lambda+w_\mu}\right)\\
+ &=A(\lambda)-\sum_{n\ge2}\frac{\Lambda(n)}{\sqrt n}e^{-\lambda\log n},\\
+ A(\lambda)
+ &=\frac1{\lambda-1/2}+\frac1{\lambda+1/2}+\kappa+
+       \int_0^\infty\omega(y)(1-e^{-\lambda y})\,dy .
+\end{aligned}
+\]
+第一行逐对相加后在紧集上一致绝对收敛，由 \(\sum_\mu d_\mu/|\mu|<\infty\) 得到。
+第二行由命题~\ref{prop:xi-arithmetic-quadratic} 的预解式恒等式延拓而得，
+因为该半平面上素数幂和局部一致绝对收敛。第一行每对中的两个分式均有非负实部。
+
+取 \(0<\delta\le1/2,\ \sigma=1/2+\delta,\ |t|\ge1\)。
+将 \(\sigma,\sigma+it,\sigma+2it\) 上的实部依次乘 \(3,4,1\)。
+每个离散权所乘的实数为
+\(3+4\cos(t\log n)+\cos(2t\log n)=2(1+\cos(t\log n))^2\ge0\)，
+平方恒等式见 \lean{xi_heat_harmonic_weights}。
+在 \(A\) 的积分中，\(0<y\le1\) 上有 \(\omega(y)\le C/y\) 及
+\(\lvert1-e^{-\lambda y}\rvert\le\min(2,|\lambda|y)\)，而 \(y\ge1\) 上
+\(\omega\) 可积。在 \(1/(2+2|t|)\) 处分开积分，每个积分的模均至多为 \(C'\log(2+|t|)\)。
+有理项中仅在 \(\lambda=\sigma\) 的 \(1/(\lambda-1/2)\) 取值 \(1/\delta\)，其余均有统一上界。
+因此存在 \(C\ge1\)，使
+\[
+ 3\Re F(\sigma)+4\Re F(\sigma+it)+\Re F(\sigma+2it)
+ \le 3/\delta+C\log(2+|t|).
+\]
+对任一热态谱读数取 \(t=\eta_\mu\)，记 \(d=1/2-b_\mu\)。
+由第一行分式的实部非负和 \(d_\mu\ge1\)，左端至少为 \(4/(\delta+d)\)。
+选 \(\delta=(2C\log(2+|\eta_\mu|))^{-1}\)，得 \(8\delta\le7(\delta+d)\)，即
+\[
+ 1/2-b_\mu\ \ge\ \frac1{14C\log(2+|\eta_\mu|)} .
+\]
+这个估计在热方程的同一图册内对全部谱读数同时成立。
+
+实际热解的每个余弦项的模至多为 \(d_\mu e^{-h_\mu} e^{b_\mu X}\)。
+有 \(\sum_\mu d_\mu e^{-h_\mu/2}<\infty\)，因为 \((\Im\mu)^2\le h_\mu\) 且
+\(\sum_\mu d_\mu/|\mu|<\infty\)。在 \(h_\mu>X\) 上利用
+\(e^{-h_\mu/2}e^{b_\mu X}\le1\)，这部分的总模有常数上界。
+在 \(h_\mu\le X\) 上有 \(|\eta_\mu|\le\sqrt X\)，故另一部分的总模
+至多为 \((\sum_\mu d_\mu e^{-h_\mu})\exp(X/2-X/(14C\log(2+X)))\)。
+合并即得所列估计。因 \(X/\log(2+X)\ge\sqrt X/2\) 对充分大的 \(X\) 成立，
+临界权下的每个多项式加权积分均有限。最后在起始单元 \(I\) 上用 Cauchy--Schwarz，
+\(|\int_I u\,dm|^2/m(I)\le\int_I|u|^2\,dm\)。对任意有限起始单元族求和时，
+临界权 \(dm=e^{-|x|}dx\) 的上界可取整个法空间的能量。结合高阶正交复合，
+法空间求解还需覆盖 \(0<\varepsilon<1/2\) 的起始单元预算。
+一经覆盖，即由定理~\ref{thm:xi-tph-orthogonal-solve} 构造全称见证并在同一次回读处证毕。
+\end{proof}
+
+\begin{theorem}[实际 G-PDE 起始均值的高阶正交分解]\label{thm:xi-tph-base-projection}
+取定理~\ref{thm:xi-tph-orthogonal-solve} 的热解 \(u\)、正权指数 \(\varepsilon\) 和测度
+\(dm=e^{-2\varepsilon|x|}dx\)。在 \(J_n=[n,n+1)\) 上以 \(P_n\) 记深度 \(|n|+1\)
+的起始单元均值投影，单元数为 \(N_n=2^{|n|+1}\)。记 \(z_n(x)=x-n-1/2\)，
+\(Q_{n,r}\) 为 \(L^2(J_n,dm)\) 到 \(\operatorname{span}\{P_n z_n^j:0\le j<r\}\) 的正交投影。
+置
+\[
+ s_n=\left\lceil\frac{4(|n|+1)}{\log(2+|n|)}\right\rceil,\qquad
+ r_n(k)=\min\{N_n,s_n+k\}\quad(k\ge0).
+\]
+存在仅依赖实际热解的常数 \(B\)，使每个整数 \(k\ge0\) 均有
+\[
+ \sum_{n\in\ZZ}\|(I-Q_{n,r_n(k)})P_nu\|_{L^2(J_n,dm)}^2
+ \le B\,\frac{4^{-k}}{k!}.
+\]
+同一上界适用于所有 \(\varepsilon>0\)，以及在任意区间继续加入正交方向的合法复合。
+
+在同一初值图册的正半轴上取有符号测度
+\[
+ dD(y)=e^{y/2}\,dy-\sum_{p\ {\rm prime}}\frac{\log p}{\sqrt p}\,\delta_{\log p}(dy),\qquad
+ v(x)=e^{-a}\int_0^\infty\frac{p_1(x-y)+p_1(x+y)}2\,dD(y).
+\]
+对 \(r=r_n(0)\)，令 \(g_j=P_nz_n^j\)（\(0\le j<r\)），
+\(G_n=(\langle g_i,g_j\rangle)_{i,j<r}\) 和 \(b_n=(\langle v,g_j\rangle)_{j<r}\)。
+这里的内积均在 \(J_n\) 上取权 \(dm\)。完整母体见证的剩余求解义务为
+\[
+ \forall\,0<\varepsilon<1/2,\quad
+ \sup_{F\subset\{0,1,\ldots\}\ {\rm finite}}\ \sum_{n\in F} b_n^{\mathsf T}G_n^{-1}b_n<\infty .
+\]
+每个 \(b_n\) 保留 \(r_n(0)\) 个共同测试读数。上式成立时，取得覆盖全部实多项式的
+\(\pi_\zeta:\mathsf E_\zeta\)，原命题在 \(D_\zeta(\pi_\zeta)\) 处证毕。
+未经中心化的离散读数在临界权下对每个非零非负有限三角权发散。
+\end{theorem}
+\begin{proof}
+由推论~\ref{cor:xi-tph-boundary-budget}，在 \(\nu_\mu^2=\mu-a,\ h_\mu=\Re\mu\) 下有
+\(|\Im\nu_\mu|\le1/2\) 和 \(A=\sum_\mu d_\mu e^{-h_\mu/2}<\infty\)。
+因此 \(|\nu_\mu|^2=h_\mu-a+2(\Im\nu_\mu)^2\le h_\mu\)。
+用 \(h^m/m!\le e^h\) 于定理~\ref{thm:xi-law-heat-evolution} 的热态展开，
+逐项微分（每阶在紧集上一致绝对收敛）给出同时覆盖所有阶数的估计
+\[
+ |u^{(m)}(x)|\le A e^{|x|/2}\sqrt{m!}\qquad(m\ge0,\ x\in\RR).
+\]
+在每个 \(J_n\) 的中点取 \(m-1\) 次 Taylor 多项式 \(T\)。
+半径为 \(1/2\)，故 \(\sup_{J_n}|u-T|\le A e^{(|n|+1)/2}2^{-m}/\sqrt{m!}\)。
+对 \(1\le m\le N_n\)，\(P_n\) 在次数小于 \(m\) 的多项式上单射。
+确实，每个起始单元的密度严格为正，实多项式在其上均值为零时在其内部有根，
+除非该多项式恒零。所有 \(N_n\) 个单元给出互异根。因此 \(G_n\) 正定，达到 \(N_n\)
+个方向时已张成全部起始单元均值。由正交投影的最小误差性质和 \(\int_{J_n}dm\le1\)
+得到 \(\|(I-Q_{n,m})P_nu\|\le\|P_n(u-T)\|\le\sup_{J_n}|u-T|\)。
+
+对未达满维的区间取 \(m=s_n+k\)，其余区间余项为零。由
+\((s_n+k)!\ge s_n!\,k!\)（\lean{xi_tph_base_factorial}），可取
+\[
+ B=eA^2\sum_{n\in\ZZ}\frac{e^{|n|}4^{-s_n}}{s_n!}<\infty .
+\]
+为证可和，积分比较给出 \(\log(s!)\ge s(\log s-1)\)。
+对充分大的 \(N=|n|\)，有 \(\log s_n-1\ge\tfrac12\log(2+N)\)，故
+\(\log(s_n!)\ge2(N+1)\)。这同时控制全域所有后继块。
+对固定 \(n\)，嵌套子空间的投影满足 \(Q_{n,r}Q_{n,r'}=Q_{n,\min(r,r')}\)。
+相邻阶之间的差投影正交，细分后合成即可恢复同一响应。
+当保留的子空间继续扩张时距离只会减小。起始态保留低阶投影及其正交余项，
+二者之和为 \(P_nu\)，与 \(P_n\) 之前的热图册和测试证据共同运输。
+
+再在初值图册取出 \(D\)。由定理~\ref{thm:xi-law-heat-evolution} 中 \(W\) 的表达式，
+差 \(u-v\) 的连续项来自 \(e^{-y/2}dy\)，其余为原点读数、Gamma 差和次数至少为二的素数幂。
+热核及其一阶导数有界，Gamma 差在 \(0<y\le1\) 上至多为 \(y\sup|p'_1|\)，
+在 \(y\ge1\) 上用 \(\omega\) 的可积性。次数至少为三的部分总变差有限，因为
+\(\sum_{p}\sum_{l\ge3}(\log p)p^{-l/2}\le(1-2^{-1/2})^{-1}\sum_{m\ge2}(\log m)m^{-3/2}\)。
+对平方项，记 \(\theta(T)=\sum_{p\le T}\log p\)。每个整数 \(M\ge1\) 满足
+\(\prod_{M<p\le2M}p\mid \binom{2M}{M}\le4^M\)，在二进区间相加即得
+\(\theta(T)\le C T\)（\(T\ge1\)）。故每个 \(j\ge0\) 都有
+\(\sum_{j\le2\log p<j+1}(\log p)/p\le e^{-j/2}\theta(e^{(j+1)/2})\le C e^{1/2}\)。
+这些单位区间与平移高斯的配对一致有界，因为高斯在各整数单位区间上的上确界之和
+对平移有共同上界。上述估计给出 \(\|u-v\|_\infty\le C_1\)，于是
+\(\|u-v\|_{L^2(dm)}\le C_1/\sqrt\varepsilon\) 对每个 \(\varepsilon>0\) 成立。
+这里的连续背景与一次素数权在 \(D\) 中保持原来的相对符号。
+
+可直接核对常数测试所需的抵消。将 \(v=H_{\rm c}-H_{\rm p}\) 写成连续背景与一次素数权
+各自的非负热响应。对 \(x\ge1\)，有 \(H_{\rm c}(x)\asymp e^{x/2}\)。
+下界来自 \(x\le y\le x+1\) 的热核质量，上界由
+\(e^{|y|/2}\le e^{x/2}e^{|y-x|/2}\) 与高斯可积性得到。对整数 \(n\ge1\) 记
+\(\Delta_n=(\int_{J_n}v\,dm)/(\int_{J_n}H_{\rm c}\,dm)\)。
+用推论~\ref{cor:xi-tph-boundary-budget} 和上述 \(C_1\) 控制 \(|v|\)，可得
+\[
+ |\Delta_n|\le C_2 e^{-c_2 n/\log(2+n)},\qquad
+ \frac{|\langle v,1\rangle_{J_n}|^2}{\int_{J_n}dm}
+ \asymp_\varepsilon e^{(1-2\varepsilon)n}|\Delta_n|^2 .
+\]
+第一式由 \(|v|/H_{\rm c}\) 的逐点上界经正权平均取得，第二式用
+\(\int_{J_n}dm\asymp_\varepsilon e^{-2\varepsilon n}\)。
+常数方向包含在低阶投影内，故其右端对 \(n\) 可和是联合预算的必要条件。
+当 \(0<\varepsilon<1/2\) 时，将第一式的上界代入后所得比较级数发散，
+因为其指数中 \(2c_2/\log(2+n)\to0\)。这确定了现有抵消估计的适用范围。
+
+对单元中的测试 \(g_j\) 延零后，\(b_{n,j}\) 也等于 \(D\) 对
+\(e^{-a}p_1*(e^{-2\varepsilon|\cdot|}g_j)\) 的偶部配对。Gram 方程给出
+\(\|Q_{n,r_n(0)}v\|^2=b_n^{\mathsf T}G_n^{-1}b_n\)。
+在任意有限组单位区间上，\(Q_{n,r}P_n=Q_{n,r}\)，因而
+\[
+ \left|\left(\sum_{n\in F}\|P_nu\|^2\right)^{1/2}
+    -\left(\sum_{n\in F} b_n^{\mathsf T}G_n^{-1}b_n\right)^{1/2}\right|
+       \le \sqrt B+C_1/\sqrt\varepsilon .
+\]
+这是直和中的三角不等式，所用差分解为 \((I-Q_{n,r})P_nu+Q_{n,r}(u-v)\)。
+在正半轴上，任意有限起始单元族均包含在某个这样的 \(F\) 所辖单元内，
+反向每个 \(F\) 只含有限个单元。定理~\ref{thm:xi-tph-orthogonal-solve}
+的高阶余项界补全正半轴的热态能量。实际 \(u\) 与权均为偶函数，故全轴能量恰是这一能量的两倍。
+这里使用热态本身的反射，避免对两侧起始网格的深度另加条件。结合已证的临界权预算即可回读。
+
+推论~\ref{cor:xi-tph-boundary-budget} 的非负频率权在实际输入上有确定的适用边界。
+令 \(P(y)=\sum_{\omega\in E}c_\omega e^{-i\omega y}\) 为取非负实值且不恒零的有限频率和，
+合并所有重频，缺项取零。对 \(0\le P^2\le\|P\|_\infty P\) 取长区间平均，
+不同频率的指数平均趋于零，左侧趋于 \(\sum_\omega|c_\omega|^2>0\)，故 \(c_0>0\)。
+对 \(\delta>0\)，该推论中的 \(A-F\) 在 \(1/2+\delta+i\omega\) 给出对应的离散率。
+非零 \(\omega\) 处的两函数在 \(\delta=0\) 邻域全纯，由其谱间距与 Gamma 积分式可见。
+零频处只有 \(A\) 的简单极点，留数为一。因此
+\[
+ \sum_{n\ge2}\frac{\Lambda(n)}{n^{1+\delta}}P(\log n)
+       =c_0/\delta+O_P(1)\qquad(\delta\downarrow0).
+\]
+单调收敛说明，未经中心化的绝对素数幂预算在边界和更小权上发散。
+任意有限有序复合所生成的非零非负三角多项式同样满足此式。
+上述 \(D\) 在配对中一同运输连续背景和一次素数权，正好保留了所需的抵消。
+\end{proof}
+
+\begin{theorem}[正权子族的协变限制与中心化热源的常数测试]\label{thm:xi-causal-cell-readback}
+取定理~\ref{thm:xi-tph-base-projection} 的中心化热态 \(v\)，写
+\(\Delta_n(\varepsilon)\) 以标明该定理中常数方向依赖的权指数。
+全称矩条件 \(\mathsf E_\zeta\) 等价于这一族常数方向的平方预算
+\[
+ \forall\,0<\varepsilon<1/2,\qquad
+ \sum_{n\ge1} e^{(1-2\varepsilon)n}|\Delta_n(\varepsilon)|^2<\infty .
+\]
+单位区间及全部实权参数一同保留。完整正权族的能量见证沿参数包含恒等地限制至小正权子族。
+同阶单元共用一个自逆正交变换，沿树复合后保持带符号终端读数及能量。
+对同一实际热态，任意趋于零的正权序列上的全域能量证书也可运输至所有正权。
+该预算成立时，可在同一法空间构造
+\(\pi_\zeta:\mathsf E_\zeta\)，原命题在 \(D_\zeta(\pi_\zeta)\) 处证毕。
+
+在初值图册的正半轴上，所有测度向负半轴延零，星号表示加法卷积。置
+\[
+\begin{aligned}
+ B(dy)&=e^{y/2}dy, & K(dy)&=e^{-y/2}dy, & S&=\delta_0-K,\\
+ N&=\sum_{m\ge1}m^{-1/2}\delta_{\log m},&
+ P&=\sum_{m\ge2}\Lambda(m)m^{-1/2}\delta_{\log m},&
+ T&=S*N .
+\end{aligned}
+\]
+实际 G-PDE 热态 \(V(\tau)=e^{-a\tau}p_\tau*(B-P)\) 满足 \(T*V(\tau)=f_\tau\)。
+对每个 \(\tau>0,\ j\ge0,\ 0<b<1/2\)，实际强迫满足
+\[
+ |\partial_x^j f_\tau(x)|\le C_{\tau,j,b} e^{-b|x|}\qquad(x\in\RR).
+\]
+因果逆为 \(T^{-1}=(\delta_0+B)*\sum_{m\ge1}\mu_{\rm M}(m)m^{-1/2}\delta_{\log m}\)，
+其中 \(\mu_{\rm M}\) 是整数的莫比乌斯函数。该逆可逐点恢复 \(V(\tau)\)。
+在 \(x\ge0\) 上 \(v(x)-V(1,x)/2\) 一致有界，故所列常数方向的预算也可在
+这份实际反演解上核验。
+\end{theorem}
+\begin{proof}
+对 \(n\ge0\) 取整函数 \(A_n(z)=\int_0^1v(n+t)e^{-zt}dt\)。
+定理~\ref{thm:xi-tph-base-projection} 的零阶导数界与 \(\|u-v\|_\infty<\infty\)
+给出 \(|A_n(z)|\le C e^{n/2+|z|}\)。权 \(dm=e^{-2\varepsilon x}dx\) 在正半轴上满足
+\[
+ \frac{|\int_{J_n}v\,dm|^2}{\int_{J_n}dm}
+ =\frac{e^{-2\varepsilon n}|A_n(2\varepsilon)|^2}
+        {\int_0^1 e^{-2\varepsilon t}dt}.
+\]
+由上一定理，左侧与陈述中的第 \(n\) 项上下可比。若 \(\mathsf E_\zeta\) 成立，
+定理~\ref{thm:xi-law-heat-evolution} 给出实际热态的全部加权能量，
+常数投影与 \(u-v\) 的有界性即给出所列平方预算。
+
+反向设该预算对每个所列 \(\varepsilon\) 成立。对每个 \(0<\eta<1/4\) 和
+\(s\in[\eta,2\eta]\)，有 \(|A_n(2s)|\le C_s e^{2\eta n}\) 对全部 \(n\ge0\) 成立。
+在区间 \([2\eta,4\eta]\) 中，令 \(E_j\) 收集满足
+\(|A_n(t)|\le j e^{2\eta n}\) 对全部 \(n\) 成立的实数 \(t\)。
+这些闭集覆盖该区间，故某个 \(E_j\) 有正长度测度 \(l\)。
+
+固定包含该实区间的复圆盘 \(|z|\le R\)，令
+\(m=\lceil2(n+1)/\log(n+2)\rceil\)。把 \(e^{-zt}\) 在 \(z=0\) 展开至 \(m-1\) 次并在
+定义中积分，得多项式 \(q_n(z)\)。圆盘上的余项至多为
+\(Ce^{n/2+R} R^m/m!\)。因 \(m=o(n)\)，且 \(\log(m!)\ge m(\log m-1)=(2+o(1))n\)，
+此余项对充分大的 \(n\) 至多为 \(e^{-n}\)。
+在 \(E_j\) 中选 \(m\) 个间距至少为 \(l/(2m)\) 的点。每选一点只需剔除长度至多为
+\(l/m\) 的区间，前 \(m-1\) 个点后仍有正测度可选。排序后，两节点的距离至少为
+指标差乘 \(l/(2m)\)。在这些节点作 Lagrange 插值，分子的每个因子至多为 \(2R\)，得
+\[
+ \sup_{|z|\le R}|q_n(z)|
+ \le (4Rm/l)^{m-1}\frac{2^{m-1}}{(m-1)!}\sup_{t\in E_j}|q_n(t)|
+ \le e^{o(n)}(j e^{2\eta n}+e^{-n}).
+\]
+最后一步的常数可依赖 \(R,l\)，二者均固定。这一估计对任意小的 \(\eta>0\) 成立，
+故每个复紧集 \(L\) 和每个 \(\delta>0\) 均有
+\(\sup_{z\in L}|A_n(z)|\le C_{L,\delta}e^{\delta n}\)。
+
+于是 \(\sum_{n\ge0}e^{-zn}A_n(z)\) 在 \(\Re z>0\) 的每个紧集上一致绝对收敛。
+在 \(\Re z>1/2\) 它等于 \(v\) 的单侧 Laplace 变换。加上有界函数 \(u-v\) 的变换，
+得到实际 \(u\) 的变换在整个右半平面的全纯延拓。定理~\ref{thm:xi-law-heat-evolution}
+给出的每个 \(w^2=a-\mu\) 处的留数为 \(d_\mu e^{-\mu}/2\ne0\)。若有非实 \(\mu\)，
+一根将落入上述全纯域。因此全部实际 \(\mu\) 为实且大于 \(38\)，
+定理~\ref{thm:spectral-positive-operator} 构造全称矩见证，正向回读随即完成。
+在每个 \(J_n\)，权参数的全部读数还确定原热迹。对 \(A_n\) 求导给出
+该段的全部多项式配对。多项式在单位区间一致稠密，故两条连续热迹具有同一读数时处处相等。
+TPH 的各阶投影、复合次序及其证据仍在原法态上运输。
+
+设 \(I_+=(0,\infty)\)，\(I_0=(0,1/2)\)，取包含 \(i:I_0\hookrightarrow I_+\)。
+在每个 \(s\in I_0\) 上，源纤维 \(i(s)\) 与目标纤维 \(s\) 具有同一实际初值 \(W\)、
+热解 \(U\)、权测度及 TPH 测试。恒等映射是等距同构，与每个合法有序复合及其回读交换。
+若 \(\Pi_+(r)\) 是每个 \(r\in I_+\) 上实际热解的完整能量证书，
+则 \(\Pi_0(s)=\Pi_+(i(s))\) 就是所需小正权证书。每个参数沿用自己的上界。
+此限制与已证正向回读的合成见 \lean{xi_positive_subfamily_readback}。
+
+在这族权纤维上可明确给出全景复用所用的广度和深度。固定 \(s>0\)。对正半轴上
+任一长度为 \(h\) 的二分父单元 \(I\)，记两个子单元为 \(I_0,I_1\)，
+\(m_i=\int_{I_i}e^{-2sx}dx\)，\(a_i=m_i^{-1/2}\int_{I_i}u\,dm\)。
+由平移 \(h/2\) 得 \(m_1/m_0=e^{-sh}\)。令 \(t=e^{-sh/2}\)，则父均值系数 \(a_I\)
+及定理~\ref{thm:xi-tph-orthogonal-solve} 的有符号正交系数 \(d_I\) 满足
+\[
+ \binom{a_I}{d_I}=M_s(h)\binom{a_0}{a_1},\qquad
+ M_s(h)=\frac1{\sqrt{1+t^2}}
+ \begin{pmatrix}1&t\\ t&-1\end{pmatrix},\qquad M_s(h)^2=I_2 .
+\]
+同阶各单元共用这个矩阵，各自的两项实际读数随态保存。这是协变的同阶广度复用。
+矩阵对称且自逆，故 \(a_I^2+d_I^2=a_0^2+a_1^2\)，两项输出还可原样重构两项输入。
+消去归一化因子后的三个环恒等式见 \lean{xi_tph_pair_transform}。
+
+在任一有限二分树上，将每个局部矩阵作用于相应的两项坐标，其余坐标携带到下一步。
+沿合法词 \(w\) 复合得到 \(T_w\)，反向按逆序施用各局部矩阵恢复全部叶读数。
+记叶、根及内部节点集为 \(\mathcal L,\mathcal R,\mathcal I\)，逐块合并平方和得到
+\[
+ \sum_{L\in\mathcal L}a_L^2
+   =\sum_{J\in\mathcal R}a_J^2+\sum_{I\in\mathcal I}d_I^2 .
+\]
+这给出多复合反身递归的深度复用。互不相交的块作用于不同坐标，可以交换。
+嵌套块沿父子关系保留次序。沿谱型与热型的性变态射运输时，局部动作按
+定理~\ref{thm:xi-law-heat-evolution} 共轭，有序词中相邻的往返相消。
+因此同阶协变和深度递归可在同一富结构中使用，亦可在任一深度沿 \(i\) 限制正权。
+
+令 \(q\) 为定理~\ref{thm:pde-rate-quotient} 在该分型上的任务商，随态保留 \(W\)、合法域、
+有符号读数和证据。对终端读数 \(o\)，一步协变给出 \(qT_e=\bar T_e q\) 及
+\(o=\bar o q\)。沿词复合即得
+\[
+ q T_w=\bar T_w q,\qquad o(T_w z)=\bar o(\bar T_w q(z)).
+\]
+这两式使用 \lean{Task.encode_exact}、\lean{Task.Exact.run} 与 \lean{Task.Exact.signature}。
+取后继空词可回读本层读数，接任意合法后继仍给出相同联合读数。
+定理~\ref{thm:xi-tph-orthogonal-solve} 的统一尾界使这条平方恒等式适用于极限热态。
+在每个固定权上以有限窗口穷竭正半轴，等式两端的非负能量取单调极限，允许为无穷。
+本定理的常数测试预算给出全称见证时，上述商映射保留完整读数，
+已证正向回读在 \(D_\zeta(\pi_\zeta)\) 处完成原命题。
+
+改变权指数时，对同一实际解取 \(h_r(\tau,x)=e^{-rx}U(\tau,x)\)（\(x\ge0,\ r>0\)）。
+则 \((\partial_\tau-(\partial_x+r)^2+a)h_r=0\)，偶性给出端点条件
+\((\partial_x+r)h_r(\tau,0)=0\)。由 \(r\) 到 \(s\) 的边 \(C_{rs}\) 是乘 \(e^{(r-s)x}\)。
+它满足 \((\partial_x+s)C_{rs}=C_{rs}(\partial_x+r)\)，因而保持端点条件。
+相邻乘子合并给出任意次有序运输，点值复合见 \lean{xi_heat_weight_transport}。
+设 \(H_r=\int_0^\infty |h_r(1,x)|^2dx\)（允许无穷）。
+对 \(s\ge r\)，有 \(H_s\le H_r\)，故在任意 \(r_j\downarrow0\) 上取得完整的
+\(H_{r_j}<\infty\) 即可取得每个 \(s>0\) 的预算，各证书常数可依赖 \(r_j\)。
+若从一个固定 \(r\) 运至 \(0<s<r\)，对非负积分应用单调收敛给出精确运输式
+\[
+ H_s=\sum_{k=0}^{\infty}\frac{[2(r-s)]^k}{k!}
+                 \int_0^\infty x^k |h_r(1,x)|^2dx .
+\]
+该乘子在 \(L^2(0,L)\) 上的算子范数为 \(e^{(r-s)L}\)，由靠近 \(L\) 的单位范数测试即得上确界。
+因此以 \(r=1/2\) 为起点，下降至全部 \(0<s<1/2\) 的同一证书可写为
+\[
+ \limsup_{k\to\infty}
+ \left(\frac1{k!}\int_0^\infty x^k |h_{1/2}(1,x)|^2dx\right)^{1/k}\le1 .
+\]
+这由幂级数的收敛半径公式得到。实际初值、TPH 正交分量与各自证据均随态保留。
+推论~\ref{cor:xi-tph-boundary-budget} 的点值界还给出一族实际可运输的完整能量。
+令 \(\ell(x)=\log(2+x)\)，则存在 \(d>0\) 使
+\(\int_0^\infty e^{2d x/\ell(x)}|h_{1/2}(1,x)|^2dx<\infty\)。
+确实，取 \(0<d<c_0\) 后，该积分尾由 \(e^{-(c_0-d)x/\ell(x)}\) 的常数倍控制。
+记上式的值为 \(M\)。对每个整数 \(k\ge1\)，
+\[
+ \frac1{k!}\int_0^\infty x^k|h_{1/2}(1,x)|^2dx
+       \le M\,[C\log(k+2)]^k .
+\]
+在 \(x\le(k+2)^2\) 上用 \(\ell(x)\le3\log(k+2)\) 及 \(t^k/k!\le e^t\)。
+在 \(x>(k+2)^2\) 上，对充分大的 \(k\) 有 \(k\log x\le 2dx/\ell(x)\)，
+因为 \(x/(\ell(x)\log x)\) 最终递增，在 \((k+2)^2\) 处与 \(k\) 之比趋于无穷。
+有限个其余阶可并入 \(C\)。此估计在一次推导中覆盖全部阶，所给根上界随 \(\log(k+2)\) 增长。
+
+以下从实际整数格计算这份有符号读数所服从的方程。记 \(E=N-B\)，在测度前乘 \(y\)
+表示其一阶位置矩。每个整数 \(m\ge1\) 都满足 \(\sum_{d\mid m}\Lambda(d)=\log m\)，
+由其素因子分解逐项求和即得。因此 \(N*P=yN\)。又有 \(B*B=yB,\ S*B=K\)，后式来自
+\(\int_0^y e^{-(y-t)/2}e^{t/2}dt=e^{y/2}-e^{-y/2}\)。于是
+\[
+ T*(B-P)=K*E-S*(yE).
+\]
+该卷积环分解见 \lean{xi_centered_lattice_forcing}。半轴上有
+\[
+ E([0,y])=\sum_{m\le e^y}m^{-1/2}-2(e^{y/2}-1)=c+O(e^{-y/2}).
+\]
+确实，\(0\le m^{-1/2}-\int_m^{m+1}t^{-1/2}dt\le C m^{-3/2}\)。
+从 \(\lfloor e^y\rfloor\) 起的和尾以及最后一个不足单位的积分均为 \(O(e^{-y/2})\)。
+分布意义下 \(E=c\delta_0+g'\)，其中 \(g\) 支撑在正半轴且
+\(|g(y)|\le C e^{-y/2}\)（\(y\ge0\)）。有 \(yE=(yg)'-g\)，故
+\[
+ T*(B-P)=g_0+g_1',\qquad
+ g_0=cK+S*g,\qquad g_1=K*g-S*(yg).
+\]
+此式把 \(K\) 也按其密度读取。两函数在正半轴均满足
+\(|g_i(y)|\le C(1+y)^2e^{-y/2}\)。
+与 \(e^{-a\tau}p_\tau\) 卷积即得 \(f_\tau=e^{-a\tau}(p_\tau*g_0+p_\tau'*g_1)\)。
+用 \(|x|\le |x-y|+y\)、加权 \(g_i\) 的可积性及加权高斯导数的有界性，
+得到陈述中的全部导数界。各半轴测度在单位区间的总变差至多指数增长，
+高斯对其任意固定有限复合可绝对配对。因此先作因果卷积再作热演化与反序相同。
+取 \(T_s(dy)=e^{-sy}T(dy)\)，则
+\(T_s*(e^{-s\cdot}V(\tau))=e^{-s\cdot}f_\tau\)，因为指数权对相加的坐标相乘。
+在正半轴，强迫的完整能量对每个 \(s>0\) 至多为
+\(C_{\tau,0,b}^2/(2(b+s))\)。这份实际证书沿 \(i\) 直接覆盖小正权。
+
+定义 \(\mu_{\rm M}(1)=1\)，含平方素因子的整数取零，其余有 \(r\) 个素因子时取
+\((-1)^r\)。对每个整数的不同素因子展开 \((1-1)^r\)，得
+\(\sum_{d\mid m}\mu_{\rm M}(d)=\mathbf1_{\{m=1\}}\)。故所列原子测度是 \(N\) 的因果卷积逆。
+由 \(S*(\delta_0+B)=\delta_0\) 得 \(T^{-1}\)，见 \lean{xi_causal_lattice_inverse}。
+紧因果窗口中各原子和有限。热演化后，\(f_\tau(x)\) 向负无穷有高斯衰减，
+由 \(g_0,g_1\) 的半轴支撑直接得到。逆核的单位区间总变差至多为 \(C(1+y)e^{y/2}\)，
+因为 \(|\mu_{\rm M}(m)|\le1\) 且 \(\sum_{m\le e^y}1/m\le1+y\)。
+与 \(f_\tau\) 配对遂对每个 \(x\) 绝对收敛，按同一因果卷积恒等式给出 \(V(\tau,x)\)。
+在 \(x\ge0\)，负侧读数 \(V(1,-x)\) 有界，由半轴支撑和高斯衰减得到。
+由上一定理，次数至少为二的素数幂热响应亦有界，故 \(v(x)=V(1,x)/2+O(1)\)。
+有界项的全部加权常数投影能量至多为其 \(L^2(dm)\) 能量。
+
+为核验反演的量词，点值恢复使用的是负侧高斯衰减，全域平方预算要求控制正侧。
+对 \(0<s\le1/2\)，因果逆的加权总变差至少为
+\(\sum_{m\ge1}|\mu_{\rm M}(m)|m^{-1/2-s}\)，因为逆核的原子与其余密度互相奇异。
+在前 \(N_0\) 个整数中，含平方因子的个数至多为
+\(N_0\sum_{j\ge2}j^{-2}\le 3N_0/4\)，这里对 \(j\ge3\) 用积分比较。
+故 \(\sum_{m\le N_0}|\mu_{\rm M}(m)|\ge N_0/4\)，部分求和给出该级数发散。
+因此取逆核绝对值的卷积总变差估计在此范围给出无穷上界。
+对半轴测度取 Laplace 变换，令 \(J(z)=(z-1/2)\widehat N(z)\)。在 \(\Re z>1/2\) 有
+\[
+ \widehat T(z)=\frac{J(z)}{z+1/2},\qquad
+ \widehat{T*(B-P)}(z)=\frac{J'(z)}{z+1/2},\qquad
+ \widehat{B-P}(z)=\frac{J'(z)}{J(z)} .
+\]
+第二式用 \(\widehat{yN}=-\widehat N'\)。由 \(E=c\delta_0+g'\) 得
+\(J(z)=1+(z-1/2)(c+z\widehat g(z))\)，在 \(\Re z>-1/2\) 全纯。
+若 \(J\) 在右半平面有 \(m\) 重零点，第三式在该点有留数 \(m\)，
+热演化的双侧 Laplace 乘子 \(e^{-a\tau+\tau z^2}\) 在该点非零。
+这说明指数衰减强迫所给的能量界用于 \(T*V\)。取得实际反演解的上述常数方向预算，
+即由前半段的同一次回读证毕。
+\end{proof}
+
+\begin{proposition}[中心化因果逆的平移分解与可和交叉项]\label{prop:xi-centered-inverse-packets}
+取定理~\ref{thm:xi-causal-cell-readback} 的实际初值图册、\(V,T,f_\tau,J\)，
+固定任意 \(\tau>0\)，记 \(G_\tau=e^{-a\tau}p_\tau\)。存在由同一整数格确定的实数
+\(c_*=J'(1/2)\) 和实光滑函数 \(\psi_\tau\)，使
+\[
+ V(\tau,x)=c_*G_\tau(x)+\sum_{n\ge1}
+       \frac{\mu_{\rm M}(n)}{\sqrt n}\,\psi_\tau(x-\log n).
+\]
+在正半轴，\(\psi_\tau\) 及其各阶导数对每个 \(0<b<1/2\) 均为 \(O_{\tau,b,j}(e^{-bx})\)。
+在负半轴有高斯衰减。各项在紧集上连同任意固定阶导数绝对一致可和。
+
+固定 \(0<s<1/2\)，以 \(e^{-sx}\) 运输此热态。其平移项的全部对角平方能量之和有限。
+对一对不同指标 \(n<m\)，写 \(n=gd,\ m=ge\)，\(\gcd(d,e)=1\)。
+对任意 \(0<\theta<2s\)、\(A>1/(2s)\)，交叉能量在下列两域绝对可和，
+上界独立于空间窗口和任意有限取项。
+\[
+       0<e-d\le d^\theta \qquad\text{或}\qquad e\ge d^A .
+\]
+本结论覆盖每个公因子 \(g\)。其余交叉项保留原有符号，以同一空间窗口的能量读取。
+\end{proposition}
+\begin{proof}
+因 \(E=c\delta_0+g'\) 及 \(S*B=K\)，有 \(T=K+cS+(S*g)'\)，这里 \(g\) 是
+上一定理中整数格积分的余项。因此 \(T*G_\tau\) 与 \(f_\tau\) 同样在负侧有高斯尾，
+在正侧连同导数是 \(O_{\tau,b,j}(e^{-bx})\)。这些界由 \(g,K\) 的半轴支撑及高斯卷积直接得到。
+记 \(F=f_\tau-c_*T*G_\tau\)。上一定理的 Laplace 公式在 \(z=1/2\) 给出 \(J(1/2)=1\)，且
+\[
+ \int_{\RR}e^{-x/2}F(x)\,dx
+   =\left.\widehat G_\tau(z)\frac{J'(z)-c_*J(z)}{z+1/2}\right|_{z=1/2}=0 .
+\]
+该处的积分绝对收敛，可从实 \(z>1/2\) 取极限。故 \(\psi_\tau=(\delta_0+B)*F\) 可写成
+\[
+ \psi_\tau(x)=F(x)+e^{x/2}\int_{-\infty}^{x}e^{-y/2}F(y)\,dy
+             =F(x)-\int_0^\infty e^{-t/2}F(x+t)\,dt .
+\]
+第一式给出负侧高斯界，第二式给出正侧的全部衰减界。用 \(\delta_0+B\) 的这次消去后，
+\(T^{-1}*F=V-c_*G_\tau\) 即给出陈述中的平移展开。高斯尾控制 \(\log n\) 趋于无穷，
+故每个固定窗口上均可绝对合成。函数 \(\psi_\tau\) 非零，否则 \(V=c_*G_\tau\) 使
+\(\widehat{B-P}(z)=c_*\) 对实 \(z>1/2\) 恒成立。实际格点给出
+\[
+ \widehat{B-P}(z)=\frac1{z-1/2}-\sum_{n\ge2}\Lambda(n)n^{-1/2-z}.
+\]
+当 \(z\to+\infty\) 时，此式趋于零而乘 \(z\) 后趋于一，因离散项由常数乘 \(2^{-z/2}\) 控制。
+
+令 \(\sigma=1/2+s,\ \phi(x)=e^{-sx}\psi_\tau(x),\ a_n=\mu_{\rm M}(n)n^{-\sigma}\)。
+指数权对平移相乘，故加权反演解扣除高斯项后即为 \(\sum_n a_n\phi(x-\log n)\)。
+对角能量至多为 \(\|\phi\|_2^2\sum_{n\ge1}n^{-1-2s}<\infty\)。
+对任意 \(X\in\RR\)，在 \((-\infty,X]\) 上的每一项取 \(L^2\) 范数后也绝对可和。
+事实上 \(n\) 充分大时，负侧高斯尾给出 \(C_X\exp(-c_\tau(\log n-X)^2)\) 的上界。
+平方范数遂等于对角项与带符号交叉项之和，有限和的代数展开见 \lean{xi_packet_signed_gram}。
+
+为同时控制窗口和指标，定义
+\[
+ K_s^Y(h)=\int_{-\infty}^{Y}\phi(v)\phi(v-h)\,dv,\qquad
+ K_s(h)=\int_{\RR}\phi(v)\phi(v-h)\,dv .
+\]
+对 \(h\ge0\) 及任意 \(b\in(0,1/2)\)，有
+\[
+ |K_s^Y(h)|\le\int_\RR|\phi(v+h)\phi(v)|\,dv
+      \le C_{s,b}e^{-(s+b)h}.
+\]
+这里 \(|\phi(v+h)|\le C_{s,b}e^{-(s+b)(v+h)}\) 在全轴成立，
+而 \(\int_\RR|\phi(v)| e^{-(s+b)v}dv<\infty\) 由两侧衰减得到。
+在每个 \(X\) 上按唯一的互素坐标 \(d,e\) 分组，正反序合并后该组交叉项为
+\[
+ \frac{2\mu_{\rm M}(d)\mu_{\rm M}(e)}{(de)^\sigma}
+ \sum_{\substack{g\ge1\\(g,de)=1}}\frac{\mu_{\rm M}(g)^2}{g^{2\sigma}}
+           K_s^{X-\log(gd)}\bigl(\log(e/d)\bigr).
+\]
+确实，\(g\) 与 \(de\) 有共同素因子时两指标至少一个含平方因子，余下情形由互素乘法直接得到。
+指标的公因子与互素坐标的往返及唯一性见 \lean{xi_packet_ratio_quotient}。
+同一比值沿公因子复用相同的平移测试，同时运输窗口端点及有符号系数。
+公因子层由 \(\sum_g g^{-1-2s}\) 统一控制。
+
+当 \(e-d\le d^\theta\) 时，取 \(|K_s^Y|\le\|\phi\|_2^2\)，按 \(d\) 求和的主控为
+\(\sum_d d^{\theta-1-2s}<\infty\)。当 \(e\ge d^A\) 时，指数尾界给出主控
+\[
+ C_{s,b}\sum_{d\ge1}d^{\,b-1/2}
+                 \sum_{\substack{e>d\\e\ge d^A}}\frac1{e^{\,1/2+2s+b}} .
+\]
+选择 \(b<1/2\) 充分接近 \(1/2\)，使 \(2s+b-1/2>0\) 且
+\(A(2s+b-1/2)>b+1/2\)，这由 \(2sA>1\) 确保。对内层作积分比较即得外层可和。
+以上均在完整正权子族上的各个固定权取其实际预算。对任意有限 TPH 细分，
+可先对窗口内的有符号函数求和再作正交读数。定理~\ref{thm:xi-causal-cell-readback}
+的逆序重构保持这些读数及相应能量。
+
+全部交叉项的绝对值不能由同样的可和界覆盖。\(K_s\) 在零点连续，
+\(K_s(0)=\|\phi\|_2^2>0\)，由平移在 \(L^2\) 中的连续性可取
+\(0<\delta<1\)，使 \(0\le h\le\log(1+\delta)\) 时 \(K_s(h)\ge K_s(0)/2\)。
+在 \(N<n\le(1+\delta)N\) 内，含平方因子的整数至多为
+\(\delta N\sum_{j\ge2}j^{-2}+O(\sqrt N)\)。因此充分大的 \(N\) 在此区间有
+至少 \(\delta N/8\) 个平方自由整数。其互异配对对全轴交叉项的绝对值和
+贡献至少 \(c_{s,\delta}N^{1-2s}\)。选 \(N=2^k\) 即得发散，在 \(s=1/2\) 亦成立。
+因此在扩大窗口时，其余区域的交叉项须保留符号才能利用抵消。
+
+精确地，对固定 \(s\) 令 \(C_s(X)\) 为除上述两域后的带符号窗口交叉项总和。
+对角项和已覆盖两域在 \(X\) 上一致有界，所以
+\(\sup_X C_s(X)<\infty\) 当且仅当该加权平移和的全轴平方能量有限。
+从窗口到全轴取极限时使用完整平方范数的单调性。
+高斯校正及 \(V\) 的负半轴热迹在每个正权下的能量均有限。在 \(\tau=1\) 上，
+由定理~\ref{thm:xi-tph-base-projection} 和定理~\ref{thm:xi-causal-cell-readback}
+对正半轴所给的有界差，\(\sup_X C_s(X)<\infty\) 等价于同一实际热解 \(u\) 在该权的完整能量有限。
+一旦有符号上界覆盖每个 \(0<s<1/2\)，即得全称 \(\pi_\zeta\)，
+原命题在 \(D_\zeta(\pi_\zeta)\) 处证毕。
+\end{proof}
+
+\begin{corollary}[整数格热平移的高斯局部化与有符号块抵消]\label{cor:xi-signed-packet-blocks}
+固定命题~\ref{prop:xi-centered-inverse-packets} 中的 \(\tau>0\)。其实际平移函数满足
+\[
+  |\partial_x^j\psi_\tau(x)|\le C_{\tau,j}\exp(-b_{\tau,j}x^2)
+       \quad(x\in\RR,\ j\ge0),\qquad b_{\tau,j}>0.
+\]
+对每个 \(0<s<1/2\)，令 \(\sigma=1/2+s,\ \phi=e^{-s\cdot}\psi_\tau\)。
+将两个平移指标写成 \(gd,gr\)，其中 \(d<r,\ (d,r)=1\)。存在 \(L_{\tau,s}>0\)，使
+\(\log(r/d)\ge L_{\tau,s}\sqrt{\log r}\) 的全部交叉项绝对可和，上界独立于观察窗口。
+
+对相近指标还可取带符号的完整区间。存在 \(\kappa>0\)，使每个 \(R=2^k\ge2\)
+可任取 \(D_R\subset[R/2,2R]\cap\ZZ\)，满足
+\(\#D_R\le R^{2s}\exp(\kappa\sqrt{\log R})\)。
+对每个 \(d\in D_R,\ g\ge1\) 在 \(R<r\le2R,\ r>d\) 内任取一个区间，
+在其中依实际互素条件和莫比乌斯符号合成 \(r\) 项。所得区间和的绝对值对全部
+\(R,d,g\) 可和，上界同时适用于所有上述选择及所有窗口。同一符号抵消给出完整热平移块的估计
+\[
+ \sup_{R\le u\le v\le2R}
+ \left\|\sum_{u<n\le v}\mu_{\rm M}(n)n^{-\sigma}\phi(\cdot-\log n)\right\|_2
+       \le C_{\tau,s} R^{1/2-s}\exp(-c\sqrt{\log R})\qquad(c>0).
+\]
+\end{corollary}
+\begin{proof}
+写 \(G=G_\tau\)，沿用 \(N,B,P,S,T\) 的因果卷积。由 \(S^{-1}=\delta_0+B\)、
+\(N*P=yN\) 及校正系数 \(c_*=J'(1/2)\)，
+\[
+   \psi_\tau=B*(G*N)-G*((y+c_*)N).
+\]
+两次卷积可交换，由半轴支撑、单位区间总变差的指数上界和负侧高斯尾可知。
+置 \(H(u)=u^{-1/2}G(-\log u)\)（\(u>0\)），在 \(u\le0\) 延零。对
+\(H\) 及 \(H\log u\)（同样延零），均有
+\(\|H^{(m)}\|_1\le\exp(C_\tau(m+1)^2)\)，此处用同一记号表示这两种测试。
+确实，在 \(|w-u|\le u/2\) 取实对数的解析分支，\(|\arg w|\) 及
+\(|\log|w|-\log u|\) 一致有界。高斯公式使两种测试在圆周上至多为
+\(C_\tau u^{-1/2}\exp(-(\log u)^2/(8\tau))\)。Cauchy 估计再乘 \(m!(2/u)^m\)，
+换元 \(v=\log u\) 积分并配方即得该界，也给出零点处的光滑延拓。
+将 \(G\) 换成任意固定阶导数，圆周上的多项式因子同样由高斯吸收。
+
+对 \(x\ge0\) 取网距 \(h=e^{-x}\)，将 \(H\) 以周期 \(h\) 求和并在零点取 Fourier 级数。
+两种测试及导数均快速衰减。第 \(k\ne0\) 项的模至多为
+\(h^{-1}(h/(2\pi|k|))^m\|H^{(m)}\|_1\)，这是对其 Fourier 积分分部积分 \(m\) 次。
+取 \(m\ge2\) 后绝对可和。将网格和乘 \(e^{-x/2}\) 即得到 \(G*N\)。
+对 \(G*(yN)\) 则使用 \(\log n=x+\log(nh)\)。于是存在实常数 \(A,B_0\) 与 \(b>0\)，使
+\[
+ G*N(x)=A e^{x/2}+O(e^{-b x^2}),\qquad
+ G*(yN)(x)=(Ax+B_0)e^{x/2}+O(e^{-b x^2}).
+\]
+这里 \(A=\int H,\ B_0=\int H(u)\log u\,du\)。误差由
+\((1+x)e^{x/2}\exp(C_\tau(m+1)^2-mx)\) 控制，取一次 \(m=\max\{2,\lfloor x/(2C_\tau)\rfloor\}\)
+并缩小 \(b\) 即可。又
+\(B*(G*N)(x)=e^{x/2}\int_{-\infty}^x (G*N)(v)e^{-v/2}\,dv\)，
+从首式积分得 \((Ax+C)e^{x/2}+O(e^{-b' x^2})\)。
+命题~\ref{prop:xi-centered-inverse-packets} 已证 \(\psi_\tau\) 在正侧衰减，
+故相减后 \(e^{x/2}\) 的系数为零。对 \(G^{(j)}\) 重作以上推导并沿用同一导数的已证衰减，
+即得各阶的双侧高斯界。
+
+因此命题~\ref{prop:xi-centered-inverse-packets} 的窗口重叠 \(K_s^Y(h)\)
+及其对 \(h\) 的导数在所有 \(Y\) 上均由 \(C_{\tau,s}e^{-\gamma_{\tau,s}h^2}\) 控制，
+因为两个平移高斯之积可配方积分。公因子权之和至多为 \(\sum_g g^{-1-2s}\)。
+取 \(2s+\gamma_{\tau,s}L_{\tau,s}^2>1\)，用 \(\sum_{d<r}d^{-\sigma}\le C_s r^{1-\sigma}\)，
+所列远隔域的交叉能量由 \(\sum_{r\ge2}r^{-2s-\gamma_{\tau,s}L_{\tau,s}^2}\) 的常数倍控制。
+
+现从同一整数格逆核导出实际有符号区间和。其 Laplace 变换在 \(\Re z>1/2\) 为
+\(M(z)=\sum_n\mu_{\rm M}(n)n^{-1/2-z}=(z-1/2)/J(z)\)。
+记 \(\ell(t)=\log(3+|t|)\)。存在 \(\eta>0\)，使
+\(\Re z\ge1/2-8\eta/\ell(\Im z)\) 上 \(J(z)\ne0\)。
+确实，命题~\ref{prop:xi-centered-inverse-packets} 所用 \(V(1)\) 的双侧变换为
+\(\widehat G J'/J\)。它与热解 \(u\) 的单侧变换的两倍之差在 \(\Re z>0\) 全纯，
+由负侧高斯衰减及正侧 \(V(1)-2u\) 有界得到。\(\widehat G\) 处处非零，\(J'/J\) 在
+\(J\) 的零点有非零留数，故每个这样的零点在此半平面给出
+定理~\ref{thm:xi-law-heat-evolution} 的一个热态极点。推论~\ref{cor:xi-tph-boundary-budget}
+已从实际预解式给出这些极点至 \(\Re z=1/2\) 的间距 \(\ge c/\ell(\Im z)\)。
+取 \(\eta\) 足够小使所用区域位于 \(\Re z>1/4\)。
+
+在较小域 \(1/2-\eta/\ell(t)\le\Re z\le2,\ t=\Im z\)，有 \(|M(z)|\le C(3+|t|)^B\)。
+说明靠近左边界的估计。在 \(|t|\ge2\) 时以 \(z_0=1/2+2\eta/\ell(t)+it\) 为心，
+取半径 \(5\eta/\ell(t)\) 的无零盘。由 \(J=1+(z-1/2)(c+z\widehat g)\)
+及 \(g\) 的已证衰减，盘内有 \(|J|\le A_t=C(3+|t|)^2\)。
+而绝对收敛级数给出 \(|M(z_0)|\le1+\ell(t)/(2\eta)\)。
+非负调和函数 \(\log(A_t/|J|)\) 在同心 \(3/5\) 倍盘内至多为中心值的四倍，
+由圆盘 Poisson 核的上界得到。中心值为 \(O(\ell(t))\)，故得到所述多项式界。
+更靠右处直接用绝对级数，有限高度由紧性补全。
+
+对任意整数 \(1\le D\le 4R^2\)，在 \(R\le u\le v\le2R\) 上一致有
+\[
+ \left|\sum_{\substack{u<n\le v\\(n,D)=1}}\mu_{\rm M}(n)\right|
+         \le C R\exp(-c\sqrt{\log R}) .
+\]
+为证明此式，互素筛的变换为
+\(M_D(z)=M(z)\prod_{p\mid D}(1-p^{-1/2-z})^{-1}\)，由平方自由整数的素因子分解得到。
+令 \(Z=\log R,\ T=\exp(\alpha\sqrt Z),\ h=T^{-1/4}\)，其中 \(\alpha>0\) 是下文选定的常数。
+在 \(|\Im z|\le T,\ \Re z\ge1/2-\eta/\log(3+T)\) 的复积分矩形内，
+有限乘积至多为 \(C(1+Z)^{B_1}\)。事实上 \(D\) 的不同素因子个数 \(m\le\log_2(4R^2)\)，
+第 \(j\) 个至少为 \(j+1\)。取 \(\delta=\eta/\log(3+T)\)，乘积对数至多为
+\(C\sum_{j=1}^m(j+1)^{-1+\delta}\le C(m+1)^\delta\log(2+m)\)，而 \((m+1)^\delta\) 一致有界。
+
+固定支撑在 \([-1,1]\)、积分为一的非负光滑函数 \(\chi\)，将对数区间
+\((\log(u/R),\log(v/R)]\) 的指示函数与 \(h^{-1}\chi(\cdot/h)\) 卷积为 \(w\)。
+替换指示函数只影响两端共 \(O(Rh+1)\) 个整数。变换
+\(W(z)=\int w(y)e^{(1/2+z)y}dy\) 在矩形上同时有界且
+\(|W(z)|\le C_k h^{-k}(1+|\Im z|)^{-k}\)，由分部积分得到，也适用于右边线的两端延长。
+在 \(\Re z=1/2+1/Z\) 作 Fourier 反演，平滑和为 \(W(z)R^{1/2+z}M_D(z)\)
+沿此直线的积分除以 \(2\pi i\)。截于 \(T\) 后将积分移至 \(\Re z=1/2-\delta\)。
+新竖边、两条水平边及右边线尾部的上界依次为常数乘
+\[
+ R(1+Z)^{B_1} e^{-\delta Z}T^{B+1},\qquad
+ R(1+Z)^{B_1}h^{-k}T^{B-k},\qquad
+ R(1+Z)h^{-k}T^{1-k}.
+\]
+尾部直接用 \(|M_D|\le1+Z\)。选 \(\alpha^2(B+1)<\eta/4\)，再取整数 \(k>4(B+2)\)，
+这三项和端点误差均为 \(O(R e^{-c\sqrt Z})\)。有界 \(R\) 并入常数，区间估计得证。
+
+在 \(t\in[R,2R]\) 上，\(t^{-\sigma}\phi(\cdot-\log t)\) 的 \(L^2\) 范数至多为
+\(C_{\tau,s}R^{-\sigma}\)，其导数范数至多为 \(C_{\tau,s}R^{-\sigma-1}\)。
+用 \(D=1\) 的区间估计部分求和即得陈述中的热平移块界，有限的分部求和恒等式见
+\lean{xi_signed_block_abel}。对整个有符号块施用窗口限制及 TPH 正交投影均保持此上界。
+取前一命题中 \(K_s\) 有正下界所对应的短比值区间 \((R,(1+\delta)R]\)。
+无平方因子的整数至少有 \(\delta R/8\) 个，而其中正负符号的计数差至多为 \(CRe^{-c\sqrt Z}\)。
+因此充分大的 \(R\) 上两种符号各至少占 \(\delta R/32\) 个。该区间内同号及异号配对
+各自的绝对贡献均至少为 \(c_{s,\delta}R^{1-2s}\)，完整块的平方能量则带有刚证的消去因子
+\(\exp(-2c\sqrt Z)\)。
+
+最后固定 \(d\in D_R,\ g\ge1,\ Y=X-\log(gd)\)。对相近指标的核
+\(H(t)=(dt)^{-\sigma}K_s^Y(\log(t/d))\)，上述重叠及导数界给出
+\(|H(t)|+R|H'(t)|\le C_{\tau,s}R^{-2\sigma}\)（\(R<t\le2R,\ t>d\)）。
+当 \((g,d)=1,\ g\le R\) 时，对 \((r,gd)=1\) 的莫比乌斯权按刚证的区间估计部分求和，
+所得一组的模至多为 \(C_{\tau,s}g^{-2\sigma}R^{-2s}e^{-c\sqrt Z}\)。
+此处 \(gd\le2R^2\)，其余随附因子 \(|\mu_{\rm M}(d)|,\mu_{\rm M}(g)^2\le1\)。
+当 \((g,d)>1\) 时这组为零。对 \(g>R\) 直接取绝对值，再用
+\(\sum_{g>R}g^{-2\sigma}\le C_s R^{-2s}\)。总计每个尺度上的主控为
+\[
+ C_{\tau,s}\,\#D_R\,R^{-2s}\bigl(e^{-c\sqrt Z}+R^{-2s}\bigr).
+\]
+取 \(0<\kappa<c/2\)，右侧沿 \(R=2^k\) 可和。此估计保留各组内部的实际符号。
+若每个尺度允许全部相近的首指标，\(\#D_R\) 可达 \(R\) 量级，
+所给上界含 \(R^{1-2s} e^{-c\sqrt{\log R}}\)，对固定 \(0<s<1/2\) 仍随 \(R\) 增长。
+全体剩余配对遵循命题~\ref{prop:xi-centered-inverse-packets} 的同一带符号窗口条件。
+\end{proof}
+
+\begin{theorem}[全体整数热平移的正交压缩与窗口 Gram 余项]\label{thm:xi-packet-gram-compression}
+取推论~\ref{cor:xi-signed-packet-blocks} 的实际热平移函数，
+固定 \(\tau>0\)，令 \(\phi_s(x)=e^{-sx}\psi_\tau(x)\)。
+在每个 \(I_j=[2^j,2^{j+1})\cap\ZZ\)（\(j\ge0\)）上记
+\[
+ N_j=2^j,\quad y_j=(j+1/2)\log 2,\quad t_n=\log n-y_j,\quad
+ m_j=\left\lceil\frac{16(j+1)}{\log(2+j)}\right\rceil .
+\]
+在欧氏空间 \(\RR^{I_j}\) 上，以 \(P_j(q)\) 正交投影到
+\((t_n^\ell)_{n\in I_j}\) 所张成的子空间，其中
+\(0\le\ell<\min(N_j,m_j+q)\)，\(q\ge0\) 为整数。对有限个尺度 \(F\)，取直和投影 \(P\)。
+令 \(S_{F,X}\) 将系数 \(a=(a_n)\) 送到
+\(\mathbf1_{x\le X}\sum_{j\in F}\sum_{n\in I_j}a_n\phi_s(x-\log n)\)。
+记 \(\|\cdot\|_1\) 为算子的迹范数，即奇异值之和。存在 \(C_\tau,A_\tau>0\)，使
+\[
+  \left\|S_{F,X}^*S_{F,X}-P S_{F,X}^*S_{F,X}P\right\|_1
+       \le C_\tau\frac{A_\tau^q}{\sqrt{q!}}
+       \qquad(0\le s\le1/2,\ X\in\RR).
+\]
+该界同时覆盖全部整数指标、尺度集合及各块内继续扩张投影像的正交细分。
+对实际 \(a_n=\mu_{\rm M}(n)n^{-1/2-s}\)、\(0<s<1/2\)，压缩前后全体整数的窗口平方能量
+之差至多为上式右端乘 \(1+1/(2s)\)。取 \(q=0\)，压缩输入在每个尺度仅需
+\[
+ b_{j,\ell}(s)=\sum_{n\in I_j}\mu_{\rm M}(n)n^{-1/2-s}t_n^\ell
+       \qquad(0\le\ell<\min(N_j,m_j)).
+\]
+直接在经典纤维求解时取 \(\tau=1\)。若对每个 \(0<s<1/2\)，
+这些带符号读数共同合成的窗口能量对 \(X\) 一致有界，则取得同一全称见证 \(\pi_\zeta\)。
+\end{theorem}
+\begin{proof}
+命题~\ref{prop:xi-centered-inverse-packets} 中的修正系数 \(c_*=J'(1/2)\) 与时间无关。
+由上一推论的整数格卷积式和 \(G_\tau=G_{\tau/2}*G_{\tau/2}\)，
+有 \(\psi_\tau=G_{\tau/2}*\psi_{\tau/2}\)。卷积换序由因果测度在单位区间的指数增长
+和高斯尾保证。对复变量 \(x+iv\)，高斯核取模后只多一个 \(\exp(v^2/(2\tau))\) 因子。
+\(\psi_{\tau/2}\) 的双侧高斯界与实高斯卷积后仍为高斯界。将 \(e^{-s x}\) 吸入其中，
+得到仅依赖 \(\tau\) 的正数 \(C,b,B\)，使
+\[
+ |\phi_s(x+iv)|\le C e^{-b x^2+Bv^2}\qquad(0\le s\le1/2).
+\]
+绝对局部一致收敛给出整延拓。在以 \(x\) 为心、半径 \(\rho\) 的圆周上，
+可用 \(C e^{-b x^2/2+B'\rho^2}\) 作共同上界。对 \(l\ge1\) 取
+\(\rho=\sqrt{l/(2B')}\)，再用 \(l!\le l^l\)，Cauchy 公式给出
+\[
+ \frac{|\phi_s^{(l)}(x)|}{l!}\le C e^{-b' x^2}\frac{A^l}{\sqrt{l!}} .
+\]
+零阶也满足此式。因 \(|t_n|\le(\log 2)/2\)，在 \(x-y_j\) 展开
+\(\phi_s(x-y_j-t_n)\) 到 \(m-1\) 阶，沿实线的 Taylor 余项至多为
+\(C e^{-b''(x-y_j)^2}A_1^m/\sqrt{m!}\)。这里及下文的高斯常数可依赖 \(\tau\)。
+
+写 \(k_j(x)=(\phi_s(x-\log n))_{n\in I_j}\)，
+并记 \(w_j(x)=\exp(-b''(x-y_j)^2)\)，必要时减小 \(b''\)。
+若 \(P'_j\) 的像包含 \(P_j(q)\) 的像，在 \(m_j+q<N_j\) 时取 \(m=m_j+q\)，上述 Taylor 多项式在该像中。
+若达到 \(N_j\) 个方向，互异的 \(t_n\) 使 Vandermonde 矩阵可逆，此时投影为恒等。
+由正交投影的最小距离性及 \((m_j+q)!\ge m_j!q!\)（\lean{xi_tph_base_factorial}），得
+\[
+ \|k_j(x)\|\le C\sqrt{N_j}\,w_j(x),\qquad
+ \|(I-P'_j)k_j(x)\|\le C\sqrt{N_j}\,w_j(x)
+          \frac{A_1^{m_j}}{\sqrt{m_j!}}\frac{A_1^q}{\sqrt{q!}} .
+\]
+由 \(\log(m!)\ge m(\log m-1)\)，
+\(\limsup_{j\to\infty}j^{-1}\log(A_1^{m_j}/\sqrt{m_j!})\le-8\)。
+故所有尺度共同满足 \(A_1^{m_j}/\sqrt{m_j!}\le C_\tau 2^{-2j}\)。
+
+令 \(k\) 为 \(k_j\) 的直和，\(p=P' k\)，其中 \(P'\) 是 \(P'_j\) 的直和。
+对给定 \(x\)，完整 Gram 核与低阶核之差为
+\[
+  k\otimes k-p\otimes p=(k-p)\otimes k+p\otimes(k-p).
+\]
+这里 \((u\otimes v)z=u\langle v,z\rangle\)。任意两列有限测试的带符号展开见
+\lean{xi_packet_gram_compression}。秩一算子的唯一可能非零奇异值为
+\(\|u\|\|v\|\)，可将定义域分为 \(\RR v\) 和其正交补直接验证。
+在窗口对秩一式积分，用迹范数三角不等式，所得上界至多为常数乘
+\[
+  \frac{A_1^q}{\sqrt{q!}}\sum_{j,l\ge0}
+       2^{(j+l)/2}2^{-2l}\exp(-b_1(j-l)^2).
+\]
+这里用到两个移位高斯乘积的全轴积分。对每个 \(l\)，先在 \(j\) 上求和，
+由 \(\sum_{d\in\ZZ}2^{d/2}e^{-b_1d^2}<\infty\) 得到常数乘 \(2^{-l}\)。
+这给出陈述中的统一界，也控制投影像扩张后的全部混合交叉项。
+同阶正交换坐标时同时共轭投影并运输系数和测试，读数保持。
+逐层扩张时相邻投影差彼此正交，按任意合法的嵌套次序合成，
+各增量加起均为末投影与初投影的差。实际法态、低阶读数及其余项估计随同一复合运输。
+
+对每个固定 \(X\)，\(\int_{-\infty}^X\sum_j\|k_j(x)\|^2 dx<\infty\)，
+因为 \(y_j\) 线性趋于无穷，而负侧高斯尾控制 \(2^j\)。
+于是全体尺度上，原合成与投影合成都在该窗口强收敛。
+对实际系数，\(\sum_n |a_n|^2\le\sum_n n^{-1-2s}\le1+1/(2s)\)。
+迹范数控制算子范数，对 \(a\) 作二次型配对并扩大 \(F\) 即得窗口平方能量之差的界。
+令 \(V_j\) 的列为所列单项式向量，\(b_j=V_j^{\mathsf T}a_j\)。
+则 \(P_j(0)a_j=V_j(V_j^{\mathsf T}V_j)^{-1}b_j\)，各列线性无关保证逆存在。
+故所有带符号的低阶读数足以恢复压缩合成。加回高斯校正后，在 \(\tau=1\)
+由命题~\ref{prop:xi-centered-inverse-packets} 的能量等价式，
+压缩合成在全部小正权有窗口统一界恰好给出 \(\pi_\zeta\)，
+原命题在 \(D_\zeta(\pi_\zeta)\) 处证毕。
+
+实际输入在整块上已有两指标共同带符号的估计。令
+\(f_j(x)=\langle a_j,k_j(x)\rangle\)。在 \([N_j,2N_j]\) 上，
+测试 \(t^{-1/2-s}\phi_s(x-\log t)\) 及其导数乘 \(N_j\) 均由
+\(C_\tau N_j^{-1/2-s}w_j(x)\) 控制。对上一推论的区间和分部求和，
+端点至多一个整数的改动并入常数，得到
+\[
+ \left|\int_{-\infty}^X f_j(x)f_l(x)\,dx\right|
+ \le C_\tau\,2^{(1/2-s)(j+l)}
+   \exp\bigl(-c(\sqrt j+\sqrt l)-b_1(j-l)^2\bigr).
+\]
+该式在取模前已经合成两个尺度的全体整数。对 \(j=l\)，所给右端在
+每个固定 \(0<s<1/2\) 仍随 \(j\) 增长。
+
+常数方向说明实际符号在低阶预算中的作用。取块内归一化常数向量
+\(e_j=N_j^{-1/2}\mathbf1\)。其全轴合成范数除以 \(\sqrt{N_j}\) 趋于
+\(\|H_s\|_2>0\)，其中 \(H_s(x)=\int_1^2\phi_s(x-\log v)\,dv\)。
+确实，平移 \(x\) 以后所得为这个积分的等距网格 Riemann 和，
+其 \(L^2\) 误差至多为 \(\|\phi_s'\|_2/N_j\)。
+又 \(H_s=\phi_s*(e^y\mathbf1_{[0,\log2]})\)。
+若 \(H_s=0\)，施用 \(\partial_y-1\) 得
+\(\phi_s=2\phi_s(\cdot-\log2)\)，取 \(L^2\) 范数与命题~\ref{prop:xi-centered-inverse-packets}
+的 \(\phi_s\ne0\) 矛盾。因而仅凭系数的平方和可控制上述高阶误差，
+实际低阶有符号合成的全窗口预算仍由同一母体输入承担。
 \end{proof}

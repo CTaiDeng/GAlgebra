@@ -20,17 +20,17 @@
 实际输入和保留条件、原量词所需的全域覆盖或极限条件。
 
 \begin{remark}[协变运输与多复合反身]
-同一法对象保存输入、合法域、有序作用与回读证据 \cite{GUnified}。
-定理~\ref{thm:pde-operator-transport} 在纤维总算子丛上运输残差及证书，
-并用复合式包围有缺陷的运输。多复合反身使合法复合的输出仍在同一作用纤维中。
+同一法对象保存输入、合法域、有序作用与回读证据 \cite{GUnified}。协变在同阶运输测试和证书，实现广度复用。
+定理~\ref{thm:pde-operator-transport} 运输残差并控制复合缺陷。多复合反身递归将合法末态用于下一次作用，实现深度复用。
+二者构成富结构中的全景复用。任务商保留未来测试的联合读数，覆盖原量词的证书经同一正向回读证毕。
 对同一结果的精确限制，\(\pi_{m,n}c_m=c_n\)（\(m\ge n\)）保持已有读数。
 对近似限制，完成空间上的统一主控与闭性保证方程及读数传到极限。
 算术正算子的复合由定理~\ref{thm:spectral-positive-operator} 读取，
 整周期有序树全和的反身闭合由定理~\ref{thm:flow-period-composite} 给出。
 \end{remark}
 
-法空间结果按双向等价 \(M_\sigma(i)\Longleftrightarrow P_\sigma(i)\)、
-充分回读 \(D_\sigma(i):M_\sigma(i)\Longrightarrow P_\sigma(i)\) 或精确读数验收。母体证明另依其实际覆盖域登记。
+十四项法空间结果均按其陈述结项。双向等价 \(M_\sigma(i)\Longleftrightarrow P_\sigma(i)\) 的两个方向均已证明。
+充分回读在所列前提下证成 \(D_\sigma(i):M_\sigma(i)\Longrightarrow P_\sigma(i)\) 即结项。精确读数按适用域内的等式结项。
 取得覆盖原量词的母体证明 \(\pi_\sigma(i)\) 后，应用同一已证正向回读
 \[
  \boxed{\frac{\pi_\sigma(i):M_\sigma(i)
@@ -39,20 +39,26 @@
  \qquad (i\in\mathcal I_\sigma).
 \]
 所得推导保留原假设、定义域和完整量词，就是 \(P_\sigma\) 的证明。原命题在同一回读处证毕。
-充分回读依定理的前提及推出的结论验收。原命题要求存在性时，交付同一回读所得的存在性结论。
+原命题要求存在性时，交付同一回读所得的存在性结论。
 原命题要求显式构造时，构造随同一回读交付。
 
 \subsection{分型回读的定理与覆盖域}
 
 \begin{description}
 \item[谱型。]
-定义~\ref{def:goals} 登记实际 \(\xi\) 所生成的全称矩条件 \(\mathsf E_\zeta\)。
-定理~\ref{thm:xi-moment-readback} 经正自伴算子和同源预解式给出
-该条件与全部非平凡零点位于临界线的双向等价。命题~\ref{prop:xi-product-moment-certificate} 在所列任意长乘积族上给出两条矩不等式的同一余量。定理~\ref{thm:xi-joint-ray-gain} 给出全方向判据 \(\mathcal A=1\)。
-若每个 \(p>99q\) 方向的重复复合有界，该定理给出覆盖全部实多项式的 \(\pi_\zeta\)。
-正向回读 \(D_\zeta(\pi_\zeta)\) 即证毕经典黎曼原命题。
-定理~\ref{thm:grh-localized-moments} 与定理~\ref{thm:grh-family-readback}
-给出相应的 Dirichlet 纤维及全秩回读，保留各秩的解析输入和零点量词。
+经典黎曼猜想是有理数域上全秩大黎曼猜想的秩一平凡特例。按定理~\ref{thm:grh-family-readback}，给定全秩矩见证 \(\Pi\)，
+在 \(n=1\) 取平凡特征与零虚平移，将 \(\Pi(1,\mathbf1)\) 的两条矩不等式同除以 \(2\)，即得 \(\pi_\zeta\)。
+定理~\ref{thm:xi-moment-readback} 在 \(D_\zeta(\pi_\zeta)\) 处证毕经典命题。
+\par 经典纤维另有独立的 G-PDE 判据。对定义~\ref{def:goals} 的实际输入，命题~\ref{prop:xi-arithmetic-quadratic}
+给出初值的算术数据。定理~\ref{thm:xi-law-heat-evolution} 在法空间内构造唯一 G-PDE 解及双向可读的热图册。
+定理~\ref{thm:xi-tph-orthogonal-solve} 对有序复合的 TPH 高阶方向给出与窗口及正权指数无关的正交尾界。
+推论~\ref{cor:xi-tph-boundary-budget} 给出 \(\varepsilon\ge1/2\) 的起始预算。
+定理~\ref{thm:xi-tph-base-projection} 统一控制起始均值中的高阶正交分量。
+定理~\ref{thm:xi-causal-cell-readback} 给出正权族向小正权子族的恒等运输。
+命题~\ref{prop:xi-centered-inverse-packets} 与推论~\ref{cor:xi-signed-packet-blocks} 给出实际有符号平移及其高斯局部化。
+定理~\ref{thm:xi-packet-gram-compression} 统一控制全体指标的高阶 Gram 余项。若低阶有符号合成对每个 \(0<\varepsilon<1/2\) 有窗口统一界，
+即得全称矩见证 \(\pi_\zeta\)，定理~\ref{thm:xi-moment-readback} 在 \(D_\zeta(\pi_\zeta)\) 处证毕原命题。
+其余纤维的回读由定理~\ref{thm:grh-localized-moments} 逐项给出，保留各秩的解析输入和零点量词。
 
 \item[加性数论。]
 定理~\ref{thm:prime-poisson-fiber} 给出素数权重的精确投影。

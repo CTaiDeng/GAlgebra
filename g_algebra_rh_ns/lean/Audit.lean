@@ -187,6 +187,8 @@ import GAlgebra.ZetaWindow
 #check GAlgebra.grand_riemann_fiber_equivalence
 #check GAlgebra.grand_riemann_rank_one_readback
 #check GAlgebra.grand_riemann_rank_split
+#check GAlgebra.grh_trivial_moment_readback
+#check GAlgebra.grh_trivial_moment_scale
 #check GAlgebra.harmonic_projection_coeff_cancel
 #check GAlgebra.higher_arity_truncation
 #check GAlgebra.hodge_cycle_restrict
@@ -375,15 +377,28 @@ import GAlgebra.ZetaWindow
 #check GAlgebra.verified_relaxed_minimum
 #check GAlgebra.weighted_coverage_image
 #check GAlgebra.weighted_gram_factorization
+#check GAlgebra.xi_arithmetic_cutoff_constants
 #check GAlgebra.xi_bernstein_high_exponent_constants
 #check GAlgebra.xi_bernstein_low_exponent_constants
 #check GAlgebra.xi_bernstein_quadratic_constants
+#check GAlgebra.xi_causal_lattice_inverse
+#check GAlgebra.xi_centered_lattice_forcing
+#check GAlgebra.xi_cosine_energy_weight
 #check GAlgebra.xi_exterior_factor_constants
 #check GAlgebra.xi_exterior_factor_phase
+#check GAlgebra.xi_heat_chart_actions
+#check GAlgebra.xi_heat_harmonic_weights
+#check GAlgebra.xi_heat_laplace_weights
+#check GAlgebra.xi_heat_tail_constants
+#check GAlgebra.xi_heat_weight_transport
 #check GAlgebra.xi_origin_moment_bounds
 #check GAlgebra.xi_origin_summation_bounds
+#check GAlgebra.xi_packet_gram_compression
+#check GAlgebra.xi_packet_ratio_quotient
+#check GAlgebra.xi_packet_signed_gram
 #check GAlgebra.xi_paired_phase_numerator
 #check GAlgebra.xi_polynomial_sector_constants
+#check GAlgebra.xi_positive_subfamily_readback
 #check GAlgebra.xi_product_budget
 #check GAlgebra.xi_product_moment_margin
 #check GAlgebra.xi_ray_amplitude_gap
@@ -393,13 +408,20 @@ import GAlgebra.ZetaWindow
 #check GAlgebra.xi_ray_power_bound
 #check GAlgebra.xi_ray_repeat_factor
 #check GAlgebra.xi_ray_resolvent_factor
+#check GAlgebra.xi_ray_sector_endpoint
 #check GAlgebra.xi_ray_square_modulus
 #check GAlgebra.xi_ray_strip_budget
+#check GAlgebra.xi_ray_subgeometric_bound
 #check GAlgebra.xi_ray_window_endpoint
 #check GAlgebra.xi_real_resolvent_constants
 #check GAlgebra.xi_reflected_resolvent_split
 #check GAlgebra.xi_separated_pole_budgets
 #check GAlgebra.xi_shifted_coefficient_constants
+#check GAlgebra.xi_signed_block_abel
+#check GAlgebra.xi_tph_base_factorial
+#check GAlgebra.xi_tph_haar_split
+#check GAlgebra.xi_tph_orthogonal_path
+#check GAlgebra.xi_tph_pair_transform
 #check GAlgebra.xi_vertical_resolvent_constants
 #check GAlgebra.zero_line_readback_along_shift
 
@@ -587,6 +609,8 @@ import GAlgebra.ZetaWindow
 #print axioms GAlgebra.grand_riemann_fiber_equivalence
 #print axioms GAlgebra.grand_riemann_rank_one_readback
 #print axioms GAlgebra.grand_riemann_rank_split
+#print axioms GAlgebra.grh_trivial_moment_readback
+#print axioms GAlgebra.grh_trivial_moment_scale
 #print axioms GAlgebra.harmonic_projection_coeff_cancel
 #print axioms GAlgebra.higher_arity_truncation
 #print axioms GAlgebra.hodge_cycle_restrict
@@ -775,15 +799,28 @@ import GAlgebra.ZetaWindow
 #print axioms GAlgebra.verified_relaxed_minimum
 #print axioms GAlgebra.weighted_coverage_image
 #print axioms GAlgebra.weighted_gram_factorization
+#print axioms GAlgebra.xi_arithmetic_cutoff_constants
 #print axioms GAlgebra.xi_bernstein_high_exponent_constants
 #print axioms GAlgebra.xi_bernstein_low_exponent_constants
 #print axioms GAlgebra.xi_bernstein_quadratic_constants
+#print axioms GAlgebra.xi_causal_lattice_inverse
+#print axioms GAlgebra.xi_centered_lattice_forcing
+#print axioms GAlgebra.xi_cosine_energy_weight
 #print axioms GAlgebra.xi_exterior_factor_constants
 #print axioms GAlgebra.xi_exterior_factor_phase
+#print axioms GAlgebra.xi_heat_chart_actions
+#print axioms GAlgebra.xi_heat_harmonic_weights
+#print axioms GAlgebra.xi_heat_laplace_weights
+#print axioms GAlgebra.xi_heat_tail_constants
+#print axioms GAlgebra.xi_heat_weight_transport
 #print axioms GAlgebra.xi_origin_moment_bounds
 #print axioms GAlgebra.xi_origin_summation_bounds
+#print axioms GAlgebra.xi_packet_gram_compression
+#print axioms GAlgebra.xi_packet_ratio_quotient
+#print axioms GAlgebra.xi_packet_signed_gram
 #print axioms GAlgebra.xi_paired_phase_numerator
 #print axioms GAlgebra.xi_polynomial_sector_constants
+#print axioms GAlgebra.xi_positive_subfamily_readback
 #print axioms GAlgebra.xi_product_budget
 #print axioms GAlgebra.xi_product_moment_margin
 #print axioms GAlgebra.xi_ray_amplitude_gap
@@ -793,12 +830,19 @@ import GAlgebra.ZetaWindow
 #print axioms GAlgebra.xi_ray_power_bound
 #print axioms GAlgebra.xi_ray_repeat_factor
 #print axioms GAlgebra.xi_ray_resolvent_factor
+#print axioms GAlgebra.xi_ray_sector_endpoint
 #print axioms GAlgebra.xi_ray_square_modulus
 #print axioms GAlgebra.xi_ray_strip_budget
+#print axioms GAlgebra.xi_ray_subgeometric_bound
 #print axioms GAlgebra.xi_ray_window_endpoint
 #print axioms GAlgebra.xi_real_resolvent_constants
 #print axioms GAlgebra.xi_reflected_resolvent_split
 #print axioms GAlgebra.xi_separated_pole_budgets
 #print axioms GAlgebra.xi_shifted_coefficient_constants
+#print axioms GAlgebra.xi_signed_block_abel
+#print axioms GAlgebra.xi_tph_base_factorial
+#print axioms GAlgebra.xi_tph_haar_split
+#print axioms GAlgebra.xi_tph_orthogonal_path
+#print axioms GAlgebra.xi_tph_pair_transform
 #print axioms GAlgebra.xi_vertical_resolvent_constants
 #print axioms GAlgebra.zero_line_readback_along_shift
