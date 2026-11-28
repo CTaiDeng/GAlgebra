@@ -25,7 +25,7 @@ flux = "prop:kinetic-contact-flux"
 joint = "thm:kinetic-joint-budget"
 rows = [
     ("经典黎曼猜想", eq, ["thm:grh-family-readback", "thm:xi-moment-readback"],
-     r"\mathsf E_\zeta", "实际矩泛函的全称条件与经典零点命题等价。给定全秩矩见证，取秩一平凡特征与零虚平移，约去因子 2 后在同一次经典回读处证毕。"),
+     r"\mathsf E_\zeta", "实际秩一完备函数的负对数导数与全部 Taylor 系数给出每个实多项式上的矩倍数关系。给定全秩见证，限制到平凡分量、约去 2，再施用经典回读。"),
     ("带光滑紧支外力", impl, ["lem:flow-period-controlled-inverse", "thm:flow-period-pulse-readback"],
      r"\mathsf E_{\rm per}", "单位黏性下合法完整周期有非零解时，回读覆盖全部正黏性。"),
     ("二元哥德巴赫", eq, [prime], "G_2(N)>0", "逐偶数 N≥4 的加权和频正性与存在素数分拆等价。"),
@@ -50,7 +50,8 @@ need = {
     grh: [r"\forall\rho", r"\forall p\in\RR[t]", "中心重数"],
     "thm:grh-family-readback": [r"\forall n\ge r", r"\forall\pi", "已核验解析输入",
         r"L(s,\pi_0)=\zeta(s)", r"B_{\pi_0}=\xi^2", r"R_{\pi_0}=2R", r"\mathcal L_{\pi_0}=2\mathcal L",
-        r"\Pi(1,\pi_0)", r"p\in\RR[t]", r"D_\zeta(\pi_\zeta)", r"\mathsf P_{\rm GRH}^{\ge1}(\QQ)\Rightarrow\mathsf B_{\mathbf1}"],
+        r"\Pi(1,\pi_0)", r"p\in\RR[t]", r"D_\zeta(\pi_\zeta)", r"\mathsf P_{\rm GRH}^{\ge1}(\QQ)\Rightarrow\mathsf B_{\mathbf1}",
+        r"A_{\pi_0}(z)=D(z)^2", r"\mathcal L_{\pi_0}(q)=2\mathcal L(q)", r"\lean{grh_trivial_xi_readback}"],
     flux: [r"P_{k,j}P_{N,k}=P_{N,j}", "(N-k)a^2", r"\lambda a^2", "收敛到同地乘积", r"Q(f,f)"],
     "prop:kinetic-nsf-moment-closure": [r"o(\delta^2)", "两个输运源", r"L^{-1}", "两个系数"],
     joint: [r"D_{\rm BG}+D_{\rm kin}=o(\delta)", r"s\le T/\delta", r"\kappa>0"],
@@ -98,7 +99,13 @@ assert "输入集合 SHA-256 " + sha256(inputs.encode()).hexdigest() in evidence
 decls = {n for r in maps.values() for n in r["lean"]}
 audit_names = re.findall(r"^'(GAlgebra\.[^']+)' (?:does not depend on any axioms|depends on axioms: \[[^\n]*\])$", evidence, re.M)
 assert len(decls) == len(audit_names) and set(audit_names) == decls
-assert {"GAlgebra.grh_trivial_moment_scale", "GAlgebra.grh_trivial_moment_readback"} <= set(maps["thm:grh-family-readback"]["lean"])
+rank_one = {"GAlgebra." + name for name in (
+    "XiArithmetic.completionApprox", "grh_trivial_xi_arithmetic", "grh_trivial_xi_limit",
+    "XiTaylorGerm", "grh_trivial_xi_factors", "grh_trivial_moment_scale",
+    "grh_trivial_moment_readback", "grh_trivial_xi_square", "grh_xi_regular", "grh_trivial_xi_resolvent",
+    "TaylorSeries.deriv_product", "TaylorSeries.resolvent_square", "grh_trivial_xi_coeff", "grh_trivial_xi_moment",
+    "grh_trivial_xi_readback")}
+assert rank_one <= set(maps["thm:grh-family-readback"]["lean"])
 assert "GAlgebra.grand_riemann_rank_one_readback" in maps["lem:grh-rank-one-base"]["lean"]
 audit_doc = next((root / "src/markdown").glob("1795704572379_*.md"))
 article = read(audit_doc)

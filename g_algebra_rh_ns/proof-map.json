@@ -788,10 +788,23 @@
       "GAlgebra.grandRiemannGoal",
       "GAlgebra.grand_riemann_fiber_equivalence",
       "GAlgebra.grand_riemann_rank_split",
+      "GAlgebra.XiArithmetic.completionApprox",
+      "GAlgebra.grh_trivial_xi_arithmetic",
+      "GAlgebra.grh_trivial_xi_limit",
+      "GAlgebra.XiTaylorGerm",
+      "GAlgebra.grh_trivial_xi_factors",
+      "GAlgebra.grh_trivial_xi_square",
+      "GAlgebra.grh_xi_regular",
+      "GAlgebra.TaylorSeries.deriv_product",
+      "GAlgebra.TaylorSeries.resolvent_square",
+      "GAlgebra.grh_trivial_xi_resolvent",
+      "GAlgebra.grh_trivial_xi_coeff",
+      "GAlgebra.grh_trivial_xi_moment",
       "GAlgebra.grh_trivial_moment_scale",
-      "GAlgebra.grh_trivial_moment_readback"
+      "GAlgebra.grh_trivial_moment_readback",
+      "GAlgebra.grh_trivial_xi_readback"
     ],
-    "note": "核验秩域等价拼接，以及给定全秩矩见证后取秩一平凡分量、约去因子 2 并施用经典回读。正文从自对偶完备化导出实际矩泛函的倍数关系。"
+    "note": "正文以局部一致收敛给出实际算术系数极限。Lean 从该输入证明平凡纤维的对偶平方、常数项非零、预解式各阶系数及任意多项式矩加倍。秩域拼接后，给定全族见证与正向回读，特化两项矩并约去 2。"
   },
   {
     "label": "thm:prime-poisson-fiber",

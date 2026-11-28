@@ -2,7 +2,7 @@ import GAlgebra.Law
 import GAlgebra.Paths
 import GAlgebra.Proof
 import GAlgebra.HomotopyAlgebra
-import GAlgebra.GrandRiemann
+import GAlgebra.TrivialFiber
 import GAlgebra.PrimePoisson
 import GAlgebra.SpectralMoments
 import GAlgebra.AnalyticCertificates

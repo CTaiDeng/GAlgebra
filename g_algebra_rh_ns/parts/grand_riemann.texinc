@@ -247,13 +247,47 @@ Gamma 非零性由定理~\ref{thm:criticalstrip} 的积分乘积证明。
 交换 \(\pi,\tilde\pi\) 保持 \(B_\pi,Y_\pi,A_\pi\) 及重数，故保持全部算术矩读数。
 取 \(\pi_0=\mathbf1\) 为导子 \(1\)、虚平移 \(\tau=0\) 的秩一表示，则 \(L(s,\pi_0)=\zeta(s)\)。
 它自对偶，故 \(\Xi_{\pi_0}=\xi\)、\(B_{\pi_0}=\xi^2\)。对数导数给出 \(R_{\pi_0}=2R\)，逐项取 Taylor 系数即得 \(\mathcal L_{\pi_0}=2\mathcal L\)。
+为固定机器核验的实际输入，取 \(s(z)=\tfrac12+\sqrt{9/4-z}\) 在 \(s(0)=2\) 的分支，
+令 \(u=s(z)-2\)、\(D(z)=\xi(s(z))\)，因而 \(s(s-1)=2-z\)。
+对 \(N\ge1\)、\(x>0\)，定义
+\[
+ b_N=\frac4N\sum_{k=0}^{N-1}\frac1{1+(k/N)^2},\qquad
+ \ell_N(x)=2\sum_{k=0}^{N^2-1}\frac{1}{2k+1}
+               \left(\frac{x-1}{x+1}\right)^{2k+1}.
+\]
+对 Dirichlet 权 \(w\) 取以下算术函数在原点的普通 Taylor 系数：
+\[
+ D_{w,N}(z)=\frac{2-z}{b_N}
+   \exp\!\left(\frac u2[\ell_N(N)-\ell_N(b_N)]\right)
+   \prod_{k=1}^N\left(1+\frac{u}{2k}\right)^{-1}
+   \sum_{m=1}^N\frac{w(m)}{m^2}\exp[-u\ell_N(m)] .
+\]
+\(b_N\) 是 \(4/(1+x^2)\) 在 \([0,1]\) 上的左 Riemann 和，故 \(2\le b_N\le4\)、\(b_N\to\pi\)。
+对 \(1\le x\le\max(N,4)\)，令 \(r=(x-1)/(x+1)\)。对数展开的尾项至多为
+\(2r^{2N^2+1}/((2N^2+1)(1-r^2))\)，在该区间上一致趋零。
+在 \(|u|\le\eta<1\) 上，Dirichlet 和由可和列 \(m^{-2+\eta}\) 控制。
+Euler 乘积 \(N^{u/2}\prod_{k=1}^N(1+u/(2k))^{-1}\) 在此一致趋于 \(\Gamma(1+u/2)\)，
+因为取对数后余项为一致的 \(O_\eta(k^{-2})\)，且 \(\sum_{k\le N}k^{-1}-\log N\) 收敛。
+因此对常权 \(1\)、导子 \(1\) 的主特征及其对偶，\(D_{w,N}\) 在原点附近局部一致趋于实际完备函数 \(D\)。
+在同一小圆应用 Cauchy 系数公式，得到每个固定阶数的极限。这给出 \lean{XiTaylorGerm} 所需的实系数实现。
+
+\lean{XiArithmetic.completionApprox} 用同一有限和式计算系数。主特征按 \(\gcd(m,1)=1\) 取值，其对偶取逆值。
+\lean{grh_trivial_xi_arithmetic} 对每个 \(N\) 及任意多项式给出这些算术近似自身的精确矩倍数关系。
+给定任意 \(x\in\RR\)，\lean{grh_trivial_xi_limit} 证明平凡纤维的矩序列趋于 \(2x\) 当且仅当经典矩序列趋于 \(x\)。
+对固定多项式，级数除法只使用有限多个系数和非零常数项，故这些极限正是上述解析预解式的矩。
+Lean 用极限唯一性识别三个实现，得到 \(A_{\pi_0}(z)=D(z)^2\) 的 Taylor 恒等式，
+并由 \(D_{1,N}(0)\ge1/2\) 排除 \(D(0)=0\)。Cauchy 乘积的乘法求导律与级数除法给出
+\(- (D^2)'/D^2=2(-D'/D)\) 的全部系数。对任意 \(q=\sum_j q_jt^j\in\RR[t]\) 作有限配对，
+即得 \(\mathcal L_{\pi_0}(q)=2\mathcal L(q)\)。相应声明为 \lean{grh_trivial_xi_square}、
+\lean{grh_trivial_xi_resolvent}、\lean{grh_trivial_xi_coeff} 和 \lean{grh_trivial_xi_moment}。
 对每个 \(p\in\RR[t]\)，全秩见证的分量 \(\Pi(1,\pi_0)\) 给出
 \[
  0\le 2\mathcal L(tp^2)\le \tfrac49\bigl(2\mathcal L(p^2)\bigr).
 \]
 两端的矩读数同除以 \(2\)，即得覆盖全部实多项式的 \(\pi_\zeta\)。施用定理~\ref{thm:xi-moment-readback} 的正向回读，
 经典命题即在 \(D_\zeta(\pi_\zeta):\mathsf B_{\mathbf1}\) 处证毕。
-正因子约去与全族见证的限制、回读分别见 \lean{grh_trivial_moment_scale}、\lean{grh_trivial_moment_readback}。
+在 \lean{grh_trivial_xi_readback} 中取 \(q=tp^2,p^2\) 产生两个矩等式，
+再调用 \lean{grh_trivial_moment_readback} 和 \lean{grh_trivial_moment_scale} 完成这次回读。
 在原始 Dirichlet 纤维，定理~\ref{thm:dirichlet-analytic-input} 给出实际算术输入。
 秩一的原标签和虚平移由引理~\ref{lem:grh-rank-one-base} 覆盖。
 

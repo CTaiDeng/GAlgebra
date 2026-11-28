@@ -47,7 +47,7 @@
 \begin{description}
 \item[谱型。]
 经典黎曼猜想是有理数域上全秩大黎曼猜想的秩一平凡特例。按定理~\ref{thm:grh-family-readback}，给定全秩矩见证 \(\Pi\)，
-在 \(n=1\) 取平凡特征与零虚平移，将 \(\Pi(1,\mathbf1)\) 的两条矩不等式同除以 \(2\)，即得 \(\pi_\zeta\)。
+在 \(n=1\) 取平凡特征与零虚平移。\lean{grh_trivial_xi_moment} 从实际完备函数给出任意实多项式上的倍数关系，将 \(\Pi(1,\mathbf1)\) 的两条矩不等式同除以 \(2\)，即得 \(\pi_\zeta\)。
 定理~\ref{thm:xi-moment-readback} 在 \(D_\zeta(\pi_\zeta)\) 处证毕经典命题。
 \par 经典纤维另有独立的 G-PDE 判据。对定义~\ref{def:goals} 的实际输入，命题~\ref{prop:xi-arithmetic-quadratic}
 给出初值的算术数据。定理~\ref{thm:xi-law-heat-evolution} 在法空间内构造唯一 G-PDE 解及双向可读的热图册。

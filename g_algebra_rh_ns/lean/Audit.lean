@@ -108,6 +108,8 @@ import GAlgebra.ZetaWindow
 #check GAlgebra.Task.quotient_differential_sufficient
 #check GAlgebra.Task.reduced_exact_is_bijective
 #check GAlgebra.Task.two_step_law_example
+#check GAlgebra.TaylorSeries.deriv_product
+#check GAlgebra.TaylorSeries.resolvent_square
 #check GAlgebra.Term.evaluations_commute
 #check GAlgebra.TwoStep
 #check GAlgebra.TwoStep.ChainMap.homology
@@ -119,6 +121,8 @@ import GAlgebra.ZetaWindow
 #check GAlgebra.TwoStep.legal_quotient_solution_writeback
 #check GAlgebra.TwoStep.quotient_solution_writeback
 #check GAlgebra.TwoStep.sameClass
+#check GAlgebra.XiArithmetic.completionApprox
+#check GAlgebra.XiTaylorGerm
 #check GAlgebra.ZeroLineSpec.goal
 #check GAlgebra.affine_chart_compose
 #check GAlgebra.affine_product_delta
@@ -189,6 +193,15 @@ import GAlgebra.ZetaWindow
 #check GAlgebra.grand_riemann_rank_split
 #check GAlgebra.grh_trivial_moment_readback
 #check GAlgebra.grh_trivial_moment_scale
+#check GAlgebra.grh_trivial_xi_arithmetic
+#check GAlgebra.grh_trivial_xi_coeff
+#check GAlgebra.grh_trivial_xi_factors
+#check GAlgebra.grh_trivial_xi_limit
+#check GAlgebra.grh_trivial_xi_moment
+#check GAlgebra.grh_trivial_xi_readback
+#check GAlgebra.grh_trivial_xi_resolvent
+#check GAlgebra.grh_trivial_xi_square
+#check GAlgebra.grh_xi_regular
 #check GAlgebra.harmonic_projection_coeff_cancel
 #check GAlgebra.higher_arity_truncation
 #check GAlgebra.hodge_cycle_restrict
@@ -530,6 +543,8 @@ import GAlgebra.ZetaWindow
 #print axioms GAlgebra.Task.quotient_differential_sufficient
 #print axioms GAlgebra.Task.reduced_exact_is_bijective
 #print axioms GAlgebra.Task.two_step_law_example
+#print axioms GAlgebra.TaylorSeries.deriv_product
+#print axioms GAlgebra.TaylorSeries.resolvent_square
 #print axioms GAlgebra.Term.evaluations_commute
 #print axioms GAlgebra.TwoStep
 #print axioms GAlgebra.TwoStep.ChainMap.homology
@@ -541,6 +556,8 @@ import GAlgebra.ZetaWindow
 #print axioms GAlgebra.TwoStep.legal_quotient_solution_writeback
 #print axioms GAlgebra.TwoStep.quotient_solution_writeback
 #print axioms GAlgebra.TwoStep.sameClass
+#print axioms GAlgebra.XiArithmetic.completionApprox
+#print axioms GAlgebra.XiTaylorGerm
 #print axioms GAlgebra.ZeroLineSpec.goal
 #print axioms GAlgebra.affine_chart_compose
 #print axioms GAlgebra.affine_product_delta
@@ -611,6 +628,15 @@ import GAlgebra.ZetaWindow
 #print axioms GAlgebra.grand_riemann_rank_split
 #print axioms GAlgebra.grh_trivial_moment_readback
 #print axioms GAlgebra.grh_trivial_moment_scale
+#print axioms GAlgebra.grh_trivial_xi_arithmetic
+#print axioms GAlgebra.grh_trivial_xi_coeff
+#print axioms GAlgebra.grh_trivial_xi_factors
+#print axioms GAlgebra.grh_trivial_xi_limit
+#print axioms GAlgebra.grh_trivial_xi_moment
+#print axioms GAlgebra.grh_trivial_xi_readback
+#print axioms GAlgebra.grh_trivial_xi_resolvent
+#print axioms GAlgebra.grh_trivial_xi_square
+#print axioms GAlgebra.grh_xi_regular
 #print axioms GAlgebra.harmonic_projection_coeff_cancel
 #print axioms GAlgebra.higher_arity_truncation
 #print axioms GAlgebra.hodge_cycle_restrict

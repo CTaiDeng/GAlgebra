@@ -25,7 +25,7 @@ $$
 
 原命题的验收止于 \(D_\sigma(\pi_\sigma)\)。存在性按这份推导所得的存在性结论验收。原命题明确要求显式构造时，构造随同一回读交付。[README 验收标准](g_algebra_rh_ns/README.md#验收标准)
 
-经典黎曼猜想按有理数域上全秩大黎曼猜想的秩一平凡特例登记。给定全秩矩见证，取平凡特征与零虚平移，将该分量的矩不等式同除以 \(2\)，所得 \(\pi_\zeta\) 经 \(D_\zeta\) 完成同一次回读。[秩一特例的正文推导](g_algebra_rh_ns/parts/grand_riemann.texinc#L231)
+经典黎曼猜想按有理数域上全秩大黎曼猜想的秩一平凡特例登记。正文以局部一致收敛给出导子 \(1\)、零虚平移的实际算术系数极限。Lean 从该输入证明 \(\mathcal L_{\mathbf1}(q)=2\mathcal L(q)\)，覆盖每个实多项式。给定全秩矩见证，在 \(q=tp^2,p^2\) 特化并约去 \(2\)，所得 \(\pi_\zeta\) 经 \(D_\zeta\) 完成同一次回读。[正文推导](g_algebra_rh_ns/parts/grand_riemann.texinc#L231) · [秩一系数与回读](g_algebra_rh_ns/lean/GAlgebra/TrivialFiber.lean)
 
 ## `src/markdown/` 写作约束
 

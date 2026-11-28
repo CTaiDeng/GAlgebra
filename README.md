@@ -98,7 +98,7 @@ $$
 
 给定全秩矩见证 $\Pi$，取导子为 $1$ 的平凡特征与零虚平移对应的秩一分量 $\Pi(1,\mathbf1)$。记经典 $\zeta$ 的预解式和矩泛函为 $R,\mathcal L$。该分量自对偶，完备函数的对偶乘积为 $\xi^2$，故 $R_{\mathbf1}=2R$、$\mathcal L_{\mathbf1}=2\mathcal L$。将两条矩不等式同除以 $2$，即得覆盖全部实多项式的 $\pi_\zeta$。若 $\Pi$ 及所用解析输入均从原始数学基础 $\Gamma_0$ 内蕴证得，$D_\zeta(\pi_\zeta)$ 就在同一次回读中给出经典黎曼猜想的无条件证明。[全秩见证的秩一限制](g_algebra_rh_ns/parts/grand_riemann.texinc#L231) · [经典矩判据的正向回读](g_algebra_rh_ns/parts/spectral_moments.texinc#L155)
 
-经典黎曼猜想是有理数域 $\mathbb Q$ 上全秩大黎曼猜想在平凡特征、零虚平移下的秩一特例。给定全族的法空间矩见证 $\Pi$，其秩一分量 $\Pi(1,\mathbf1)$ 对每个实多项式都给出两条矩不等式。在这一纤维上，$L(s,\mathbf1)=\zeta(s)$，且 $\mathcal L_{\mathbf1}=2\mathcal L$。将两条不等式同除以 $2$，即得经典矩见证 $\pi_\zeta$。若 $\Pi$ 由原始假设 $\Gamma_0$ 推得，则正向回读 $D_\zeta(\pi_\zeta)$ 便给出仅依赖这些假设的经典黎曼猜想证明。[定理 7.40 的秩一限制](g_algebra_rh_ns/parts/grand_riemann.texinc#L231) · [定理 7.12 的矩判据](g_algebra_rh_ns/parts/spectral_moments.texinc#L155)
+导子 $1$ 的主特征与其对偶在每个正整数上都取值 $1$，故 $L(s,\mathbf1)=\zeta(s)$。Lean 证明，对每个算术截断和每个测试多项式，平凡纤维的矩都等于经典矩的两倍。经典矩序列趋于 $x$ 当且仅当平凡纤维的矩序列趋于 $2x$。正文由局部一致收敛给出实际 $\xi$ 的 Taylor 系数。Lean 据此识别自对偶平方，对负对数导数取系数，再在 $tp^2$、$p^2$ 上特化同一个矩等式。[算术极限的等价](g_algebra_rh_ns/lean/GAlgebra/TrivialFiber.lean#L341) · [矩恒等式](g_algebra_rh_ns/lean/GAlgebra/TrivialFiber.lean#L418) · [秩一回读](g_algebra_rh_ns/lean/GAlgebra/TrivialFiber.lean#L429)
 
 证明的复用价值也可以按任务核算。按专题文章的成本模型，若共同母体的一次构造与求解耗费 $C$，每项任务相对独立证明在扣除上卷、回读费用后平均节省 $b>0$，则 $N$ 项任务在 $Nb>C$ 时产生净节省。[证明复用的成本模型](src/markdown/1795796903721_从广义黎曼猜想到经典黎曼猜想：GAlgebra%20的高阶统一价值.md#42-两种证明组织方式的成本)
 
@@ -124,7 +124,7 @@ python -B .\g_algebra_rh_ns\check_mapping.py
 python -B .\audit\check_obligations.py
 ```
 
-Lean 工程使用 `lean-toolchain` 指定的 Lean 4.36.0。2026-11-27 的独立复核归档列出 50 项输入指纹、170 条 TeX–Lean 映射，以及 421 个不同声明的类型与传递公理核验结果。Lean 的核验范围由每个声明的类型与证明项确定，实复分析、Hilbert 空间完备化和连续 PDE 的论证可按索引定位到正式稿。例如，秩一黎曼特例的 Lean 声明核验从给定全族见证中取平凡分量、约去正因子 $2$ 并应用回读。实际矩泛函恒等式 $\mathcal L_{\mathbf1}=2\mathcal L$ 的解析推导见正式稿。[构建报告与覆盖范围](LEAN_BUILD_REPORT.md#证明覆盖范围) · [秩一限制的 Lean 声明](g_algebra_rh_ns/lean/GAlgebra/GrandRiemann.lean#L150) · [解析推导](g_algebra_rh_ns/parts/grand_riemann.texinc#L248) · [专项复核步骤](g_algebra_rh_ns/README.md#复核)
+Lean 工程固定为 4.36.0，直接导入的官方基础模块只有 `Init`，Lake 外部包数为 0。2026-11-28 的独立核验覆盖 51 项输入、170 条 TeX–Lean 映射和 434 个不同声明。秩一系数、级数除法和多项式配对均在同一主库内构建。正文给出算术系数的解析收敛论证，完整回读仍以全秩矩见证及经典正向回读为前提。[构建与公理审计](LEAN_BUILD_REPORT.md#证明覆盖范围) · [正式稿定理 7.40](g_algebra_rh_ns/parts/grand_riemann.texinc#L231) · [复核步骤](g_algebra_rh_ns/README.md#复核)
 
 使用带 CJK 宏包的 pdfLaTeX 编译正式稿，输出到 `out/tex/`。
 
